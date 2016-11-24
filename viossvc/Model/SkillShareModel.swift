@@ -43,14 +43,14 @@ class SkillShareDetailModel : SkillShareModel {
     var share_end:Int = 0		//技能分享结束时间
     var detail_pic:String!	//详情页显示图片url
     var summary:String!	//详情
-    var user_list:[UserModel]!//报名者列表
+    var user_list:[UserModel] = []//报名者列表
     class func user_listModleClass() ->AnyClass {
         return UserModel.classForCoder()
     }
 }
 
 class SkillShareCommentModel : UserModel {
-    var discuss_id:Int64 = 0	//技能讨论id
+    var discuss_id:Int = 0	//技能讨论id
     var content:String!	//讨论内容
     var discuss_time:Int = 0	//发言时间
 }

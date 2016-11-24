@@ -76,5 +76,13 @@ class SocketJsonResponse: SocketResponse {
         return nil;
     }
     
+    func responseResult() -> Int? {
+        let dict = responseJsonObject() as? [String:AnyObject]
+        if dict != nil && dict!["result_"] != nil {
+            return dict!["result_"] as? Int;
+        }
+        return nil;
+    }
+    
 }
 

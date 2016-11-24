@@ -19,6 +19,7 @@
 		ACABDD418C987E1EF6B392A3 /* UserSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABD31D158C3ACBE2AE15BD /* UserSocketAPI.swift */; };
 		ACABDE8334ED847291D1A8A8 /* SocketConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABDE6EC8DA4D4F93F3DEEC /* SocketConst.swift */; };
 		ACABDFFD286587F50681B491 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABDD099EF194E2061031F1 /* UserAPI.swift */; };
+		B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011C2C11DE6DFEB00CB897A /* CurrentUserHelper.swift */; };
 		B03B12151DE5BFDE00B00D2E /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11BA1DE5BFDD00B00D2E /* AppConst.swift */; };
 		B03B12161DE5BFDE00B00D2E /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11BE1DE5BFDD00B00D2E /* BaseModel.swift */; };
 		B03B12171DE5BFDE00B00D2E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11BF1DE5BFDD00B00D2E /* UserModel.swift */; };
@@ -85,6 +86,7 @@
 		ACABDE6EC8DA4D4F93F3DEEC /* SocketConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConst.swift; sourceTree = "<group>"; };
 		ACABDE892B177678E1AB4BAB /* SocketRequestManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketRequestManage.swift; sourceTree = "<group>"; };
 		ACABDEB2F2E7F93BFC76AA0F /* AppAPIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAPIHelper.swift; sourceTree = "<group>"; };
+		B011C2C11DE6DFEB00CB897A /* CurrentUserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserHelper.swift; sourceTree = "<group>"; };
 		B03B11BA1DE5BFDD00B00D2E /* AppConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
 		B03B11BB1DE5BFDD00B00D2E /* viossvc-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "viossvc-Bridging-Header.h"; sourceTree = "<group>"; };
 		B03B11BC1DE5BFDD00B00D2E /* viossvc_prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viossvc_prefix.pch; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				B03B120C1DE5BFDE00B00D2E /* TableViewHelper.swift */,
+				B011C2C11DE6DFEB00CB897A /* CurrentUserHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				B03B12281DE5BFDE00B00D2E /* OrderListViewController.swift in Sources */,
 				B03B12401DE5BFDE00B00D2E /* BaseCustomTableViewController.swift in Sources */,
 				B03B122E1DE5BFDE00B00D2E /* SkillShareViewController.swift in Sources */,
+				B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */,
 				B03B12361DE5BFDE00B00D2E /* UserViewController.swift in Sources */,
 				B08F95D61DE5E821001ACB2A /* SkillShareModel.swift in Sources */,
 				B03B12441DE5BFDE00B00D2E /* SegmentedViewController.swift in Sources */,

@@ -74,6 +74,7 @@ class BaseLoginViewController: UITableViewController {
     }
     
     func didLoginComplete(userInfo:UserInfoModel?) {
+        CurrentUserHelper.shared.userInfo = userInfo;
         SVProgressHUD.dismiss()
         UIApplication.sharedApplication().keyWindow!.rootViewController = self.storyboardViewController() as MainTabBarController
         

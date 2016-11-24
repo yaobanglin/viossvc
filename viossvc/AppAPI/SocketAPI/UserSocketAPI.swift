@@ -23,7 +23,7 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     
     func register(model:RegisterModel,complete:CompleteBlock,error:ErrorBlock) {
         let packet = SocketDataPacket(opcode: .Register, model: model)
-        startRequest(packet, complete: complete, error: error)
+        startResultIntRequest(packet, complete: complete, error: error)
     }
     
     func nodifyPasswrod(uid:Int,oldPassword:String,newPasword:String,complete:CompleteBlock,error:ErrorBlock){
