@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TableViewHeaderView" customModule="viossvc" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9pV-zq-3SD">
+                    <rect key="frame" x="15" y="14" width="2" height="16"/>
+                    <color key="backgroundColor" red="0.72156862749999995" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="jof-bm-Klf"/>
+                        <constraint firstAttribute="width" constant="2" id="pEW-UM-x00"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLI-VF-Rjo">
+                    <rect key="frame" x="25" y="11.5" width="560" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="oMI-iX-tUX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="KLI-VF-Rjo" firstAttribute="leading" secondItem="9pV-zq-3SD" secondAttribute="trailing" constant="8" id="8yh-cf-ofp"/>
+                <constraint firstItem="KLI-VF-Rjo" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="A8c-1Z-TuA"/>
+                <constraint firstItem="9pV-zq-3SD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="ACy-ws-emS"/>
+                <constraint firstItem="9pV-zq-3SD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rgR-NB-bF1"/>
+                <constraint firstAttribute="trailing" secondItem="KLI-VF-Rjo" secondAttribute="trailing" constant="15" id="uxJ-W5-2LB"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="KLI-VF-Rjo" id="MoF-Iv-WAd"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,117 @@
+//
+//  LoginViewController.swift
+//  viossvc
+//
+//  Created by yaowang on 2016/10/27.
+//  Copyright © 2016年 ywwlcom.yundian. All rights reserved.
+//
+
+import Foundation
+import SVProgressHUD
+
+class BaseLoginViewController: UITableViewController {
+    @IBOutlet weak var textField1: UITextField!
+    @IBOutlet weak var textField2: UITextField!
+    private let minTopHeight:CGFloat = 175.0;
+    private let maxTopHeight:CGFloat = 275.0;
+    private let fromHeigth:CGFloat = 206.0;
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setTextFieldAttributedPlaceholder(textField1);
+        setTextFieldAttributedPlaceholder(textField2);
+        self.view.userInteractionEnabled = true;
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(didActionHideKeyboard(_:))))
+    }
+    
+    private func setTextFieldAttributedPlaceholder(textField:UITextField) {
+        let attributes = [NSFontAttributeName:UIFont.systemFontOfSize(15),
+                          NSForegroundColorAttributeName:UIColor(white:1,alpha: 0.5)];
+        
+        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: attributes);
+        
+    }
+    
+    @objc private func didActionHideKeyboard(sender: AnyObject?) {
+        hideKeyboard()
+    }
+    
+    
+    private func topHeight() -> CGFloat {
+        if CGRectGetHeight(self.view.frame) - maxTopHeight - fromHeigth < 50  {
+            return minTopHeight;
+        }
+        return maxTopHeight;
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0  {
+            return topHeight();
+        }
+        else if indexPath.row == 2  {
+            return CGRectGetHeight(self.view.frame) - topHeight() - fromHeigth;
+        }
+        return super.tableView(tableView, heightForRowAtIndexPath: indexPath);
+    }
+    
+    func checkTextFieldEmpty(array:[UITextField]) -> Bool {
+        for  textField in array {
+            if NSString.isEmpty(textField.text)  {
+                showErrorWithStatus(textField.placeholder);
+                return false
+            }
+        }
+        return true
+    }
+    
+    func checkPhoneFormat(phone:String) -> Bool {
+        let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", AppConst.Text.PhoneFormat)
+        if predicate.evaluateWithObject(phone) == false {
+            showErrorWithStatus(AppConst.Text.PhoneFormatErr)
+            return false;
+        }
+        return true;
+    }
+    
+    func didLoginComplete(userInfo:UserInfoModel?) {
+        SVProgressHUD.dismiss()
+        UIApplication.sharedApplication().keyWindow!.rootViewController = self.storyboardViewController() as MainTabBarController
+        
+    }
+    
+    func userLogin(phone:String,password:String) {
+        let loginModel = LoginModel();
+        loginModel.phone_num = phone
+        loginModel.passwd = password
+        AppAPIHelper.userAPI().login(loginModel, complete: {  [weak self] (model) in
+            self?.didLoginComplete(model as? UserInfoModel)
+            }, error:errorBlockFunc())
+    }
+    
+}
+
+
+class LoginViewController: BaseLoginViewController {
+    
+
+    
+    
+    @IBAction func didActionLogin(sender: AnyObject) {
+        if checkTextFieldEmpty([textField1,textField2]) && checkPhoneFormat(textField1.text!) {
+            hideKeyboard();
+            let loginModel = LoginModel();
+            loginModel.phone_num = textField1.text
+            loginModel.passwd = textField2.text
+            showWithStatus("登录中...")
+            userLogin(textField1.text!,password:textField2.text!)
+        }
+    }
+    
+    @IBAction func didActionRegister(sender: AnyObject) {
+        let navController = navigationController;
+        navController!.popViewControllerAnimated(false);
+        navController?.pushViewControllerWithIdentifier(MainViewController.className(), animated: false, valuesForKeys: [MainViewController.childViewControllerIdentifierKey:RegisterViewController.className(),MainViewController.childViewControllerDataKey:false]);
+    }
+    
+
+}
