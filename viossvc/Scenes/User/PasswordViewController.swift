@@ -21,8 +21,8 @@ class PasswordViewController: BaseLoginViewController {
                 let tips = registerModel.smsType == SMSVerifyModel.SMSType.Register ? "注册..." : "重设密码..."
                 showWithStatus(tips)
                 registerModel.passwd = textField1.text
-                AppAPIHelper.userAPI().register(childViewControllerData, complete: { [weak self] (dict) in
-                    self?.didRegisterComplete(dict as? Dictionary<String,AnyObject> );
+                AppAPIHelper.userAPI().register(childViewControllerData, complete: { [weak self] (resultInt) in
+                    self?.didRegisterComplete(resultInt as! Int);
                     }, error: errorBlockFunc())
             }
             else {
@@ -31,10 +31,9 @@ class PasswordViewController: BaseLoginViewController {
         }
     }
     
-    func didRegisterComplete(dict:Dictionary<String,AnyObject>!) {
-        let result:Int! = dict["result"] as? Int
+    func didRegisterComplete(resultInt:Int) {
         if registerModel.smsType == SMSVerifyModel.SMSType.Register
-        && result == 0 {
+        && resultInt == 0 {
             showErrorWithStatus(AppConst.Text.RegisterPhoneError)
             let delta = 1.5 * Double(NSEC_PER_SEC)
             let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(delta))

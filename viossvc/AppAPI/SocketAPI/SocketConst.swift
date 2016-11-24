@@ -26,6 +26,8 @@ class SocketConst: NSObject {
         case SkillShareDetail = 1073
         
         case SkillShareComment = 1075
+        
+        case SkillShareEnroll = 1077
     }
     enum type:UInt8 {
         case Error = 0

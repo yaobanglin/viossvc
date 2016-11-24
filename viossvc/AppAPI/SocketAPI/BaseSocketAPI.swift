@@ -16,6 +16,13 @@ class BaseSocketAPI: NSObject {
             },error: error)
     }
     
+    
+    func startResultIntRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
+        SocketRequestManage.shared.startJsonRequest(packet,complete: {  (response) in
+            complete((response as? SocketJsonResponse)?.responseResult())
+            },error: error)
+    }
+    
     func startModelRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
         SocketRequestManage.shared.startJsonRequest(packet, complete: {  (response) in
             complete?((response as? SocketJsonResponse)?.responseModel(modelClass))

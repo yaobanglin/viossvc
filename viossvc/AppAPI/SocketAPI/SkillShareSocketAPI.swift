@@ -22,7 +22,15 @@ class SkillShareSocketAPI: BaseSocketAPI,SkillShareAPI {
     
     func comment(share_id:Int,last_id:Int,count:Int,complete:CompleteBlock,error:ErrorBlock) {
         let dict:[String : AnyObject] = ["share_id_":share_id,"last_id_" : last_id , "count_" : count];
-        startModelsRequest(SocketDataPacket(opcode: .SkillShareComment,dict: dict), listName:"data_list_", modelClass: SkillShareCommentModel.classForCoder(), complete: complete, error: error)
+        let packet = SocketDataPacket(opcode: .SkillShareComment,dict: dict)
+        startModelsRequest(packet, listName:"data_list_", modelClass: SkillShareCommentModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    func enroll(share_id:Int,uid:Int,complete:CompleteBlock,error:ErrorBlock) {
+        let dict:[String : AnyObject] = ["share_id_":share_id,"uid_" : uid]
+        let packet = SocketDataPacket(opcode: .SkillShareEnroll,dict: dict)
+        startResultIntRequest(packet, complete: complete, error: error)
+        
     }
 }
 
