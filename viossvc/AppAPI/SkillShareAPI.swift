@@ -9,6 +9,7 @@
 import UIKit
 
 protocol SkillShareAPI {
-    func list(last_id:Int,count:Int,complete:CompleteBlock,error:ErrorBlock);
-    func detail(share_id:Int,complete:CompleteBlock,error:ErrorBlock);
+    func list(last_id:Int,count:Int,complete:CompleteBlock,error:ErrorBlock)
+    func detail(share_id:Int,complete:CompleteBlock,error:ErrorBlock)
+    func comment(share_id:Int,last_id:Int,count:Int,complete:CompleteBlock,error:ErrorBlock)
 }

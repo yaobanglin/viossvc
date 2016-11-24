@@ -14,7 +14,7 @@ class BaseModel: OEZModel {
     }
     deinit {
         
-            XCGLogger.debug("deinit \(self)")
+//            XCGLogger.debug("deinit \(self)")
         
     }
 }

@@ -50,7 +50,7 @@ class SkillShareDetailModel : SkillShareModel {
 }
 
 class SkillShareCommentModel : UserModel {
-    var discuss_id:Int64 = 0	//技能讨论id
+    var discuss_id:Int = 0	//技能讨论id
     var content:String!	//讨论内容
     var discuss_time:Int = 0	//发言时间
 }

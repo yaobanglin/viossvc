@@ -11,6 +11,7 @@ import Foundation
 class SkillShareViewController: BasePageListTableViewController,OEZTableViewDelegate {
 
     var banners:[SkillBannerModel]? = []
+    var pageSize = 10
     override func viewDidLoad() {
         super.viewDidLoad();
         self.tableView.registerClass(CommTableViewBannerCell.self, forCellReuseIdentifier: "SkillShareCell")
@@ -58,7 +59,7 @@ class SkillShareViewController: BasePageListTableViewController,OEZTableViewDele
     
     override func didRequest(pageIndex: Int) {
         let last_id:Int = pageIndex == 1 ? 0 : (dataSource?.last as! SkillShareModel).share_id
-        AppAPIHelper.skillShareAPI().list(last_id, count: 5, complete: { [weak self] (model) in
+        AppAPIHelper.skillShareAPI().list(last_id, count: pageSize, complete: { [weak self] (model) in
                 self?.didRequestComplete(model)
             }, error:errorBlockFunc())
     }
