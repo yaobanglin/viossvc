@@ -37,5 +37,15 @@ extension UIViewController {
     func showWithStatus(status: String!) {
         SVProgressHUD.showWithStatus(status)
     }
-
+    
+    //MARK: -Common function
+    func checkTextFieldEmpty(array:[UITextField]) -> Bool {
+        for  textField in array {
+            if NSString.isEmpty(textField.text)  {
+                showErrorWithStatus(textField.placeholder);
+                return false
+            }
+        }
+        return true
+    }
 }

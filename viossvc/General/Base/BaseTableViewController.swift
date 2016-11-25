@@ -64,16 +64,7 @@ class BaseTableViewController: UITableViewController , TableViewHelperProtocol {
         }
         return super.tableView(tableView, heightForRowAtIndexPath: indexPath);
     }
-    //MARK: -Common function
-    func checkTextFieldEmpty(array:[UITextField]) -> Bool {
-        for  textField in array {
-            if NSString.isEmpty(textField.text)  {
-                showErrorWithStatus(textField.placeholder);
-                return false
-            }
-        }
-        return true
-    }
+    
     
 }
 class BaseRefreshTableViewController :BaseTableViewController {
