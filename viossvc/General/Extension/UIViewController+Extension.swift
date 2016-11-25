@@ -9,7 +9,7 @@
 import Foundation
 import XCGLogger
 import SVProgressHUD
-
+import Qiniu
 extension UIViewController {
     
     static func storyboardViewController<T:UIViewController>(storyboard:UIStoryboard) ->T {
@@ -47,5 +47,13 @@ extension UIViewController {
             }
         }
         return true
+    }
+    
+    func qiniuUploadImage(imagePath: String, imageName: String,complete:CompleteBlock,error:ErrorBlock) {
+        //1,请求token
+        
+        //2,上传图片
+        
+        //3,返回URL
     }
 }

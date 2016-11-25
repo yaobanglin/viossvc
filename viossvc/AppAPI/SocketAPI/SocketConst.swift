@@ -20,6 +20,8 @@ class SocketConst: NSObject {
         case Register = 1021
         //重置密码
         case NodifyPasswrod = 1011
+        //修改用户信息
+        case NodifyUserInfo = 1023
         
         case SkillShareList = 1071
         
@@ -34,6 +36,7 @@ class SocketConst: NSObject {
         case TourShareList = 1061
         
         case TourShareDetail = 1065
+        
     }
     enum type:UInt8 {
         case Error = 0
