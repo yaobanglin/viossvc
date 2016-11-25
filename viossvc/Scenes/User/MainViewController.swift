@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
 
     
     @IBAction func didActionLogin(sender: AnyObject) {
-        
+       
         navigationController?.pushViewControllerWithIdentifier(MainViewController.className(), animated: true, valuesForKeys: [MainViewController.childViewControllerIdentifierKey:LoginViewController.className()])
     }
     @IBAction func didActionRegister(sender: AnyObject) {
