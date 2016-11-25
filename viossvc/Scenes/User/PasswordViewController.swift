@@ -16,12 +16,12 @@ class PasswordViewController: BaseLoginViewController {
     }
     @IBAction func didActionOk(sender: AnyObject) {
         if checkTextFieldEmpty([textField1,textField2]) {
-            if textField1.text == textField2.text  {
+            if textField1.text?.trim() == textField2.text?.trim()  {
                 hideKeyboard()
                 let tips = registerModel.smsType == SMSVerifyModel.SMSType.Register ? "注册..." : "重设密码..."
                 showWithStatus(tips)
-                registerModel.passwd = textField1.text
-                AppAPIHelper.userAPI().register(childViewControllerData, complete: { [weak self] (resultInt) in
+                registerModel.passwd = textField1.text?.trim()
+                AppAPIHelper.userAPI().register(registerModel, complete: { [weak self] (resultInt) in
                     self?.didRegisterComplete(resultInt as! Int);
                     }, error: errorBlockFunc())
             }
