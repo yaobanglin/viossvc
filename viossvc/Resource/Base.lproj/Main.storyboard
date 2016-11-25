@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main Tab Bar Controller-->
@@ -2564,7 +2565,7 @@
         <!--常住地选择-->
         <scene sceneID="Lvw-R1-1eV">
             <objects>
-                <tableViewController title="常住地选择" hidesBottomBarWhenPushed="YES" id="BqB-6m-IJg" sceneMemberID="viewController">
+                <tableViewController title="常住地选择" hidesBottomBarWhenPushed="YES" id="BqB-6m-IJg" customClass="CitysSelectViewController" customModule="viossvc" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="edF-MI-i9j">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2576,6 +2577,29 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GjF-NI-xu1" id="7BF-gm-cVi">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6V-rl-6LM">
+                                            <rect key="frame" x="28" y="13" width="38" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="brY-cr-orc">
+                                            <rect key="frame" x="552" y="12" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="VFn-O6-HkR"/>
+                                                <constraint firstAttribute="width" constant="20" id="iCg-yZ-aDn"/>
+                                            </constraints>
+                                            <state key="normal" image="pay-unselect"/>
+                                            <state key="selected" image="pay-selected"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="brY-cr-orc" secondAttribute="trailing" constant="20" id="0Fx-qp-3N5"/>
+                                        <constraint firstItem="brY-cr-orc" firstAttribute="centerY" secondItem="7BF-gm-cVi" secondAttribute="centerY" id="BCR-xp-GAS"/>
+                                        <constraint firstItem="n6V-rl-6LM" firstAttribute="centerY" secondItem="7BF-gm-cVi" secondAttribute="centerY" id="U4M-uq-CwS"/>
+                                        <constraint firstItem="n6V-rl-6LM" firstAttribute="leading" secondItem="7BF-gm-cVi" secondAttribute="leadingMargin" constant="20" id="bSW-ca-xtb"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -3175,6 +3199,8 @@
         <image name="meishi" width="55" height="55"/>
         <image name="my_star_fill" width="17" height="17"/>
         <image name="my_star_gray" width="17" height="17"/>
+        <image name="pay-selected" width="20" height="20"/>
+        <image name="pay-unselect" width="20" height="20"/>
         <image name="setting" width="22" height="22"/>
         <image name="test2" width="75" height="75"/>
         <image name="test_111" width="9" height="7"/>
