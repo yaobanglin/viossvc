@@ -8,6 +8,7 @@
 
 import Foundation
 import XCGLogger
+import SVProgressHUD
 class MainViewController: UIViewController {
     var childViewControllerIdentifier:String?
     var childViewControllerData:AnyObject?
@@ -19,6 +20,20 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initChildViewController()
+        
+        if  CurrentUserHelper.shared.autoLogin({ [weak self] (model) in
+                self?.didAutoLoginComplete(model as? UserInfoModel)
+            }, error: errorBlockFunc()) {
+            SVProgressHUD.showWithStatus("登录中...")
+        }
+    }
+    
+    
+    func didAutoLoginComplete(userInfo:UserInfoModel?) {
+        
+        SVProgressHUD.dismiss()
+        UIApplication.sharedApplication().keyWindow!.rootViewController = self.storyboardViewController() as MainTabBarController
+        
     }
     
     private func initChildViewController() {

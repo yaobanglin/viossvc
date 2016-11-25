@@ -27,7 +27,7 @@ class RegisterViewController: BaseLoginViewController {
     
     @IBAction func didActionNext(sender: AnyObject) {
         if checkTextFieldEmpty([textField1,textField2]) && checkPhoneFormat(textField1.text!) {
-            let verify_code:Int? = Int(textField2.text!);
+            let verify_code:Int? = Int(textField2.text!.trim());
             if( verify_code != nil ) {
                 registerModel.verify_code = verify_code!;
                 self.stopTimer()

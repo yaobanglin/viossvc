@@ -25,10 +25,10 @@ class ResetPasswordViewController: BaseTableViewController {
     
     @IBAction func resetPasswordBtnTapped(sender: UIButton) {
         if checkTextFieldEmpty([oldPasswordText,newPasswordText]) {
-            if newPasswordText.text == confirmPasswordText.text  {
+            if newPasswordText.text!.trim() == confirmPasswordText.text!.trim()  {
                 hideKeyboard()
                 SVProgressHUD.showWithStatus("密码重置中...")
-                AppAPIHelper.userAPI().nodifyPasswrod(CurrentUserHelper.shared.userInfo.uid, oldPassword: oldPasswordText.text!, newPasword: newPasswordText.text!, complete: { [weak self](model) in
+                AppAPIHelper.userAPI().nodifyPasswrod(CurrentUserHelper.shared.userInfo.uid, oldPassword: oldPasswordText.text!.trim(), newPasword: newPasswordText.text!.trim(), complete: { [weak self](model) in
                     if let strongSelf = self {
                         let modelDic = model as? Dictionary<String, AnyObject>
                         strongSelf.didResetPasswordComplete(modelDic)
