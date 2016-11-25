@@ -12,5 +12,5 @@ target 'viossvc' do
     pod 'SVProgressHUD', '~> 2.0.3'
     pod 'XCGLogger', '~> 3.5.1'
     pod 'Kingfisher', '~> 2.5.0'
-    
+    pod 'Qiniu', '~> 7.1'
 end

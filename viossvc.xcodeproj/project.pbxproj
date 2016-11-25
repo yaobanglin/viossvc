@@ -76,6 +76,8 @@
 		B08F95D61DE5E821001ACB2A /* SkillShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F95D51DE5E821001ACB2A /* SkillShareModel.swift */; };
 		B08F95D81DE5E834001ACB2A /* TourShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F95D71DE5E834001ACB2A /* TourShareModel.swift */; };
 		BF5EB9861DE7CC9200961A24 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5EB9851DE7CC9200961A24 /* ResetPasswordViewController.swift */; };
+		BF5EB9881DE8070500961A24 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF5EB9871DE8070500961A24 /* city.plist */; };
+		BF5EB98A1DE809E000961A24 /* CitysSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +154,8 @@
 		B08F95D71DE5E834001ACB2A /* TourShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareModel.swift; sourceTree = "<group>"; };
 		B0CF59DD1DE5BEC300C40C9C /* viossvc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = viossvc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF5EB9851DE7CC9200961A24 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		BF5EB9871DE8070500961A24 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
+		BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitysSelectViewController.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,6 +265,7 @@
 				B03B11C31DE5BFDD00B00D2E /* LaunchScreen.storyboard */,
 				B03B11C51DE5BFDD00B00D2E /* Main.storyboard */,
 				B03B11C71DE5BFDD00B00D2E /* errorcode.plist */,
+				BF5EB9871DE8070500961A24 /* city.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				B086734C1DE5C62B008DD8A1 /* UserHomeViewController.swift */,
 				B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */,
 				BF5EB9851DE7CC9200961A24 /* ResetPasswordViewController.swift */,
+				BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 				B03B12191DE5BFDE00B00D2E /* Assets.xcassets in Resources */,
 				B03B12461DE5BFDE00B00D2E /* LoadMoreView.xib in Resources */,
 				B03B121C1DE5BFDE00B00D2E /* errorcode.plist in Resources */,
+				BF5EB9881DE8070500961A24 /* city.plist in Resources */,
 				B03B124E1DE5BFDE00B00D2E /* MJRefresh.bundle in Resources */,
 				B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */,
 			);
@@ -662,6 +669,7 @@
 				B03B12401DE5BFDE00B00D2E /* BaseCustomTableViewController.swift in Sources */,
 				B03B122E1DE5BFDE00B00D2E /* SkillShareViewController.swift in Sources */,
 				B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */,
+				BF5EB98A1DE809E000961A24 /* CitysSelectViewController.swift in Sources */,
 				B03B12361DE5BFDE00B00D2E /* UserViewController.swift in Sources */,
 				B08F95D61DE5E821001ACB2A /* SkillShareModel.swift in Sources */,
 				B03B12441DE5BFDE00B00D2E /* SegmentedViewController.swift in Sources */,
