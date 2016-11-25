@@ -54,15 +54,6 @@ class BaseLoginViewController: UITableViewController {
         return super.tableView(tableView, heightForRowAtIndexPath: indexPath);
     }
     
-    func checkTextFieldEmpty(array:[UITextField]) -> Bool {
-        for  textField in array {
-            if NSString.isEmpty(textField.text)  {
-                showErrorWithStatus(textField.placeholder);
-                return false
-            }
-        }
-        return true
-    }
     
     func checkPhoneFormat(phone:String) -> Bool {
         let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", AppConst.Text.PhoneFormat)

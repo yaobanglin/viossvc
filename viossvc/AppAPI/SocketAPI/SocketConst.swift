@@ -28,10 +28,24 @@ class SocketConst: NSObject {
         case SkillShareComment = 1075
         
         case SkillShareEnroll = 1077
+        
+        case TourShareType = 1059
+        
+        case TourShareList = 1061
+        
+        case TourShareDetail = 1065
     }
     enum type:UInt8 {
         case Error = 0
         case User = 1
         case Chat = 2
+    }
+    
+    class Key {
+        static let last_id = "last_id_"
+        static let count = "count_"
+        static let share_id = "share_id_"
+        static let page_type = "page_type_"
+        static let uid = "uid_"
     }
 }
