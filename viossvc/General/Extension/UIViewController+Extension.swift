@@ -62,7 +62,7 @@ extension UIViewController {
         }
         catch _ {
         }
-//        let timestemp:Int = Int(NSDate().timeIntervalSince1970)
+        //let timestemp:Int = Int(NSDate().timeIntervalSince1970)
         let key = "\(imageName).png"
         fileManager.createFileAtPath(documentPath.stringByAppendingString(key), contents: data, attributes: nil)
         //得到选择后沙盒中图片的完整路径
