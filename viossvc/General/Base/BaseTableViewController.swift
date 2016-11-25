@@ -73,7 +73,13 @@ class BaseRefreshTableViewController :BaseTableViewController {
         super.viewDidLoad();
         self.setupRefreshControl();
     }
-    
+
+   internal func completeBlockFunc()->CompleteBlock {
+        return { [weak self] (obj) in
+            self?.didRequestComplete(obj)
+        }
+    }
+
    internal func didRequestComplete(data:AnyObject?) {
         endRefreshing();
         self.tableView.reloadData();

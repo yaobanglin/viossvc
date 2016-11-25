@@ -59,9 +59,8 @@ class SkillShareViewController: BasePageListTableViewController,OEZTableViewDele
     
     override func didRequest(pageIndex: Int) {
         let last_id:Int = pageIndex == 1 ? 0 : (dataSource?.last as! SkillShareModel).share_id
-        AppAPIHelper.skillShareAPI().list(last_id, count: pageSize, complete: { [weak self] (model) in
-                self?.didRequestComplete(model)
-            }, error:errorBlockFunc())
+        AppAPIHelper.skillShareAPI().list(last_id, count: pageSize, complete: completeBlockFunc()
+                , error:errorBlockFunc())
     }
     
     override func didRequestComplete(data: AnyObject?) {
