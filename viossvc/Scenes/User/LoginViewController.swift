@@ -65,19 +65,16 @@ class BaseLoginViewController: UITableViewController {
     }
     
     func didLoginComplete(userInfo:UserInfoModel?) {
-        CurrentUserHelper.shared.userInfo = userInfo;
+       
         SVProgressHUD.dismiss()
         UIApplication.sharedApplication().keyWindow!.rootViewController = self.storyboardViewController() as MainTabBarController
         
     }
     
     func userLogin(phone:String,password:String) {
-        let loginModel = LoginModel();
-        loginModel.phone_num = phone
-        loginModel.passwd = password
-        AppAPIHelper.userAPI().login(loginModel, complete: {  [weak self] (model) in
+        CurrentUserHelper.shared.userLogin(phone, password: password, complete:  {  [weak self] (model) in
             self?.didLoginComplete(model as? UserInfoModel)
-            }, error:errorBlockFunc())
+            }, error: errorBlockFunc())
     }
     
 }
@@ -93,7 +90,7 @@ class LoginViewController: BaseLoginViewController {
             hideKeyboard();
             let loginModel = LoginModel();
             loginModel.phone_num = textField1.text
-            loginModel.passwd = textField2.text
+            loginModel.passwd = textField2.text?.trim()
             showWithStatus("登录中...")
             userLogin(textField1.text!,password:textField2.text!)
         }

@@ -23,6 +23,7 @@
 		B024A17F1DE7D3710095A691 /* TourShareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A17E1DE7D3710095A691 /* TourShareAPI.swift */; };
 		B024A1811DE7D4190095A691 /* TourShareSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1801DE7D4190095A691 /* TourShareSocketAPI.swift */; };
 		B024A1831DE7DAC40095A691 /* SocketConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1821DE7DAC40095A691 /* SocketConst.swift */; };
+		B024A1851DE7FBBF0095A691 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1841DE7FBBF0095A691 /* String+Extension.swift */; };
 		B03B12151DE5BFDE00B00D2E /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11BA1DE5BFDD00B00D2E /* AppConst.swift */; };
 		B03B12161DE5BFDE00B00D2E /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11BE1DE5BFDD00B00D2E /* BaseModel.swift */; };
 		B03B12171DE5BFDE00B00D2E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11BF1DE5BFDD00B00D2E /* UserModel.swift */; };
@@ -96,6 +97,7 @@
 		B024A17E1DE7D3710095A691 /* TourShareAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareAPI.swift; sourceTree = "<group>"; };
 		B024A1801DE7D4190095A691 /* TourShareSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareSocketAPI.swift; sourceTree = "<group>"; };
 		B024A1821DE7DAC40095A691 /* SocketConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConst.swift; sourceTree = "<group>"; };
+		B024A1841DE7FBBF0095A691 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		B03B11BA1DE5BFDD00B00D2E /* AppConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
 		B03B11BB1DE5BFDD00B00D2E /* viossvc-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "viossvc-Bridging-Header.h"; sourceTree = "<group>"; };
 		B03B11BC1DE5BFDD00B00D2E /* viossvc_prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viossvc_prefix.pch; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				B03B12081DE5BFDE00B00D2E /* UIScreen+Extension.swift */,
 				B03B12091DE5BFDE00B00D2E /* UITableView+Extension.swift */,
 				B03B120A1DE5BFDE00B00D2E /* UIViewController+Extension.swift */,
+				B024A1841DE7FBBF0095A691 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B024A1851DE7FBBF0095A691 /* String+Extension.swift in Sources */,
 				B024A1811DE7D4190095A691 /* TourShareSocketAPI.swift in Sources */,
 				B086734D1DE5C62B008DD8A1 /* LoginViewController.swift in Sources */,
 				B024A17B1DE7CDCC0095A691 /* SocketResponse.swift in Sources */,
