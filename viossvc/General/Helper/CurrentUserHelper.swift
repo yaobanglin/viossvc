@@ -31,7 +31,6 @@ class CurrentUserHelper: NSObject {
     }
     
     func autoLogin(complete:CompleteBlock,error:ErrorBlock) -> Bool {
-        return false
         let phone = keychainItem.objectForKey(kSecAttrAccount) as? String
         let password = keychainItem.objectForKey(kSecValueData) as? String
         if !NSString.isEmpty(phone) &&  !NSString.isEmpty(password)  {
