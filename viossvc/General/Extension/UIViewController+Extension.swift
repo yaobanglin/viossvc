@@ -25,6 +25,8 @@ extension UIViewController {
         return { [weak self] (error) in
             XCGLogger.error("\(error) \(self)");
             self?.showErrorWithStatus(error.localizedDescription)
+            self?.endRefreshing()
+            self?.errorLoadMore()
         }
     }
    

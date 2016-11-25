@@ -16,11 +16,13 @@
 		ACABDFFD286587F50681B491 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABDD099EF194E2061031F1 /* UserAPI.swift */; };
 		B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011C2C11DE6DFEB00CB897A /* CurrentUserHelper.swift */; };
 		B024A1761DE7CDCC0095A691 /* APISocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1701DE7CDCC0095A691 /* APISocketHelper.swift */; };
-		B024A1771DE7CDCC0095A691 /* SocketConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1711DE7CDCC0095A691 /* SocketConst.swift */; };
 		B024A1781DE7CDCC0095A691 /* SocketDataPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1721DE7CDCC0095A691 /* SocketDataPacket.swift */; };
 		B024A1791DE7CDCC0095A691 /* SocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1731DE7CDCC0095A691 /* SocketRequest.swift */; };
 		B024A17A1DE7CDCC0095A691 /* SocketRequestManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1741DE7CDCC0095A691 /* SocketRequestManage.swift */; };
 		B024A17B1DE7CDCC0095A691 /* SocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1751DE7CDCC0095A691 /* SocketResponse.swift */; };
+		B024A17F1DE7D3710095A691 /* TourShareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A17E1DE7D3710095A691 /* TourShareAPI.swift */; };
+		B024A1811DE7D4190095A691 /* TourShareSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1801DE7D4190095A691 /* TourShareSocketAPI.swift */; };
+		B024A1831DE7DAC40095A691 /* SocketConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1821DE7DAC40095A691 /* SocketConst.swift */; };
 		B03B12151DE5BFDE00B00D2E /* AppConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11BA1DE5BFDD00B00D2E /* AppConst.swift */; };
 		B03B12161DE5BFDE00B00D2E /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11BE1DE5BFDD00B00D2E /* BaseModel.swift */; };
 		B03B12171DE5BFDE00B00D2E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11BF1DE5BFDD00B00D2E /* UserModel.swift */; };
@@ -84,11 +86,13 @@
 		ACABDEB2F2E7F93BFC76AA0F /* AppAPIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAPIHelper.swift; sourceTree = "<group>"; };
 		B011C2C11DE6DFEB00CB897A /* CurrentUserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserHelper.swift; sourceTree = "<group>"; };
 		B024A1701DE7CDCC0095A691 /* APISocketHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISocketHelper.swift; sourceTree = "<group>"; };
-		B024A1711DE7CDCC0095A691 /* SocketConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConst.swift; sourceTree = "<group>"; };
 		B024A1721DE7CDCC0095A691 /* SocketDataPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketDataPacket.swift; sourceTree = "<group>"; };
 		B024A1731DE7CDCC0095A691 /* SocketRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketRequest.swift; sourceTree = "<group>"; };
 		B024A1741DE7CDCC0095A691 /* SocketRequestManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketRequestManage.swift; sourceTree = "<group>"; };
 		B024A1751DE7CDCC0095A691 /* SocketResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketResponse.swift; sourceTree = "<group>"; };
+		B024A17E1DE7D3710095A691 /* TourShareAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareAPI.swift; sourceTree = "<group>"; };
+		B024A1801DE7D4190095A691 /* TourShareSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareSocketAPI.swift; sourceTree = "<group>"; };
+		B024A1821DE7DAC40095A691 /* SocketConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConst.swift; sourceTree = "<group>"; };
 		B03B11BA1DE5BFDD00B00D2E /* AppConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConst.swift; sourceTree = "<group>"; };
 		B03B11BB1DE5BFDD00B00D2E /* viossvc-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "viossvc-Bridging-Header.h"; sourceTree = "<group>"; };
 		B03B11BC1DE5BFDD00B00D2E /* viossvc_prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viossvc_prefix.pch; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				ACABD263DDE47D65D5803EA5 /* SocketAPI */,
 				ACABDD099EF194E2061031F1 /* UserAPI.swift */,
 				ACABD04E9A7A54B8A6094E8F /* SkillShareAPI.swift */,
+				B024A17E1DE7D3710095A691 /* TourShareAPI.swift */,
 			);
 			path = AppAPI;
 			sourceTree = "<group>";
@@ -195,10 +200,12 @@
 		ACABD263DDE47D65D5803EA5 /* SocketAPI */ = {
 			isa = PBXGroup;
 			children = (
+				B024A1821DE7DAC40095A691 /* SocketConst.swift */,
 				B024A16F1DE7CDCC0095A691 /* SocketReqeust */,
 				ACABD10D5E9578A46AACF156 /* BaseSocketAPI.swift */,
 				ACABD31D158C3ACBE2AE15BD /* UserSocketAPI.swift */,
 				ACABD82B23E48E0247F52553 /* SkillShareSocketAPI.swift */,
+				B024A1801DE7D4190095A691 /* TourShareSocketAPI.swift */,
 			);
 			path = SocketAPI;
 			sourceTree = "<group>";
@@ -214,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				B024A1701DE7CDCC0095A691 /* APISocketHelper.swift */,
-				B024A1711DE7CDCC0095A691 /* SocketConst.swift */,
 				B024A1721DE7CDCC0095A691 /* SocketDataPacket.swift */,
 				B024A1731DE7CDCC0095A691 /* SocketRequest.swift */,
 				B024A1741DE7CDCC0095A691 /* SocketRequestManage.swift */,
@@ -615,8 +621,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B024A1811DE7D4190095A691 /* TourShareSocketAPI.swift in Sources */,
 				B086734D1DE5C62B008DD8A1 /* LoginViewController.swift in Sources */,
-				B024A1771DE7CDCC0095A691 /* SocketConst.swift in Sources */,
 				B024A17B1DE7CDCC0095A691 /* SocketResponse.swift in Sources */,
 				B03B12271DE5BFDE00B00D2E /* OrderListCell.swift in Sources */,
 				B03B12421DE5BFDE00B00D2E /* BaseTableViewController.swift in Sources */,
@@ -629,6 +635,7 @@
 				B03B122C1DE5BFDE00B00D2E /* SkillShareChatViewController.swift in Sources */,
 				B03B12161DE5BFDE00B00D2E /* BaseModel.swift in Sources */,
 				B03B12311DE5BFDE00B00D2E /* TourShareDetailCell.swift in Sources */,
+				B024A17F1DE7D3710095A691 /* TourShareAPI.swift in Sources */,
 				B08F95D81DE5E834001ACB2A /* TourShareModel.swift in Sources */,
 				B03B124B1DE5BFDE00B00D2E /* UITableView+Extension.swift in Sources */,
 				B03B12171DE5BFDE00B00D2E /* UserModel.swift in Sources */,
@@ -640,6 +647,7 @@
 				B024A1791DE7CDCC0095A691 /* SocketRequest.swift in Sources */,
 				B03B12451DE5BFDE00B00D2E /* CommTableViewBannerCell.swift in Sources */,
 				B03B12321DE5BFDE00B00D2E /* TourShareDetailViewController.swift in Sources */,
+				B024A1831DE7DAC40095A691 /* SocketConst.swift in Sources */,
 				B086734F1DE5C62B008DD8A1 /* PasswordViewController.swift in Sources */,
 				B03B122D1DE5BFDE00B00D2E /* SkillShareDetailViewController.swift in Sources */,
 				B03B124C1DE5BFDE00B00D2E /* UIViewController+Extension.swift in Sources */,

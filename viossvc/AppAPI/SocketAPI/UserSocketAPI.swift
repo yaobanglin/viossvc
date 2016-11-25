@@ -27,7 +27,7 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     }
     
     func nodifyPasswrod(uid:Int,oldPassword:String,newPasword:String,complete:CompleteBlock,error:ErrorBlock){
-        let dict:[String : AnyObject] = ["uid_" : uid , "old_passwd_" : oldPassword, "new_passwd_" : newPasword];
+        let dict:[String : AnyObject] = [SocketConst.Key.uid : uid , "old_passwd_" : oldPassword, "new_passwd_" : newPasword];
         startRequest(SocketDataPacket(opcode: .NodifyPasswrod,dict: dict), complete: complete, error: error)
     }
 }
