@@ -18,7 +18,7 @@ class SocketConst: NSObject {
         case SMSVerify = 1019
         //注册
         case Register = 1021
-        
+        //重置密码
         case NodifyPasswrod = 1011
         
         case SkillShareList = 1071
