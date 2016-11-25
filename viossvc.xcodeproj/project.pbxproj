@@ -71,7 +71,7 @@
 		B086734F1DE5C62B008DD8A1 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B086734A1DE5C62B008DD8A1 /* PasswordViewController.swift */; };
 		B08673501DE5C62B008DD8A1 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B086734B1DE5C62B008DD8A1 /* RegisterViewController.swift */; };
 		B08673511DE5C62B008DD8A1 /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B086734C1DE5C62B008DD8A1 /* UserHomeViewController.swift */; };
-		B08673531DE5C6B8008DD8A1 /* UserInfoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08673521DE5C6B8008DD8A1 /* UserInfoEditViewController.swift */; };
+		B08673531DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */; };
 		B08F95D61DE5E821001ACB2A /* SkillShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F95D51DE5E821001ACB2A /* SkillShareModel.swift */; };
 		B08F95D81DE5E834001ACB2A /* TourShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F95D71DE5E834001ACB2A /* TourShareModel.swift */; };
 		BF5EB9861DE7CC9200961A24 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5EB9851DE7CC9200961A24 /* ResetPasswordViewController.swift */; };
@@ -145,7 +145,7 @@
 		B086734A1DE5C62B008DD8A1 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		B086734B1DE5C62B008DD8A1 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B086734C1DE5C62B008DD8A1 /* UserHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
-		B08673521DE5C6B8008DD8A1 /* UserInfoEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoEditViewController.swift; sourceTree = "<group>"; };
+		B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodifyUserInfoViewController.swift; sourceTree = "<group>"; };
 		B08F95D51DE5E821001ACB2A /* SkillShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillShareModel.swift; sourceTree = "<group>"; };
 		B08F95D71DE5E834001ACB2A /* TourShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareModel.swift; sourceTree = "<group>"; };
 		B0CF59DD1DE5BEC300C40C9C /* viossvc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = viossvc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -456,7 +456,7 @@
 				B086734A1DE5C62B008DD8A1 /* PasswordViewController.swift */,
 				B086734B1DE5C62B008DD8A1 /* RegisterViewController.swift */,
 				B086734C1DE5C62B008DD8A1 /* UserHomeViewController.swift */,
-				B08673521DE5C6B8008DD8A1 /* UserInfoEditViewController.swift */,
+				B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */,
 				BF5EB9851DE7CC9200961A24 /* ResetPasswordViewController.swift */,
 			);
 			path = User;
@@ -661,7 +661,7 @@
 				B03B12361DE5BFDE00B00D2E /* UserViewController.swift in Sources */,
 				B08F95D61DE5E821001ACB2A /* SkillShareModel.swift in Sources */,
 				B03B12441DE5BFDE00B00D2E /* SegmentedViewController.swift in Sources */,
-				B08673531DE5C6B8008DD8A1 /* UserInfoEditViewController.swift in Sources */,
+				B08673531DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift in Sources */,
 				B024A17A1DE7CDCC0095A691 /* SocketRequestManage.swift in Sources */,
 				B03B12481DE5BFDE00B00D2E /* TableViewHeaderView.swift in Sources */,
 				B08673501DE5C62B008DD8A1 /* RegisterViewController.swift in Sources */,
