@@ -10,9 +10,8 @@ import UIKit
 
 class CurrentUserHelper: NSObject {
     static let shared = CurrentUserHelper()
-    private let keychainItem:OEZKeychainItemWrapper = OEZKeychainItemWrapper(identifier: "Account", accessGroup: "")
+    private let keychainItem:OEZKeychainItemWrapper = OEZKeychainItemWrapper(identifier: "com.yundian.viossvc.Account", accessGroup:nil)
     private var _userInfo:UserInfoModel!
-    private var _userPassword:String!
     var userInfo:UserInfoModel! {
         get {
             return _userInfo
@@ -20,12 +19,11 @@ class CurrentUserHelper: NSObject {
     }
     
     func userLogin(phone:String,password:String,complete:CompleteBlock,error:ErrorBlock) {
-        _userPassword = password
         
         let loginModel = LoginModel()
         loginModel.phone_num = phone
         loginModel.passwd = password
-        
+         keychainItem.setObject(password, forKey: kSecValueData)
         AppAPIHelper.userAPI().login(loginModel, complete: {  [weak self] (model) in
                 self?.loginComplete(model)
                 complete(model)
@@ -33,6 +31,7 @@ class CurrentUserHelper: NSObject {
     }
     
     func autoLogin(complete:CompleteBlock,error:ErrorBlock) -> Bool {
+        return false
         let phone = keychainItem.objectForKey(kSecAttrAccount) as? String
         let password = keychainItem.objectForKey(kSecValueData) as? String
         if !NSString.isEmpty(phone) &&  !NSString.isEmpty(password)  {
@@ -45,14 +44,14 @@ class CurrentUserHelper: NSObject {
     private func loginComplete(model:AnyObject?) {
         self._userInfo = model as? UserInfoModel
         keychainItem.setObject(_userInfo.phone_num, forKey: kSecAttrAccount)
-        keychainItem.setObject(_userPassword, forKey: kSecValueData)
+       
     }
-    
-    
-    
-    
     
     func nodifyPassword(password:String) {
         keychainItem.setObject(password, forKey: kSecValueData)
+    }
+    
+    func lastLoginPhone()->String? {
+        return keychainItem.objectForKey(kSecAttrAccount) as? String
     }
 }

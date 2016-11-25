@@ -2753,7 +2753,7 @@
         <!--设置-->
         <scene sceneID="fzf-rg-L6q">
             <objects>
-                <tableViewController title="设置" id="5mU-YM-L4j" sceneMemberID="viewController">
+                <tableViewController title="设置" hidesBottomBarWhenPushed="YES" id="5mU-YM-L4j" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="28" id="O98-ih-Ni0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
