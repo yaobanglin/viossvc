@@ -2728,6 +2728,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted" backgroundImage="head_bg"/>
+                                <connections>
+                                    <action selector="didActionTelPhone:" destination="Q6j-WC-Lnt" eventType="touchUpInside" id="gwV-B2-NLE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2744,6 +2747,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="ez1-2d-vEi" id="ilk-a3-cLq"/>
+                        <outlet property="telPhoneButton" destination="1v8-Ml-hyG" id="RSF-38-3LO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVQ-ET-aLU" userLabel="First Responder" sceneMemberID="firstResponder"/>

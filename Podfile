@@ -11,5 +11,6 @@ target 'viossvc' do
     pod 'CocoaAsyncSocket', '~> 7.5.0'
     pod 'SVProgressHUD', '~> 2.0.3'
     pod 'XCGLogger', '~> 3.5.1'
+    pod 'Kingfisher', '~> 2.5.0'
     
 end
