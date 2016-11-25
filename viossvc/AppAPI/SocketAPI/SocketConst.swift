@@ -22,6 +22,8 @@ class SocketConst: NSObject {
         case NodifyPasswrod = 1011
         //修改用户信息
         case NodifyUserInfo = 1023
+        //获取图片token
+        case GetImageToken = 1047
         
         case SkillShareList = 1071
         

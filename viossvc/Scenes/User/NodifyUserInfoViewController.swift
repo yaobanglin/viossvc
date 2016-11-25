@@ -14,6 +14,8 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var iconImage: UIImageView!
     
+    var imageUrl: String?
+    
     lazy var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController.init()
         return picker
@@ -73,6 +75,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         iconImage.image = image
+        qiniuUploadImage(image, imageName: "\(CurrentUserHelper.shared.userInfo.uid)", complete: { (imageUrl) in
+            
+        })
     }
     
 }

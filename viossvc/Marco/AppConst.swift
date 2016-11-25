@@ -38,6 +38,7 @@ class AppConst {
         static let HttpHostUrl:String = "http://61.147.114.78";
         #endif
         static let TimeoutSec:UInt16 = 10
+        static let qiniuHost = "http://ofr5nvpm7.bkt.clouddn.com/"
     }
     class Text {
         static let PhoneFormatErr = "请输入正确的手机号"

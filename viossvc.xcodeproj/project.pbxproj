@@ -75,6 +75,8 @@
 		B08673531DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */; };
 		B08F95D61DE5E821001ACB2A /* SkillShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F95D51DE5E821001ACB2A /* SkillShareModel.swift */; };
 		B08F95D81DE5E834001ACB2A /* TourShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F95D71DE5E834001ACB2A /* TourShareModel.swift */; };
+		BF455B7E1DE84178007D97B0 /* CommenSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455B7D1DE84178007D97B0 /* CommenSocketAPI.swift */; };
+		BF455B801DE841D5007D97B0 /* CommenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455B7F1DE841D5007D97B0 /* CommenAPI.swift */; };
 		BF5EB9861DE7CC9200961A24 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5EB9851DE7CC9200961A24 /* ResetPasswordViewController.swift */; };
 		BF5EB9881DE8070500961A24 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF5EB9871DE8070500961A24 /* city.plist */; };
 		BF5EB98A1DE809E000961A24 /* CitysSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */; };
@@ -153,6 +155,8 @@
 		B08F95D51DE5E821001ACB2A /* SkillShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillShareModel.swift; sourceTree = "<group>"; };
 		B08F95D71DE5E834001ACB2A /* TourShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareModel.swift; sourceTree = "<group>"; };
 		B0CF59DD1DE5BEC300C40C9C /* viossvc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = viossvc.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF455B7D1DE84178007D97B0 /* CommenSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommenSocketAPI.swift; sourceTree = "<group>"; };
+		BF455B7F1DE841D5007D97B0 /* CommenAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommenAPI.swift; path = SocketAPI/CommenAPI.swift; sourceTree = "<group>"; };
 		BF5EB9851DE7CC9200961A24 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		BF5EB9871DE8070500961A24 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitysSelectViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				ACABDD099EF194E2061031F1 /* UserAPI.swift */,
 				ACABD04E9A7A54B8A6094E8F /* SkillShareAPI.swift */,
 				B024A17E1DE7D3710095A691 /* TourShareAPI.swift */,
+				BF455B7F1DE841D5007D97B0 /* CommenAPI.swift */,
 			);
 			path = AppAPI;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 				ACABD31D158C3ACBE2AE15BD /* UserSocketAPI.swift */,
 				ACABD82B23E48E0247F52553 /* SkillShareSocketAPI.swift */,
 				B024A1801DE7D4190095A691 /* TourShareSocketAPI.swift */,
+				BF455B7D1DE84178007D97B0 /* CommenSocketAPI.swift */,
 			);
 			path = SocketAPI;
 			sourceTree = "<group>";
@@ -649,6 +655,7 @@
 				B03B122C1DE5BFDE00B00D2E /* SkillShareChatViewController.swift in Sources */,
 				B03B12161DE5BFDE00B00D2E /* BaseModel.swift in Sources */,
 				B03B12311DE5BFDE00B00D2E /* TourShareDetailCell.swift in Sources */,
+				BF455B801DE841D5007D97B0 /* CommenAPI.swift in Sources */,
 				B024A17F1DE7D3710095A691 /* TourShareAPI.swift in Sources */,
 				B08F95D81DE5E834001ACB2A /* TourShareModel.swift in Sources */,
 				B03B124B1DE5BFDE00B00D2E /* UITableView+Extension.swift in Sources */,
@@ -687,6 +694,7 @@
 				B03B122B1DE5BFDE00B00D2E /* SkillShareDetailCell.swift in Sources */,
 				B03B122A1DE5BFDE00B00D2E /* SkillShareChatCell.swift in Sources */,
 				ACABD384C1541C829A7047CA /* AppAPIHelper.swift in Sources */,
+				BF455B7E1DE84178007D97B0 /* CommenSocketAPI.swift in Sources */,
 				ACABD1428B9E953E3868C06B /* BaseSocketAPI.swift in Sources */,
 				ACABDD418C987E1EF6B392A3 /* UserSocketAPI.swift in Sources */,
 				ACABD905FB6E14BA0DB7805B /* SkillShareSocketAPI.swift in Sources */,
