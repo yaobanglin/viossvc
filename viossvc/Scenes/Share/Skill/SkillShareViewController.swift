@@ -11,7 +11,6 @@ import Foundation
 class SkillShareViewController: BasePageListTableViewController,OEZTableViewDelegate {
 
     var banners:[SkillBannerModel]? = []
-    var pageSize = 10
     override func viewDidLoad() {
         super.viewDidLoad();
         self.tableView.registerClass(CommTableViewBannerCell.self, forCellReuseIdentifier: "SkillShareCell")
@@ -40,7 +39,10 @@ class SkillShareViewController: BasePageListTableViewController,OEZTableViewDele
     }
     
     func pushSkillShareDetailViewController(share_id:Int) {
-        navigationController?.pushViewControllerWithIdentifier(SkillShareDetailViewController.className(), animated: true, valuesForKeys: ["share_id":share_id])
+        
+         let viewController:SkillShareDetailViewController = storyboardViewController()
+        viewController.share_id = share_id
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -59,7 +61,7 @@ class SkillShareViewController: BasePageListTableViewController,OEZTableViewDele
     
     override func didRequest(pageIndex: Int) {
         let last_id:Int = pageIndex == 1 ? 0 : (dataSource?.last as! SkillShareModel).share_id
-        AppAPIHelper.skillShareAPI().list(last_id, count: pageSize, complete: completeBlockFunc()
+        AppAPIHelper.skillShareAPI().list(last_id, count: AppConst.DefaultPageSize, complete: completeBlockFunc()
                 , error:errorBlockFunc())
     }
     

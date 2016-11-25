@@ -21,13 +21,21 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         initChildViewController()
         
+        autoLogin();
+    }
+    
+    
+    private func autoLogin() {
+        if childViewControllerIdentifier != nil {
+            return
+        }
+        
         if  CurrentUserHelper.shared.autoLogin({ [weak self] (model) in
-                self?.didAutoLoginComplete(model as? UserInfoModel)
+            self?.didAutoLoginComplete(model as? UserInfoModel)
             }, error: errorBlockFunc()) {
             SVProgressHUD.showWithStatus("登录中...")
         }
     }
-    
     
     func didAutoLoginComplete(userInfo:UserInfoModel?) {
         

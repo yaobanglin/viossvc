@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TourShareViewController: BaseListTableViewController {
+class TourShareViewController: BaseListTableViewController,OEZTableViewDelegate {
  
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -29,10 +29,14 @@ class TourShareViewController: BaseListTableViewController {
         return view;
     }
     
+    func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
+        
+    }
+    
+    
     
     override func didRequest() {
-//        didRequestComplete([[""],["","","","","","","","","",""]]);
-        AppAPIHelper.tourShareAPI().list(0, count: 20, type: 0, complete: completeBlockFunc(), error: errorBlockFunc())
+        AppAPIHelper.tourShareAPI().list(0, count: AppConst.DefaultPageSize, type: 0, complete: completeBlockFunc(), error: errorBlockFunc())
 //        AppAPIHelper.tourShareAPI().type(completeBlockFunc(), error: errorBlockFunc())
     }
     
@@ -46,7 +50,10 @@ class TourShareViewController: BaseListTableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
-            let viewController:TourShareDetailViewController = storyboardViewController();
+            let model = self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as? TourShareModel
+            let viewController:TourShareDetailViewController = storyboardViewController()
+            viewController.share_id = model!.share_id
+            viewController.title = model!.share_theme
             self.navigationController?.pushViewController(viewController, animated: true);
         }
     }

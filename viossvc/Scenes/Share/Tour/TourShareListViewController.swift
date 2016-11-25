@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TourShareListViewController: BasePageListTableViewController {
+class TourShareListViewController: BasePageListTableViewController , OEZTableViewDelegate {
     var listType:Int = 0;
     var typeNames:[String] = ["美食","住宿","景点","娱乐"];
     
@@ -24,6 +24,10 @@ class TourShareListViewController: BasePageListTableViewController {
     }
     
     
+    func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
+        
+    }
+    
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view:TableViewHeaderView? = TableViewHeaderView.loadFromNib();
@@ -32,16 +36,19 @@ class TourShareListViewController: BasePageListTableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let viewController:TourShareDetailViewController = storyboardViewController();
-        navigationController?.pushViewController(viewController, animated: true);
+        let model = dataSource?[indexPath.row] as? TourShareModel
+        let viewController:TourShareDetailViewController = storyboardViewController()
+        viewController.share_id = model!.share_id
+        viewController.title = model!.share_theme
+        self.navigationController?.pushViewController(viewController, animated: true);
+
     }
     
     override func didRequest(pageIndex: Int) {
-        var datas:[String]? = ["","","","","","","","","",""];
-        if pageIndex == 5  {
-            datas = nil;
-        }
-        didRequestComplete(datas);
+        
+        let last_id:Int = pageIndex == 1 ? 0 : (dataSource?.last as! TourShareModel).share_id
+        
+         AppAPIHelper.tourShareAPI().list(last_id, count: AppConst.DefaultPageSize, type: 0, complete: completeBlockFunc(), error: errorBlockFunc())
     }
 
 }

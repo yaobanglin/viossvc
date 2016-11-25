@@ -89,6 +89,7 @@ class SkillShareDetailCell3: OEZTableViewCell ,OEZCalculateProtocol {
     @IBOutlet weak var contentLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
     
@@ -98,17 +99,22 @@ class SkillShareDetailCell3: OEZTableViewCell ,OEZCalculateProtocol {
         // Configure the view for the selected state
     }
     
+
+    
     static func calculateHeightWithData(data: AnyObject!) -> CGFloat {
-        return 300;
+        let model = data as! SkillShareDetailModel
+        let rect = model.summary.boundingRectWithSize(CGSizeMake(UIScreen.width()-CGFloat(36), 0),font:AppConst.SystemFont.S3,lineSpacing:5)
+        return rect.height + 40
     }
     
-//    private func update(model:SkillShareDetailModel) {
-//        contentLabel.text = model.summary
-//    }
     
-     func swiftUpdate(data: SkillShareDetailModel?) {
-        contentLabel.text = data?.summary
+    override func update(data:AnyObject!) {
+        let model = data as! SkillShareDetailModel
+        contentLabel.attributedText = model.summary.attributedString(AppConst.SystemFont.S3,lineSpacing:5)
+        contentLabel.sizeToFit()
     }
+    
+
     
 }
 
