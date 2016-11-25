@@ -26,7 +26,7 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
         mutableData = NSMutableData()
         do {
             if !socket!.isConnected {
-                try socket?.connectToHost(AppConst.Network.tcpServerIP, onPort: AppConst.Network.tcpServerPort, withTimeout: 5)
+                try socket?.connectToHost(AppConst.Network.TcpServerIP, onPort: AppConst.Network.TcpServerPort, withTimeout: 5)
             }
         } catch GCDAsyncSocketError.ClosedError {
 

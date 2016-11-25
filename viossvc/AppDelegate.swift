@@ -9,9 +9,7 @@
 import UIKit
 import XCGLogger
 import SVProgressHUD
-func toModel<T>(any:AnyObject?) -> T? {
-    return any as? T;
-}
+
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent;
         UITableView.appearance().backgroundColor = AppConst.Color.C6;
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
+//        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
         SVProgressHUD.setMinimumDismissTimeInterval(2)
         
         return true

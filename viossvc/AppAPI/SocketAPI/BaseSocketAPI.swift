@@ -16,6 +16,13 @@ class BaseSocketAPI: NSObject {
             },error: error)
     }
     
+    
+    func startResultIntRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
+        SocketRequestManage.shared.startJsonRequest(packet,complete: {  (response) in
+            complete((response as? SocketJsonResponse)?.responseResult())
+            },error: error)
+    }
+    
     func startModelRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
         SocketRequestManage.shared.startJsonRequest(packet, complete: {  (response) in
             complete?((response as? SocketJsonResponse)?.responseModel(modelClass))
@@ -33,8 +40,14 @@ class BaseSocketAPI: NSObject {
     func startModelsRequest(packet: SocketDataPacket, listName:String, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
         SocketRequestManage.shared.startJsonRequest(packet, complete: {  (response) in
             let dict:[String:AnyObject]? = ((response as? SocketJsonResponse)?.responseJsonObject()) as? [String:AnyObject]
-            let array:[AnyObject]? = dict?[listName] as? [AnyObject]
-            complete?(try! OEZJsonModelAdapter.modelsOfClass(modelClass, fromJSONArray: array))
+            if dict != nil {
+                 let array:[AnyObject]? = dict?[listName] as? [AnyObject]
+                if array != nil  {
+                    complete?(try! OEZJsonModelAdapter.modelsOfClass(modelClass, fromJSONArray: array))
+                    return ;
+                }
+            }
+            complete?([]);
             }, error: error)
     }
 

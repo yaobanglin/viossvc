@@ -1748,6 +1748,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted" backgroundImage="head_bg"/>
+                                <connections>
+                                    <action selector="didActionEnroll:" destination="Eaq-P7-F1r" eventType="touchUpInside" id="Z3y-sX-h8o"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1759,10 +1762,18 @@
                             <constraint firstItem="6wd-k5-3gy" firstAttribute="top" secondItem="Qc8-Dt-mcH" secondAttribute="top" constant="-64" id="pMe-fI-9tY"/>
                             <constraint firstItem="aRo-uD-8fR" firstAttribute="leading" secondItem="Qc8-Dt-mcH" secondAttribute="leading" id="qUh-dQ-Pbo"/>
                             <constraint firstAttribute="trailing" secondItem="6wd-k5-3gy" secondAttribute="trailing" id="siQ-KJ-EhS"/>
+                            <constraint firstItem="aRo-uD-8fR" firstAttribute="top" secondItem="6wd-k5-3gy" secondAttribute="bottom" id="yOG-WQ-Qwk"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3GG-3V-qYj"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="S7S-2f-KaN" id="VZc-Kq-tNF"/>
+                        <outlet property="enrollButton" destination="aRo-uD-8fR" id="h8Q-SK-9tT"/>
+                        <outlet property="enroolButtonHeightConstraint" destination="p4C-n7-N66" id="77H-14-uHi"/>
                         <outlet property="tableView" destination="6wd-k5-3gy" id="9QO-hD-2R9"/>
                     </connections>
                 </viewController>

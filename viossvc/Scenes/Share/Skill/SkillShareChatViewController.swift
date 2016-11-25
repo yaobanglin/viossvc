@@ -8,16 +8,18 @@
 
 import UIKit
 
-class SkillShareChatViewController: BaseListTableViewController {
+class SkillShareChatViewController: BasePageListTableViewController {
     
-
+    var share_id:Int = 0
+    var pageSize = 10
     override func viewDidLoad() {
         super.viewDidLoad();
     }
 
-    override func didRequest() {
-        didRequestComplete(["","","","","","","","","",""]);
+    override func didRequest(pageIndex: Int) {
+        let last_id:Int = pageIndex == 1 ? 0 : (dataSource?.last as! SkillShareCommentModel).discuss_id
+        AppAPIHelper.skillShareAPI().comment(share_id,last_id:last_id, count: pageSize, complete: completeBlockFunc()
+                , error:errorBlockFunc())
     }
-
 
 }
