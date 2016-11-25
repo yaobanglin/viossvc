@@ -11,10 +11,9 @@ import SVProgressHUD
 class SkillShareDetailViewController: BaseCustomRefreshTableViewController,OEZTableViewDelegate {
     
     var share_id:Int = 0
-    var model:SkillShareDetailModel?
+    var detailModel:SkillShareDetailModel?
     @IBOutlet weak var bannerView: CommTableViewBannerCell!
     @IBOutlet weak var enrollButton: UIButton!
-    
     @IBOutlet weak var enroolButtonHeightConstraint: NSLayoutConstraint!
     
     var chatView:UIView? = nil;
@@ -51,12 +50,12 @@ class SkillShareDetailViewController: BaseCustomRefreshTableViewController,OEZTa
     }
     
     override func tableView(tableView: UITableView, cellDataForRowAtIndexPath indexPath: NSIndexPath) -> AnyObject? {
-        return model
+        return detailModel
     }
     
     //MARK: -UITableViewDelegate
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return model != nil ? 4 : 0
+        return detailModel != nil ? 4 : 0
     }
     
 
@@ -109,17 +108,15 @@ class SkillShareDetailViewController: BaseCustomRefreshTableViewController,OEZTa
     }
     
     override func didRequest() {
-        AppAPIHelper.skillShareAPI().detail(share_id, complete: { [weak self] (model) in
-                self?.didRequestComplete(model)
-            }, error: errorBlockFunc())
+        AppAPIHelper.skillShareAPI().detail(share_id, complete: completeBlockFunc(), error: errorBlockFunc())
     }
     
     override func didRequestComplete(data: AnyObject?) {
-        model = data as? SkillShareDetailModel;
-        if model != nil && model!.detail_pic != nil {
-            bannerView.update([model!.detail_pic]);
+        detailModel = data as? SkillShareDetailModel;
+        if detailModel != nil && detailModel!.detail_pic != nil {
+            bannerView.update([detailModel!.detail_pic]);
         }
-        if model?.share_status == 1 {
+        if detailModel?.share_status == 1 {
             bindUserEnroll();
         }
         
@@ -128,7 +125,7 @@ class SkillShareDetailViewController: BaseCustomRefreshTableViewController,OEZTa
     
     
     func bindUserEnroll() {
-        let userList = model?.user_list
+        let userList = detailModel?.user_list
         if userList != nil {
             for  userModel in userList! {
                 if userModel.uid == CurrentUserHelper.shared.userInfo.uid {
@@ -154,10 +151,9 @@ class SkillShareDetailViewController: BaseCustomRefreshTableViewController,OEZTa
             let userModel = UserModel()
             userModel.uid = CurrentUserHelper.shared.userInfo.uid
             userModel.head_url = CurrentUserHelper.shared.userInfo.head_url
-            model?.entry_num += 1
-            model?.user_list.insert(userModel, atIndex: 0)
-            didRequestComplete(model)//先整表刷新
-//            tableView.reloadRowsAtIndexPaths([NSIndexPath(forItem: 0, inSection: 2)], withRowAnimation: .None)
+            detailModel?.entry_num += 1
+            detailModel?.user_list.insert(userModel, atIndex: 0)
+            didRequestComplete(detailModel)//先整表刷新
         default:
             break
         }

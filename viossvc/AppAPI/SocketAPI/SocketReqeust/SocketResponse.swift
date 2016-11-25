@@ -1,44 +1,28 @@
 //
-//  SocketRequest.swift
+//  SocketResponse.swift
 //  viossvc
 //
-//  Created by yaowang on 2016/11/23.
-//  Copyright © 2016年 ywwlcom.yundian. All rights reserved.
+//  Created by yaowang on 2016/11/25.
+//  Copyright © 2016年 com.yundian. All rights reserved.
 //
 
 import UIKit
-import XCGLogger
-
-
-class SocketRequest {
-        
-    var error: ErrorBlock?
-    var complete: CompleteBlock?
-    var timestamp: NSTimeInterval = 0
-    
-    deinit {
-        
-        XCGLogger.debug("deinit \(self)")
-        
-    }
-}
-
 
 class SocketResponse {
-   private var body:SocketDataPacket?
-   var statusCode:UInt16? {
-       get {
-           return body?.operate_code
-       }
-   }
+    private var body:SocketDataPacket?
+    var statusCode:UInt16? {
+        get {
+            return body?.operate_code
+        }
+    }
     
-   func responseData() -> NSData? {
+    func responseData() -> NSData? {
         return body?.data
-   }
+    }
     
-   init(packet:SocketDataPacket) {
+    init(packet:SocketDataPacket) {
         body = packet;
-   }
+    }
 }
 
 class SocketJsonResponse: SocketResponse {

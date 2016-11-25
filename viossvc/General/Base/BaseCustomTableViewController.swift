@@ -103,7 +103,12 @@ class BaseCustomRefreshTableViewController :BaseCustomTableViewController {
         self.tableView.reloadData();
         
     }
-    
+
+    func completeBlockFunc()->CompleteBlock {
+        return { [weak self] (obj) in
+            self?.didRequestComplete(obj)
+        }
+    }
     
     deinit {
         performSelectorRemoveRefreshControl();

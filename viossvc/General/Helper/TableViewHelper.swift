@@ -52,7 +52,7 @@ class TableViewHelper {
     }
     
     func tableView<T:UIViewController where T:TableViewHelperProtocol>(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath,controller:T) {
-        if cell.conformsToProtocol(OEZUpdateProtocol)  {
+       if cell.conformsToProtocol(OEZUpdateProtocol)  {
             (cell as! OEZUpdateProtocol).update(controller.tableView(tableView, cellDataForRowAtIndexPath: indexPath));
         }
     }

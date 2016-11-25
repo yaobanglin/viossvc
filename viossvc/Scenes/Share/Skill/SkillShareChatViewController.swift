@@ -18,9 +18,8 @@ class SkillShareChatViewController: BasePageListTableViewController {
 
     override func didRequest(pageIndex: Int) {
         let last_id:Int = pageIndex == 1 ? 0 : (dataSource?.last as! SkillShareCommentModel).discuss_id
-        AppAPIHelper.skillShareAPI().comment(share_id,last_id:last_id, count: pageSize, complete: { [weak self] (model) in
-            self?.didRequestComplete(model)
-            }, error:errorBlockFunc())
+        AppAPIHelper.skillShareAPI().comment(share_id,last_id:last_id, count: pageSize, complete: completeBlockFunc()
+                , error:errorBlockFunc())
     }
 
 }

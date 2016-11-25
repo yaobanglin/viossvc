@@ -10,20 +10,8 @@ import UIKit
 import XCGLogger
 
 class SocketRequestManage: NSObject {
-    static var errorDict:NSDictionary?;
+    
     static let shared = SocketRequestManage();
-    class func errorString(code:Int) ->String {
-        if errorDict == nil {
-            if let bundlePath = NSBundle.mainBundle().pathForResource("errorcode", ofType: "plist") {
-                errorDict = NSDictionary(contentsOfFile: bundlePath)
-            }
-        }
-        let key:String = String(format: "%d", code);
-        if errorDict?.objectForKey(key) != nil {
-            return errorDict!.objectForKey(key) as! String
-        }
-        return "Unknown";
-    }
     var socketRequests = [UInt32: SocketRequest]()
     private var _reqeustId:UInt32 = 10000
     var reqeustId:UInt32 {
@@ -50,29 +38,26 @@ class SocketRequestManage: NSObject {
             if errorCode == nil {
                 errorCode = -1;
             }
-            let errorStr:String = SocketRequestManage.errorString(errorCode!)
-            let error = NSError(domain: AppConst.Text.ErrorDomain, code: errorCode!
-                , userInfo: [NSLocalizedDescriptionKey:errorStr]);
-            dispatch_main_async( {
-                socketReqeust?.error?(error)
-            })
-            
+            socketReqeust?.onError(errorCode)
         } else {
-            
-            dispatch_main_async( {
-               socketReqeust?.complete?(response)
-            })
-            
+            socketReqeust?.onComplete(response)
         }
     }
     
     
-    
-    private func dispatch_main_async(block:dispatch_block_t) {
-        dispatch_async(dispatch_get_main_queue(), {
-            block()
-        })
+    func checkReqeustTimeout() {
+        objc_sync_enter(self)
+        for (key,reqeust) in socketRequests {
+            if reqeust.isReqeustTimeout() {
+                socketRequests.removeValueForKey(key)
+                reqeust.onError(-11011)
+                break
+            }
+        }
+        objc_sync_exit(self)
     }
+    
+    
     
     func startJsonRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
         let socketReqeust = SocketRequest();

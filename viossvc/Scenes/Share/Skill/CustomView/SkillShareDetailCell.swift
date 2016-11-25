@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SkillShareDetailCell: OEZTableViewCell {
     static var selectTabAction:Int = 100001;
     @IBOutlet weak var detailButton: UIButton!
@@ -22,18 +23,19 @@ class SkillShareDetailCell: OEZTableViewCell {
     func didSelectTab(isDetailButton:Bool) {
         detailButton.enabled = !isDetailButton;
         commentButton.enabled = isDetailButton;
-        let weakSelf = self;
         UIView.animateWithDuration(0.2, animations: {
-            weakSelf.viewLineConstraint.constant = isDetailButton ? 0 : weakSelf.commentButton.frame.width;
-            weakSelf.layoutIfNeeded();
+            self.viewLineConstraint.constant = isDetailButton ? 0 : self.commentButton.frame.width;
+            self.layoutIfNeeded();
             }) { (Bool) in
-                weakSelf.didSelectRowAction(UInt(SkillShareDetailCell.selectTabAction),data: isDetailButton ? 0 : 1);
+                self.didSelectRowAction(UInt(SkillShareDetailCell.selectTabAction),data: isDetailButton ? 0 : 1);
         };
     }
 }
 
 
-class SkillShareDetailCell1: OEZTableViewCell,OEZCalculateProtocol {
+
+
+class SkillShareDetailCell1: OEZTableViewCell , OEZCalculateProtocol {
     @IBOutlet weak var numLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -52,6 +54,8 @@ class SkillShareDetailCell1: OEZTableViewCell,OEZCalculateProtocol {
     static func calculateHeightWithData(data: AnyObject!) -> CGFloat {
         return 80;
     }
+    
+
     
 }
 
@@ -76,6 +80,8 @@ class SkillShareDetailCell2: OEZTableViewCell ,OEZCalculateProtocol {
         return 75;
     }
     
+    
+    
 }
 
 
@@ -95,6 +101,15 @@ class SkillShareDetailCell3: OEZTableViewCell ,OEZCalculateProtocol {
     static func calculateHeightWithData(data: AnyObject!) -> CGFloat {
         return 300;
     }
+    
+//    private func update(model:SkillShareDetailModel) {
+//        contentLabel.text = model.summary
+//    }
+    
+     func swiftUpdate(data: SkillShareDetailModel?) {
+        contentLabel.text = data?.summary
+    }
+    
 }
 
 

@@ -29,15 +29,15 @@ class AppConst {
     };
     class Network {
         #if true //是否测试环境
-        static let tcpServerIP:String = "61.147.114.78";
-        static let tcpServerPort:UInt16 = 10001;
-        static let httpHostUrl:String = "http://61.147.114.78";
+        static let TcpServerIP:String = "61.147.114.78";
+        static let TcpServerPort:UInt16 = 10001;
+        static let TttpHostUrl:String = "http://61.147.114.78";
         #else
-        static let tcpServerIP:String = "61.147.114.78";
-        static let tcpServerPort:UInt16 = 10001;
-        static let httpHostUrl:String = "http://61.147.114.78";
+        static let TcpServerIP:String = "61.147.114.78";
+        static let TcpServerPort:UInt16 = 10001;
+        static let HttpHostUrl:String = "http://61.147.114.78";
         #endif
-        static let timeoutSec:UInt16 = 10
+        static let TimeoutSec:UInt16 = 10
     }
     class Text {
         static let PhoneFormatErr = "请输入正确的手机号"
