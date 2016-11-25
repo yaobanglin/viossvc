@@ -25,6 +25,8 @@ extension UIViewController {
         return { [weak self] (error) in
             XCGLogger.error("\(error) \(self)");
             self?.showErrorWithStatus(error.localizedDescription)
+            self?.endRefreshing()
+            self?.errorLoadMore()
         }
     }
    
@@ -35,5 +37,15 @@ extension UIViewController {
     func showWithStatus(status: String!) {
         SVProgressHUD.showWithStatus(status)
     }
-
+    
+    //MARK: -Common function
+    func checkTextFieldEmpty(array:[UITextField]) -> Bool {
+        for  textField in array {
+            if NSString.isEmpty(textField.text)  {
+                showErrorWithStatus(textField.placeholder);
+                return false
+            }
+        }
+        return true
+    }
 }

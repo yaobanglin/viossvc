@@ -11,11 +11,17 @@ import Foundation
 class AppAPIHelper: NSObject {
     private static var _userAPI = UserSocketAPI()
     class func userAPI() ->UserAPI {
-        return _userAPI;
+        return _userAPI
     }
     
     private static var _skillShareAPI = SkillShareSocketAPI()
     class func skillShareAPI() ->SkillShareAPI {
-        return _skillShareAPI;
+        return _skillShareAPI
+    }
+    
+    private static var _tourShareAPI = TourShareSocketAPI()
+    class func tourShareAPI() -> TourShareAPI{
+        return _tourShareAPI
     }
 }
+

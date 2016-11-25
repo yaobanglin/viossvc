@@ -37,6 +37,12 @@ class BaseSocketAPI: NSObject {
     }
     
     
+    func startDataListRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
+        
+       startModelsRequest(packet, listName:"data_list_", modelClass: modelClass, complete: complete, error: error)
+    }
+    
+    
     func startModelsRequest(packet: SocketDataPacket, listName:String, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
         SocketRequestManage.shared.startJsonRequest(packet, complete: {  (response) in
             let dict:[String:AnyObject]? = ((response as? SocketJsonResponse)?.responseJsonObject()) as? [String:AnyObject]

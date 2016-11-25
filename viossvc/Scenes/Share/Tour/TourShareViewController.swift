@@ -31,7 +31,17 @@ class TourShareViewController: BaseListTableViewController {
     
     
     override func didRequest() {
-        didRequestComplete([[""],["","","","","","","","","",""]]);
+//        didRequestComplete([[""],["","","","","","","","","",""]]);
+        AppAPIHelper.tourShareAPI().list(0, count: 20, type: 0, complete: completeBlockFunc(), error: errorBlockFunc())
+//        AppAPIHelper.tourShareAPI().type(completeBlockFunc(), error: errorBlockFunc())
+    }
+    
+    override func didRequestComplete(data: AnyObject?) {
+        var array:[[AnyObject]] = [[""],[]]
+        if data != nil {
+            array[1].appendContentsOf(data as! [AnyObject])
+        }
+        super.didRequestComplete(array)
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
