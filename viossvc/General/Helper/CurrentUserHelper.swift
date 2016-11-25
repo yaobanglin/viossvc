@@ -10,8 +10,9 @@ import UIKit
 
 class CurrentUserHelper: NSObject {
     static let shared = CurrentUserHelper()
-    private let keychainItem:OEZKeychainItemWrapper = OEZKeychainItemWrapper(identifier: "com.yundian.viossvc.Account", accessGroup:nil)
+    private let keychainItem:OEZKeychainItemWrapper = OEZKeychainItemWrapper(identifier: "com.yundian.viossvc.account", accessGroup:nil)
     private var _userInfo:UserInfoModel!
+    private var _password:String!
     var userInfo:UserInfoModel! {
         get {
             return _userInfo
@@ -23,7 +24,8 @@ class CurrentUserHelper: NSObject {
         let loginModel = LoginModel()
         loginModel.phone_num = phone
         loginModel.passwd = password
-         keychainItem.setObject(password, forKey: kSecValueData)
+        _password = password
+        
         AppAPIHelper.userAPI().login(loginModel, complete: {  [weak self] (model) in
                 self?.loginComplete(model)
                 complete(model)
@@ -31,6 +33,7 @@ class CurrentUserHelper: NSObject {
     }
     
     func autoLogin(complete:CompleteBlock,error:ErrorBlock) -> Bool {
+//        keychainItem.resetKeychainItem()
         let phone = keychainItem.objectForKey(kSecAttrAccount) as? String
         let password = keychainItem.objectForKey(kSecValueData) as? String
         if !NSString.isEmpty(phone) &&  !NSString.isEmpty(password)  {
@@ -42,8 +45,9 @@ class CurrentUserHelper: NSObject {
     
     private func loginComplete(model:AnyObject?) {
         self._userInfo = model as? UserInfoModel
+        keychainItem.resetKeychainItem()
         keychainItem.setObject(_userInfo.phone_num, forKey: kSecAttrAccount)
-       
+        keychainItem.setObject(_password, forKey: kSecValueData)
     }
     
     func nodifyPassword(password:String) {

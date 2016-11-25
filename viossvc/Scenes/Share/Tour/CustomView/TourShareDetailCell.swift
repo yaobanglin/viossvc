@@ -15,8 +15,13 @@ class TourShareDetailCell1: OEZTableViewCell , OEZCalculateProtocol {
     @IBOutlet weak var addr1Label: UILabel!
     @IBOutlet weak var numLabel: UILabel!
     @IBOutlet weak var addr2Label: UILabel!
+    
     override func update(data: AnyObject!) {
-        
+        let model = data as! TourShareDetailModel
+        titleLabel.text = model.share_theme
+        addr1Label.text = model.addr_region
+        addr2Label.text = model.addr_detail
+        numLabel.text = model.per_cash
     }
     
     static func calculateHeightWithData(data: AnyObject!) -> CGFloat {
@@ -29,12 +34,19 @@ class TourShareDetailCell1: OEZTableViewCell , OEZCalculateProtocol {
 class TourShareDetailCell2: OEZTableViewCell , OEZCalculateProtocol {
     
     @IBOutlet weak var contentLabel: UILabel!
-    override func update(data: AnyObject!) {
-        
-    }
     
     static func calculateHeightWithData(data: AnyObject!) -> CGFloat {
-        return 150.0
+        let model = data as! TourShareDetailModel
+        let rect = model.summary.boundingRectWithSize(CGSizeMake(UIScreen.width()-CGFloat(34), 0),font:AppConst.SystemFont.S3,lineSpacing:5)
+        return rect.height + 38
     }
+    
+    
+    override func update(data:AnyObject!) {
+        let model = data as! TourShareDetailModel
+        contentLabel.attributedText = model.summary.attributedString(AppConst.SystemFont.S3,lineSpacing:5)
+        contentLabel.sizeToFit()
+    }
+    
     
 }

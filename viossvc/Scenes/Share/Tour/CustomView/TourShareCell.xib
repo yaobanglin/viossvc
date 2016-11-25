@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="194.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test1" translatesAutoresizingMaskIntoConstraints="NO" id="pDr-Zw-04E">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pDr-Zw-04E">
                         <rect key="frame" x="10" y="0.0" width="580" height="110"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lML-q0-29z">
@@ -69,6 +69,9 @@
                                         <color key="value" red="0.54901960780000003" green="0.77647058820000003" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didActionTel:" destination="Ks0-q5-jIu" eventType="touchUpInside" id="Eus-Sb-NVa"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,13 +104,10 @@
             <connections>
                 <outlet property="addrLabel" destination="PYH-oS-36c" id="rsc-RL-shL"/>
                 <outlet property="bannerImageView" destination="pDr-Zw-04E" id="xuA-Zf-dkM"/>
-                <outlet property="didActionTel" destination="UDd-A2-cON" id="eCA-is-gtG"/>
+                <outlet property="didActionTel" destination="UDd-A2-cON" id="Oqw-LD-P1H"/>
                 <outlet property="titleLabel" destination="j42-Ii-p3n" id="oiZ-iI-Wef"/>
                 <outlet property="typeLabel" destination="8PZ-oL-l29" id="aF7-yt-Lzq"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="test1" width="344" height="110"/>
-    </resources>
 </document>

@@ -10,7 +10,9 @@ import UIKit
 
 class TourShareDetailViewController: BaseCustomRefreshTableViewController {
 
-    
+    var share_id:Int = 0
+    var tourShareModel:TourShareDetailModel!
+    @IBOutlet weak var telPhoneButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerClass(CommTableViewBannerCell.self, forCellReuseIdentifier: "TourShareDetailCell")
@@ -26,11 +28,12 @@ class TourShareDetailViewController: BaseCustomRefreshTableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1;
+        return 1
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3;
+       
+        return tourShareModel != nil ? 3 : 0
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -39,14 +42,24 @@ class TourShareDetailViewController: BaseCustomRefreshTableViewController {
     
     override func tableView(tableView: UITableView, cellDataForRowAtIndexPath indexPath: NSIndexPath) -> AnyObject? {
         if indexPath.section == 0  {
-            return ["test1","test3","test1","test3","test1","test3"]
+            return [tourShareModel.detail_pic]
         }
-        return super.tableView(tableView, cellDataForRowAtIndexPath: indexPath);
+        return tourShareModel
+    }
+    
+    override func didRequest() {
+        AppAPIHelper.tourShareAPI().detail(share_id, complete: { [weak self] (model) in
+                self?.didRequestComplete(model)
+            }, error: errorBlockFunc())
     }
     
     
-    override func didRequest() {
-        didRequestComplete(nil);
+    override func didRequestComplete(data: AnyObject?) {
+        tourShareModel = data as? TourShareDetailModel
+         super.didRequestComplete(data)
+    }
+    
+    @IBAction func didActionTelPhone(sender: AnyObject) {
     }
 
 }

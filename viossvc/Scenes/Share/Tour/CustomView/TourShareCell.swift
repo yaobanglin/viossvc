@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class TourShareCell: OEZTableViewCell, OEZCalculateProtocol {
     
     @IBOutlet weak var bannerImageView: UIImageView!
@@ -20,6 +20,15 @@ class TourShareCell: OEZTableViewCell, OEZCalculateProtocol {
 
     @IBOutlet weak var didActionTel: UIButton!
     override func update(data: AnyObject!) {
-        
+        let model = data as! TourShareModel
+        titleLabel.text = model.share_theme
+        addrLabel.text = model.addr_region
+        typeLabel.text = model.share_type
+        bannerImageView.kf_setImageWithURL(NSURL(string: model.brief_pic),placeholderImage:UIImage(named: "test1"))
+    }
+    
+    
+    @IBAction func didActionTel(sender: AnyObject) {
+        self.didSelectRowAction(AppConst.Action.CallPhone.rawValue, data: nil)
     }
 }

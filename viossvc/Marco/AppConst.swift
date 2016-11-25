@@ -49,4 +49,9 @@ class AppConst {
         static let PhoneFormat = "^1[3|4|5|7|8][0-9]\\d{8}$"
         static let RegisterPhoneError = "输入的手机号已注册"
     }
+    static let DefaultPageSize = 15
+    
+    enum Action:UInt {
+        case CallPhone = 10001
+    }
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class SkillShareCell1: OEZTableViewCell {
 
     @IBOutlet weak var picImageView: UIImageView!
@@ -28,8 +28,7 @@ class SkillShareCell1: OEZTableViewCell {
     }
     
     override func update(data: AnyObject!) {
-        let model:SkillShareModel! = data as? SkillShareModel
-        if model != nil {
+        let model:SkillShareModel = data as! SkillShareModel
             titleLabel.text = model.share_theme
             let dfmatter = NSDateFormatter()
             dfmatter.dateFormat="yyyy-MM-dd HH:mm:ss "
@@ -49,7 +48,8 @@ class SkillShareCell1: OEZTableViewCell {
             if model.entry_num > 0 {
                 timeAndNumLabel.text! += "\(model.entry_num)人\(string)"
             }
-        }
+            picImageView.kf_setImageWithURL(NSURL(string: model.brief_pic),placeholderImage: UIImage(named: ""))
+
     }
 
 }
