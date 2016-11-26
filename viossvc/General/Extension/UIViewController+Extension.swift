@@ -47,6 +47,17 @@ extension UIViewController {
         return true
     }
     
+    func dismissController() {
+        view.endEditing(true)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    /**
+     七牛上传图片
+     
+     - parameter image:     图片
+     - parameter imageName: 图片名
+     - parameter complete:  图片完成Block
+     */
     func qiniuUploadImage(image: UIImage, imageName: String, complete:CompleteBlock) {
         //0,将图片存到沙盒中
         let filePath = cacheImage(image, imageName: imageName)
@@ -68,7 +79,13 @@ extension UIViewController {
             }, option: nil)
         }, error: errorBlockFunc())
     }
-    
+    /**
+     缓存图片
+     
+     - parameter image:     图片
+     - parameter imageName: 图片名
+     - returns: 图片沙盒路径
+     */
     func cacheImage(image: UIImage ,imageName: String) -> String {
         let data = UIImageJPEGRepresentation(image, 0.5)
         let homeDirectory = NSHomeDirectory()
