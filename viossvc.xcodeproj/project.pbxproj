@@ -82,6 +82,13 @@
 		BF5EB98A1DE809E000961A24 /* CitysSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */; };
 		BF9B6BC11DE9620F009FFEB7 /* DrawCashTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BC01DE9620F009FFEB7 /* DrawCashTableViewController.swift */; };
 		BF9B6BC41DE96F9E009FFEB7 /* EnterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BC31DE96F9E009FFEB7 /* EnterPasswordViewController.swift */; };
+		BF9B6BC61DEB1B9F009FFEB7 /* UserWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BC51DEB1B9F009FFEB7 /* UserWalletViewController.swift */; };
+		BF9B6BC81DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BC71DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift */; };
+		BF9B6BCA1DEB1C2B009FFEB7 /* DrawCashDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BC91DEB1C2B009FFEB7 /* DrawCashDetailViewController.swift */; };
+		BF9B6BD01DEB1CD1009FFEB7 /* SelectedBankCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BCF1DEB1CD1009FFEB7 /* SelectedBankCardViewController.swift */; };
+		BF9B6BD21DEB1CF3009FFEB7 /* AddBankCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD11DEB1CF3009FFEB7 /* AddBankCardViewController.swift */; };
+		BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */; };
+		BF9B6BD71DEB1E3A009FFEB7 /* AuthUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +171,13 @@
 		BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitysSelectViewController.swift; sourceTree = "<group>"; };
 		BF9B6BC01DE9620F009FFEB7 /* DrawCashTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawCashTableViewController.swift; sourceTree = "<group>"; };
 		BF9B6BC31DE96F9E009FFEB7 /* EnterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterPasswordViewController.swift; sourceTree = "<group>"; };
+		BF9B6BC51DEB1B9F009FFEB7 /* UserWalletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserWalletViewController.swift; sourceTree = "<group>"; };
+		BF9B6BC71DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawCashRecordViewController.swift; sourceTree = "<group>"; };
+		BF9B6BC91DEB1C2B009FFEB7 /* DrawCashDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawCashDetailViewController.swift; sourceTree = "<group>"; };
+		BF9B6BCF1DEB1CD1009FFEB7 /* SelectedBankCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedBankCardViewController.swift; sourceTree = "<group>"; };
+		BF9B6BD11DEB1CF3009FFEB7 /* AddBankCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankCardViewController.swift; sourceTree = "<group>"; };
+		BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUserViewController.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -470,15 +484,11 @@
 		B08673471DE5C62B008DD8A1 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				B08673481DE5C62B008DD8A1 /* LoginViewController.swift */,
-				B08673491DE5C62B008DD8A1 /* MainViewController.swift */,
-				B086734A1DE5C62B008DD8A1 /* PasswordViewController.swift */,
-				B086734B1DE5C62B008DD8A1 /* RegisterViewController.swift */,
-				B086734C1DE5C62B008DD8A1 /* UserHomeViewController.swift */,
-				B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */,
-				BF5EB9851DE7CC9200961A24 /* ResetPasswordViewController.swift */,
-				BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */,
-				BF9B6BC01DE9620F009FFEB7 /* DrawCashTableViewController.swift */,
+				BF9B6BD31DEB1CFA009FFEB7 /* Setting */,
+				BF9B6BCE1DEB1CA6009FFEB7 /* Bank */,
+				BF9B6BCD1DEB1C6A009FFEB7 /* UserInfo */,
+				BF9B6BCC1DEB1C48009FFEB7 /* Login */,
+				BF9B6BCB1DEB1C36009FFEB7 /* Wallet */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -523,6 +533,57 @@
 				BF9B6BC31DE96F9E009FFEB7 /* EnterPasswordViewController.swift */,
 			);
 			path = Commen;
+			sourceTree = "<group>";
+		};
+		BF9B6BCB1DEB1C36009FFEB7 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B6BC01DE9620F009FFEB7 /* DrawCashTableViewController.swift */,
+				BF9B6BC51DEB1B9F009FFEB7 /* UserWalletViewController.swift */,
+				BF9B6BC71DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift */,
+				BF9B6BC91DEB1C2B009FFEB7 /* DrawCashDetailViewController.swift */,
+			);
+			name = Wallet;
+			sourceTree = "<group>";
+		};
+		BF9B6BCC1DEB1C48009FFEB7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B08673491DE5C62B008DD8A1 /* MainViewController.swift */,
+				B08673481DE5C62B008DD8A1 /* LoginViewController.swift */,
+				B086734A1DE5C62B008DD8A1 /* PasswordViewController.swift */,
+				B086734B1DE5C62B008DD8A1 /* RegisterViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		BF9B6BCD1DEB1C6A009FFEB7 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B086734C1DE5C62B008DD8A1 /* UserHomeViewController.swift */,
+				B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */,
+				BF5EB9891DE809E000961A24 /* CitysSelectViewController.swift */,
+			);
+			name = UserInfo;
+			sourceTree = "<group>";
+		};
+		BF9B6BCE1DEB1CA6009FFEB7 /* Bank */ = {
+			isa = PBXGroup;
+			children = (
+				BF9B6BCF1DEB1CD1009FFEB7 /* SelectedBankCardViewController.swift */,
+				BF9B6BD11DEB1CF3009FFEB7 /* AddBankCardViewController.swift */,
+			);
+			name = Bank;
+			sourceTree = "<group>";
+		};
+		BF9B6BD31DEB1CFA009FFEB7 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				BF5EB9851DE7CC9200961A24 /* ResetPasswordViewController.swift */,
+				BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */,
+				BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */,
+			);
+			name = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -655,6 +716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B024A1851DE7FBBF0095A691 /* String+Extension.swift in Sources */,
+				BF9B6BD01DEB1CD1009FFEB7 /* SelectedBankCardViewController.swift in Sources */,
 				B024A1811DE7D4190095A691 /* TourShareSocketAPI.swift in Sources */,
 				B086734D1DE5C62B008DD8A1 /* LoginViewController.swift in Sources */,
 				B024A17B1DE7CDCC0095A691 /* SocketResponse.swift in Sources */,
@@ -662,6 +724,7 @@
 				B03B12421DE5BFDE00B00D2E /* BaseTableViewController.swift in Sources */,
 				B03B12351DE5BFDE00B00D2E /* TourViewController.swift in Sources */,
 				B03B12181DE5BFDE00B00D2E /* AppDelegate.swift in Sources */,
+				BF9B6BC81DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift in Sources */,
 				B03B12341DE5BFDE00B00D2E /* TourShareViewController.swift in Sources */,
 				B03B12331DE5BFDE00B00D2E /* TourShareListViewController.swift in Sources */,
 				B086734E1DE5C62B008DD8A1 /* MainViewController.swift in Sources */,
@@ -688,8 +751,11 @@
 				B086734F1DE5C62B008DD8A1 /* PasswordViewController.swift in Sources */,
 				B03B122D1DE5BFDE00B00D2E /* SkillShareDetailViewController.swift in Sources */,
 				B03B124C1DE5BFDE00B00D2E /* UIViewController+Extension.swift in Sources */,
+				BF9B6BCA1DEB1C2B009FFEB7 /* DrawCashDetailViewController.swift in Sources */,
 				B03B12281DE5BFDE00B00D2E /* OrderListViewController.swift in Sources */,
+				BF9B6BD71DEB1E3A009FFEB7 /* AuthUserViewController.swift in Sources */,
 				B03B12401DE5BFDE00B00D2E /* BaseCustomTableViewController.swift in Sources */,
+				BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */,
 				B03B122E1DE5BFDE00B00D2E /* SkillShareViewController.swift in Sources */,
 				B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */,
 				BF5EB98A1DE809E000961A24 /* CitysSelectViewController.swift in Sources */,
@@ -715,6 +781,8 @@
 				ACABDD418C987E1EF6B392A3 /* UserSocketAPI.swift in Sources */,
 				ACABD905FB6E14BA0DB7805B /* SkillShareSocketAPI.swift in Sources */,
 				ACABDFFD286587F50681B491 /* UserAPI.swift in Sources */,
+				BF9B6BC61DEB1B9F009FFEB7 /* UserWalletViewController.swift in Sources */,
+				BF9B6BD21DEB1CF3009FFEB7 /* AddBankCardViewController.swift in Sources */,
 				ACABD04A304D718D390DA81B /* SkillShareAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

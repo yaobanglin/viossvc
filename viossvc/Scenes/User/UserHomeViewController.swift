@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserHomeViewController: UITableViewController {
+class UserHomeViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupRefreshControl();
