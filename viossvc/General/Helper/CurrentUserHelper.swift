@@ -57,4 +57,6 @@ class CurrentUserHelper: NSObject {
     func lastLoginPhone()->String? {
         return keychainItem.objectForKey(kSecAttrAccount) as? String
     }
+    
+    
 }

@@ -8,6 +8,23 @@
 
 import UIKit
 
-class SettingViewController: BaseTableViewController {
-
+class SettingViewController: UITableViewController {
+    //MARK: --LIFECYCLE
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initData()
+        initUI()
+    }
+    //MARK: --DATA
+    func initData() {
+        
+    }
+    //MARK: --UI
+    func initUI() {
+        
+    }
+    //MARK: --TableView
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
 }

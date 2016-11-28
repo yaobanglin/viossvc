@@ -72,7 +72,7 @@ class CitysSelectViewController: BaseTableViewController {
     }
     //Mark: --table's delegate
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return keys!.count
+        return keys == nil ? 0 : keys!.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
