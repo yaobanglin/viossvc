@@ -13,7 +13,7 @@ class CitySelectedCell: OEZTableViewCell {
     @IBOutlet weak var citySelectBtn: UIButton!
 }
 
-class CitysSelectViewController: UITableViewController {
+class CitysSelectViewController: BaseTableViewController {
     lazy var citys: NSMutableDictionary = {
         let path = NSBundle.mainBundle().pathForResource("city", ofType: "plist")
         let cityDic = NSMutableDictionary.init(contentsOfFile: path!)
@@ -72,7 +72,7 @@ class CitysSelectViewController: UITableViewController {
     }
     //Mark: --table's delegate
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return keys!.count
+        return keys == nil ? 0 : keys!.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -12,5 +12,16 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        //发起心跳包
+        NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: #selector(heardBeat), userInfo: nil, repeats: true)
+    }
+    
+    func heardBeat()  {
+        AppAPIHelper.commenAPI().heardBeat({ (result) in
+            
+        }) { (error) in
+            
+        }
     }
 }

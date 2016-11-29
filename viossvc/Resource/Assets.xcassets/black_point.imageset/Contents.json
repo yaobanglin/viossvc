@@ -2,16 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "pay-selected@2x.png",
+      "filename" : "black_point@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "pay-selected@3x.png",
+      "filename" : "black_point@3x.png",
       "scale" : "3x"
     }
   ],

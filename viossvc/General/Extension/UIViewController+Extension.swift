@@ -47,11 +47,59 @@ extension UIViewController {
         return true
     }
     
-    func qiniuUploadImage(imagePath: String, imageName: String,complete:CompleteBlock,error:ErrorBlock) {
+    func dismissController() {
+        view.endEditing(true)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    /**
+     七牛上传图片
+     
+     - parameter image:     图片
+     - parameter imageName: 图片名
+     - parameter complete:  图片完成Block
+     */
+    func qiniuUploadImage(image: UIImage, imageName: String, complete:CompleteBlock) {
+        //0,将图片存到沙盒中
+        let filePath = cacheImage(image, imageName: imageName)
         //1,请求token
-        
-        //2,上传图片
-        
-        //3,返回URL
+        AppAPIHelper.commenAPI().imageToken({ (result) in
+            let token = result?.valueForKey("img_token_") as! String
+            //2,上传图片
+            let qiniuManager = QNUploadManager()
+            qiniuManager.putFile(filePath, key: imageName, token: token, complete: { (info, key, resp) in
+                if resp == nil{
+                    complete(nil)
+                    return
+                }
+                //3,返回URL
+                let respDic: NSDictionary? = resp
+                let value:String? = respDic!.valueForKey("key") as? String
+                let imageUrl = AppConst.Network.qiniuHost+value!
+                complete(imageUrl)
+            }, option: nil)
+        }, error: errorBlockFunc())
+    }
+    /**
+     缓存图片
+     
+     - parameter image:     图片
+     - parameter imageName: 图片名
+     - returns: 图片沙盒路径
+     */
+    func cacheImage(image: UIImage ,imageName: String) -> String {
+        let data = UIImageJPEGRepresentation(image, 0.5)
+        let homeDirectory = NSHomeDirectory()
+        let documentPath = homeDirectory + "/Documents"
+        let fileManager: NSFileManager = NSFileManager.defaultManager()
+        do {
+            try fileManager.createDirectoryAtPath(documentPath, withIntermediateDirectories: true, attributes: nil)
+        }
+        catch _ {
+        }
+        let key = "\(imageName).png"
+        fileManager.createFileAtPath(documentPath.stringByAppendingString(key), contents: data, attributes: nil)
+        //得到选择后沙盒中图片的完整路径
+        let filePath: String = String(format: "%@%@", documentPath, key)
+        return filePath
     }
 }

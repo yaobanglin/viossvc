@@ -13,6 +13,8 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     @IBOutlet weak var sexLabel: UILabel!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var iconImage: UIImageView!
+    var imageUrl: String?
+    
     
     lazy var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController.init()
@@ -25,6 +27,29 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         imagePicker.delegate = self
+    }
+    
+    @IBAction func finishItemTapped(sender: AnyObject) {
+        if imageUrl == nil || imageUrl?.characters.count == 0  {
+            showErrorWithStatus("头像上传失败，请稍后再试")
+            return
+        }
+        if nameText.text?.characters.count == 0 {
+            showErrorWithStatus("请输入用户昵称")
+            return
+        }
+        let param = NotifyUserInfoModel()
+        param.address = cityLabel.text
+        param.gender = sexLabel.text == "男" ? 1 : 0
+        param.head_url = imageUrl
+        param.nickname = nameText.text
+        param.uid = CurrentUserHelper.shared.userInfo.uid
+        AppAPIHelper.userAPI().notifyUsrInfo(param, complete: {[weak self] (result) in
+            CurrentUserHelper.shared.userInfo.address = self?.cityLabel.text
+            CurrentUserHelper.shared.userInfo.nickname = self?.nameText.text
+            CurrentUserHelper.shared.userInfo.gender = self?.sexLabel.text == "男" ? 1 : 0
+            self?.navigationController?.popViewControllerAnimated(true)
+        }, error: errorBlockFunc())
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -73,6 +98,18 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         iconImage.image = image
+        qiniuUploadImage(image, imageName: "\(CurrentUserHelper.shared.userInfo.uid)", complete: { [weak self](imageUrl) in
+            if imageUrl == nil || imageUrl?.length == 0 {
+                return
+            }
+            self?.imageUrl = imageUrl as? String
+            let param = AuthHeaderModel()
+            param.uid = CurrentUserHelper.shared.userInfo.uid
+            param.head_ = imageUrl as? String
+            AppAPIHelper.userAPI().authHeaderUrl(param, complete: { (result) in
+                
+            }, error: (self?.errorBlockFunc())!)
+        })
     }
     
 }

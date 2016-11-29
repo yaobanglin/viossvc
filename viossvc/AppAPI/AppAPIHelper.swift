@@ -23,5 +23,10 @@ class AppAPIHelper: NSObject {
     class func tourShareAPI() -> TourShareAPI{
         return _tourShareAPI
     }
+    
+    private static var _commenShareAPI = CommenSocketAPI()
+    class func commenAPI() -> CommenAPI {
+        return _commenShareAPI
+    }
 }
 

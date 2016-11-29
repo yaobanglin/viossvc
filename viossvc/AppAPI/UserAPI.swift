@@ -17,4 +17,23 @@ protocol UserAPI {
     func smsVerify(type:SMSVerifyModel.SMSType,phone:String,complete:CompleteBlock,error:ErrorBlock)
     func register(model:RegisterModel,complete:CompleteBlock,error:ErrorBlock)
     func nodifyPasswrod(uid:Int,oldPassword:String,newPasword:String,complete:CompleteBlock,error:ErrorBlock)
+    //获取用户余额
+    func userCash(uid:Int, complete:CompleteBlock, error:ErrorBlock)
+    //认证用户头像
+    func authHeaderUrl(model: AuthHeaderModel, complete: CompleteBlock, error: ErrorBlock)
+    //修改用户信息
+    func notifyUsrInfo(model: NotifyUserInfoModel, complete: CompleteBlock, error: ErrorBlock)
+    //获取用户的银行卡信息
+    func bankCards(model: UserBankCardsModel, complete: CompleteBlock, error: ErrorBlock)
+    //校验提现密码
+    func checkDrawCashPassword(uid: Int, password: String,complete: CompleteBlock,error: ErrorBlock)
+    //提现
+    func drawCash(model: DrawCashModel, complete: CompleteBlock, error: ErrorBlock)
+    //提现详情
+    func drawCashDetail(drawCashId: Int, complete: CompleteBlock, error: ErrorBlock)
+    //设置用户默认的银行卡
+    func defaultBanKCard(bankCardId: Int, complete: CompleteBlock, error: ErrorBlock)
+    //添加新的银行卡
+    func newBankCard(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock)
+
 }
