@@ -9,5 +9,8 @@
 import Foundation
 
 protocol CommenAPI {
+    //获取上传图片token
     func imageToken(complete: CompleteBlock, error:ErrorBlock)
+    //心跳包
+    func heardBeat(complete: CompleteBlock, error: ErrorBlock)
 }

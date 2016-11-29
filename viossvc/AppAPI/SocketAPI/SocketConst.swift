@@ -24,6 +24,22 @@ class SocketConst: NSObject {
         case NodifyUserInfo = 1023
         //获取图片token
         case GetImageToken = 1047
+        //获取用户余额
+        case UserCash = 1067
+        //认证用户头像
+        case AuthUserHeader = 0000
+        //获取用户的银行卡信息
+        case UserBankCards = 0001
+        //校验提现密码
+        case CheckDrawCashPassword = 0002
+        //提现
+        case DrawCash = 0003
+        //提现详情
+        case DrawCashDetail = 0004
+        //设置默认银行卡
+        case DefaultBankCard = 0005
+        //添加新的银行卡
+        case NewBankCard = 0006
         
         case SkillShareList = 1071
         

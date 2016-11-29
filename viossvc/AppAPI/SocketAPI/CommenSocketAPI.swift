@@ -12,4 +12,8 @@ class CommenSocketAPI: BaseSocketAPI,CommenAPI {
     func imageToken(complete: CompleteBlock, error: ErrorBlock) {
         startRequest(SocketDataPacket(opcode: .GetImageToken), complete: complete, error: error)
     }
+    
+    func heardBeat(complete: CompleteBlock, error: ErrorBlock) {
+        startRequest(SocketDataPacket(opcode: .Heart), complete: complete, error: error)
+    }
 }

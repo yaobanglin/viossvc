@@ -38,7 +38,7 @@ class UserInfoModel: UserModel {
     var phone_num: String?
     var praise_lv: Int = 0
     var register_status: Int = 0
-    
+    var user_cash_: Int = 0
 }
 
 class SMSVerifyModel: BaseModel {
@@ -71,3 +71,23 @@ class RegisterModel: SMSVerifyRetModel {
     var smsType:SMSVerifyModel.SMSType = .Register
 }
 
+class AuthHeaderModel: BaseModel {
+    var uid: Int = 0
+    var head_: String?
+}
+
+class NotifyUserInfoModel: UserInfoModel {
+
+}
+
+class UserBankCardsModel: BaseModel {
+    
+}
+
+class DrawCashModel: BaseModel {
+    
+}
+
+class BankCardModel: BaseModel {
+    
+}
