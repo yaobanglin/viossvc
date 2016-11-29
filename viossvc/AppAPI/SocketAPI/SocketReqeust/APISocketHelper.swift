@@ -15,6 +15,8 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
     var socket: GCDAsyncSocket?;
     var dispatch_queue: dispatch_queue_t!;
     var mutableData: NSMutableData = NSMutableData();
+    var timer: NSTimer?
+    
     override init() {
         super.init()
         dispatch_queue = dispatch_queue_create("APISocket_Queue", DISPATCH_QUEUE_CONCURRENT)
@@ -37,7 +39,7 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
         }
     }
 
-
+    
     func sendData(data: NSData) {
         objc_sync_enter(self)
         socket?.writeData(data, withTimeout: -1, tag: 0)
@@ -78,6 +80,7 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
             }
         }
         socket?.readDataWithTimeout(-1, tag: 0)
+        
     }
 
     @objc func socket(sock: GCDAsyncSocket, shouldTimeoutReadWithTag tag: CLong, elapsed: NSTimeInterval, bytesDone length: UInt) -> NSTimeInterval {
@@ -90,8 +93,8 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
 
     @objc func socketDidDisconnect(sock: GCDAsyncSocket, withError err: NSError?) {
 
+        connect()
     }
-
 
     deinit {
         socket?.disconnect()
