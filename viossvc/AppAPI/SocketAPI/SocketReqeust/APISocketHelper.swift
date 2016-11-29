@@ -15,6 +15,7 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
     var socket: GCDAsyncSocket?;
     var dispatch_queue: dispatch_queue_t!;
     var mutableData: NSMutableData = NSMutableData();
+    var isSendHeartBeat = false
     override init() {
         super.init()
         dispatch_queue = dispatch_queue_create("APISocket_Queue", DISPATCH_QUEUE_CONCURRENT)
@@ -59,8 +60,29 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
             sock.enableBackgroundingOnSocket()
         });
         socket?.readDataWithTimeout(-1, tag: 0)
+        if !isSendHeartBeat {
+            isSendHeartBeat = true
+            performSelector(#selector(APISocketHelper.sendHeart), withObject: nil, afterDelay: 15)
+        }
     }
-
+    func sendHeart() {
+        
+        
+        if CurrentUserHelper.shared.userInfo.uid > -1 {
+            XCGLogger.debug("发送心跳包")
+            let packet = SocketDataPacket(opcode: .Heart, dict: ["uid_": CurrentUserHelper.shared.userInfo.uid])
+            
+            SocketRequestManage.shared.startJsonRequest(packet, complete: { (reponse) in
+                
+                }, error: { (error) in
+                    
+                XCGLogger.debug("心跳包发送失败:\(error)")
+                    
+            })
+        }
+        performSelector(#selector(APISocketHelper.sendHeart), withObject: nil, afterDelay: 15)
+        
+    }
     @objc func socket(sock: GCDAsyncSocket, didReadData data: NSData, withTag tag: CLong) {
 //        XCGLogger.debug("socket:\(data)")
         mutableData.appendData(data)
@@ -89,6 +111,7 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
     }
 
     @objc func socketDidDisconnect(sock: GCDAsyncSocket, withError err: NSError?) {
+        self.performSelector(#selector(APISocketHelper.connect), withObject: nil, afterDelay: 5)
 
     }
 

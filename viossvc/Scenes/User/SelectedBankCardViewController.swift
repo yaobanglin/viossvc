@@ -32,5 +32,13 @@ class SelectedBankCardViewController: BaseListTableViewController{
     func initUI() {
         
     }
+    @IBAction func addNewBankCard() {
+        performSegueWithIdentifier("bankCardToAddNew", sender: nil)
+
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
 
 }
