@@ -50,12 +50,17 @@ class CurrentUserHelper: NSObject {
         keychainItem.setObject(_password, forKey: kSecValueData)
     }
     
+    func logout() {
+//        self._userInfo = nil
+        keychainItem.resetKeychainItem()
+    }
+    
     func nodifyPassword(password:String) {
         keychainItem.setObject(password, forKey: kSecValueData)
     }
     
     func lastLoginPhone()->String? {
-        return keychainItem.objectForKey(kSecAttrAccount) as? String
+        return keychainItem.objectForKey(kSecAttrAccount) as? String == nil ? "": keychainItem.objectForKey(kSecAttrAccount) as? String
     }
     
     

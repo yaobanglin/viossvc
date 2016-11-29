@@ -89,6 +89,7 @@
 		BF9B6BD21DEB1CF3009FFEB7 /* AddBankCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD11DEB1CF3009FFEB7 /* AddBankCardViewController.swift */; };
 		BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */; };
 		BF9B6BD71DEB1E3A009FFEB7 /* AuthUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */; };
+		BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +179,7 @@
 		BF9B6BD11DEB1CF3009FFEB7 /* AddBankCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankCardViewController.swift; sourceTree = "<group>"; };
 		BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUserViewController.swift; sourceTree = "<group>"; };
+		BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -553,6 +555,7 @@
 				B08673481DE5C62B008DD8A1 /* LoginViewController.swift */,
 				B086734A1DE5C62B008DD8A1 /* PasswordViewController.swift */,
 				B086734B1DE5C62B008DD8A1 /* RegisterViewController.swift */,
+				BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -756,6 +759,7 @@
 				BF9B6BD71DEB1E3A009FFEB7 /* AuthUserViewController.swift in Sources */,
 				B03B12401DE5BFDE00B00D2E /* BaseCustomTableViewController.swift in Sources */,
 				BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */,
+				BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */,
 				B03B122E1DE5BFDE00B00D2E /* SkillShareViewController.swift in Sources */,
 				B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */,
 				BF5EB98A1DE809E000961A24 /* CitysSelectViewController.swift in Sources */,

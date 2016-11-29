@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SVProgressHUD
 class BaseTableViewController: UITableViewController , TableViewHelperProtocol {
     
     var tableViewHelper:TableViewHelper = TableViewHelper();
