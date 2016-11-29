@@ -13,7 +13,7 @@ class CommenSocketAPI: BaseSocketAPI,CommenAPI {
         startRequest(SocketDataPacket(opcode: .GetImageToken), complete: complete, error: error)
     }
     
-    func heardBeat(complete: CompleteBlock, error: ErrorBlock) {
-        startRequest(SocketDataPacket(opcode: .Heart), complete: complete, error: error)
+    func heardBeat(uid: Int, complete: CompleteBlock, error: ErrorBlock) {
+        startRequest(SocketDataPacket(opcode: .Heart,dict:["uid_": uid]), complete: complete, error: error)
     }
 }
