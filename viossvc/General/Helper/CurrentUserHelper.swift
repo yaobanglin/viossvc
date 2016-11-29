@@ -45,14 +45,14 @@ class CurrentUserHelper: NSObject {
     
     private func loginComplete(model:AnyObject?) {
         self._userInfo = model as? UserInfoModel
-        keychainItem.resetKeychainItem()
+//        keychainItem.resetKeychainItem()
         keychainItem.setObject(_userInfo.phone_num, forKey: kSecAttrAccount)
         keychainItem.setObject(_password, forKey: kSecValueData)
     }
     
     func logout() {
-//        self._userInfo = nil
-        keychainItem.resetKeychainItem()
+        self._userInfo = nil
+        nodifyPassword("")
     }
     
     func nodifyPassword(password:String) {
