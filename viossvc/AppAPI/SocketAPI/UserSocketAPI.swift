@@ -58,7 +58,7 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     
     //校验提现密码
     func checkDrawCashPassword(uid: Int, password: String,complete: CompleteBlock,error: ErrorBlock){
-        let dict:[String : AnyObject] = ["uid":uid, "password":password]
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid, "password":password]
         let packet = SocketDataPacket(opcode: .CheckDrawCashPassword, dict: dict)
         startRequest(packet, complete: complete, error: error)
     }
@@ -91,14 +91,14 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     
     //查询用户认证状态
     func anthStatus(uid: Int, complete: CompleteBlock, error: ErrorBlock){
-        let dict:[String : AnyObject] = ["uid":uid]
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid]
         let packet = SocketDataPacket(opcode: .AuthStatus, dict: dict)
         startRequest(packet, complete: complete, error: error)
     }
     
     //上传身份认证信息
     func authUser(uid: Int, frontPic: String, backPic: String, complete: CompleteBlock, error: ErrorBlock) {
-        let dict:[String : AnyObject] = ["uid":uid,
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid,
                                          "front_pic_":frontPic,
                                          "back_pic_":backPic]
         
