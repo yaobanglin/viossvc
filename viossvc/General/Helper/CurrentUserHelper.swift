@@ -51,7 +51,6 @@ class CurrentUserHelper: NSObject {
     }
     
     func logout() {
-//        self._userInfo = nil
         keychainItem.resetKeychainItem()
     }
     
@@ -60,7 +59,7 @@ class CurrentUserHelper: NSObject {
     }
     
     func lastLoginPhone()->String? {
-        return keychainItem.objectForKey(kSecAttrAccount) as? String == nil ? "": keychainItem.objectForKey(kSecAttrAccount) as? String
+        return keychainItem.objectForKey(kSecAttrAccount) as? String 
     }
     
     
