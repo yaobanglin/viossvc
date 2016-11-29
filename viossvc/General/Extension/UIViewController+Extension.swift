@@ -51,8 +51,21 @@ extension UIViewController {
         view.endEditing(true)
         dismissViewControllerAnimated(true, completion: nil)
     }
+    //查询用户余额
+    func requestUserCash(complete: CompleteBlock) {
+        AppAPIHelper.userAPI().userCash(CurrentUserHelper.shared.userInfo.uid, complete: { (result) in
+            if result == nil{
+                return
+            }
+            let userCash: Int = result!["user_cash_"] == nil ? 0 : result!["user_cash_"] as! Int
+            let hasPassword: Int = result!["has_passwd_"] as! Int
+            CurrentUserHelper.shared.userInfo.user_cash_ =  userCash
+            CurrentUserHelper.shared.userInfo.has_passwd_ = hasPassword
+            complete(userCash)
+        }, error: errorBlockFunc())
+    }
     /**
-     查询用户认证状态
+     查询认证状态
      */
     func checkAuthStatus() {
         AppAPIHelper.userAPI().anthStatus(CurrentUserHelper.shared.userInfo.uid, complete: { (result) in
@@ -84,7 +97,8 @@ extension UIViewController {
             let token = result?.valueForKey("img_token_") as! String
             //2,上传图片
             let qiniuManager = QNUploadManager()
-            qiniuManager.putFile(filePath, key: imageName, token: token, complete: { (info, key, resp) in
+            let timestemp:Int = Int(NSDate().timeIntervalSince1970)
+            qiniuManager.putFile(filePath, key: imageName + "\(timestemp)", token: token, complete: { (info, key, resp) in
                 if resp == nil{
                     complete(nil)
                     return

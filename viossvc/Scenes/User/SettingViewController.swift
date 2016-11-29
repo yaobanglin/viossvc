@@ -40,6 +40,10 @@ class SettingViewController: BaseTableViewController {
         initData()
         initUI()
     }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
+    }
     //MARK: --DATA
     func initData() {
         
@@ -106,8 +110,7 @@ class SettingViewController: BaseTableViewController {
             return
         }
         
-        if cell == authCell || authStatus == "未认证"{
-            
+        if cell == authCell && authStatus == "未认证"{
             performSegueWithIdentifier("AuthUserViewController", sender: nil)
             return
         }

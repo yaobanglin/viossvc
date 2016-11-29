@@ -39,9 +39,10 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     }
     
     //认证用户头像
-    func authHeaderUrl(model: AuthHeaderModel, complete: CompleteBlock, error: ErrorBlock){
-        let packet = SocketDataPacket(opcode: .AuthUserHeader, model: model)
-        startModelRequest(packet, modelClass: AuthHeaderModel.classForCoder(), complete: complete, error: error)
+    func authHeaderUrl(uid: Int, head_url_: String, complete: CompleteBlock, error: ErrorBlock){
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid, "head_url_":head_url_]
+        let packet = SocketDataPacket(opcode: .AuthUserHeader, dict: dict)
+        startRequest(packet, complete: complete, error: error)
     }
     
     //修改用户信息
@@ -103,6 +104,17 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
                                          "back_pic_":backPic]
         
         let packet = SocketDataPacket(opcode: .AuthUser, dict: dict)
+        startRequest(packet, complete: complete, error: error)
+    }
+    
+    
+    //设置/修改提现密码
+    func drawcashPassword(uid: Int, password: String, type: Int, complete: CompleteBlock, error: ErrorBlock){
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid,
+                                         "new_passwd_":password,
+                                         "change_type_":type]
+        
+        let packet = SocketDataPacket(opcode: .DrawCashPassword, dict: dict)
         startRequest(packet, complete: complete, error: error)
     }
 }
