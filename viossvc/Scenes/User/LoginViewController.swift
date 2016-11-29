@@ -33,7 +33,7 @@ class BaseLoginViewController: UITableViewController {
         
     }
     
-    @objc private func didActionHideKeyboard(sender: AnyObject?) {
+    func didActionHideKeyboard(sender: AnyObject?) {
         hideKeyboard()
     }
     
