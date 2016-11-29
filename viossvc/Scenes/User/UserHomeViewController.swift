@@ -18,10 +18,10 @@ class UserHomeViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupRefreshControl();
         self.title = "个人中心";
         
         requestUserCash()
+        checkAuthStatus()
     }
     
     override func autoRefreshLoad() -> Bool {

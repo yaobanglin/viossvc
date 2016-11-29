@@ -88,4 +88,21 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
         let packet = SocketDataPacket(opcode: .NewBankCard, model: model)
         startModelRequest(packet, modelClass: BankCardModel.classForCoder(), complete: complete, error: error)
     }
+    
+    //查询用户认证状态
+    func anthStatus(uid: Int, complete: CompleteBlock, error: ErrorBlock){
+        let dict:[String : AnyObject] = ["uid":uid]
+        let packet = SocketDataPacket(opcode: .AuthStatus, dict: dict)
+        startRequest(packet, complete: complete, error: error)
+    }
+    
+    //上传身份认证信息
+    func authUser(uid: Int, frontPic: String, backPic: String, complete: CompleteBlock, error: ErrorBlock) {
+        let dict:[String : AnyObject] = ["uid":uid,
+                                         "front_pic_":frontPic,
+                                         "back_pic_":backPic]
+        
+        let packet = SocketDataPacket(opcode: .AuthUser, dict: dict)
+        startRequest(packet, complete: complete, error: error)
+    }
 }

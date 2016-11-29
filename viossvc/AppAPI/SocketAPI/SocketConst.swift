@@ -40,6 +40,10 @@ class SocketConst: NSObject {
         case DefaultBankCard = 0005
         //添加新的银行卡
         case NewBankCard = 0006
+        //获取身份认证进度
+        case AuthStatus = 1057
+        //上传身份认证信息
+        case AuthUser = 1055
         
         case SkillShareList = 1071
         

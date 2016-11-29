@@ -35,5 +35,8 @@ protocol UserAPI {
     func defaultBanKCard(bankCardId: Int, complete: CompleteBlock, error: ErrorBlock)
     //添加新的银行卡
     func newBankCard(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock)
-
+    //查询用户认证状态
+    func anthStatus(uid: Int, complete: CompleteBlock, error: ErrorBlock)
+    //上传身份认证信息
+    func authUser(uid: Int, frontPic: String, backPic: String, complete: CompleteBlock, error: ErrorBlock)
 }
