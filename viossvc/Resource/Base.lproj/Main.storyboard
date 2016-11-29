@@ -275,6 +275,7 @@
                     <connections>
                         <outlet property="bankCardNumLabel" destination="1Pg-te-jMF" id="dPR-n1-fHY"/>
                         <outlet property="userCashLabel" destination="WCl-t9-bcO" id="NbM-h4-kSS"/>
+                        <outlet property="userContentView" destination="7AY-hs-n6h" id="gS3-vk-JnS"/>
                         <outlet property="userHeaderImage" destination="Ldt-fc-ZTn" id="vEQ-56-ceQ"/>
                         <outlet property="userNameLabel" destination="qkr-pL-oyW" id="v2e-1r-ZAJ"/>
                     </connections>
@@ -3422,7 +3423,7 @@
                                     <constraint firstItem="RQd-fe-cFC" firstAttribute="leading" secondItem="CEF-HS-hxn" secondAttribute="leading" constant="10" id="smQ-A7-OoK"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Gd-qw-uld">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Gd-qw-uld">
                                 <rect key="frame" x="20" y="0.0" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>

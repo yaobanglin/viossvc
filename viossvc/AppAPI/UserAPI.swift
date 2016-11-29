@@ -40,5 +40,5 @@ protocol UserAPI {
     //上传身份认证信息
     func authUser(uid: Int, frontPic: String, backPic: String, complete: CompleteBlock, error: ErrorBlock)
     //设置/修改提现密码
-    func drawcashPassword(uid: Int, password: String, type: Int, complete: CompleteBlock, error: ErrorBlock)
+    func drawcashPassword(model: DrawCashPasswordModel, complete: CompleteBlock, error: ErrorBlock)
 }

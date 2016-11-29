@@ -109,12 +109,8 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     
     
     //设置/修改提现密码
-    func drawcashPassword(uid: Int, password: String, type: Int, complete: CompleteBlock, error: ErrorBlock){
-        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid,
-                                         "new_passwd_":password,
-                                         "change_type_":type]
-        
-        let packet = SocketDataPacket(opcode: .DrawCashPassword, dict: dict)
-        startRequest(packet, complete: complete, error: error)
+    func drawcashPassword(model: DrawCashPasswordModel, complete: CompleteBlock, error: ErrorBlock){
+        let packet = SocketDataPacket(opcode: .DrawCashPassword, model: model)
+        startModelRequest(packet, modelClass: DrawCashPasswordModel.classForCoder(), complete: complete, error: error)
     }
 }

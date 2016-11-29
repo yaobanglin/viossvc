@@ -54,6 +54,25 @@ class SetDrawCashPassworController: UIViewController {
             return
         }
         
+        let setPassword = {
+            //设置密码接口
+            SVProgressHUD.showProgressMessage(ProgressMessage: "")
+            let type = CurrentUserHelper.shared.userInfo.has_passwd_ == -1 ? 0 : 1
+            let param = DrawCashPasswordModel()
+            param.uid = CurrentUserHelper.shared.userInfo.uid
+            param.new_passwd = password
+            param.old_passwd = password
+            param.passwd_type_ = 1
+            param.change_type_ = type
+            
+            AppAPIHelper.userAPI().drawcashPassword(param, complete: {[weak self] (result) in
+                CurrentUserHelper.shared.userInfo.has_passwd_ = 1
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "密码设置成功", ForDuration: 1, completion: {
+                    self?.navigationController?.popViewControllerAnimated(true)
+                })
+            }, error: self.errorBlockFunc())
+        }
+        
         if CurrentUserHelper.shared.userInfo.has_passwd_ == -1 {
             //第一步->确认密码
             if oldPassword == nil {
@@ -72,17 +91,11 @@ class SetDrawCashPassworController: UIViewController {
                 titleLabel.text = "设置提现密码"
                 return
             }
-            //设置密码接口
-            SVProgressHUD.showProgressMessage(ProgressMessage: "")
-            let type = CurrentUserHelper.shared.userInfo.has_passwd_ == -1 ? 0 : 1
-            AppAPIHelper.userAPI().drawcashPassword(CurrentUserHelper.shared.userInfo.uid, password: password, type: type, complete: {[weak self] (result) in
-                CurrentUserHelper.shared.userInfo.has_passwd_ = 1
-                SVProgressHUD.showSuccessMessage(SuccessMessage: "密码设置成功", ForDuration: 1, completion: { 
-                    self?.navigationController?.popViewControllerAnimated(true)
-                })
-            }, error: errorBlockFunc())
+            
+            setPassword()
+            return
         }
-        
+        setPassword()
         
     }
 

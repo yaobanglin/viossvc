@@ -15,6 +15,7 @@ class UserHomeViewController: BaseTableViewController {
     @IBOutlet weak var userHeaderImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var bankCardNumLabel: UIView!
+    @IBOutlet weak var userContentView: UIView!
     
     
     //MARK: --LIFECYCLE
@@ -49,7 +50,7 @@ class UserHomeViewController: BaseTableViewController {
         if CurrentUserHelper.shared.userInfo.praise_lv > 0 {
             for i in 100...104 {
                 if i <= 100 + CurrentUserHelper.shared.userInfo.praise_lv {
-                    let starImage: UIImageView = tableView.viewWithTag(i) as! UIImageView
+                    let starImage: UIImageView = userContentView.viewWithTag(i) as! UIImageView
                     starImage.image = UIImage.init(named: "my_star_fill")
                 }
             }

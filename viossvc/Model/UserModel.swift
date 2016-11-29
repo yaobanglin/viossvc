@@ -90,3 +90,11 @@ class DrawCashModel: BaseModel {
 class BankCardModel: BaseModel {
     
 }
+
+class DrawCashPasswordModel: BaseModel {
+    var uid: Int = 0
+    var new_passwd: String?
+    var old_passwd: String?
+    var passwd_type_: Int = 0
+    var change_type_: Int = 0
+}
