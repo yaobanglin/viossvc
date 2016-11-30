@@ -491,6 +491,7 @@
 		B08673471DE5C62B008DD8A1 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				BFACB2D41DEEA5B700AF0D34 /* MyServier */,
 				BF9B6BD31DEB1CFA009FFEB7 /* Setting */,
 				BF9B6BCE1DEB1CA6009FFEB7 /* Bank */,
 				BF9B6BCD1DEB1C6A009FFEB7 /* UserInfo */,
@@ -593,6 +594,13 @@
 				BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */,
 			);
 			name = Setting;
+			sourceTree = "<group>";
+		};
+		BFACB2D41DEEA5B700AF0D34 /* MyServier */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MyServier;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
