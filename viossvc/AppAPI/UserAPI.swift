@@ -24,7 +24,7 @@ protocol UserAPI {
     //修改用户信息
     func notifyUsrInfo(model: NotifyUserInfoModel, complete: CompleteBlock, error: ErrorBlock)
     //获取用户的银行卡信息
-    func bankCards(model: UserBankCardsModel, complete: CompleteBlock, error: ErrorBlock)
+    func bankCards(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock)
     //校验提现密码
     func checkDrawCashPassword(uid: Int, password: String,complete: CompleteBlock,error: ErrorBlock)
     //提现
@@ -34,7 +34,7 @@ protocol UserAPI {
     //设置用户默认的银行卡
     func defaultBanKCard(bankCardId: Int, complete: CompleteBlock, error: ErrorBlock)
     //添加新的银行卡
-    func newBankCard(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock)
+    func newBankCard(data:Dictionary<String, AnyObject>, complete: CompleteBlock, error: ErrorBlock)
     //查询用户认证状态
     func anthStatus(uid: Int, complete: CompleteBlock, error: ErrorBlock)
     //上传身份认证信息

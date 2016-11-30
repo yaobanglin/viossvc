@@ -33,7 +33,7 @@ extension String {
         return self.characters.count
     }
     
-    func bankCardName(bankCardNum: String) -> String {
+   static func bankCardName(bankCardNum: String) -> String {
     
         if  bankCardNum.length()<16 || bankCardNum.length()>19{
             return ""

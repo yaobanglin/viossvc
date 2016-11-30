@@ -16,7 +16,7 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
     var dispatch_queue: dispatch_queue_t!;
     var mutableData: NSMutableData = NSMutableData();
     var timer: NSTimer?
-    
+
     override init() {
         super.init()
         dispatch_queue = dispatch_queue_create("APISocket_Queue", DISPATCH_QUEUE_CONCURRENT)
@@ -92,6 +92,7 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
     }
 
     @objc func socketDidDisconnect(sock: GCDAsyncSocket, withError err: NSError?) {
+        self.performSelector(#selector(APISocketHelper.connect), withObject: nil, afterDelay: 5)
 
         connect()
     }

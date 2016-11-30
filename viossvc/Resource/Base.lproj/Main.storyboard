@@ -195,8 +195,8 @@
                                                     <color key="textColor" red="0.074509803920000006" green="0.1215686275" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="2张" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kBE-Mf-lhO">
-                                                    <rect key="frame" x="541" y="13" width="24" height="18"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="0张" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kBE-Mf-lhO">
+                                                    <rect key="frame" x="540" y="13" width="25" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -209,7 +209,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="XCo-Gx-Stq" kind="push" id="5MR-6j-d18"/>
+                                            <segue destination="XCo-Gx-Stq" kind="push" identifier="userInfoPushToSelectBankCard" id="5MR-6j-d18"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -273,7 +273,7 @@
                         <barButtonItem key="backBarButtonItem" title="返回" id="vLi-jZ-SaS"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="bankCardNumLabel" destination="1Pg-te-jMF" id="dPR-n1-fHY"/>
+                        <outlet property="bankCardNumLabel" destination="kBE-Mf-lhO" id="GoE-N4-EyG"/>
                         <outlet property="userCashLabel" destination="WCl-t9-bcO" id="NbM-h4-kSS"/>
                         <outlet property="userContentView" destination="7AY-hs-n6h" id="gS3-vk-JnS"/>
                         <outlet property="userHeaderImage" destination="Ldt-fc-ZTn" id="vEQ-56-ceQ"/>
@@ -448,7 +448,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoshiyi" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-Gh-4ME">
-                                                    <rect key="frame" x="237.5" y="85" width="125" height="125"/>
+                                                    <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="aQE-VQ-87l"/>
                                                         <constraint firstAttribute="width" constant="125" id="fED-1u-jLn"/>
@@ -817,7 +817,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="105"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGI-CB-80A">
-                                                    <rect key="frame" x="47.5" y="10" width="55" height="85"/>
+                                                    <rect key="frame" x="48" y="10" width="55" height="85"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="yoQ-3Z-6j5"/>
                                                     </constraints>
@@ -1112,8 +1112,8 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="efh-lF-eZU"/>
                                                     <exclude reference="YuZ-3z-z7c"/>
+                                                    <exclude reference="efh-lF-eZU"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -1179,8 +1179,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="identitycard_demo" translatesAutoresizingMaskIntoConstraints="NO" id="aIe-EE-Jgf">
-                                                    <rect key="frame" x="15" y="0.5" width="570" height="124.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="identitycard_demo" translatesAutoresizingMaskIntoConstraints="NO" id="aIe-EE-Jgf">
+                                                    <rect key="frame" x="15" y="1" width="570" height="124"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1253,7 +1253,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJ1-TW-PkH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="39.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="详情">
@@ -1276,7 +1276,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2x-Gd-5AK">
-                                                    <rect key="frame" x="300" y="0.0" width="300" height="39.5"/>
+                                                    <rect key="frame" x="300" y="0.0" width="300" height="40"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="评论">
                                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1298,7 +1298,7 @@
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NhE-7t-vVJ">
-                                                    <rect key="frame" x="0.0" y="39.5" width="300" height="2"/>
+                                                    <rect key="frame" x="0.0" y="40" width="300" height="2"/>
                                                     <color key="backgroundColor" red="0.074509803920000006" green="0.1215686275" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="h5e-6K-p7J"/>
@@ -1670,7 +1670,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_111" translatesAutoresizingMaskIntoConstraints="NO" id="Glx-pv-CsT">
-                                            <rect key="frame" x="72" y="19" width="9.5" height="7.5"/>
+                                            <rect key="frame" x="72" y="19" width="10" height="8"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="9.5" id="Kn5-Io-S8W"/>
                                                 <constraint firstAttribute="height" constant="7.5" id="WQS-Ln-PfT"/>
@@ -1901,7 +1901,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoshiyi" translatesAutoresizingMaskIntoConstraints="NO" id="01n-6j-VUN">
-                                                    <rect key="frame" x="237.5" y="85" width="125" height="125"/>
+                                                    <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="HoY-EV-YaI"/>
                                                         <constraint firstAttribute="width" constant="125" id="wBz-3d-7g6"/>
@@ -1974,7 +1974,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0K-FC-H7u">
-                                                    <rect key="frame" x="458" y="94.5" width="77" height="1"/>
+                                                    <rect key="frame" x="458" y="95" width="77" height="1"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="IN3-d6-4YJ"/>
@@ -2104,7 +2104,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoshiyi" translatesAutoresizingMaskIntoConstraints="NO" id="2AS-xV-Y09">
-                                                    <rect key="frame" x="237.5" y="85" width="125" height="125"/>
+                                                    <rect key="frame" x="238" y="85" width="125" height="125"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="125" id="NAk-2Z-Lis"/>
                                                         <constraint firstAttribute="width" constant="125" id="liM-Ph-Wy1"/>
@@ -2334,8 +2334,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="男" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeT-JP-sb5">
-                                                    <rect key="frame" x="487" y="0.0" width="80" height="43.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="男" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeT-JP-sb5">
+                                                    <rect key="frame" x="487" y="0.0" width="80" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="7n9-U5-nc3"/>
                                                     </constraints>
@@ -2370,8 +2370,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杭州市" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKu-V6-Krp">
-                                                    <rect key="frame" x="101" y="0.0" width="436" height="43.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="杭州市" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKu-V6-Krp">
+                                                    <rect key="frame" x="101" y="0.0" width="436" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2488,20 +2488,60 @@
         <scene sceneID="jvu-E7-7Zl">
             <objects>
                 <tableViewController storyboardIdentifier="SelectedBankCardViewController" title="选择银行卡" hidesBottomBarWhenPushed="YES" id="XCo-Gx-Stq" customClass="SelectedBankCardViewController" customModule="viossvc" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ukG-0u-KUJ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" sectionHeaderHeight="28" sectionFooterHeight="28" id="ukG-0u-KUJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="5lN-vn-p70">
+                            <rect key="frame" x="0.0" y="64" width="600" height="46"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现银行卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJh-wq-gzP">
+                                    <rect key="frame" x="22" y="15" width="70" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="BJh-wq-gzP" firstAttribute="centerY" secondItem="5lN-vn-p70" secondAttribute="centerY" id="YIG-cw-f7s"/>
+                                <constraint firstItem="BJh-wq-gzP" firstAttribute="leading" secondItem="5lN-vn-p70" secondAttribute="leading" constant="22" id="pdl-OS-aqU"/>
+                            </constraints>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="buF-1b-AZC">
+                            <rect key="frame" x="0.0" y="190" width="600" height="110"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K6R-eU-OXi">
+                                    <rect key="frame" x="0.0" y="40" width="600" height="50"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="添加新银行卡">
+                                        <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="addNewBankCard" destination="XCo-Gx-Stq" eventType="touchUpInside" id="xmV-A3-aef"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="K6R-eU-OXi" firstAttribute="leading" secondItem="buF-1b-AZC" secondAttribute="leading" id="ICb-tv-tKd"/>
+                                <constraint firstItem="K6R-eU-OXi" firstAttribute="top" secondItem="buF-1b-AZC" secondAttribute="top" constant="40" id="U9k-iF-3Vw"/>
+                                <constraint firstAttribute="trailing" secondItem="K6R-eU-OXi" secondAttribute="trailing" id="vYM-sY-Oca"/>
+                                <constraint firstAttribute="bottom" secondItem="K6R-eU-OXi" secondAttribute="bottom" constant="20" id="wHs-k7-URJ"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectedBankCardCell" id="ZyE-B1-j00" customClass="BankCardCell" customModule="viossvc" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SelectedBankCardCell" rowHeight="52" id="ZyE-B1-j00" customClass="BankCardCell" customModule="viossvc" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="138" width="600" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZyE-B1-j00" id="5jU-Ov-yFo">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dog-Ty-uek">
-                                            <rect key="frame" x="556" y="11" width="22" height="22"/>
+                                            <rect key="frame" x="556" y="15" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="jNW-xw-Byi"/>
                                                 <constraint firstAttribute="width" constant="22" id="znW-cX-GD1"/>
@@ -2510,9 +2550,9 @@
                                             <state key="selected" image="drawcash_step1_finished"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="招商银行卡（示例0000）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJY-dx-l49">
-                                            <rect key="frame" x="22" y="11" width="195" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <rect key="frame" x="22" y="17" width="172" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -2536,7 +2576,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="选择银行卡" id="E5H-B6-TJL"/>
                     <connections>
-                        <segue destination="Jgx-Xt-mey" kind="push" id="KHF-xf-gPI"/>
+                        <segue destination="Jgx-Xt-mey" kind="push" identifier="bankCardToAddNew" id="KHF-xf-gPI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bs0-qX-ACG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2952,8 +2992,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原始密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vO-fW-BNs">
-                                                    <rect key="frame" x="15" y="0.0" width="70" height="43.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="原始密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vO-fW-BNs">
+                                                    <rect key="frame" x="15" y="0.0" width="70" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="0QE-Li-5fU"/>
                                                     </constraints>
@@ -2961,8 +3001,8 @@
                                                     <color key="textColor" red="0.074509803920000006" green="0.1215686275" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入原始密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kKH-a9-yIp">
-                                                    <rect key="frame" x="105" y="0.0" width="480" height="43.5"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入原始密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kKH-a9-yIp">
+                                                    <rect key="frame" x="105" y="0.0" width="480" height="44"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -2990,8 +3030,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8X-hY-JGp">
-                                                    <rect key="frame" x="15" y="0.0" width="70" height="43.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="新密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8X-hY-JGp">
+                                                    <rect key="frame" x="15" y="0.0" width="70" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="POH-py-aoJ"/>
                                                     </constraints>
@@ -2999,8 +3039,8 @@
                                                     <color key="textColor" red="0.074509803920000006" green="0.1215686275" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fi7-hM-D0W">
-                                                    <rect key="frame" x="105" y="0.0" width="480" height="43.5"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fi7-hM-D0W">
+                                                    <rect key="frame" x="105" y="0.0" width="480" height="44"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -3024,8 +3064,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGn-X0-gAz">
-                                                    <rect key="frame" x="15" y="0.0" width="70" height="43.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="确认密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGn-X0-gAz">
+                                                    <rect key="frame" x="15" y="0.0" width="70" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="YWa-cx-YHj"/>
                                                     </constraints>
@@ -3033,8 +3073,8 @@
                                                     <color key="textColor" red="0.074509803920000006" green="0.1215686275" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请重新输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P1a-Dt-kCf">
-                                                    <rect key="frame" x="105" y="0.0" width="480" height="43.5"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请重新输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P1a-Dt-kCf">
+                                                    <rect key="frame" x="105" y="0.0" width="480" height="44"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -3703,7 +3743,7 @@
                         <sections>
                             <tableViewSection footerTitle="注意：请填写正确的银行卡信息，保证在申请提现时可以尽快到账，避免因错误信息导致提现到账延期。请输入可随时联系到您的号码，保证提现出现问题时，可及时联系到您。" id="l0h-kU-T88">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VpD-wy-q3o">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="VpD-wy-q3o">
                                         <rect key="frame" x="0.0" y="99" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VpD-wy-q3o" id="eCl-g7-YYR">
@@ -3722,7 +3762,10 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入银行卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KjH-Ka-Pp3">
                                                     <rect key="frame" x="128" y="8" width="444" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Jgx-Xt-mey" id="rac-EP-hSO"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -3735,7 +3778,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Vzc-aG-7t3">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Vzc-aG-7t3">
                                         <rect key="frame" x="0.0" y="143" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vzc-aG-7t3" id="WPS-xk-Urb">
@@ -3767,7 +3810,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gqh-XC-HT1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="gqh-XC-HT1">
                                         <rect key="frame" x="0.0" y="187" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gqh-XC-HT1" id="kc1-wM-y4f">
@@ -3799,7 +3842,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IWR-NS-qMK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="IWR-NS-qMK">
                                         <rect key="frame" x="0.0" y="231" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IWR-NS-qMK" id="yPu-ec-Wzs">
@@ -3818,7 +3861,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="开户银行所用联系号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jiv-R0-lt4">
                                                     <rect key="frame" x="128" y="8" width="444" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -3842,8 +3885,17 @@
                     <navigationItem key="navigationItem" title="银行卡信息" id="nM1-BJ-LGe">
                         <barButtonItem key="rightBarButtonItem" title="绑定" style="plain" id="mVB-Mv-OOG">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="bindBankCard:" destination="Jgx-Xt-mey" id="7Ui-cZ-eCi"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bankNameTextfield" destination="xzQ-CD-Sdy" id="qab-Xr-pls"/>
+                        <outlet property="cardNumberTextfield" destination="KjH-Ka-Pp3" id="1np-zB-3gp"/>
+                        <outlet property="nameTextfiled" destination="urS-z8-wxB" id="DKa-DU-sfH"/>
+                        <outlet property="phoneNumberTextfield" destination="Jiv-R0-lt4" id="1at-nw-03r"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MnS-8H-2hS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
