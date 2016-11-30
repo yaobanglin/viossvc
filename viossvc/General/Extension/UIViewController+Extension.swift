@@ -58,9 +58,9 @@ extension UIViewController {
                 return
             }
             let userCash: Int = result!["user_cash_"] == nil ? 0 : result!["user_cash_"] as! Int
-            let hasPassword: Int = result!["has_passwd_"] as! Int
+//            let hasPassword: Int = result!["has_passwd_"] as! Int
             CurrentUserHelper.shared.userInfo.user_cash_ =  userCash
-            CurrentUserHelper.shared.userInfo.has_passwd_ = hasPassword
+//            CurrentUserHelper.shared.userInfo.has_passwd_ = hasPassword
             complete(userCash)
         }, error: errorBlockFunc())
     }

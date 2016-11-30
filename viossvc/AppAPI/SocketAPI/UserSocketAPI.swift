@@ -52,9 +52,11 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     }
     
     //获取用户的银行卡信息
-    func bankCards(model: UserBankCardsModel, complete: CompleteBlock, error: ErrorBlock){
-        let packet = SocketDataPacket(opcode: .UserBankCards, model: model)
-        startModelRequest(packet, modelClass: UserBankCardsModel.classForCoder(), complete: complete, error: error)
+    func bankCards(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock){
+        
+        let pack = SocketDataPacket(opcode: .UserBankCards, dict: ["uid_": CurrentUserHelper.shared.userInfo.uid])
+        startModelsRequest(pack, listName: "bank_card_", modelClass: BankCardModel.classForCoder(), complete: complete, error: error)
+        
     }
     
     //校验提现密码
@@ -85,8 +87,8 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     }
     
     //添加新的银行卡
-    func newBankCard(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock){
-        let packet = SocketDataPacket(opcode: .NewBankCard, model: model)
+    func newBankCard(data:Dictionary<String, AnyObject>, complete: CompleteBlock, error: ErrorBlock){
+        let packet = SocketDataPacket(opcode: .NewBankCard, dict: data)
         startModelRequest(packet, modelClass: BankCardModel.classForCoder(), complete: complete, error: error)
     }
     

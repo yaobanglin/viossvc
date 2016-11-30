@@ -139,7 +139,7 @@
 		B03B11E71DE5BFDD00B00D2E /* TourShareDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareDetailCell.swift; sourceTree = "<group>"; };
 		B03B11E81DE5BFDD00B00D2E /* TourShareDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareDetailViewController.swift; sourceTree = "<group>"; };
 		B03B11E91DE5BFDD00B00D2E /* TourShareListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareListViewController.swift; sourceTree = "<group>"; };
-		B03B11EA1DE5BFDD00B00D2E /* TourShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareViewController.swift; sourceTree = "<group>"; };
+		B03B11EA1DE5BFDD00B00D2E /* TourShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		B03B11EB1DE5BFDD00B00D2E /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
 		B03B11EC1DE5BFDD00B00D2E /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		B03B11FA1DE5BFDE00B00D2E /* BaseCustomTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCustomTableViewController.swift; sourceTree = "<group>"; };

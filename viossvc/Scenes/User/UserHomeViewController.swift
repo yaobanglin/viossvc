@@ -14,7 +14,8 @@ class UserHomeViewController: BaseTableViewController {
     @IBOutlet weak var userCashLabel: UILabel!
     @IBOutlet weak var userHeaderImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var bankCardNumLabel: UIView!
+
+    @IBOutlet weak var bankCardNumLabel: UILabel!
     @IBOutlet weak var userContentView: UIView!
     
     
@@ -30,12 +31,24 @@ class UserHomeViewController: BaseTableViewController {
     //MARK: --DATA
     func initData() {
         checkAuthStatus()
+        requsetCommonBankCard()
         requestUserCash { [weak self](result) in
             let userCash =  result as! Int
             self?.userCashLabel.text = "\(Double(userCash)/100)元"
         }
         
     }
+    func requsetCommonBankCard() {
+        let model = BankCardModel()
+        unowned let weakSelf = self
+        AppAPIHelper.userAPI().bankCards(model, complete: { (response) in
+            guard response != nil else {return}
+            let banksData = response as! NSArray
+            weakSelf.bankCardNumLabel.text = "\(banksData.count)张"
+        }) { (error) in
+        }
+    }
+    
     //MARK: --UI
     func initUI() {
         if (CurrentUserHelper.shared.userInfo.head_url != nil){
@@ -56,7 +69,6 @@ class UserHomeViewController: BaseTableViewController {
             }
         }
     }
-
 
     
 }
