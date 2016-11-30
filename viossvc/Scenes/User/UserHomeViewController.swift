@@ -14,14 +14,15 @@ class UserHomeViewController: BaseTableViewController {
     @IBOutlet weak var userCashLabel: UILabel!
     @IBOutlet weak var userHeaderImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var bankCardNumLabel: UIView!
+    @IBOutlet weak var bankCardNumLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupRefreshControl();
         self.title = "个人中心";
         
         requestUserCash()
+        requsetCommonBankCard()
+        checkAuthStatus()
     }
     
     override func autoRefreshLoad() -> Bool {
@@ -31,7 +32,17 @@ class UserHomeViewController: BaseTableViewController {
     override func didRequest() {
         self.performSelector(#selector(endRefreshing), withObject: nil, afterDelay: 2);
     }
-
+    func requsetCommonBankCard() {
+        let model = BankCardModel()
+        unowned let weakSelf = self
+        AppAPIHelper.userAPI().bankCards(model, complete: { (response) in
+            guard response != nil else {return}
+            let banksData = response as! NSArray
+            weakSelf.bankCardNumLabel.text = "\(banksData.count)张"
+            }) { (error) in            
+        }
+    }
+    
     func requestUserCash() {
         AppAPIHelper.userAPI().userCash(CurrentUserHelper.shared.userInfo.uid, complete: { [weak self](result) in
             if result == nil{
@@ -42,4 +53,6 @@ class UserHomeViewController: BaseTableViewController {
             self?.userCashLabel.text = "\(Double(userCash)/100)元"
         }, error: errorBlockFunc())
     }
+    
+    
 }

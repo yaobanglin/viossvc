@@ -39,6 +39,9 @@ class UserInfoModel: UserModel {
     var praise_lv: Int = 0
     var register_status: Int = 0
     var user_cash_: Int = 0
+    var auth_status_: Int = -1 //-1:未认证, 0:认证中, 1:认证通过, 2:认证失败
+    var currentBankCardNumber:String?
+    var currentBanckCardName:String?
 }
 
 class SMSVerifyModel: BaseModel {
@@ -81,6 +84,7 @@ class NotifyUserInfoModel: UserInfoModel {
 }
 
 class UserBankCardsModel: BaseModel {
+
     
 }
 
@@ -89,5 +93,8 @@ class DrawCashModel: BaseModel {
 }
 
 class BankCardModel: BaseModel {
-    
+    var account_:String?
+    var bank = 0
+    var bank_username_:String?
+    var is_default_ = 0
 }

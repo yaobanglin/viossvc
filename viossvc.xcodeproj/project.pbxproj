@@ -90,6 +90,7 @@
 		BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */; };
 		BF9B6BD71DEB1E3A009FFEB7 /* AuthUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */; };
 		BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */; };
+		BFACB2CF1DED1EAC00AF0D34 /* SVProgressHUDExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,6 +181,7 @@
 		BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUserViewController.swift; sourceTree = "<group>"; };
 		BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
+		BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVProgressHUDExt.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -442,6 +444,7 @@
 		B03B12071DE5BFDE00B00D2E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */,
 				B03B12081DE5BFDE00B00D2E /* UIScreen+Extension.swift */,
 				B03B12091DE5BFDE00B00D2E /* UITableView+Extension.swift */,
 				B03B120A1DE5BFDE00B00D2E /* UIViewController+Extension.swift */,
@@ -726,6 +729,7 @@
 				B03B12271DE5BFDE00B00D2E /* OrderListCell.swift in Sources */,
 				B03B12421DE5BFDE00B00D2E /* BaseTableViewController.swift in Sources */,
 				B03B12351DE5BFDE00B00D2E /* TourViewController.swift in Sources */,
+				BFACB2CF1DED1EAC00AF0D34 /* SVProgressHUDExt.swift in Sources */,
 				B03B12181DE5BFDE00B00D2E /* AppDelegate.swift in Sources */,
 				BF9B6BC81DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift in Sources */,
 				B03B12341DE5BFDE00B00D2E /* TourShareViewController.swift in Sources */,
