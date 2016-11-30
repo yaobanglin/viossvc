@@ -226,7 +226,7 @@
                                                     <color key="textColor" red="0.074509803920000006" green="0.1215686275" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="0张" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yCP-zT-0On">
+                                                <label opaque="NO" multipleTouchEnabled="YES" alpha="0.0" contentMode="left" text="0张" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yCP-zT-0On">
                                                     <rect key="frame" x="540" y="13" width="25" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -2979,7 +2979,7 @@
         <!--我的服务主页-->
         <scene sceneID="R6c-NQ-2cq">
             <objects>
-                <tableViewController title="我的服务主页" id="Cmz-AM-qXw" sceneMemberID="viewController">
+                <tableViewController title="我的服务主页" hidesBottomBarWhenPushed="YES" id="Cmz-AM-qXw" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6zm-R6-IpF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
