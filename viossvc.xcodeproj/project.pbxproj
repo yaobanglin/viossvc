@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */; };
+		7CCEC0501DEECC81006F2BEE /* TourLeaderShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */; };
+		7CCEC0521DEF1C68006F2BEE /* TourLeaderShareScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */; };
 		ACABD04A304D718D390DA81B /* SkillShareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABD04E9A7A54B8A6094E8F /* SkillShareAPI.swift */; };
 		ACABD1428B9E953E3868C06B /* BaseSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABD10D5E9578A46AACF156 /* BaseSocketAPI.swift */; };
 		ACABD384C1541C829A7047CA /* AppAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABDEB2F2E7F93BFC76AA0F /* AppAPIHelper.swift */; };
@@ -95,6 +97,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourLeaderShareCell.swift; sourceTree = "<group>"; };
+		7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourLeaderShareScrollView.xib; sourceTree = "<group>"; };
 		99F5EF6682B1172BAA8C79FC /* Pods-viossvc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.release.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.release.xcconfig"; sourceTree = "<group>"; };
 		ACABD04E9A7A54B8A6094E8F /* SkillShareAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillShareAPI.swift; sourceTree = "<group>"; };
 		ACABD10D5E9578A46AACF156 /* BaseSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSocketAPI.swift; sourceTree = "<group>"; };
@@ -397,6 +401,8 @@
 				B03B11E51DE5BFDD00B00D2E /* TourShareCell.swift */,
 				B03B11E61DE5BFDD00B00D2E /* TourShareCell.xib */,
 				B03B11E71DE5BFDD00B00D2E /* TourShareDetailCell.swift */,
+				7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */,
+				7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -672,6 +678,7 @@
 				B03B12461DE5BFDE00B00D2E /* LoadMoreView.xib in Resources */,
 				B03B121C1DE5BFDE00B00D2E /* errorcode.plist in Resources */,
 				BF5EB9881DE8070500961A24 /* city.plist in Resources */,
+				7CCEC0521DEF1C68006F2BEE /* TourLeaderShareScrollView.xib in Resources */,
 				B03B124E1DE5BFDE00B00D2E /* MJRefresh.bundle in Resources */,
 				B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */,
 			);
@@ -746,6 +753,7 @@
 				B03B12341DE5BFDE00B00D2E /* TourShareViewController.swift in Sources */,
 				B03B12331DE5BFDE00B00D2E /* TourShareListViewController.swift in Sources */,
 				B086734E1DE5C62B008DD8A1 /* MainViewController.swift in Sources */,
+				7CCEC0501DEECC81006F2BEE /* TourLeaderShareCell.swift in Sources */,
 				B03B12291DE5BFDE00B00D2E /* SkillShareCell1.swift in Sources */,
 				BF9B6BC41DE96F9E009FFEB7 /* EnterPasswordViewController.swift in Sources */,
 				B03B122C1DE5BFDE00B00D2E /* SkillShareChatViewController.swift in Sources */,

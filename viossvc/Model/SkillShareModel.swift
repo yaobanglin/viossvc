@@ -36,6 +36,42 @@ class SkillShareModel: BaseModel {
     var share_status:Int = 0	//int	0-已结束 1-正在筹备 2-正在进行
     var brief_pic:String!	//列表页显示图片url
     var entry_num:Int = 0	//报名人数
+    
+    var share_statusStr: String {
+        var string:String
+        switch share_status {
+        case 1:
+            string = "正在筹备";
+        case 2:
+            string = "正在进行";
+        default:
+            string = "已结束";
+        }
+        
+        return string
+    }
+    
+    
+    func share_startStr(hasYear:Bool ,ChinaDate : Bool) -> String {
+        let dfmatter = NSDateFormatter()
+        
+        var matterStr : String
+        
+        if hasYear == true {
+            matterStr = ChinaDate == true ? "yyyy年MM月dd日 HH:mm:ss " : "yyyy-MM-dd HH:mm:ss "
+        }
+        else {
+            
+            matterStr = ChinaDate == true ? "MM月dd日 HH:mm:ss " : "MM-dd HH:mm:ss "
+        }
+        
+        dfmatter.dateFormat = matterStr
+        let date = NSDate(timeIntervalSince1970: Double(share_start))
+        return dfmatter.stringFromDate(date)
+    }
+    
+    
+    
 }
 
 class SkillShareDetailModel : SkillShareModel {
