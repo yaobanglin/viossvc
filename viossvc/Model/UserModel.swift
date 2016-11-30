@@ -84,10 +84,17 @@ class UserBankCardsModel: BaseModel {
 }
 
 class DrawCashModel: BaseModel {
-    
+    var uid: Int = 0
+    var account_: String?
+    var cash_: Int = 0
+    var size_: Int = 20
+    var num_: Int = 0
 }
 
 class BankCardModel: BaseModel {
+    var uid: Int = 0
+    var account_: String?
+    
     
 }
 

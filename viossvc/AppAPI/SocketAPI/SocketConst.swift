@@ -27,7 +27,7 @@ class SocketConst: NSObject {
         //获取用户余额
         case UserCash = 1067
         //认证用户头像
-        case AuthUserHeader = 1083
+        case AuthUserHeader = 1091
         //获取用户的银行卡信息
         case UserBankCards = 0001
         //校验提现密码
