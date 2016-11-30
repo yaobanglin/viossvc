@@ -14,23 +14,29 @@ class UserHomeViewController: BaseTableViewController {
     @IBOutlet weak var userCashLabel: UILabel!
     @IBOutlet weak var userHeaderImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+
     @IBOutlet weak var bankCardNumLabel: UILabel!
+    @IBOutlet weak var userContentView: UIView!
     
+    
+    //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "个人中心";
-        
-        requestUserCash()
-        requsetCommonBankCard()
+        initData()
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        initUI()
+    }
+    //MARK: --DATA
+    func initData() {
         checkAuthStatus()
-    }
-    
-    override func autoRefreshLoad() -> Bool {
-        return false;
-    }
-
-    override func didRequest() {
-        self.performSelector(#selector(endRefreshing), withObject: nil, afterDelay: 2);
+        requsetCommonBankCard()
+        requestUserCash { [weak self](result) in
+            let userCash =  result as! Int
+            self?.userCashLabel.text = "\(Double(userCash)/100)元"
+        }
+        
     }
     func requsetCommonBankCard() {
         let model = BankCardModel()
@@ -39,20 +45,30 @@ class UserHomeViewController: BaseTableViewController {
             guard response != nil else {return}
             let banksData = response as! NSArray
             weakSelf.bankCardNumLabel.text = "\(banksData.count)张"
-            }) { (error) in            
+        }) { (error) in
         }
     }
     
-    func requestUserCash() {
-        AppAPIHelper.userAPI().userCash(CurrentUserHelper.shared.userInfo.uid, complete: { [weak self](result) in
-            if result == nil{
-                return
+    //MARK: --UI
+    func initUI() {
+        if (CurrentUserHelper.shared.userInfo.head_url != nil){
+            let headUrl = NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!)
+            userHeaderImage.kf_setImageWithURL(headUrl, placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+        }
+        
+        if CurrentUserHelper.shared.userInfo.nickname != nil {
+            userNameLabel.text = CurrentUserHelper.shared.userInfo.nickname
+        }
+        
+        if CurrentUserHelper.shared.userInfo.praise_lv > 0 {
+            for i in 100...104 {
+                if i <= 100 + CurrentUserHelper.shared.userInfo.praise_lv {
+                    let starImage: UIImageView = userContentView.viewWithTag(i) as! UIImageView
+                    starImage.image = UIImage.init(named: "my_star_fill")
+                }
             }
-            let userCash: Int = result!["user_cash_"] == nil ? 0 : result!["user_cash_"] as! Int
-            CurrentUserHelper.shared.userInfo.user_cash_ =  userCash
-            self?.userCashLabel.text = "\(Double(userCash)/100)元"
-        }, error: errorBlockFunc())
+        }
     }
-    
+
     
 }

@@ -41,7 +41,7 @@ class AuthUserViewController: BaseTableViewController, UIImagePickerControllerDe
         }
         
         AppAPIHelper.userAPI().authUser(CurrentUserHelper.shared.userInfo.uid, frontPic: frontPicUrl!, backPic: backPicUrl!, complete: { [weak self](result) in
-            
+            self?.checkAuthStatus()
             SVProgressHUD.showSuccessMessage(SuccessMessage: "上传图片成功，请静待人工审核", ForDuration: 1, completion: nil)
             self?.navigationController?.popViewControllerAnimated(true)
         }, error: errorBlockFunc())

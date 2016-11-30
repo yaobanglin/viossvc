@@ -14,6 +14,6 @@ class CommenSocketAPI: BaseSocketAPI,CommenAPI {
     }
     
     func heardBeat(uid: Int, complete: CompleteBlock, error: ErrorBlock) {
-        startRequest(SocketDataPacket(opcode: .Heart,dict:["uid_": uid]), complete: complete, error: error)
+        startRequest(SocketDataPacket(opcode: .Heart,dict:[SocketConst.Key.uid: uid]), complete: complete, error: error)
     }
 }

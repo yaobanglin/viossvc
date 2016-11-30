@@ -20,7 +20,7 @@ protocol UserAPI {
     //获取用户余额
     func userCash(uid:Int, complete:CompleteBlock, error:ErrorBlock)
     //认证用户头像
-    func authHeaderUrl(model: AuthHeaderModel, complete: CompleteBlock, error: ErrorBlock)
+    func authHeaderUrl(uid: Int, head_url_: String, complete: CompleteBlock, error: ErrorBlock)
     //修改用户信息
     func notifyUsrInfo(model: NotifyUserInfoModel, complete: CompleteBlock, error: ErrorBlock)
     //获取用户的银行卡信息
@@ -39,4 +39,6 @@ protocol UserAPI {
     func anthStatus(uid: Int, complete: CompleteBlock, error: ErrorBlock)
     //上传身份认证信息
     func authUser(uid: Int, frontPic: String, backPic: String, complete: CompleteBlock, error: ErrorBlock)
+    //设置/修改提现密码
+    func drawcashPassword(model: DrawCashPasswordModel, complete: CompleteBlock, error: ErrorBlock)
 }
