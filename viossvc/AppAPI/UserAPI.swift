@@ -26,7 +26,7 @@ protocol UserAPI {
     //获取用户的银行卡信息
     func bankCards(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock)
     //校验提现密码
-    func checkDrawCashPassword(uid: Int, password: String,complete: CompleteBlock,error: ErrorBlock)
+    func checkDrawCashPassword(uid: Int, password: String, type: Int, complete: CompleteBlock,error: ErrorBlock)
     //提现
     func drawCash(model: DrawCashModel, complete: CompleteBlock, error: ErrorBlock)
     //提现详情
@@ -41,4 +41,5 @@ protocol UserAPI {
     func authUser(uid: Int, frontPic: String, backPic: String, complete: CompleteBlock, error: ErrorBlock)
     //设置/修改提现密码
     func drawcashPassword(model: DrawCashPasswordModel, complete: CompleteBlock, error: ErrorBlock)
+    
 }

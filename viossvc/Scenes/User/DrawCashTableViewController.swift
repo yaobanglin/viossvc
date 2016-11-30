@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate {
     //MARK: 属性
     @IBOutlet weak var bankNameLabel: UILabel!
@@ -20,9 +20,26 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
     //MARK: lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         initView()
     }
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if CurrentUserHelper.shared.userInfo.has_passwd_  != 1 {
+            let alertController = UIAlertController.init(title: "提现密码", message: "还未设置提现密码，前往设置", preferredStyle: .Alert)
+            let setAction = UIAlertAction.init(title: "前去设置", style: .Default, handler: { [weak self](sender) in
+                alertController.dismissController()
+                self?.navigationController?.pushViewControllerWithIdentifier("SetDrawCashPassworController", animated: true)
+                })
+            let cancelAction = UIAlertAction.init(title: "取消", style: .Default, handler: { (sender) in
+                alertController.dismissController()
+            })
+            alertController.addAction(cancelAction)
+            alertController.addAction(setAction)
+            presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
+    }
     //MARK: --View
     func initView() {
         //contentView
@@ -49,12 +66,13 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
     
     //MARK: --Function
     @IBAction func drawCashBtnTapped(sender: UIButton) {
+        
         if checkTextFieldEmpty([drawCashText]) {
             view.endEditing(true)
             let passwordController: EnterPasswordViewController =  storyboard?.instantiateViewControllerWithIdentifier("EnterPasswordViewController") as! EnterPasswordViewController
             passwordController.modalPresentationStyle = .Custom
             passwordController.Password = { [weak self](password) in
-                self?.drawCashRequest(password)
+                self?.checkPassword(password)
             }
             presentViewController(passwordController, animated: true, completion: { [weak self] in
                 if let strongSelf = self{
@@ -64,18 +82,18 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
         }
     }
     
+    func checkPassword(password: String) {
+        SVProgressHUD.showProgressMessage(ProgressMessage: "")
+        AppAPIHelper.userAPI().checkDrawCashPassword(0, password: password, type: 1,complete: { [weak self](result) in
+            self?.drawCashRequest(password)
+        }, error: errorBlockFunc())
+    }
+    
     func drawCashRequest(password: String) {
-        
-        let controller: DrawCashDetailViewController = storyboard?.instantiateViewControllerWithIdentifier("DrawCashDetailViewController") as! DrawCashDetailViewController
-        navigationController?.pushViewController(controller, animated: true)
-        return
-            
-        AppAPIHelper.userAPI().checkDrawCashPassword(0, password: password, complete: { [weak self](result) in
-            let model = DrawCashModel()
-            AppAPIHelper.userAPI().drawCash(model, complete: { (result) in
-                let controller: DrawCashDetailViewController = self?.storyboard?.instantiateViewControllerWithIdentifier("DrawCashDetailViewController") as! DrawCashDetailViewController
-                self?.navigationController?.pushViewController(controller, animated: true)
-            }, error: (self?.errorBlockFunc())!)
+        let model = DrawCashModel()
+        AppAPIHelper.userAPI().drawCash(model, complete: { [weak self](result) in
+            let controller: DrawCashDetailViewController = self?.storyboard?.instantiateViewControllerWithIdentifier("DrawCashDetailViewController") as! DrawCashDetailViewController
+            self?.navigationController?.pushViewController(controller, animated: true)
         }, error: errorBlockFunc())
     }
     

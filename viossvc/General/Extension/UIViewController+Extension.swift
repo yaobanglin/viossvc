@@ -57,12 +57,16 @@ extension UIViewController {
             if result == nil{
                 return
             }
-            let userCash: Int = result!["user_cash_"] == nil ? 0 : result!["user_cash_"] as! Int
-            let hasPassword: Int = result!["has_passwd_"] == nil ? 0 : result!["has_passwd_"] as! Int
+            let resultDic = result as? Dictionary<String, AnyObject>
+            
+            if let hasPassword = resultDic!["has_passwd_"] as? Int{
+                CurrentUserHelper.shared.userInfo.has_passwd_ = hasPassword
+            }
+            if let userCash = resultDic!["user_cash_"] as? Int{
+                CurrentUserHelper.shared.userInfo.user_cash_ =  userCash
+                complete(userCash)
+            }
 
-            CurrentUserHelper.shared.userInfo.user_cash_ =  userCash
-            CurrentUserHelper.shared.userInfo.has_passwd_ = hasPassword
-            complete(userCash)
         }, error: errorBlockFunc())
     }
     /**

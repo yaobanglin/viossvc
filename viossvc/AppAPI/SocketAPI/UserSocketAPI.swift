@@ -60,8 +60,8 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     }
     
     //校验提现密码
-    func checkDrawCashPassword(uid: Int, password: String,complete: CompleteBlock,error: ErrorBlock){
-        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid, "password":password]
+    func checkDrawCashPassword(uid: Int, password: String, type: Int, complete: CompleteBlock,error: ErrorBlock){
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid, "password":password, "passwd_type":type]
         let packet = SocketDataPacket(opcode: .CheckDrawCashPassword, dict: dict)
         startRequest(packet, complete: complete, error: error)
     }
