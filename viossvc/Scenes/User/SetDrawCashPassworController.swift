@@ -62,8 +62,8 @@ class SetDrawCashPassworController: UIViewController {
             param.uid = CurrentUserHelper.shared.userInfo.uid
             param.new_passwd = password
             param.old_passwd = password
-            param.passwd_type_ = 1
-            param.change_type_ = type
+            param.passwd_type = 1
+            param.change_type = type
             
             AppAPIHelper.userAPI().drawcashPassword(param, complete: {[weak self] (result) in
                 CurrentUserHelper.shared.userInfo.has_passwd_ = 1

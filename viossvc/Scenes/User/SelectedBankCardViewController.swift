@@ -15,8 +15,8 @@ class BankCardCell: OEZTableViewCell {
 
     override func update(data: AnyObject!) {
         let bankCardModel = data as! BankCardModel
-        bankCardNumLabel.text = bankCardModel.bank_username_
-        bankSelectBtn.selected = bankCardModel.is_default_ == 1 ? true : false
+        bankCardNumLabel.text = bankCardModel.bank_username
+        bankSelectBtn.selected = bankCardModel.is_default == 1 ? true : false
 
         
     }
