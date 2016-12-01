@@ -92,7 +92,7 @@ class LoginViewController: BaseLoginViewController {
             let loginModel = LoginModel();
             loginModel.phone_num = textField1.text
             loginModel.passwd = textField2.text?.trim()
-            showWithStatus("登录中...")
+            SVProgressHUD.showProgressMessage(ProgressMessage: "登录中...")
             userLogin(textField1.text!,password:textField2.text!)
         }
     }

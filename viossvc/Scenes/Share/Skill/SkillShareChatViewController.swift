@@ -20,5 +20,10 @@ class SkillShareChatViewController: BasePageListTableViewController {
         AppAPIHelper.skillShareAPI().comment(share_id,last_id:last_id, count: AppConst.DefaultPageSize, complete: completeBlockFunc()
                 , error:errorBlockFunc())
     }
+    
+    override func isCalculateCellHeight() -> Bool {
+        return true
+    }
+    
 
 }

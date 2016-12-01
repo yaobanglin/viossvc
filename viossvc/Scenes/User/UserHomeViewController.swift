@@ -44,6 +44,13 @@ class UserHomeViewController: BaseTableViewController {
         AppAPIHelper.userAPI().bankCards(model, complete: { (response) in
             guard response != nil else {return}
             let banksData = response as! NSArray
+            for bank in banksData{
+                let model = bank as! BankCardModel
+                if model.is_default == 0{
+                    CurrentUserHelper.shared.userInfo.currentBankCardNumber = model.account
+                    CurrentUserHelper.shared.userInfo.currentBanckCardName = String.bankCardName(model.account!)
+                }
+            }
             weakSelf.bankCardNumLabel.text = "\(banksData.count)张"
         }) { (error) in
         }
