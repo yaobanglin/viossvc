@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TourLeaderShareCell: OEZTableViewHScrollCell {
+class TourLeaderShareCell: OEZTableViewHScrollCell,OEZCalculateProtocol {
 
     var shareModelArray : [TourShareTypeModel] = []
     
@@ -26,6 +26,9 @@ class TourLeaderShareCell: OEZTableViewHScrollCell {
         
         
         
+    }
+    static func calculateHeightWithData(data: AnyObject!) -> CGFloat {
+        return 105
     }
     
     override func numberColumnCountHScrollView(hScrollView: OEZHScrollView!) -> Int {
@@ -50,7 +53,8 @@ class TourLeaderShareCell: OEZTableViewHScrollCell {
     }
     
     override func hScrollView(hScrollView: OEZHScrollView!, didSelectColumnAtIndex columnIndex: Int) {
-         didSelectRowAction(1988, data: columnIndex as AnyObject)
+         didSelectRowColumn(UInt(columnIndex))
+        
     }
 }
 
@@ -77,7 +81,6 @@ class TourLeaderShareScrollView : OEZHScrollViewCell {
     
 
     
-  
 
     override func update(data: AnyObject!) {
         let model = data as! TourShareTypeModel

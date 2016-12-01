@@ -61,6 +61,11 @@ class SocketConst: NSObject {
         
         case TourShareDetail = 1065
         
+        case ChatSendMessage = 2003
+        case ChatReceiveMessage = 2004
+        case ChatOfflineRequestMessage = 2005
+        case ChatOfflineReceiveMessage = 2006
+        
     }
     enum type:UInt8 {
         case Error = 0
