@@ -13,4 +13,5 @@ class ChatListCell: OEZTableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+    
 }

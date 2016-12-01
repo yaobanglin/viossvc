@@ -28,5 +28,11 @@ class AppAPIHelper: NSObject {
     class func commenAPI() -> CommenAPI {
         return _commenShareAPI
     }
+    
+    private static var _orderAPI = OrderListSocketAPI()
+    class func orderAPI() -> OrderListAPI {
+        
+        return _orderAPI
+    }
 }
 
