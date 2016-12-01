@@ -86,25 +86,38 @@ class UserBankCardsModel: BaseModel {
     
 }
 
+class DrawCashRecordModel: BaseModel {
+    var cash_: Int = 0
+    var account: String?
+    var request_time: String?
+    var status: Int = 0 //0：等待提现 1：已提现 2：失败
+    var withdraw_time: String?
+    var fail_reason: String?
+    var bank_username_: String?
+    var bank_name_: String?
+}
+
 class DrawCashModel: BaseModel {
     var uid: Int = 0
-    var account_: String?
-    var cash_: Int = 0
-    var size_: Int = 20
-    var num_: Int = 0
+    var account: String?
+    var cash: Int = 0
+    var size: Int = 20
+    var num: Int = 0
+    var result: Int = 0
+    var withdraw_record: [DrawCashRecordModel]?
 }
 
 class BankCardModel: BaseModel {
-    var account_:String?
+    var account:String?
     var bank = 0
-    var bank_username_:String?
-    var is_default_ = 0
+    var bank_username:String?
+    var is_default = 0
 }
 
 class DrawCashPasswordModel: BaseModel {
     var uid: Int = 0
     var new_passwd: String?
     var old_passwd: String?
-    var passwd_type_: Int = 0
-    var change_type_: Int = 0
+    var passwd_type: Int = 0
+    var change_type: Int = 0
 }

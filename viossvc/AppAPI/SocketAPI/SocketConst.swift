@@ -33,9 +33,11 @@ class SocketConst: NSObject {
         //校验提现密码
         case CheckDrawCashPassword = 1087
         //提现
-        case DrawCash = 0003
+        case DrawCash = 1103
         //提现详情
         case DrawCashDetail = 0004
+        //提现记录
+        case DrawCashRecord = 1105
         //设置默认银行卡
         case DefaultBankCard = 1099
         //添加新的银行卡

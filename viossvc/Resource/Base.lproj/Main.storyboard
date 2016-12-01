@@ -2993,6 +2993,64 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eAQ-dt-LgG" id="RkN-OL-CnV">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head_boy" translatesAutoresizingMaskIntoConstraints="NO" id="hIC-yA-xPv">
+                                                    <rect key="frame" x="22" y="58" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="PTn-py-Gvm"/>
+                                                        <constraint firstAttribute="width" constant="100" id="dhX-29-RQE"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="NVD-ZM-QuO">
+                                                    <rect key="frame" x="22" y="172" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="28f-ZY-CpD"/>
+                                                        <constraint firstAttribute="width" constant="20" id="Wp2-2y-cMM"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="nnv-Bq-184">
+                                                    <rect key="frame" x="45" y="172" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="IHz-xq-j9q"/>
+                                                        <constraint firstAttribute="width" constant="20" id="Rhz-Om-6ny"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="2JS-4v-7S3">
+                                                    <rect key="frame" x="68" y="172" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="VkT-X7-Z7P"/>
+                                                        <constraint firstAttribute="height" constant="20" id="wHY-Fk-tEJ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="Yn4-0V-fj1">
+                                                    <rect key="frame" x="114" y="172" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="Xpz-af-gdj"/>
+                                                        <constraint firstAttribute="height" constant="20" id="ZVP-9D-f9P"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="Cmo-EE-lSA">
+                                                    <rect key="frame" x="91" y="172" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="d29-bu-wLq"/>
+                                                        <constraint firstAttribute="width" constant="20" id="nc9-LA-9sj"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hIC-yA-xPv" firstAttribute="top" secondItem="RkN-OL-CnV" secondAttribute="topMargin" constant="50" id="4J9-qe-BiW"/>
+                                                <constraint firstItem="Cmo-EE-lSA" firstAttribute="bottom" secondItem="NVD-ZM-QuO" secondAttribute="bottom" id="74C-nt-ldM"/>
+                                                <constraint firstItem="NVD-ZM-QuO" firstAttribute="bottom" secondItem="RkN-OL-CnV" secondAttribute="bottomMargin" id="JSy-jg-97S"/>
+                                                <constraint firstItem="NVD-ZM-QuO" firstAttribute="leading" secondItem="RkN-OL-CnV" secondAttribute="leadingMargin" constant="14" id="MKL-UU-vb0"/>
+                                                <constraint firstItem="nnv-Bq-184" firstAttribute="leading" secondItem="NVD-ZM-QuO" secondAttribute="trailing" constant="3" id="Ml0-fE-OFp"/>
+                                                <constraint firstItem="2JS-4v-7S3" firstAttribute="leading" secondItem="nnv-Bq-184" secondAttribute="trailing" constant="3" id="RHd-3e-xbV"/>
+                                                <constraint firstItem="Yn4-0V-fj1" firstAttribute="bottom" secondItem="NVD-ZM-QuO" secondAttribute="bottom" id="Rd1-u6-FBi"/>
+                                                <constraint firstItem="Yn4-0V-fj1" firstAttribute="leading" secondItem="Cmo-EE-lSA" secondAttribute="trailing" constant="3" id="VHH-ym-gRx"/>
+                                                <constraint firstItem="Cmo-EE-lSA" firstAttribute="leading" secondItem="2JS-4v-7S3" secondAttribute="trailing" constant="3" id="jVu-e4-CNt"/>
+                                                <constraint firstItem="hIC-yA-xPv" firstAttribute="leading" secondItem="RkN-OL-CnV" secondAttribute="leadingMargin" constant="14" id="tsA-Rv-7hR"/>
+                                                <constraint firstItem="2JS-4v-7S3" firstAttribute="bottom" secondItem="NVD-ZM-QuO" secondAttribute="bottom" id="zZC-Gd-ErW"/>
+                                                <constraint firstItem="nnv-Bq-184" firstAttribute="bottom" secondItem="NVD-ZM-QuO" secondAttribute="bottom" id="zhC-7v-2fM"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -3940,6 +3998,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="countLabel" destination="jVP-1g-ZQZ" id="Ezk-Sg-2gm"/>
+                                    <outlet property="dateLabel" destination="enm-y2-zDt" id="u2Q-OM-bLh"/>
+                                    <outlet property="statusLabel" destination="V31-fk-oiW" id="BAu-qh-Y28"/>
+                                    <outlet property="timeLabel" destination="fvq-v6-TCx" id="5NF-5X-hJq"/>
                                     <segue destination="0ed-By-EMp" kind="push" id="eWa-9Y-i3G"/>
                                 </connections>
                             </tableViewCell>
