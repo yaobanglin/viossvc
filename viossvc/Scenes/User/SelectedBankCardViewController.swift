@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class BankCardCell: OEZTableViewCell {
     @IBOutlet weak var bankCardNumLabel: UILabel!
     @IBOutlet weak var bankSelectBtn: UIButton!
@@ -15,62 +15,56 @@ class BankCardCell: OEZTableViewCell {
 
     override func update(data: AnyObject!) {
         let bankCardModel = data as! BankCardModel
-        bankCardNumLabel.text = bankCardModel.bank_username
+        let cardNum = bankCardModel.account! as NSString
+        var cardName = String.bankCardName(cardNum as String) as NSString
         bankSelectBtn.selected = bankCardModel.is_default == 1 ? true : false
-
-        
+        if cardNum == "" {
+            return
+        }
+        if cardName.length <= 0 {
+            cardName = "未知银行"
+        }
+        bankCardNumLabel.text = "\(cardName.substringToIndex(4))(\(cardNum.substringFromIndex(cardNum.length-4)))"
     }
 }
 
 class SelectedBankCardViewController: BaseListTableViewController{
+    var model: BankCardModel?
+    //Data
     override func didRequest() {
         let model = BankCardModel()
         AppAPIHelper.userAPI().bankCards(model, complete: completeBlockFunc(), error: errorBlockFunc())
-        
     }
     
+    override func didRequestComplete(data: AnyObject?) {
+        dataSource = data as? Array<AnyObject>
+        super.didRequestComplete(data)
+        if model != nil {
+            CurrentUserHelper.shared.userInfo.currentBankCardNumber = model!.account
+            CurrentUserHelper.shared.userInfo.currentBanckCardName = String.bankCardName(model!.account!)
+            SVProgressHUD.showSuccessMessage(SuccessMessage: "切换成功", ForDuration: 1, completion: nil)
+        }
+    }
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.registerNib(BankCardCell.self)
-//        initData()
-        initUI()
     }
-    override func didRequestComplete(data: AnyObject?) {
-        
-        dataSource = data as? Array<AnyObject>
-        super.didRequestComplete(data)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        didRequest()
     }
-    //MARK: --DATA
-    func initData() {
-        let model = BankCardModel()
-        unowned let weakSelf = self
-        AppAPIHelper.userAPI().bankCards(model, complete: { (response) in
-            guard response != nil else {return}
-            let banksData = response as! NSArray
-            weakSelf.dataSource = banksData as Array<AnyObject>
-            weakSelf.tableView.reloadData()
-        }) { (error) in
-        }
-    }
-    
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        
-//        
-//        return cell
-//    }
     //MARK: --UI
-    func initUI() {
-        
-    }
     @IBAction func addNewBankCard() {
         performSegueWithIdentifier("bankCardToAddNew", sender: nil)
-
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        model = dataSource![indexPath.row] as? BankCardModel
+        SVProgressHUD.showProgressMessage(ProgressMessage:"切换中...")
+        AppAPIHelper.userAPI().defaultBanKCard(model!.account!, complete: { [weak self](result) in
+            self?.didRequest()
+        }, error: errorBlockFunc())
     }
 
 }

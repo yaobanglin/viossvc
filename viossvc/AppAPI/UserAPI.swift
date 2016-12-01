@@ -32,7 +32,7 @@ protocol UserAPI {
     //提现详情
     func drawCashDetail(model:DrawCashModel, complete: CompleteBlock, error: ErrorBlock)
     //设置用户默认的银行卡
-    func defaultBanKCard(bankCardId: Int, complete: CompleteBlock, error: ErrorBlock)
+    func defaultBanKCard(account: String, complete: CompleteBlock, error: ErrorBlock)
     //添加新的银行卡
     func newBankCard(data:Dictionary<String, AnyObject>, complete: CompleteBlock, error: ErrorBlock)
     //查询用户认证状态

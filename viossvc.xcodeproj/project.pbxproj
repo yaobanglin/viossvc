@@ -92,6 +92,7 @@
 		BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */; };
 		BFACB2CF1DED1EAC00AF0D34 /* SVProgressHUDExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */; };
 		BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */; };
+		BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDAB1031DEFEE320012671B /* NSDateExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -184,6 +185,7 @@
 		BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 		BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVProgressHUDExt.swift; sourceTree = "<group>"; };
 		BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDrawCashPassworController.swift; sourceTree = "<group>"; };
+		BFDAB1031DEFEE320012671B /* NSDateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExt.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -446,6 +448,7 @@
 		B03B12071DE5BFDE00B00D2E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				BFDAB1031DEFEE320012671B /* NSDateExt.swift */,
 				BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */,
 				B03B12081DE5BFDE00B00D2E /* UIScreen+Extension.swift */,
 				B03B12091DE5BFDE00B00D2E /* UITableView+Extension.swift */,
@@ -765,6 +768,7 @@
 				B024A1791DE7CDCC0095A691 /* SocketRequest.swift in Sources */,
 				B03B12451DE5BFDE00B00D2E /* CommTableViewBannerCell.swift in Sources */,
 				B03B12321DE5BFDE00B00D2E /* TourShareDetailViewController.swift in Sources */,
+				BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */,
 				B024A1831DE7DAC40095A691 /* SocketConst.swift in Sources */,
 				B086734F1DE5C62B008DD8A1 /* PasswordViewController.swift in Sources */,
 				B03B122D1DE5BFDE00B00D2E /* SkillShareDetailViewController.swift in Sources */,
