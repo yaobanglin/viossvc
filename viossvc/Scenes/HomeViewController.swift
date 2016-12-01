@@ -15,14 +15,16 @@ class HomeViewController: SegmentedViewController {
     
     func segmentedViewControllerIdentifiers() -> [String]! {
         //发起心跳包
-        if timer == nil && CurrentUserHelper.shared.userInfo.uid > 0 {
+        if timer == nil  {
             timer =  NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: #selector(heardBeat), userInfo: nil, repeats: true)
         }
         return [ChatListViewController.className(),OrderListViewController.className()];
     }
     
     func heardBeat()  {
-    
+        if CurrentUserHelper.shared.userInfo == nil {
+            return
+        }
        AppAPIHelper.commenAPI().heardBeat(CurrentUserHelper.shared.userInfo.uid, complete: { (result) in
         
         }, error: errorBlockFunc())

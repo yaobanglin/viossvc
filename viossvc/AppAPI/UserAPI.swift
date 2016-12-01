@@ -30,7 +30,7 @@ protocol UserAPI {
     //提现
     func drawCash(model: DrawCashModel, complete: CompleteBlock, error: ErrorBlock)
     //提现详情
-    func drawCashDetail(drawCashId: Int, complete: CompleteBlock, error: ErrorBlock)
+    func drawCashDetail(model:DrawCashModel, complete: CompleteBlock, error: ErrorBlock)
     //设置用户默认的银行卡
     func defaultBanKCard(bankCardId: Int, complete: CompleteBlock, error: ErrorBlock)
     //添加新的银行卡
@@ -41,5 +41,7 @@ protocol UserAPI {
     func authUser(uid: Int, frontPic: String, backPic: String, complete: CompleteBlock, error: ErrorBlock)
     //设置/修改提现密码
     func drawcashPassword(model: DrawCashPasswordModel, complete: CompleteBlock, error: ErrorBlock)
+    //提现记录
+    func drawCashRecord(model: DrawCashModel, complete: CompleteBlock, error: ErrorBlock)
     
 }

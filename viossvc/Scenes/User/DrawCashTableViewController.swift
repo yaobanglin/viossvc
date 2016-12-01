@@ -17,6 +17,7 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var drawCashBtn: UIButton!
     
+    
     //MARK: lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,19 +54,32 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
         cashNumLabel.text = "\(Double(CurrentUserHelper.shared.userInfo.user_cash_) / 100)"
         //drawCashText
         drawCashText.becomeFirstResponder()
+        //bankName
+        if CurrentUserHelper.shared.userInfo.currentBanckCardName != nil{
+            let bankNum = CurrentUserHelper.shared.userInfo.currentBankCardNumber! as NSString
+            let bankName = CurrentUserHelper.shared.userInfo.currentBanckCardName! as NSString
+            bankNameLabel.text = bankName.substringToIndex(4) + "(\(bankNum.substringWithRange(NSRange.init(location: bankNum.length-4, length: 4))))"
+        }else{
+            bankNameLabel.text = "暂无默认银行卡"
+        }
+        
     }
     
     func updateView(drawCash: String) {
         drawCashBtn.enabled = drawCash.characters.count != 0
         drawCashBtn.backgroundColor = drawCashBtn.enabled ? UIColor(RGBHex: 0x141f33) : UIColor(RGBHex: 0xaaaaaa)
-        
         drawCashLabel.text =  "\(drawCash)元"
     }
     //MARK: --DATA
     
     
-    //MARK: --Function
+    //MARK: --DrawCash
     @IBAction func drawCashBtnTapped(sender: UIButton) {
+        
+        if CurrentUserHelper.shared.userInfo.currentBanckCardName == nil {
+            SVProgressHUD.showErrorMessage(ErrorMessage: "请选择提现银行卡", ForDuration: 1, completion: nil)
+            return
+        }
         
         if checkTextFieldEmpty([drawCashText]) {
             view.endEditing(true)
@@ -81,22 +95,25 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
             })
         }
     }
-    
+    //检查密码
     func checkPassword(password: String) {
         SVProgressHUD.showProgressMessage(ProgressMessage: "")
-        AppAPIHelper.userAPI().checkDrawCashPassword(0, password: password, type: 1,complete: { [weak self](result) in
+        AppAPIHelper.userAPI().checkDrawCashPassword(CurrentUserHelper.shared.userInfo.uid, password: password, type: 1,complete: { [weak self](result) in
             self?.drawCashRequest(password)
         }, error: errorBlockFunc())
     }
-    
+    //提现
     func drawCashRequest(password: String) {
         let model = DrawCashModel()
+        model.uid = CurrentUserHelper.shared.userInfo.uid
+        model.account = CurrentUserHelper.shared.userInfo.currentBankCardNumber
+        model.cash = Int(drawCashText.text!)! * 100
         AppAPIHelper.userAPI().drawCash(model, complete: { [weak self](result) in
+            SVProgressHUD.dismiss()
             let controller: DrawCashDetailViewController = self?.storyboard?.instantiateViewControllerWithIdentifier("DrawCashDetailViewController") as! DrawCashDetailViewController
             self?.navigationController?.pushViewController(controller, animated: true)
         }, error: errorBlockFunc())
     }
-    
     //textField's Delegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         view.endEditing(true)

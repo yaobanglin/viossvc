@@ -61,7 +61,7 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     
     //校验提现密码
     func checkDrawCashPassword(uid: Int, password: String, type: Int, complete: CompleteBlock,error: ErrorBlock){
-        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid, "password":password, "passwd_type":type]
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid, "passwd_":password, "passwd_type_":type]
         let packet = SocketDataPacket(opcode: .CheckDrawCashPassword, dict: dict)
         startRequest(packet, complete: complete, error: error)
     }
@@ -71,12 +71,16 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
         let packet = SocketDataPacket(opcode: .DrawCash, model: model)
         startModelRequest(packet, modelClass: DrawCashModel.classForCoder(), complete: complete, error: error)
     }
-    
     //提现详情
-    func drawCashDetail(drawCashId: Int, complete: CompleteBlock, error: ErrorBlock){
-        let dict:[String : AnyObject] = ["drawCashId":drawCashId]
-        let packet = SocketDataPacket(opcode: .DrawCashDetail, dict: dict)
-        startRequest(packet, complete: complete, error: error)
+    func drawCashDetail(model:DrawCashModel, complete: CompleteBlock, error: ErrorBlock){
+        let packet = SocketDataPacket(opcode: .DrawCashRecord, model: model)
+        startModelRequest(packet, modelClass: DrawCashModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    //提现记录
+    func drawCashRecord(model: DrawCashModel, complete: CompleteBlock, error: ErrorBlock) {
+        let packet = SocketDataPacket(opcode: .DrawCashRecord, model: model)
+        startModelRequest(packet, modelClass: DrawCashModel.classForCoder(), complete: complete, error: error)
     }
     
     //设置用户默认的银行卡
