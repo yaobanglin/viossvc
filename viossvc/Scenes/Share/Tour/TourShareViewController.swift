@@ -9,10 +9,11 @@
 import Foundation
 
 class TourShareViewController: BaseListTableViewController,OEZTableViewDelegate {
- 
+   
     override func viewDidLoad() {
         super.viewDidLoad();
         tableView.registerNib(TourShareCell.self, forCellReuseIdentifier: "TourShareCell1");
+//        tableView.registerNib(TourLeaderShareCell.self, forCellReuseIdentifier: "TourLeaderShareCell");
     }
     
     override func isSections() -> Bool {
@@ -28,24 +29,76 @@ class TourShareViewController: BaseListTableViewController,OEZTableViewDelegate 
         view?.titleLabel.text = section == 0 ? "V领队分享" : "推荐分享";
         return view;
     }
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return  section == 0 ? 1 : dataSource![section].count
+    }
+    override func tableView(tableView: UITableView, cellIdentifierForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+
+        return  indexPath.section == 0 ? "TourLeaderShareCell" : super.tableView(tableView, cellIdentifierForRowAtIndexPath: indexPath)
+        
+    }
+    
+    override func tableView(tableView: UITableView, cellDataForRowAtIndexPath indexPath: NSIndexPath) -> AnyObject? {
+  
+        return indexPath.section == 0 ? dataSource![0] : super.tableView(tableView, cellDataForRowAtIndexPath: indexPath)
+    }
     
     func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
+        print(data as! Int)
+        
         
     }
     
     
-    
+
     override func didRequest() {
-        AppAPIHelper.tourShareAPI().list(0, count: AppConst.DefaultPageSize, type: 0, complete: completeBlockFunc(), error: errorBlockFunc())
-//        AppAPIHelper.tourShareAPI().type(completeBlockFunc(), error: errorBlockFunc())
-    }
+        var array : [[AnyObject]] = []
+        
+
+        
+        AppAPIHelper.tourShareAPI().list(0, count: AppConst.DefaultPageSize, type: 0, complete: {[weak self] (obj) in
+            if obj != nil  {
+                  array.append(obj! as! [TourShareModel])
+                
+            }
+            else {
+                array.append([])
+            }
+            if array.count > 1 {
+                
+                self?.didRequestComplete(array)
+            }
+            
+            }, error: errorBlockFunc())
+        
+        
+        AppAPIHelper.tourShareAPI().type({ [weak self](obj) in
+            if obj != nil  {
+                
+                if array.count > 0 {
+                    array.insert(obj! as! [TourShareTypeModel], atIndex: 0)
+                }
+                else {
+                    array = [obj! as! [TourShareTypeModel]]
+                }
+                
+            }else {
+                array.append([])
+            }
+            if array.count > 1 {
+                
+                self?.didRequestComplete(array)
+            }
+            
+            }, error: errorBlockFunc())
+
+        
+}
     
     override func didRequestComplete(data: AnyObject?) {
-        var array:[[AnyObject]] = [[""],[]]
-        if data != nil {
-            array[1].appendContentsOf(data as! [AnyObject])
-        }
-        super.didRequestComplete(array)
+  
+        super.didRequestComplete(data)
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

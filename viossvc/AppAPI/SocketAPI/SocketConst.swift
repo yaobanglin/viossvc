@@ -63,6 +63,15 @@ class SocketConst: NSObject {
         
         case TourShareDetail = 1065
         
+        /**
+         订单列表
+         */
+        case OrderList = 1505
+        /**
+         修改订单状态
+         */
+        case ModfyOrderStatus = 2011
+        
     }
     enum type:UInt8 {
         case Error = 0
@@ -76,5 +85,9 @@ class SocketConst: NSObject {
         static let share_id = "share_id_"
         static let page_type = "page_type_"
         static let uid = "uid_"
+        static let from_uid = "from_uid_"
+        static let to_uid = "to_uid_"
+        static let order_id = "order_id_"
+        static let order_status = "order_status_"
     }
 }

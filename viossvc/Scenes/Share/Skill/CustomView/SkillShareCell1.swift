@@ -30,21 +30,23 @@ class SkillShareCell1: OEZTableViewCell {
     override func update(data: AnyObject!) {
         let model:SkillShareModel = data as! SkillShareModel
             titleLabel.text = model.share_theme
-            let dfmatter = NSDateFormatter()
-            dfmatter.dateFormat="yyyy-MM-dd HH:mm:ss "
-            let date = NSDate(timeIntervalSince1970: Double(model.share_start))
+//            let dfmatter = NSDateFormatter()
+//            dfmatter.dateFormat="yyyy-MM-dd HH:mm:ss "
+//            let date = NSDate(timeIntervalSince1970: Double(model.share_start))
             nameAndLabel.text = "\(model.share_user)|\(model.user_label)"
-            timeAndNumLabel.text = "\(dfmatter.stringFromDate(date))"
-            var string:String = "参加"
-            switch model.share_status {
-            case 1:
-                statusLabel.text = "正在筹备";
-                string = "报名"
-            case 2:
-                statusLabel.text = "正在进行";
-            default:
-                statusLabel.text = "已结束";
-            }
+            timeAndNumLabel.text = model.share_startStr(true, ChinaDate: false)//"\(dfmatter.stringFromDate(date))"
+        let string:String =  model.share_status == 2 ? "报名" : "参加"
+            statusLabel.text = model.share_statusStr
+        
+//            switch model.share_status {
+//            case 1:
+//                statusLabel.text = "正在筹备";
+//                string = "报名"
+//            case 2:
+//                statusLabel.text = "正在进行";
+//            default:
+//                statusLabel.text = "已结束";
+//            }
             if model.entry_num > 0 {
                 timeAndNumLabel.text! += "\(model.entry_num)人\(string)"
             }

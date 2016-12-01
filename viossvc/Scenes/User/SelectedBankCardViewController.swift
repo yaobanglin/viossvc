@@ -49,11 +49,13 @@ class SelectedBankCardViewController: BaseListTableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(BankCardCell.self)
+
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         didRequest()
     }
+
     //MARK: --UI
     @IBAction func addNewBankCard() {
         performSegueWithIdentifier("bankCardToAddNew", sender: nil)
