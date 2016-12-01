@@ -35,8 +35,12 @@ class TourShareViewController: BaseListTableViewController,OEZTableViewDelegate 
     
     
     
-    override func didRequest() {
+    override func didRequest(pageIndex: Int) {
+  
         AppAPIHelper.tourShareAPI().list(0, count: AppConst.DefaultPageSize, type: 0, complete: completeBlockFunc(), error: errorBlockFunc())
+    }
+    override func didRequest() {
+
 //        AppAPIHelper.tourShareAPI().type(completeBlockFunc(), error: errorBlockFunc())
     }
     

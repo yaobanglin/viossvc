@@ -34,7 +34,6 @@ class SelectedBankCardViewController: BaseListTableViewController{
         super.viewDidLoad()
         
         tableView.registerNib(BankCardCell.self)
-//        initData()
         initUI()
     }
     override func didRequestComplete(data: AnyObject?) {
@@ -55,11 +54,7 @@ class SelectedBankCardViewController: BaseListTableViewController{
         }
     }
     
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        
-//        
-//        return cell
-//    }
+
     //MARK: --UI
     func initUI() {
         
