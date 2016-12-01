@@ -54,5 +54,6 @@ class AppConst {
     
     enum Action:UInt {
         case CallPhone = 10001
+        case HandleOrder = 11001
     }
 }

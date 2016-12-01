@@ -51,7 +51,7 @@ class TourShareViewController: BaseListTableViewController,OEZTableViewDelegate 
     }
     
     
-    
+
     override func didRequest() {
         var array : [[AnyObject]] = []
         
@@ -94,9 +94,7 @@ class TourShareViewController: BaseListTableViewController,OEZTableViewDelegate 
             }, error: errorBlockFunc())
 
         
-        
-        
-    }
+}
     
     override func didRequestComplete(data: AnyObject?) {
   
