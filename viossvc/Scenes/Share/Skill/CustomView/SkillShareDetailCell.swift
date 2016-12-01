@@ -45,6 +45,49 @@ class SkillShareDetailCell1: OEZTableViewCell , OEZCalculateProtocol {
         // Initialization code
     }
     
+    
+    override func update(data: AnyObject!) {
+        let model = data as! SkillShareDetailModel
+        settingPicArray(model)
+        timeLabel.text = model.share_startStr(false, ChinaDate: true)
+        numLabel.text = "\(model.entry_num)人"
+        statusLabel.text = model.share_statusStr
+        
+        
+    }
+    
+    func settingPicArray(model : SkillShareDetailModel)  {
+        
+        func userListEnumerate(array:[UserModel]) {
+            let startTag = 100 + 5 - array.count
+            for (index , value) in array.enumerate() {
+                let imageView  = picView.viewWithTag(startTag + index) as? UIImageView
+                imageView?.hidden = false
+                imageView?.kf_setImageWithURL(NSURL(string: value.head_url!), placeholderImage: UIImage(named: "head_boy"))
+            }
+        }
+        
+        
+        
+        if  model.user_list.count >= 5{
+            let userList = model.user_list[0...4]
+            userListEnumerate(Array(userList))
+        }
+        else {
+   
+            userListEnumerate(model.user_list)
+            
+            for index in  0 ..< (5 - model.user_list.count) {
+                let imageView  = picView.viewWithTag(100 + index) as? UIImageView
+                imageView?.hidden = true
+            }
+        }
+        
+        
+
+        
+    }
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -74,6 +117,15 @@ class SkillShareDetailCell2: OEZTableViewCell ,OEZCalculateProtocol {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    override func update(data: AnyObject!) {
+        let model = data as! SkillShareDetailModel
+    
+        headPicImageView.kf_setImageWithURL(NSURL.init(string: model.share_head), placeholderImage: UIImage(named: "head_boy"))
+        nicknameLabel.text = model.share_user
+        titleLabel.text = model.user_label
+        
     }
     
     static func calculateHeightWithData(data: AnyObject!) -> CGFloat {

@@ -27,15 +27,17 @@ class SocketConst: NSObject {
         //获取用户余额
         case UserCash = 1067
         //认证用户头像
-        case AuthUserHeader = 1083
+        case AuthUserHeader = 1091
         //获取用户的银行卡信息
         case UserBankCards = 1097
         //校验提现密码
-        case CheckDrawCashPassword = 0002
+        case CheckDrawCashPassword = 1087
         //提现
-        case DrawCash = 0003
+        case DrawCash = 1103
         //提现详情
         case DrawCashDetail = 0004
+        //提现记录
+        case DrawCashRecord = 1105
         //设置默认银行卡
         case DefaultBankCard = 1099
         //添加新的银行卡

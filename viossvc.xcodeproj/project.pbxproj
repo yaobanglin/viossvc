@@ -415,6 +415,8 @@
 				B03B11E51DE5BFDD00B00D2E /* TourShareCell.swift */,
 				B03B11E61DE5BFDD00B00D2E /* TourShareCell.xib */,
 				B03B11E71DE5BFDD00B00D2E /* TourShareDetailCell.swift */,
+				7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */,
+				7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -509,6 +511,7 @@
 		B08673471DE5C62B008DD8A1 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				BFACB2D41DEEA5B700AF0D34 /* MyServier */,
 				BF9B6BD31DEB1CFA009FFEB7 /* Setting */,
 				BF9B6BCE1DEB1CA6009FFEB7 /* Bank */,
 				BF9B6BCD1DEB1C6A009FFEB7 /* UserInfo */,
@@ -613,6 +616,13 @@
 			name = Setting;
 			sourceTree = "<group>";
 		};
+		BFACB2D41DEEA5B700AF0D34 /* MyServier */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MyServier;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -683,6 +693,7 @@
 				6E9857E21DEEBD92002EFD88 /* HandleOrderViewController.xib in Resources */,
 				B03B121C1DE5BFDE00B00D2E /* errorcode.plist in Resources */,
 				BF5EB9881DE8070500961A24 /* city.plist in Resources */,
+				7CCEC0521DEF1C68006F2BEE /* TourLeaderShareScrollView.xib in Resources */,
 				B03B124E1DE5BFDE00B00D2E /* MJRefresh.bundle in Resources */,
 				B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */,
 			);
@@ -758,6 +769,7 @@
 				B03B12341DE5BFDE00B00D2E /* TourShareViewController.swift in Sources */,
 				B03B12331DE5BFDE00B00D2E /* TourShareListViewController.swift in Sources */,
 				B086734E1DE5C62B008DD8A1 /* MainViewController.swift in Sources */,
+				7CCEC0501DEECC81006F2BEE /* TourLeaderShareCell.swift in Sources */,
 				B03B12291DE5BFDE00B00D2E /* SkillShareCell1.swift in Sources */,
 				BF9B6BC41DE96F9E009FFEB7 /* EnterPasswordViewController.swift in Sources */,
 				B03B122C1DE5BFDE00B00D2E /* SkillShareChatViewController.swift in Sources */,
