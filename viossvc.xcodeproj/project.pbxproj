@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */; };
+		6E82E2651DF01EC70039BBA0 /* SkillLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */; };
+		6E82E2661DF01EC70039BBA0 /* SingleSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */; };
+		6E82E2671DF01EC70039BBA0 /* SkillWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */; };
 		6E9857CE1DEE6C04002EFD88 /* OrderListSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857CD1DEE6C04002EFD88 /* OrderListSocketAPI.swift */; };
 		6E9857D41DEE6DCD002EFD88 /* OrderListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857D31DEE6DCD002EFD88 /* OrderListAPI.swift */; };
 		6E9857D61DEE70F8002EFD88 /* OrderListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857D51DEE70F8002EFD88 /* OrderListModel.swift */; };
@@ -101,6 +104,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillLayoutView.swift; sourceTree = "<group>"; };
+		6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSkillCell.swift; sourceTree = "<group>"; };
+		6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillWidthLayout.swift; sourceTree = "<group>"; };
 		6E9857CD1DEE6C04002EFD88 /* OrderListSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListSocketAPI.swift; sourceTree = "<group>"; };
 		6E9857D31DEE6DCD002EFD88 /* OrderListAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListAPI.swift; sourceTree = "<group>"; };
 		6E9857D51DEE70F8002EFD88 /* OrderListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListModel.swift; sourceTree = "<group>"; };
@@ -364,6 +370,9 @@
 			isa = PBXGroup;
 			children = (
 				B03B11D81DE5BFDD00B00D2E /* OrderListCell.swift */,
+				6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */,
+				6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */,
+				6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -415,8 +424,6 @@
 				B03B11E51DE5BFDD00B00D2E /* TourShareCell.swift */,
 				B03B11E61DE5BFDD00B00D2E /* TourShareCell.xib */,
 				B03B11E71DE5BFDD00B00D2E /* TourShareDetailCell.swift */,
-				7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */,
-				7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -693,7 +700,6 @@
 				6E9857E21DEEBD92002EFD88 /* HandleOrderViewController.xib in Resources */,
 				B03B121C1DE5BFDE00B00D2E /* errorcode.plist in Resources */,
 				BF5EB9881DE8070500961A24 /* city.plist in Resources */,
-				7CCEC0521DEF1C68006F2BEE /* TourLeaderShareScrollView.xib in Resources */,
 				B03B124E1DE5BFDE00B00D2E /* MJRefresh.bundle in Resources */,
 				B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */,
 			);
@@ -754,6 +760,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E82E2651DF01EC70039BBA0 /* SkillLayoutView.swift in Sources */,
 				B024A1851DE7FBBF0095A691 /* String+Extension.swift in Sources */,
 				BF9B6BD01DEB1CD1009FFEB7 /* SelectedBankCardViewController.swift in Sources */,
 				B024A1811DE7D4190095A691 /* TourShareSocketAPI.swift in Sources */,
@@ -767,9 +774,9 @@
 				B03B12181DE5BFDE00B00D2E /* AppDelegate.swift in Sources */,
 				BF9B6BC81DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift in Sources */,
 				B03B12341DE5BFDE00B00D2E /* TourShareViewController.swift in Sources */,
+				6E82E2671DF01EC70039BBA0 /* SkillWidthLayout.swift in Sources */,
 				B03B12331DE5BFDE00B00D2E /* TourShareListViewController.swift in Sources */,
 				B086734E1DE5C62B008DD8A1 /* MainViewController.swift in Sources */,
-				7CCEC0501DEECC81006F2BEE /* TourLeaderShareCell.swift in Sources */,
 				B03B12291DE5BFDE00B00D2E /* SkillShareCell1.swift in Sources */,
 				BF9B6BC41DE96F9E009FFEB7 /* EnterPasswordViewController.swift in Sources */,
 				B03B122C1DE5BFDE00B00D2E /* SkillShareChatViewController.swift in Sources */,
@@ -815,6 +822,7 @@
 				B024A1761DE7CDCC0095A691 /* APISocketHelper.swift in Sources */,
 				B03B12151DE5BFDE00B00D2E /* AppConst.swift in Sources */,
 				BF5EB9861DE7CC9200961A24 /* ResetPasswordViewController.swift in Sources */,
+				6E82E2661DF01EC70039BBA0 /* SingleSkillCell.swift in Sources */,
 				B024A1781DE7CDCC0095A691 /* SocketDataPacket.swift in Sources */,
 				B03B12201DE5BFDE00B00D2E /* HomeViewController.swift in Sources */,
 				B03B121E1DE5BFDE00B00D2E /* ChatListViewController.swift in Sources */,

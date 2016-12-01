@@ -51,15 +51,44 @@ class OrderListModel: BaseModel {
     var other_phone:String?
     
     
+}
+
+class OrderDetailModel: BaseModel {
+    var order_id = 0
+    var order_status = OrderStatus.WaittingAccept.rawValue
+    var order_price = 0
+    var from_uid = -1
+    var from_name:String?
+    var from_head:String?
+    var order_addr:String?
+    var service_name:String?
+    var start = 0
+    var end = 0
+    var is_other = 0
+    var skills:String?
+    var other_name:String?
+    var other_gender = 0
+    var other_phone:String?
+    var has_evaluate = 0
+    var service_score = 0
+    var user_score = 0
+    var evaluate__remarks:String?
+}
+
+
+class SkillsModel: BaseModel {
     
-    
-    
-    
-    
-    
-    
-    
+    var skill_id = 0
+    var skill_name:String?
+    var skill_type:String?
     
     
     
 }
+
+
+
+
+
+
+
