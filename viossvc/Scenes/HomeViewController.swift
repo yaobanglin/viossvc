@@ -10,16 +10,25 @@ import Foundation
 
 
 class HomeViewController: SegmentedViewController {
+    var timer: NSTimer?
+    
     
     func segmentedViewControllerIdentifiers() -> [String]! {
-        return [ChatListViewController.className(),OrderListViewController.className()];
         //发起心跳包
-        NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: #selector(heardBeat), userInfo: nil, repeats: true)
+
+        if timer == nil {
+            timer =  NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: #selector(heardBeat), userInfo: nil, repeats: true)
+        }
+        return [ChatListViewController.className(),OrderListViewController.className()];
     }
     
     func heardBeat()  {
        AppAPIHelper.commenAPI().heardBeat(CurrentUserHelper.shared.userInfo.uid, complete: { (result) in
         
         }, error: errorBlockFunc())
+    }
+    
+    deinit{
+       timer = nil
     }
 }

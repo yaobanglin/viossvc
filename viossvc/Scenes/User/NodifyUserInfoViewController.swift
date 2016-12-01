@@ -14,23 +14,33 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var iconImage: UIImageView!
     var imageUrl: String?
-    
-    
     lazy var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController.init()
         return picker
     }()
-    
+    //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        if (CurrentUserHelper.shared.userInfo.head_url != nil){
+            let headUrl = NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!)
+            iconImage.kf_setImageWithURL(headUrl, placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+        }
+        
+        if CurrentUserHelper.shared.userInfo.nickname != nil {
+            nameText.text = CurrentUserHelper.shared.userInfo.nickname
+        }
+        
+        if CurrentUserHelper.shared.userInfo.address != nil {
+            cityLabel.text = CurrentUserHelper.shared.userInfo.address
+        }
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         imagePicker.delegate = self
     }
-    
+    //MARK: --上传头像
     @IBAction func finishItemTapped(sender: AnyObject) {
-        if imageUrl == nil || imageUrl?.characters.count == 0  {
+        if iconImage.image != UIImage.init(named: "head_boy") && imageUrl == nil  {
             showErrorWithStatus("头像上传失败，请稍后再试")
             return
         }
@@ -41,7 +51,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         let param = NotifyUserInfoModel()
         param.address = cityLabel.text
         param.gender = sexLabel.text == "男" ? 1 : 0
-        param.head_url = imageUrl
+        if iconImage.image != UIImage.init(named: "head_boy") {
+            param.head_url = imageUrl
+        }
         param.nickname = nameText.text
         param.uid = CurrentUserHelper.shared.userInfo.uid
         AppAPIHelper.userAPI().notifyUsrInfo(param, complete: {[weak self] (result) in
@@ -51,7 +63,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             self?.navigationController?.popViewControllerAnimated(true)
         }, error: errorBlockFunc())
     }
-    
+    //MARK: --常住地选择
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CitysSelectViewController.className() {
             let controller: CitysSelectViewController = segue.destinationViewController as! CitysSelectViewController
@@ -62,7 +74,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             return
         }
     }
-    
+    //MARK: --TABLEVIEW
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 1 || indexPath.row == 3 {
             return
@@ -103,12 +115,9 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
                 return
             }
             self?.imageUrl = imageUrl as? String
-            let param = AuthHeaderModel()
-            param.uid = CurrentUserHelper.shared.userInfo.uid
-            param.head_ = imageUrl as? String
-            AppAPIHelper.userAPI().authHeaderUrl(param, complete: { (result) in
+            AppAPIHelper.userAPI().authHeaderUrl(CurrentUserHelper.shared.userInfo.uid, head_url_: (self?.imageUrl)! , complete: { (result) in
                 
-            }, error: (self?.errorBlockFunc())!)
+                }, error: self!.errorBlockFunc())
         })
     }
     

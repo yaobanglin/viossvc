@@ -8,7 +8,7 @@
 
 import UIKit
 import SVProgressHUD
-class SettingViewController: UITableViewController {
+class SettingViewController: BaseTableViewController {
     
     @IBOutlet weak var userNumLabel: UILabel!
     @IBOutlet weak var authLabel: UILabel!
@@ -17,11 +17,32 @@ class SettingViewController: UITableViewController {
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var aboutUSCell: UITableViewCell!
     @IBOutlet weak var cacheCell: UITableViewCell!
+    var authStatus: String? {
+        get{
+            switch CurrentUserHelper.shared.userInfo.auth_status_ {
+            case -1:
+                return "未认证"
+            case 0:
+                return "认证中"
+            case 1:
+                return "认证通过"
+            case 2:
+                return "认证失败"
+            default:
+                return ""
+            }
+        }
+    }
+    
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
         initData()
         initUI()
+    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
     }
     //MARK: --DATA
     func initData() {
@@ -31,9 +52,11 @@ class SettingViewController: UITableViewController {
     func initUI() {
         let userNum = CurrentUserHelper.shared.userInfo.phone_num! as NSString
         userNumLabel.text = userNum.stringByReplacingCharactersInRange(NSRange.init(location: 4, length: 4), withString: "****")
-        
-        
-        cacheLabel.text = "\(Double(calculateCacle())) M"
+        //缓存
+        cacheLabel.text = String(format:"%.2f M",Double(calculateCacle()))
+        //认证状态
+        authLabel.text = authStatus
+        authCell.accessoryType = authStatus == "未认证" ? .DisclosureIndicator : .None
     }
     @IBAction func logoutBtnTapped(sender: AnyObject) {
         CurrentUserHelper.shared.logout()
@@ -62,7 +85,6 @@ class SettingViewController: UITableViewController {
     func clearCacleSizeCompletion(completion: (()->Void)?) {
         let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory, NSSearchPathDomainMask.UserDomainMask, true).first
         let files = NSFileManager.defaultManager().subpathsAtPath(path!)
-        showWithStatus("清除中...")
         for file in files! {
             let filePath = path?.stringByAppendingString("/\(file)")
             if NSFileManager.defaultManager().fileExistsAtPath(filePath!) {
@@ -73,23 +95,25 @@ class SettingViewController: UITableViewController {
                 }
             }
         }
-        completion
+        completion!()
         
     }
     //MARK: --TableView
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if cell == cacheCell{
             clearCacleSizeCompletion({ [weak self] in
-                self?.cacheLabel.text = "\(Double((self?.calculateCacle())!)) M"
-                SVProgressHUD.dismiss()
+                self?.cacheLabel.text = String(format:"%.2f M",Double(self!.calculateCacle()))
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "清除成功", ForDuration: 1, completion: nil)
             })
             return
         }
         
-    }
-    
-    deinit{
+        if cell == authCell && authStatus == "未认证"{
+            performSegueWithIdentifier("AuthUserViewController", sender: nil)
+            return
+        }
         
     }
 }

@@ -39,9 +39,10 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     }
     
     //认证用户头像
-    func authHeaderUrl(model: AuthHeaderModel, complete: CompleteBlock, error: ErrorBlock){
-        let packet = SocketDataPacket(opcode: .AuthUserHeader, model: model)
-        startModelRequest(packet, modelClass: AuthHeaderModel.classForCoder(), complete: complete, error: error)
+    func authHeaderUrl(uid: Int, head_url_: String, complete: CompleteBlock, error: ErrorBlock){
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid, "head_url_":head_url_]
+        let packet = SocketDataPacket(opcode: .AuthUserHeader, dict: dict)
+        startRequest(packet, complete: complete, error: error)
     }
     
     //修改用户信息
@@ -51,14 +52,16 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     }
     
     //获取用户的银行卡信息
-    func bankCards(model: UserBankCardsModel, complete: CompleteBlock, error: ErrorBlock){
-        let packet = SocketDataPacket(opcode: .UserBankCards, model: model)
-        startModelRequest(packet, modelClass: UserBankCardsModel.classForCoder(), complete: complete, error: error)
+    func bankCards(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock){
+        
+        let pack = SocketDataPacket(opcode: .UserBankCards, dict: ["uid_": CurrentUserHelper.shared.userInfo.uid])
+        startModelsRequest(pack, listName: "bank_card_", modelClass: BankCardModel.classForCoder(), complete: complete, error: error)
+        
     }
     
     //校验提现密码
     func checkDrawCashPassword(uid: Int, password: String,complete: CompleteBlock,error: ErrorBlock){
-        let dict:[String : AnyObject] = ["uid":uid, "password":password]
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid, "password":password]
         let packet = SocketDataPacket(opcode: .CheckDrawCashPassword, dict: dict)
         startRequest(packet, complete: complete, error: error)
     }
@@ -84,8 +87,32 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     }
     
     //添加新的银行卡
-    func newBankCard(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock){
-        let packet = SocketDataPacket(opcode: .NewBankCard, model: model)
+    func newBankCard(data:Dictionary<String, AnyObject>, complete: CompleteBlock, error: ErrorBlock){
+        let packet = SocketDataPacket(opcode: .NewBankCard, dict: data)
         startModelRequest(packet, modelClass: BankCardModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    //查询用户认证状态
+    func anthStatus(uid: Int, complete: CompleteBlock, error: ErrorBlock){
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid]
+        let packet = SocketDataPacket(opcode: .AuthStatus, dict: dict)
+        startRequest(packet, complete: complete, error: error)
+    }
+    
+    //上传身份认证信息
+    func authUser(uid: Int, frontPic: String, backPic: String, complete: CompleteBlock, error: ErrorBlock) {
+        let dict:[String : AnyObject] = [SocketConst.Key.uid:uid,
+                                         "front_pic_":frontPic,
+                                         "back_pic_":backPic]
+        
+        let packet = SocketDataPacket(opcode: .AuthUser, dict: dict)
+        startRequest(packet, complete: complete, error: error)
+    }
+    
+    
+    //设置/修改提现密码
+    func drawcashPassword(model: DrawCashPasswordModel, complete: CompleteBlock, error: ErrorBlock){
+        let packet = SocketDataPacket(opcode: .DrawCashPassword, model: model)
+        startModelRequest(packet, modelClass: DrawCashPasswordModel.classForCoder(), complete: complete, error: error)
     }
 }

@@ -11,25 +11,65 @@ import UIKit
 class BankCardCell: OEZTableViewCell {
     @IBOutlet weak var bankCardNumLabel: UILabel!
     @IBOutlet weak var bankSelectBtn: UIButton!
+    
+
+    override func update(data: AnyObject!) {
+        let bankCardModel = data as! BankCardModel
+        bankCardNumLabel.text = bankCardModel.bank_username_
+        bankSelectBtn.selected = bankCardModel.is_default_ == 1 ? true : false
+
+        
+    }
 }
 
 class SelectedBankCardViewController: BaseListTableViewController{
     override func didRequest() {
-        didRequestComplete(["","","","","","","","","",""]);
+        let model = BankCardModel()
+        AppAPIHelper.userAPI().bankCards(model, complete: completeBlockFunc(), error: errorBlockFunc())
+        
     }
     
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        initData()
+        
+        tableView.registerNib(BankCardCell.self)
+//        initData()
         initUI()
+    }
+    override func didRequestComplete(data: AnyObject?) {
+        
+        dataSource = data as? Array<AnyObject>
+        super.didRequestComplete(data)
     }
     //MARK: --DATA
     func initData() {
-        
+        let model = BankCardModel()
+        unowned let weakSelf = self
+        AppAPIHelper.userAPI().bankCards(model, complete: { (response) in
+            guard response != nil else {return}
+            let banksData = response as! NSArray
+            weakSelf.dataSource = banksData as Array<AnyObject>
+            weakSelf.tableView.reloadData()
+        }) { (error) in
+        }
     }
+    
+//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        
+//        
+//        return cell
+//    }
     //MARK: --UI
     func initUI() {
+        
+    }
+    @IBAction func addNewBankCard() {
+        performSegueWithIdentifier("bankCardToAddNew", sender: nil)
+
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
 

@@ -90,6 +90,8 @@
 		BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */; };
 		BF9B6BD71DEB1E3A009FFEB7 /* AuthUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */; };
 		BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */; };
+		BFACB2CF1DED1EAC00AF0D34 /* SVProgressHUDExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */; };
+		BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,7 +139,7 @@
 		B03B11E71DE5BFDD00B00D2E /* TourShareDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareDetailCell.swift; sourceTree = "<group>"; };
 		B03B11E81DE5BFDD00B00D2E /* TourShareDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareDetailViewController.swift; sourceTree = "<group>"; };
 		B03B11E91DE5BFDD00B00D2E /* TourShareListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareListViewController.swift; sourceTree = "<group>"; };
-		B03B11EA1DE5BFDD00B00D2E /* TourShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareViewController.swift; sourceTree = "<group>"; };
+		B03B11EA1DE5BFDD00B00D2E /* TourShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		B03B11EB1DE5BFDD00B00D2E /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
 		B03B11EC1DE5BFDD00B00D2E /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		B03B11FA1DE5BFDE00B00D2E /* BaseCustomTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCustomTableViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,8 @@
 		BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUserViewController.swift; sourceTree = "<group>"; };
 		BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
+		BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVProgressHUDExt.swift; sourceTree = "<group>"; };
+		BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDrawCashPassworController.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -442,6 +446,7 @@
 		B03B12071DE5BFDE00B00D2E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */,
 				B03B12081DE5BFDE00B00D2E /* UIScreen+Extension.swift */,
 				B03B12091DE5BFDE00B00D2E /* UITableView+Extension.swift */,
 				B03B120A1DE5BFDE00B00D2E /* UIViewController+Extension.swift */,
@@ -544,6 +549,7 @@
 				BF9B6BC51DEB1B9F009FFEB7 /* UserWalletViewController.swift */,
 				BF9B6BC71DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift */,
 				BF9B6BC91DEB1C2B009FFEB7 /* DrawCashDetailViewController.swift */,
+				BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */,
 			);
 			name = Wallet;
 			sourceTree = "<group>";
@@ -693,7 +699,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7216018706741901D5FE5A13 /* [CP] Copy Pods Resources */ = {
@@ -726,6 +732,7 @@
 				B03B12271DE5BFDE00B00D2E /* OrderListCell.swift in Sources */,
 				B03B12421DE5BFDE00B00D2E /* BaseTableViewController.swift in Sources */,
 				B03B12351DE5BFDE00B00D2E /* TourViewController.swift in Sources */,
+				BFACB2CF1DED1EAC00AF0D34 /* SVProgressHUDExt.swift in Sources */,
 				B03B12181DE5BFDE00B00D2E /* AppDelegate.swift in Sources */,
 				BF9B6BC81DEB1BEE009FFEB7 /* DrawCashRecordViewController.swift in Sources */,
 				B03B12341DE5BFDE00B00D2E /* TourShareViewController.swift in Sources */,
@@ -754,6 +761,7 @@
 				B086734F1DE5C62B008DD8A1 /* PasswordViewController.swift in Sources */,
 				B03B122D1DE5BFDE00B00D2E /* SkillShareDetailViewController.swift in Sources */,
 				B03B124C1DE5BFDE00B00D2E /* UIViewController+Extension.swift in Sources */,
+				BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */,
 				BF9B6BCA1DEB1C2B009FFEB7 /* DrawCashDetailViewController.swift in Sources */,
 				B03B12281DE5BFDE00B00D2E /* OrderListViewController.swift in Sources */,
 				BF9B6BD71DEB1E3A009FFEB7 /* AuthUserViewController.swift in Sources */,
@@ -901,6 +909,7 @@
 			baseConfigurationReference = FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/viossvc/Library",
@@ -914,7 +923,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.viossvc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.trip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
 			};
@@ -925,6 +934,7 @@
 			baseConfigurationReference = 99F5EF6682B1172BAA8C79FC /* Pods-viossvc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/viossvc/Library",
