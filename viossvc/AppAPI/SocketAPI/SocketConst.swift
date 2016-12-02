@@ -42,12 +42,17 @@ class SocketConst: NSObject {
         case DefaultBankCard = 1099
         //添加新的银行卡
         case NewBankCard = 1095
+        //获取所有技能标签
+        case AllSkills = 1041
+        
         //获取身份认证进度
         case AuthStatus = 1057
         //上传身份认证信息
         case AuthUser = 1055
         //设置/修改支付密码
         case DrawCashPassword = 1089
+        //V领队服务
+        case ServiceList = 1502
         
         case SkillShareList = 1071
         
@@ -56,6 +61,9 @@ class SocketConst: NSObject {
         case SkillShareComment = 1075
         
         case SkillShareEnroll = 1077
+        
+        //订单详情
+        case OrderDetail = 1507
         
         case TourShareType = 1059
         
@@ -75,6 +83,13 @@ class SocketConst: NSObject {
          */
         case ModfyOrderStatus = 2011
         
+
+
+
+        case ChatSendMessage = 2003
+        case ChatReceiveMessage = 2004
+        case ChatOfflineRequestMessage = 2005
+        case ChatOfflineReceiveMessage = 2006
     }
     enum type:UInt8 {
         case Error = 0

@@ -87,14 +87,14 @@ class UserBankCardsModel: BaseModel {
 }
 
 class DrawCashRecordModel: BaseModel {
-    var cash_: Int = 0
+    var cash: Int = 0
     var account: String?
     var request_time: String?
     var status: Int = 0 //0：等待提现 1：已提现 2：失败
     var withdraw_time: String?
     var fail_reason: String?
-    var bank_username_: String?
-    var bank_name_: String?
+    var bank_username: String?
+    var bank_name: String?
 }
 
 class DrawCashModel: BaseModel {
@@ -104,7 +104,10 @@ class DrawCashModel: BaseModel {
     var size: Int = 20
     var num: Int = 0
     var result: Int = 0
-    var withdraw_record: [DrawCashRecordModel]?
+    var withdraw_record: [DrawCashRecordModel] = []
+    class func withdraw_recordModleClass() -> AnyClass {
+        return DrawCashRecordModel.classForCoder()
+    }
 }
 
 class BankCardModel: BaseModel {
@@ -132,4 +135,12 @@ class PhotoWallRequestModel: BaseModel {
     var uid: Int = 0
     var size: Int = 0
     var num: Int = 0
+}
+    
+class UserServerModel: BaseModel {
+    var service_id: Int = 0
+    var service_name: String?
+    var service_start: Int = 0
+    var service_end: Int = 0
+    var service_price: Int = 0
 }
