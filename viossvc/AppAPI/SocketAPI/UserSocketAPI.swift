@@ -15,6 +15,10 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
         let packet = SocketDataPacket(opcode: .Login, model: model)
         startModelRequest(packet,modelClass:UserInfoModel.classForCoder(), complete: complete, error: error);
     }
+    
+    func logout(uid:Int) {
+        
+    }
 
     func smsVerify(type:SMSVerifyModel.SMSType,phone:String,complete:CompleteBlock,error:ErrorBlock) {
         let packet = SocketDataPacket(opcode: .SMSVerify, model: SMSVerifyModel(phone:phone,type:type))
