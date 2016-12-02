@@ -12,8 +12,27 @@ import XCGLogger
 class SocketRequestManage: NSObject {
     
     static let shared = SocketRequestManage();
-    var socketRequests = [UInt32: SocketRequest]()
+    private var socketRequests = [UInt32: SocketRequest]()
+    private var _timer: NSTimer?
+    private var _lastHeardBeatTimer:NSTimeInterval = NSDate().timeIntervalSince1970
     private var _reqeustId:UInt32 = 10000
+    private var _socketHelper:APISocketHelper?
+    
+    
+    func logout(uid:Int) {
+        stop()
+    }
+    
+    func start() {
+        stop()
+        _timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(didActionTimer), userInfo: nil, repeats: true)
+        _socketHelper = APISocketHelper()
+    }
+    
+    private func stop() {
+        _timer?.invalidate()
+    }
+    
     var reqeustId:UInt32 {
         get {
             objc_sync_enter(self)
@@ -24,6 +43,7 @@ class SocketRequestManage: NSObject {
             objc_sync_exit(self)
             return _reqeustId;
         }
+        
     }
 
     func notifyResponsePacket(packet: SocketDataPacket) {
@@ -60,6 +80,7 @@ class SocketRequestManage: NSObject {
     
     
     func startJsonRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
+        
         let socketReqeust = SocketRequest();
         socketReqeust.error = error;
         socketReqeust.complete = complete;
@@ -67,7 +88,21 @@ class SocketRequestManage: NSObject {
         objc_sync_enter(self)
         socketRequests[packet.request_id] = socketReqeust;
         objc_sync_exit(self)
-        APISocketHelper.shared.sendData(packet.serializableData()!);
+        _socketHelper?.sendData(packet.serializableData()!);
+    }
+    
+    func didActionTimer() {
+        if _socketHelper != nil && _socketHelper!.isConnected() {
+            if  CurrentUserHelper.shared.userInfo != nil &&  _lastHeardBeatTimer + 10 <=  NSDate().timeIntervalSince1970 {
+                let packet = SocketDataPacket(opcode: .Heart,dict:[SocketConst.Key.uid: CurrentUserHelper.shared.userInfo.uid])
+                _socketHelper?.sendData(packet.serializableData()!)
+                _lastHeardBeatTimer = NSDate().timeIntervalSince1970
+            }
+        }
+        else {
+            
+        }
+        checkReqeustTimeout()
     }
 
 }

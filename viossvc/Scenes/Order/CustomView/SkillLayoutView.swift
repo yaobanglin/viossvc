@@ -8,16 +8,20 @@
 
 import UIKit
 
-protocol LayoutStopDelegate:NSObjectProtocol {
+/**
+ *  layout 结束后回调高度 修改容器高度
+ */
+@objc protocol LayoutStopDelegate:NSObjectProtocol {
     
-    func layoutStopWithHeight(height:CGFloat)
+    func layoutStopWithHeight(layoutView:SkillLayoutView,height:CGFloat)
+    
+    optional func selectedAtIndexPath(layoutView:SkillLayoutView, indexPath:NSIndexPath)
 }
 
 class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelegate, SkillWidthLayoutDelegate {
     
     var collectionView: UICollectionView?
-    
-    var bb_height:Float = 0.0
+    var showDelete = false
     
     var layout: SkillWidthLayout?
     
@@ -26,6 +30,13 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
     var dataSouce:Array<SkillsModel>? {
     
         didSet {
+            if dataSouce?.count == 0 {
+                let skillsModel = SkillsModel()
+                skillsModel.skill_name = "无"
+                skillsModel.labelWidth = 30
+                showDelete = false
+                dataSouce?.append(skillsModel)
+            }
             collectionView!.reloadData()
         }
     }
@@ -48,13 +59,6 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SkillLayoutView.layoutStop), name: "LayoutStop", object: nil)
     }
     
-    func layoutStop() {
-        if delegate != nil {
-            delegate?.layoutStopWithHeight(CGFloat((layout?.finalHeight)!))
-            collectionView!.frame = CGRectMake(0, 0,  UIScreen.mainScreen().bounds.size.width, CGFloat(layout!.finalHeight))
-
-        }
-    }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -67,10 +71,27 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
         collectionView!.registerClass(SingleSkillCell.classForCoder(), forCellWithReuseIdentifier: "singleCell")
         addSubview(collectionView!)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SkillLayoutView.layoutStop), name: "LayoutStop", object: nil)
-
+        
+    }
+    /**
+     layout结束回调。传出最终高度，修改collectionView高度
+     */
+    func layoutStop() {
+        if delegate != nil {
+            delegate?.layoutStopWithHeight(self, height: CGFloat((layout?.finalHeight)!))
+            collectionView!.frame = CGRectMake(0, 0,  UIScreen.mainScreen().bounds.size.width, CGFloat(layout!.finalHeight))
+        }
     }
     
 
+    /**
+     SkillWidthLayoutDelegate
+     宽度自适应回调
+     - parameter layout:
+     - parameter atIndexPath: item所在的indexPath
+     
+     - returns: item 所占宽度
+     */
     func autoLayout(layout:SkillWidthLayout, atIndexPath:NSIndexPath)->Float {
         
         let skill = dataSouce![atIndexPath.row]
@@ -86,18 +107,26 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("singleCell", forIndexPath: indexPath) as! SingleSkillCell
         
         let skill = dataSouce![indexPath.row]
-        cell.setupTitle(skill.skill_name!)
+        cell.setupTitle(skill.skill_name!, labelWidth:skill.labelWidth,showDeleteButton: showDelete)
 
         return cell
-        
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return dataSouce == nil ? 0 : (dataSouce?.count)!
     }
-    func setupCollectionViewHight() {
+    
+    /**
+     
+     
+     - parameter collectionView:
+     - parameter indexPath:
+     */
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        bb_height = (layout?.finalHeight)!
-        collectionView!.frame = CGRectMake(0, 0,  UIScreen.mainScreen().bounds.size.width, CGFloat(layout!.finalHeight))
+        if delegate != nil {
+            delegate?.selectedAtIndexPath!(self, indexPath: indexPath)
+        }
     }
+
 }

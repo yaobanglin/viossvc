@@ -23,6 +23,7 @@ protocol UserAPI {
     func register(model:RegisterModel,complete:CompleteBlock,error:ErrorBlock)
     //修改登录密码
     func nodifyPasswrod(uid:Int,oldPassword:String,newPasword:String,complete:CompleteBlock,error:ErrorBlock)
+    func logout(uid:Int)
     //获取用户余额
     func userCash(uid:Int, complete:CompleteBlock, error:ErrorBlock)
     //认证用户头像
@@ -53,5 +54,7 @@ protocol UserAPI {
     func serviceList(complete: CompleteBlock, error: ErrorBlock)
     //更新V领队服务
     func updateServiceList(model: UpdateServerModel, complete: CompleteBlock, error: ErrorBlock)
+    //操作技能标签
+    func getOrModfyUserSkills(getOrModfy:Int,skills:String,complete: CompleteBlock, error: ErrorBlock)
     
 }
