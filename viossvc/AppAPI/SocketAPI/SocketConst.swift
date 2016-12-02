@@ -42,6 +42,9 @@ class SocketConst: NSObject {
         case DefaultBankCard = 1099
         //添加新的银行卡
         case NewBankCard = 1095
+        //获取所有技能标签
+        case AllSkills = 1041
+        
         //获取身份认证进度
         case AuthStatus = 1057
         //上传身份认证信息
@@ -59,6 +62,9 @@ class SocketConst: NSObject {
         
         case SkillShareEnroll = 1077
         
+        //订单详情
+        case OrderDetail = 1507
+        
         case TourShareType = 1059
         
         case TourShareList = 1061
@@ -74,6 +80,8 @@ class SocketConst: NSObject {
          */
         case ModfyOrderStatus = 2011
         
+
+
     }
     enum type:UInt8 {
         case Error = 0
