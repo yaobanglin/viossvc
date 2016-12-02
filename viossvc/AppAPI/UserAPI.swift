@@ -43,5 +43,7 @@ protocol UserAPI {
     func drawcashPassword(model: DrawCashPasswordModel, complete: CompleteBlock, error: ErrorBlock)
     //提现记录
     func drawCashRecord(model: DrawCashModel, complete: CompleteBlock, error: ErrorBlock)
+    //V领队服务
+    func serviceList(complete: CompleteBlock, error: ErrorBlock)
     
 }

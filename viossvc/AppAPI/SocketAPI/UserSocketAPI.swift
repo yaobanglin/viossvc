@@ -114,12 +114,15 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
         startRequest(packet, complete: complete, error: error)
     }
     
-    
     //设置/修改提现密码
     func drawcashPassword(model: DrawCashPasswordModel, complete: CompleteBlock, error: ErrorBlock){
         let packet = SocketDataPacket(opcode: .DrawCashPassword, model: model)
         startModelRequest(packet, modelClass: DrawCashPasswordModel.classForCoder(), complete: complete, error: error)
     }
     
-    
+    //V领队服务列表
+    func serviceList(complete: CompleteBlock, error: ErrorBlock) {
+        let pack = SocketDataPacket(opcode: .ServiceList, dict: ["uid_": CurrentUserHelper.shared.userInfo.uid])
+        startModelsRequest(pack, listName: "service_list_", modelClass: UserServerModel.classForCoder(), complete: complete, error: error)
+    }
 }

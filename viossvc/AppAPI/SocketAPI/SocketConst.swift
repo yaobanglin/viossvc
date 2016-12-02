@@ -48,6 +48,8 @@ class SocketConst: NSObject {
         case AuthUser = 1055
         //设置/修改支付密码
         case DrawCashPassword = 1089
+        //V领队服务
+        case ServiceList = 1502
         
         case SkillShareList = 1071
         

@@ -124,3 +124,11 @@ class DrawCashPasswordModel: BaseModel {
     var passwd_type: Int = 0
     var change_type: Int = 0
 }
+
+class UserServerModel: BaseModel {
+    var service_id: Int = 0
+    var service_name: String?
+    var service_start: Int = 0
+    var service_end: Int = 0
+    var service_price: Int = 0
+}
