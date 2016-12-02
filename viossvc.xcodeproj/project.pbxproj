@@ -99,6 +99,11 @@
 		BFACB2CF1DED1EAC00AF0D34 /* SVProgressHUDExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */; };
 		BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */; };
 		BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDAB1031DEFEE320012671B /* NSDateExt.swift */; };
+		BFE6E4761DF02E9100480435 /* MyServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E4751DF02E9100480435 /* MyServerViewController.swift */; };
+		BFE6E4781DF0529D00480435 /* SMSServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E4771DF0529D00480435 /* SMSServerViewController.swift */; };
+		BFE6E47A1DF052D800480435 /* ServerManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E4791DF052D800480435 /* ServerManagerViewController.swift */; };
+		BFE6E47C1DF0530700480435 /* AddServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E47B1DF0530600480435 /* AddServerController.swift */; };
+		BFE6E47E1DF0535D00480435 /* ServerSuccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E47D1DF0535D00480435 /* ServerSuccessController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +203,11 @@
 		BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVProgressHUDExt.swift; sourceTree = "<group>"; };
 		BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDrawCashPassworController.swift; sourceTree = "<group>"; };
 		BFDAB1031DEFEE320012671B /* NSDateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExt.swift; sourceTree = "<group>"; };
+		BFE6E4751DF02E9100480435 /* MyServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyServerViewController.swift; sourceTree = "<group>"; };
+		BFE6E4771DF0529D00480435 /* SMSServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSServerViewController.swift; sourceTree = "<group>"; };
+		BFE6E4791DF052D800480435 /* ServerManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManagerViewController.swift; sourceTree = "<group>"; };
+		BFE6E47B1DF0530600480435 /* AddServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddServerController.swift; sourceTree = "<group>"; };
+		BFE6E47D1DF0535D00480435 /* ServerSuccessController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSuccessController.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -417,8 +427,6 @@
 				B03B11E51DE5BFDD00B00D2E /* TourShareCell.swift */,
 				B03B11E61DE5BFDD00B00D2E /* TourShareCell.xib */,
 				B03B11E71DE5BFDD00B00D2E /* TourShareDetailCell.swift */,
-				7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */,
-				7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -622,6 +630,11 @@
 		BFACB2D41DEEA5B700AF0D34 /* MyServier */ = {
 			isa = PBXGroup;
 			children = (
+				BFE6E4751DF02E9100480435 /* MyServerViewController.swift */,
+				BFE6E4771DF0529D00480435 /* SMSServerViewController.swift */,
+				BFE6E4791DF052D800480435 /* ServerManagerViewController.swift */,
+				BFE6E47B1DF0530600480435 /* AddServerController.swift */,
+				BFE6E47D1DF0535D00480435 /* ServerSuccessController.swift */,
 			);
 			name = MyServier;
 			sourceTree = "<group>";
@@ -696,7 +709,6 @@
 				6E9857E21DEEBD92002EFD88 /* HandleOrderViewController.xib in Resources */,
 				B03B121C1DE5BFDE00B00D2E /* errorcode.plist in Resources */,
 				BF5EB9881DE8070500961A24 /* city.plist in Resources */,
-				7CCEC0521DEF1C68006F2BEE /* TourLeaderShareScrollView.xib in Resources */,
 				B03B124E1DE5BFDE00B00D2E /* MJRefresh.bundle in Resources */,
 				B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */,
 			);
@@ -757,6 +769,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE6E47C1DF0530700480435 /* AddServerController.swift in Sources */,
 				B024A1851DE7FBBF0095A691 /* String+Extension.swift in Sources */,
 				BF9B6BD01DEB1CD1009FFEB7 /* SelectedBankCardViewController.swift in Sources */,
 				B024A1811DE7D4190095A691 /* TourShareSocketAPI.swift in Sources */,
@@ -772,12 +785,12 @@
 				B03B12341DE5BFDE00B00D2E /* TourShareViewController.swift in Sources */,
 				B03B12331DE5BFDE00B00D2E /* TourShareListViewController.swift in Sources */,
 				B086734E1DE5C62B008DD8A1 /* MainViewController.swift in Sources */,
-				7CCEC0501DEECC81006F2BEE /* TourLeaderShareCell.swift in Sources */,
 				B03B12291DE5BFDE00B00D2E /* SkillShareCell1.swift in Sources */,
 				BF9B6BC41DE96F9E009FFEB7 /* EnterPasswordViewController.swift in Sources */,
 				B03B122C1DE5BFDE00B00D2E /* SkillShareChatViewController.swift in Sources */,
 				B03B12161DE5BFDE00B00D2E /* BaseModel.swift in Sources */,
 				B03B12311DE5BFDE00B00D2E /* TourShareDetailCell.swift in Sources */,
+				BFE6E47A1DF052D800480435 /* ServerManagerViewController.swift in Sources */,
 				BF455B801DE841D5007D97B0 /* CommenAPI.swift in Sources */,
 				6E9857E11DEEBD92002EFD88 /* HandleOrderViewController.swift in Sources */,
 				B024A17F1DE7D3710095A691 /* TourShareAPI.swift in Sources */,
@@ -813,15 +826,18 @@
 				B03B12441DE5BFDE00B00D2E /* SegmentedViewController.swift in Sources */,
 				B08673531DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift in Sources */,
 				B024A17A1DE7CDCC0095A691 /* SocketRequestManage.swift in Sources */,
+				BFE6E4761DF02E9100480435 /* MyServerViewController.swift in Sources */,
 				B03B12481DE5BFDE00B00D2E /* TableViewHeaderView.swift in Sources */,
 				6E9857CE1DEE6C04002EFD88 /* OrderListSocketAPI.swift in Sources */,
 				B08673501DE5C62B008DD8A1 /* RegisterViewController.swift in Sources */,
 				B024A1761DE7CDCC0095A691 /* APISocketHelper.swift in Sources */,
 				B03B12151DE5BFDE00B00D2E /* AppConst.swift in Sources */,
+				BFE6E47E1DF0535D00480435 /* ServerSuccessController.swift in Sources */,
 				BF5EB9861DE7CC9200961A24 /* ResetPasswordViewController.swift in Sources */,
 				B024A1781DE7CDCC0095A691 /* SocketDataPacket.swift in Sources */,
 				B03B12201DE5BFDE00B00D2E /* HomeViewController.swift in Sources */,
 				B03B121E1DE5BFDE00B00D2E /* ChatListViewController.swift in Sources */,
+				BFE6E4781DF0529D00480435 /* SMSServerViewController.swift in Sources */,
 				B03B124A1DE5BFDE00B00D2E /* UIScreen+Extension.swift in Sources */,
 				B03B122B1DE5BFDE00B00D2E /* SkillShareDetailCell.swift in Sources */,
 				B03B122A1DE5BFDE00B00D2E /* SkillShareChatCell.swift in Sources */,
