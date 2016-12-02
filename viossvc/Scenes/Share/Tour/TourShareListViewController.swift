@@ -9,13 +9,16 @@
 import UIKit
 
 class TourShareListViewController: BasePageListTableViewController , OEZTableViewDelegate {
-    var listType:Int = 0;
-    var typeNames:[String] = ["美食","住宿","景点","娱乐"];
+//    var listType:Int = 0;
+//    var typeName: String
+    var typeModel : TourShareTypeModel = TourShareTypeModel()
+    
+//    var typeNames:[String] = ["美食","住宿","景点","娱乐"];
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        listType = listType < typeNames.count ? listType : 0 ;
-        title = typeNames[listType];
+//        listType = listType < typeNames.count ? listType : 0 ;
+        title = typeModel.type_title;
         tableView.registerNib(TourShareCell.self, forCellReuseIdentifier: "TourShareListCell");
     }
     
@@ -31,7 +34,7 @@ class TourShareListViewController: BasePageListTableViewController , OEZTableVie
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view:TableViewHeaderView? = TableViewHeaderView.loadFromNib();
-        view?.titleLabel.text = typeNames[listType] + "分享";
+        view?.titleLabel.text = typeModel.type_title + "分享";
         return view;
     }
     
@@ -48,7 +51,7 @@ class TourShareListViewController: BasePageListTableViewController , OEZTableVie
         
         let last_id:Int = pageIndex == 1 ? 0 : (dataSource?.last as! TourShareModel).share_id
         
-         AppAPIHelper.tourShareAPI().list(last_id, count: AppConst.DefaultPageSize, type: 0, complete: completeBlockFunc(), error: errorBlockFunc())
+         AppAPIHelper.tourShareAPI().list(last_id, count: AppConst.DefaultPageSize, type: typeModel.type_id, complete: completeBlockFunc(), error: errorBlockFunc())
     }
 
 }
