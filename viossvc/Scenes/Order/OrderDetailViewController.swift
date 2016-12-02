@@ -55,12 +55,19 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
         tagsView.delegate = self
         
         getOrderDetail()
+        
+        /**
+         *  如果订单是预约订单 加载技能标签信息
+         */
         if orderModel?.order_type == 2 {
             getSkills()
         }
     }
 
 
+    /**
+     获取订单详情
+     */
     func getOrderDetail() {
         
         unowned let weakSelf = self
@@ -75,6 +82,10 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
         }
         
     }
+    
+    /**
+     获取技能标签
+     */
     func getSkills() {
         
         unowned let weakSelf = self
@@ -86,10 +97,17 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
                 let array = response as? Array<SkillsModel>
                 
                 for skill in array! {
+                
+                    let size = skill.skill_name!.boundingRectWithSize(CGSizeMake(0, 21), font: UIFont.systemFontOfSize(15), lineSpacing: 0)
+                    skill.labelWidth = size.width + 30
                     weakSelf.skillDict[skill.skill_id] = skill
+                
                 }
+                /**
+                 *  如果订单详情已经加载完成 获取预约订单所含技能标签信息
+                 */
                 if weakSelf.detailModel != nil {
-                weakSelf.tagsView.dataSouce =  AppAPIHelper.orderAPI().getSKillsWithModel(weakSelf.detailModel!, dict:  weakSelf.skillDict)
+                weakSelf.tagsView.dataSouce =  AppAPIHelper.orderAPI().getSKillsWithModel(weakSelf.detailModel!.skills, dict:  weakSelf.skillDict)
                 }
             }
             
@@ -98,10 +116,22 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
         }
         
     }
-    func layoutStopWithHeight(height: CGFloat) {
-        tagsViewHeight.constant = height
+    /**
+     技能标签高度回调
+     
+     - parameter height:
+     */
 
+    func layoutStopWithHeight(layoutView:SkillLayoutView,height:CGFloat) {
+         tagsViewHeight.constant = height
     }
+    
+    
+    /**
+     
+     填充数据
+     - parameter detailModel:
+     */
     func setupDataWithModel(detailModel:OrderDetailModel) {
 
         if detailModel.from_head != nil {
@@ -114,6 +144,10 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
         dateLabel.text = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: Double(detailModel.start))) + "-" + dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: Double(detailModel.end)))
 
         cityLabel.text = detailModel.order_addr
+        
+        /**
+         *  如果订单被评论过，显示评论信息，反之隐藏
+         */
         if detailModel.has_evaluate == 0 {
             commentMargin.constant = 0
             commentView.hidden = true
@@ -124,18 +158,26 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
             serviceCommentInfoLabel.text = "\(detailModel.service_name!)"
             commentRemarksTextView.text = detailModel.evaluate__remarks
             
-            for index in 1...detailModel.service_score {
-                let button = commentView.viewWithTag(1000 + index) as? UIButton
-               button?.selected = true
-                
+            if detailModel.service_score != 0 {
+                for index in 1...detailModel.service_score {
+                    let button = commentView.viewWithTag(1000 + index) as? UIButton
+                    button?.selected = true
+                    
+                }
             }
 
-            for index in 1...detailModel.user_score {
-                let button = commentView.viewWithTag(2000 + index) as? UIButton
-                button?.selected = true
+            if detailModel.user_score != 0 {                
+                for index in 1...detailModel.user_score {
+                    let button = commentView.viewWithTag(2000 + index) as? UIButton
+                    button?.selected = true
+                }
             }
         }
-        guard orderModel?.order_type == 1 else {
+        
+        /**
+         *  如果是订单是2 则为预约订单 展示相关信息 反之为邀约订单 隐藏相关
+         */
+        guard orderModel?.order_type == 2 else {
             isOtherOrderView.hidden = true
             commentMargin.constant = 0
 
@@ -146,10 +188,16 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
             return
         }
         
+        /**
+         *  如果技能信息已经加载完成（skillDict.count > 0），获取订单所含技能信息
+         */
         if skillDict.count > 0 {
-           tagsView.dataSouce = AppAPIHelper.orderAPI().getSKillsWithModel(detailModel, dict: skillDict)
+           tagsView.dataSouce = AppAPIHelper.orderAPI().getSKillsWithModel(detailModel.skills, dict: skillDict)
             
         }
+        /**
+         *  如果是不是代订订单隐藏相关信息（detailModel.is_other == 0 ）
+         */
         if detailModel.is_other == 0 {
             marginHeight.constant = 0
             isOtherOrderView.hidden = true

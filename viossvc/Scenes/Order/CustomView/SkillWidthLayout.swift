@@ -50,10 +50,7 @@ class SkillWidthLayout: UICollectionViewFlowLayout {
         
         
     }
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+
 
     required init?(coder aDecoder: NSCoder) {
         columnMargin = 10.0
@@ -65,10 +62,7 @@ class SkillWidthLayout: UICollectionViewFlowLayout {
     }
     
     
-    /**
-        重写layout
-     */
-    
+
     
     override func prepareLayout() {
         currentX = Float(skillSectionInset.left)
@@ -84,7 +78,9 @@ class SkillWidthLayout: UICollectionViewFlowLayout {
                     isLayouted = true
                     /**
                      在最后一个layout结束后 发送通知
-                     
+                     或者下面👇这个方法里发通知
+                     ****   override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool  ******
+
                      */
                     NSNotificationCenter.defaultCenter().postNotificationName("LayoutStop", object: nil, userInfo: nil)
                 }
@@ -97,21 +93,14 @@ class SkillWidthLayout: UICollectionViewFlowLayout {
     /**
      
      判断是否需要重新计算layout
-     - parameter newBounds:
-     
-     - returns:
+     这里只需layout一次
      */
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
 
 
-        return !isLayouted
-//        let oldBounds = collectionView?.bounds
-//        if CGRectGetWidth(oldBounds!) != CGRectGetWidth(newBounds) {
-//            
-//            return true
-//        } else {
-//            return false
-//        }
+
+        return true
+
     }
     
     /**
@@ -131,10 +120,11 @@ class SkillWidthLayout: UICollectionViewFlowLayout {
     }
     /**
      
-    返回每个cell的layout
-     - parameter indexPath:
+     返回每个cell的UICollectionViewLayoutAttributes
+     逐个计算
+     - parameter indexPath: cell 所在的IndexPath
      
-     - returns:
+     - returns: 返回计算好的UICollectionViewLayoutAttributes
      */
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
        // storyBoard宽度 在layout的时候是在storyboard文件上的宽度，所以这里用屏幕宽度
@@ -157,8 +147,6 @@ class SkillWidthLayout: UICollectionViewFlowLayout {
             currentX = currentX + itemW + Float(columnMargin)
         }
         finalHeight = currentY + Float(itemHeight) + Float(skillSectionInset.bottom)
-        print(finalHeight)
-        print(currentMaxX)
         return atr
     }
     

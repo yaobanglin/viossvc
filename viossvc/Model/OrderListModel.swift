@@ -81,7 +81,7 @@ class SkillsModel: BaseModel {
     var skill_id = 0
     var skill_name:String?
     var skill_type:String?
-    
+    var labelWidth:CGFloat = 0.0
     
     
 }
