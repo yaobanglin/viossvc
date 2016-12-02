@@ -14,6 +14,7 @@ class OrderListCell : OEZTableViewCell {
     @IBOutlet weak var serviceLabel: UILabel!
     @IBOutlet weak var moneyLabel: UILabel!
  
+    @IBOutlet weak var orderTypeLabel: UILabel!
     let statusDict:Dictionary<OrderStatus, String> = [.WaittingAccept: "等待接受",//等待服务者接受
                                                               .Reject: "已拒绝",//服务者拒绝
                                                               .Accept: "已接受",//服务者接受
@@ -67,6 +68,7 @@ class OrderListCell : OEZTableViewCell {
             headPicImageView.kf_setImageWithURL(NSURL(string: orderListModel.from_url!), placeholderImage: UIImage(named: ""), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         }
         
+        orderTypeLabel.text = orderListModel.order_type == 0 ? "邀约" : "预约"
         nicknameLabel.text = orderListModel.from_name
         serviceLabel.text = orderListModel.service_name
         

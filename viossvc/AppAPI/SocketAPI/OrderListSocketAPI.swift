@@ -39,4 +39,51 @@ class OrderListSocketAPI: BaseSocketAPI, OrderListAPI{
         let packet = SocketDataPacket(opcode: .ModfyOrderStatus, dict: dict, type: SocketConst.type.Chat)
         startRequest(packet, complete: complete, error: error)
     }
+    /**
+     获取订单详情
+     
+     - parameter orderid:  订单ID
+     - parameter complete: 完成回调
+     - parameter error:    错误回调
+     */
+    func getOrderDetail(orderid:Int,complete:CompleteBlock,error:ErrorBlock) {
+        let dict:[String : AnyObject] = [SocketConst.Key.order_id : orderid]
+        let packet = SocketDataPacket(opcode: .OrderDetail, dict: dict)
+        startModelRequest(packet, modelClass: OrderDetailModel.classForCoder(), complete: complete, error: error)
+        
+    }
+    
+    /**
+     获取全部技能标签
+     */
+    func getSkills(complete:CompleteBlock,error:ErrorBlock) {
+       
+        let packet = SocketDataPacket(opcode: .AllSkills)
+    
+        
+        startModelsRequest(packet, listName: "skills_list_", modelClass: SkillsModel.classForCoder(), complete: complete, error: error)
+        
+        
+    }
+    
+    /**
+     *  获取预约订单对应的标签
+     */
+    func getSKillsWithModel(detailModel:OrderDetailModel, dict:[Int : SkillsModel]) -> Array<SkillsModel> {
+        
+        if ((detailModel.skills?.hasSuffix(",")) != nil) {
+            detailModel.skills?.removeAtIndex((detailModel.skills?.endIndex.predecessor())!)
+        }
+        let skillsIDArray:[String] = (detailModel.skills?.componentsSeparatedByString(","))!
+        var array:[SkillsModel] = []
+        
+        for skillID in skillsIDArray {
+            if skillID != "" {
+                let Id = Int(skillID)
+                
+                array.append(dict[Id!]!)
+            }
+        }
+        return array
+    }
 }

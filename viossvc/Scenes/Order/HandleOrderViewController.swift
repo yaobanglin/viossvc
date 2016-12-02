@@ -57,9 +57,27 @@ class HandleOrderViewController: UIViewController {
 
     }
 
+    
+    func getOrderDetail() {
+        
+        unowned let weakSelf = self
+        AppAPIHelper.orderAPI().getOrderDetail((orderModel?.order_id)!, complete: { (response) in
+            if response != nil{
+                let orderDetailModel = response as! OrderDetailModel
+                
+                weakSelf.locationLabel.text = orderDetailModel.order_addr
+            }
+            
+            
+            
+            }) { (error) in
+                
+        }
+        
+    }
     func setupDataWithModel(orderListModel:OrderListModel) {
         orderModel = orderListModel
-        
+        getOrderDetail()
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

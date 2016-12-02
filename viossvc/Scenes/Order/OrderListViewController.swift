@@ -12,6 +12,8 @@ import Foundation
 
 class OrderListViewController: BasePageListTableViewController,OEZTableViewDelegate, OrderRefreshDelegate{
 
+    var currentPageIndex = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,8 +22,11 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
     override func didRequest(pageIndex: Int) {
     
         let last_id:Int = pageIndex == 1 ? 0 : (dataSource?.last as! OrderListModel).order_id
-
-        AppAPIHelper.orderAPI().list(last_id, count: 6, complete:  completeBlockFunc(), error: errorBlockFunc())
+        currentPageIndex = pageIndex
+        if currentPageIndex != 1 {
+            
+        }
+        AppAPIHelper.orderAPI().list(last_id, count: 3, complete:  completeBlockFunc(), error: errorBlockFunc())
     }
     override func didRequest() {
         didRequest(1)
@@ -32,6 +37,7 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
         if data != nil && array?.count > 0 {
             dataSource = data as? Array<AnyObject>
         }
+        
         super.didRequestComplete(data)
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -45,7 +51,7 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
      */
     if orderModel.order_status > 6 {
 
-        performSegueWithIdentifier("orderToDetail", sender: nil)
+        performSegueWithIdentifier("orderToDetail", sender: indexPath)
   
         
     } else {
@@ -62,13 +68,21 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
 
     func refreshList() {
         
-        didRequest()
+        didRequest(currentPageIndex)
     }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+   
+        
         if segue.destinationViewController is OrderDetailViewController {
-//            let detailVC = segue.destinationViewController as! OrderDetailViewController
+        
+            let indexPath = sender as! NSIndexPath
+            
+            let orderModel = dataSource![indexPath.row] as! OrderListModel
+            
+            let detailVC = segue.destinationViewController as! OrderDetailViewController
+            detailVC.orderModel = orderModel
             
         }
     }
