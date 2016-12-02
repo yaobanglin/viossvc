@@ -7,12 +7,23 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class DrawCashDetailViewController: BaseTableViewController {
     @IBOutlet weak var bankCardLabel: UILabel!
     @IBOutlet weak var drawCashCount: UILabel!
     @IBOutlet weak var drawCashTime: UILabel!
-    var acount: String?
+    @IBOutlet weak var stepIcon1: UIButton!
+    @IBOutlet weak var stepIcon2: UIButton!
+    @IBOutlet weak var stepIcon3: UIButton!
+    var stats: Int?{
+        didSet{
+            stepIcon1.selected = stats == 0
+            stepIcon2.selected = stats == 1
+            stepIcon3.selected = stats == 2
+        }
+    }
+    var model: DrawCashRecordModel?
+    
     
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
@@ -20,31 +31,41 @@ class DrawCashDetailViewController: BaseTableViewController {
         initData()
         initUI()
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if model == nil {
+            return
+        }
+        updateUI(model!)
+        navigationItem.hidesBackButton = false
+        navigationItem.rightBarButtonItem = nil
+    }
+    
     //MARK: --DATA
     func initData() {
-        let model: DrawCashModel  = DrawCashModel()
-        model.uid = CurrentUserHelper.shared.userInfo.uid
-        model.account = acount
-        model.num = 1
-        model.size = 1
-        AppAPIHelper.userAPI().drawCashDetail(model, complete: { [weak self](result) in
-            if result  == nil{
+        if model != nil {
+            return
+        }
+        
+        let object: DrawCashModel  = DrawCashModel()
+        object.uid = CurrentUserHelper.shared.userInfo.uid
+        object.account = CurrentUserHelper.shared.userInfo.currentBankCardNumber
+        object.num = 1
+        object.size = 1
+        AppAPIHelper.userAPI().drawCashDetail(object, complete: { [weak self](result) in
+            if result == nil{
+                SVProgressHUD.showErrorMessage(ErrorMessage: "获取提现详情内容失败，请前往提现记录中查看", ForDuration: 1, completion: {
+                    self?.navigationController?.pushViewControllerWithIdentifier(DrawCashRecordViewController.className(), animated: true)
+                })
+                
                 return
             }
             
             let resultModel = result as! DrawCashModel
-            if resultModel.withdraw_record?.count >= 0{
-                let model =  resultModel.withdraw_record![0] as DrawCashRecordModel
-                let bankNum = ((model.account)! as NSString).substringWithRange(NSRange.init(location: model.account!.length()-4, length: 4))
-                let bankName = model.bank_name_
+            if resultModel.withdraw_record.count >= 0{
                 
-        
-                self?.bankCardLabel.text =  "\(bankName)\(bankNum)）"
-        
-                self?.drawCashCount.text = "￥\(model.cash_)"
-                
-                self?.drawCashTime.text = model.request_time
-
+                let model:DrawCashRecordModel =  resultModel.withdraw_record[0]
+                self?.updateUI(model)
             }
         }, error: errorBlockFunc())
     }
@@ -54,7 +75,18 @@ class DrawCashDetailViewController: BaseTableViewController {
         navigationItem.hidesBackButton = true
         
     }
-
+    func updateUI(model: DrawCashRecordModel) {
+        let bankNum = ((model.account)! as NSString).substringWithRange(NSRange.init(location: model.account!.length()-4, length: 4))
+        let bankName = model.bank_name
+        
+        bankCardLabel.text =  "\(bankName!)(\(bankNum))"
+        
+        drawCashCount.text = "￥\(model.cash/100)"
+        
+        drawCashTime.text = model.request_time
+        
+        stats = model.status
+    }
     @IBAction func finishBtnTapped(sender: AnyObject) {
         navigationController?.popToRootViewControllerAnimated(true)
     }
