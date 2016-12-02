@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserSocketAPI:BaseSocketAPI,UserAPI {
+class UserSocketAPI:BaseSocketAPI, UserAPI {
     
     
     func login(model: LoginModel, complete: CompleteBlock, error: ErrorBlock) {
@@ -119,4 +119,17 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
         let packet = SocketDataPacket(opcode: .DrawCashPassword, model: model)
         startModelRequest(packet, modelClass: DrawCashPasswordModel.classForCoder(), complete: complete, error: error)
     }
+    
+    //请求用户相册墙信息
+    func photoWallRequest(model: PhotoWallRequestModel, complete: CompleteBlock, error: ErrorBlock) {
+        let packet = SocketDataPacket(opcode: .PhotoWall, model: model)
+        startModelRequest(packet, modelClass: PhotoWallModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    //请求上传照片
+    func uploadPhoto2Wall(data: [String : AnyObject], complete: CompleteBlock, error: ErrorBlock) {
+        let packet = SocketDataPacket(opcode: .UploadPhoto2Wall, dict: data)
+        startRequest(packet, complete: complete, error: error)
+    }
+    
 }

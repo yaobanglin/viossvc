@@ -8,31 +8,55 @@
 
 import Foundation
 
-class PhotoWallViewController: BaseListTableViewController, OEZTableViewDelegate {
+class PhotoWallViewController: BasePageListTableViewController, OEZTableViewDelegate {
+    
+    var page = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.registerNib(PhotoWallCell.self)
+        
     }
     
-    override func didRequest() {
-        didRequestComplete(["","","","","","","","","",""]);
+    func rightItemTapped() {
+        
+        
     }
-//    
-//    //MARK: - TableView
+    
+    override func isSections() -> Bool {
+        return false
+    }
+    
+    override func didRequest(pageIndex: Int) {
+        let requestModel = PhotoWallRequestModel()
+        requestModel.uid = CurrentUserHelper.shared.userInfo.uid
+        requestModel.size = 10
+        requestModel.num = page
+        AppAPIHelper.userAPI().photoWallRequest(requestModel, complete: completeBlockFunc(), error: errorBlockFunc())
+    }
+    
+//    override func didRequest() {
+//        didRequest(1)
+//    }
+    
+    override func didRequestComplete(data: AnyObject?) {
+        let array = data as? Array<PhotoWallModel>
+        
+        if data != nil && array?.count > 0 {
+            dataSource = data as? Array<AnyObject>
+        }
+        super.didRequestComplete(data)
+    }
+
+    //MARK: - TableView
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 90
+        return 90.0*(UIScreen.mainScreen().bounds.height/667.0)
     }
-//
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return section == 0 ? 2 : 3
-//    }
-//    
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return 3
-//    }
-    
-    
+
+    //MARK: - PhotoWallDelegate
+    func refreshList() {   
+        didRequest()
+    }
     
 }
