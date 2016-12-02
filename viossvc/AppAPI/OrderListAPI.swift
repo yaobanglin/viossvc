@@ -16,5 +16,5 @@ protocol OrderListAPI {
     
     func getSkills(complete:CompleteBlock,error:ErrorBlock)
     
-    func getSKillsWithModel(detailModel:OrderDetailModel, dict:[Int : SkillsModel]) -> Array<SkillsModel>
+    func getSKillsWithModel(skillsString:String?, dict:[Int : SkillsModel]) -> Array<SkillsModel>
 }

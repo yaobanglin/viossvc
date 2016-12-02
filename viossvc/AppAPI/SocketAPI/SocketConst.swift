@@ -61,20 +61,24 @@ class SocketConst: NSObject {
         case SkillShareComment = 1075
         
         case SkillShareEnroll = 1077
-        
+        /**
+         订单列表
+         */
+        case OrderList = 1505
+
         //订单详情
         case OrderDetail = 1507
         
+        /**
+         操作技能标签
+         */
+        case HandleSkills = 1509
         case TourShareType = 1059
         
         case TourShareList = 1061
         
         case TourShareDetail = 1065
         
-        /**
-         订单列表
-         */
-        case OrderList = 1505
         /**
          修改订单状态
          */
@@ -99,5 +103,7 @@ class SocketConst: NSObject {
         static let to_uid = "to_uid_"
         static let order_id = "order_id_"
         static let order_status = "order_status_"
+        static let change_type = "change_type_"
+        static let skills = "skills_"
     }
 }

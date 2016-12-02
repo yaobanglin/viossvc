@@ -11,15 +11,17 @@ import UIKit
 /**
  *  layout 结束后回调高度 修改容器高度
  */
-protocol LayoutStopDelegate:NSObjectProtocol {
+@objc protocol LayoutStopDelegate:NSObjectProtocol {
     
-    func layoutStopWithHeight(height:CGFloat)
+    func layoutStopWithHeight(layoutView:SkillLayoutView,height:CGFloat)
+    
+    optional func selectedAtIndexPath(layoutView:SkillLayoutView, indexPath:NSIndexPath)
 }
 
 class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelegate, SkillWidthLayoutDelegate {
     
     var collectionView: UICollectionView?
-    
+    var showDelete = false
     
     var layout: SkillWidthLayout?
     
@@ -28,6 +30,13 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
     var dataSouce:Array<SkillsModel>? {
     
         didSet {
+            if dataSouce?.count == 0 {
+                let skillsModel = SkillsModel()
+                skillsModel.skill_name = "无"
+                skillsModel.labelWidth = 30
+                showDelete = false
+                dataSouce?.append(skillsModel)
+            }
             collectionView!.reloadData()
         }
     }
@@ -69,7 +78,7 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
      */
     func layoutStop() {
         if delegate != nil {
-            delegate?.layoutStopWithHeight(CGFloat((layout?.finalHeight)!))
+            delegate?.layoutStopWithHeight(self, height: CGFloat((layout?.finalHeight)!))
             collectionView!.frame = CGRectMake(0, 0,  UIScreen.mainScreen().bounds.size.width, CGFloat(layout!.finalHeight))
         }
     }
@@ -98,14 +107,26 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("singleCell", forIndexPath: indexPath) as! SingleSkillCell
         
         let skill = dataSouce![indexPath.row]
-        cell.setupTitle(skill.skill_name!)
+        cell.setupTitle(skill.skill_name!, labelWidth:skill.labelWidth,showDeleteButton: showDelete)
 
         return cell
-        
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return dataSouce == nil ? 0 : (dataSouce?.count)!
+    }
+    
+    /**
+     
+     
+     - parameter collectionView:
+     - parameter indexPath:
+     */
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        if delegate != nil {
+            delegate?.selectedAtIndexPath!(self, indexPath: indexPath)
+        }
     }
 
 }

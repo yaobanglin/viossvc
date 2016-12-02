@@ -69,12 +69,12 @@ class OrderListSocketAPI: BaseSocketAPI, OrderListAPI{
     /**
      *  获取预约订单对应的标签
      */
-    func getSKillsWithModel(detailModel:OrderDetailModel, dict:[Int : SkillsModel]) -> Array<SkillsModel> {
-        
-        if detailModel.skills!.hasSuffix(",") {
-            detailModel.skills?.removeAtIndex((detailModel.skills?.endIndex.predecessor())!)
+    func getSKillsWithModel(skillsString:String?, dict:[Int : SkillsModel]) -> Array<SkillsModel> {
+
+        guard skillsString != nil else {
+            return []
         }
-        let skillsIDArray:[String] = (detailModel.skills?.componentsSeparatedByString(","))!
+        let skillsIDArray:[String] = (skillsString!.componentsSeparatedByString(","))
         var array:[SkillsModel] = []
         
         for skillID in skillsIDArray {

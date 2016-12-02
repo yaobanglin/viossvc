@@ -45,5 +45,8 @@ protocol UserAPI {
     func drawCashRecord(model: DrawCashModel, complete: CompleteBlock, error: ErrorBlock)
     //V领队服务
     func serviceList(complete: CompleteBlock, error: ErrorBlock)
+    //操作技能标签
+    
+    func getOrModfyUserSkills(getOrModfy:Int,skills:String,complete: CompleteBlock, error: ErrorBlock)
     
 }

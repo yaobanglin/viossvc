@@ -43,6 +43,9 @@ class UserInfoModel: UserModel {
     var currentBankCardNumber:String?
     var currentBanckCardName:String?
     var has_passwd_: Int = -1 //-1:未设置提现密码 1:已设置提现密码
+    
+    var skills:String?
+    
 }
 
 class SMSVerifyModel: BaseModel {
