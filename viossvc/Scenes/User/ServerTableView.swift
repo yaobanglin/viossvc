@@ -21,7 +21,7 @@ class ServerTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         super.init(coder: aDecoder)
         delegate = self
         dataSource = self
-        registerClass(ServerCell.classForCoder(), forCellReuseIdentifier: ServerCell.className())
+        scrollEnabled = false
     }
     
     //MARK: --delegate and datasource
@@ -39,7 +39,9 @@ class ServerTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func time(minus: Int) -> String {
         let hour = minus / 60
         let leftMinus = minus % 60
-        return "\(hour):\(leftMinus)"
+        let hourStr = hour > 9 ? "\(hour)" : "0\(hour)"
+        let minusStr = leftMinus > 9 ? "\(minus)" : "0\(leftMinus)"
+        return "\(hourStr):\(minusStr)"
     }
     func updateData(data: AnyObject!, complete:CompleteBlock) {
         serverData = data as! [UserServerModel]

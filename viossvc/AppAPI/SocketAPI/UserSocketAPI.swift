@@ -21,6 +21,10 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
         startModelRequest(packet, modelClass: SMSVerifyRetModel.classForCoder(), complete: complete, error: error)
     }
     
+    func verifyCode(paramDic: Dictionary<String, AnyObject>, complete:CompleteBlock,error:ErrorBlock) {
+        startRequest(SocketDataPacket(opcode: .VerifyCode,dict: paramDic), complete: complete, error: error)
+    }
+    
     func register(model:RegisterModel,complete:CompleteBlock,error:ErrorBlock) {
         let packet = SocketDataPacket(opcode: .Register, model: model)
         startResultIntRequest(packet, complete: complete, error: error)
@@ -124,5 +128,11 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     func serviceList(complete: CompleteBlock, error: ErrorBlock) {
         let pack = SocketDataPacket(opcode: .ServiceList, dict: ["uid_": CurrentUserHelper.shared.userInfo.uid])
         startModelsRequest(pack, listName: "service_list_", modelClass: UserServerModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    //更新服务列表
+    func updateServiceList(model: UpdateServerModel, complete: CompleteBlock, error: ErrorBlock) {
+        let packet = SocketDataPacket(opcode: .ServiceList, model: model)
+        startModelRequest(packet, modelClass: UpdateServerModel.classForCoder(), complete: complete, error: error)
     }
 }
