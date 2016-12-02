@@ -42,12 +42,17 @@ class SocketConst: NSObject {
         case DefaultBankCard = 1099
         //添加新的银行卡
         case NewBankCard = 1095
+        //获取所有技能标签
+        case AllSkills = 1041
+        
         //获取身份认证进度
         case AuthStatus = 1057
         //上传身份认证信息
         case AuthUser = 1055
         //设置/修改支付密码
         case DrawCashPassword = 1089
+        //V领队服务
+        case ServiceList = 1502
         
         case SkillShareList = 1071
         
@@ -57,17 +62,31 @@ class SocketConst: NSObject {
         
         case SkillShareEnroll = 1077
         
+        //订单详情
+        case OrderDetail = 1507
+        
         case TourShareType = 1059
         
         case TourShareList = 1061
         
         case TourShareDetail = 1065
         
+        /**
+         订单列表
+         */
+        case OrderList = 1505
+        /**
+         修改订单状态
+         */
+        case ModfyOrderStatus = 2011
+        
+
+
+
         case ChatSendMessage = 2003
         case ChatReceiveMessage = 2004
         case ChatOfflineRequestMessage = 2005
         case ChatOfflineReceiveMessage = 2006
-        
     }
     enum type:UInt8 {
         case Error = 0
@@ -81,5 +100,9 @@ class SocketConst: NSObject {
         static let share_id = "share_id_"
         static let page_type = "page_type_"
         static let uid = "uid_"
+        static let from_uid = "from_uid_"
+        static let to_uid = "to_uid_"
+        static let order_id = "order_id_"
+        static let order_status = "order_status_"
     }
 }

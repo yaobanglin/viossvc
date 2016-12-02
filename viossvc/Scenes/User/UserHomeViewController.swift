@@ -22,10 +22,11 @@ class UserHomeViewController: BaseTableViewController {
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        initData()
+        
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        initData()
         initUI()
     }
     //MARK: --DATA
@@ -46,7 +47,7 @@ class UserHomeViewController: BaseTableViewController {
             let banksData = response as! NSArray
             for bank in banksData{
                 let model = bank as! BankCardModel
-                if model.is_default == 0{
+                if model.is_default == 1{
                     CurrentUserHelper.shared.userInfo.currentBankCardNumber = model.account
                     CurrentUserHelper.shared.userInfo.currentBanckCardName = String.bankCardName(model.account!)
                 }

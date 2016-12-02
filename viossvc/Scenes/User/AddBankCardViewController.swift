@@ -7,12 +7,11 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
     @IBOutlet weak var cardNumberTextfield: UITextField!
     @IBOutlet weak var nameTextfiled: UITextField!
     @IBOutlet weak var bankNameTextfield: UITextField!
-
     @IBOutlet weak var phoneNumberTextfield: UITextField!
     
     
@@ -20,13 +19,24 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
     
     @IBAction func bindBankCard(sender: AnyObject) {
         
-        
-        AppAPIHelper.userAPI().newBankCard(["uid_":CurrentUserHelper.shared.userInfo.uid,"account_": cardNumberTextfield.text!,"bank_username_":bankNameTextfield.text!,"bank_":1,"is_default_":0], complete: { (response) in
-            
-            
-        }) { (error) in
-            
+        if checkTextFieldEmpty([cardNumberTextfield,nameTextfiled,bankNameTextfield,phoneNumberTextfield]) {
+            SVProgressHUD.showProgressMessage(ProgressMessage: "绑定中...")
+            AppAPIHelper.userAPI().newBankCard([
+                "uid_":CurrentUserHelper.shared.userInfo.uid,
+                "account_": cardNumberTextfield.text!,
+                "bank_username_":bankNameTextfield.text!,
+                "bank_":1,
+                "is_default_":0
+                ], complete: { [weak self](response) in
+                    SVProgressHUD.showSuccessMessage(SuccessMessage: "绑定成功", ForDuration: 1, completion: { 
+                        self?.navigationController?.popViewControllerAnimated(true)
+                    })
+            }) { (error) in
+                SVProgressHUD.showErrorMessage(ErrorMessage: error.localizedDescription, ForDuration: 1, completion: nil)
+            }
         }
+        
+        
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {

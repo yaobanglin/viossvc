@@ -17,11 +17,11 @@ class SkillShareListModel:BaseModel{
     var banner_list:[SkillBannerModel]!
     var data_list:[SkillShareModel]!
     
-    class func banner_listModleClass() ->AnyClass {
+    class func banner_listModelClass() ->AnyClass {
         return SkillBannerModel.classForCoder()
     }
     
-    class func data_listModleClass() ->AnyClass {
+    class func data_listModelClass() ->AnyClass {
         return SkillShareModel.classForCoder()
     }
     

@@ -55,7 +55,7 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     func bankCards(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock){
         
         let pack = SocketDataPacket(opcode: .UserBankCards, dict: ["uid_": CurrentUserHelper.shared.userInfo.uid])
-        startModelsRequest(pack, listName: "bank_card_", modelClass: BankCardModel.classForCoder(), complete: complete, error: error)
+        startModelsRequest(pack, listName: "bank_card_list_", modelClass: BankCardModel.classForCoder(), complete: complete, error: error)
         
     }
     
@@ -84,8 +84,9 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
     }
     
     //设置用户默认的银行卡
-    func defaultBanKCard(bankCardId: Int, complete: CompleteBlock, error: ErrorBlock){
-        let dict:[String : AnyObject] = ["bankCardId":bankCardId]
+    func defaultBanKCard(account: String, complete: CompleteBlock, error: ErrorBlock){
+        let dict:[String : AnyObject] = ["uid_":CurrentUserHelper.shared.userInfo.uid,
+                                         "account_":account]
         let packet = SocketDataPacket(opcode: .DefaultBankCard, dict: dict)
         startRequest(packet, complete: complete, error: error)
     }
@@ -113,10 +114,15 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
         startRequest(packet, complete: complete, error: error)
     }
     
-    
     //设置/修改提现密码
     func drawcashPassword(model: DrawCashPasswordModel, complete: CompleteBlock, error: ErrorBlock){
         let packet = SocketDataPacket(opcode: .DrawCashPassword, model: model)
         startModelRequest(packet, modelClass: DrawCashPasswordModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    //V领队服务列表
+    func serviceList(complete: CompleteBlock, error: ErrorBlock) {
+        let pack = SocketDataPacket(opcode: .ServiceList, dict: ["uid_": CurrentUserHelper.shared.userInfo.uid])
+        startModelsRequest(pack, listName: "service_list_", modelClass: UserServerModel.classForCoder(), complete: complete, error: error)
     }
 }

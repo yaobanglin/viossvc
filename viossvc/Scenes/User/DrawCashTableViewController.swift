@@ -40,6 +40,19 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
             presentViewController(alertController, animated: true, completion: nil)
             return
         }
+        
+        //bankName
+        if CurrentUserHelper.shared.userInfo.currentBanckCardName != nil{
+            let bankNum = CurrentUserHelper.shared.userInfo.currentBankCardNumber! as NSString
+            let bankName = CurrentUserHelper.shared.userInfo.currentBanckCardName! as NSString
+            if bankNum == "" {
+                bankNameLabel.text = "银行卡格式错误"
+                return
+            }
+            bankNameLabel.text = bankName.substringToIndex(4) + "(\(bankNum.substringWithRange(NSRange.init(location: bankNum.length-4, length: 4))))"
+        }else{
+            bankNameLabel.text = "暂无默认银行卡"
+        }
     }
     //MARK: --View
     func initView() {
@@ -54,24 +67,13 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
         cashNumLabel.text = "\(Double(CurrentUserHelper.shared.userInfo.user_cash_) / 100)"
         //drawCashText
         drawCashText.becomeFirstResponder()
-        //bankName
-        if CurrentUserHelper.shared.userInfo.currentBanckCardName != nil{
-            let bankNum = CurrentUserHelper.shared.userInfo.currentBankCardNumber! as NSString
-            let bankName = CurrentUserHelper.shared.userInfo.currentBanckCardName! as NSString
-            bankNameLabel.text = bankName.substringToIndex(4) + "(\(bankNum.substringWithRange(NSRange.init(location: bankNum.length-4, length: 4))))"
-        }else{
-            bankNameLabel.text = "暂无默认银行卡"
-        }
         
     }
     
     func updateView(drawCash: String) {
         drawCashBtn.enabled = drawCash.characters.count != 0
         drawCashBtn.backgroundColor = drawCashBtn.enabled ? UIColor(RGBHex: 0x141f33) : UIColor(RGBHex: 0xaaaaaa)
-        drawCashLabel.text =  "\(drawCash)元"
     }
-    //MARK: --DATA
-    
     
     //MARK: --DrawCash
     @IBAction func drawCashBtnTapped(sender: UIButton) {
@@ -95,6 +97,10 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
             })
         }
     }
+    @IBAction func allDrawBtnTapped(sender: AnyObject) {
+        drawCashText.text = cashNumLabel.text
+        updateView(drawCashText.text!)
+    }
     //检查密码
     func checkPassword(password: String) {
         SVProgressHUD.showProgressMessage(ProgressMessage: "")
@@ -107,7 +113,7 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
         let model = DrawCashModel()
         model.uid = CurrentUserHelper.shared.userInfo.uid
         model.account = CurrentUserHelper.shared.userInfo.currentBankCardNumber
-        model.cash = Int(drawCashText.text!)! * 100
+        model.cash = Int(Double(drawCashText.text!)!) * 100
         AppAPIHelper.userAPI().drawCash(model, complete: { [weak self](result) in
             SVProgressHUD.dismiss()
             let controller: DrawCashDetailViewController = self?.storyboard?.instantiateViewControllerWithIdentifier("DrawCashDetailViewController") as! DrawCashDetailViewController
@@ -125,8 +131,8 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
             return false
         }
         
-        let userCash = CurrentUserHelper.shared.userInfo.user_cash_ / 100
-        if (resultText.characters.count != 0 && Int(resultText)! > userCash ){
+        let userCash = Double(CurrentUserHelper.shared.userInfo.user_cash_) / 100
+        if (resultText.characters.count != 0 && Double(resultText)! > userCash ){
             showErrorWithStatus("提现金额超限")
             return false
         }
