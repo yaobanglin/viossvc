@@ -103,7 +103,7 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
                  *  如果订单详情已经加载完成 获取预约订单所含技能标签信息
                  */
                 if weakSelf.detailModel != nil {
-                weakSelf.tagsView.dataSouce =  AppAPIHelper.orderAPI().getSKillsWithModel(weakSelf.detailModel!, dict:  weakSelf.skillDict)
+                weakSelf.tagsView.dataSouce =  AppAPIHelper.orderAPI().getSKillsWithModel(weakSelf.detailModel!, dict:  weakSelf.skillDict)                    
                 }
             }
             
@@ -154,15 +154,19 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
             serviceCommentInfoLabel.text = "\(detailModel.service_name!)"
             commentRemarksTextView.text = detailModel.evaluate__remarks
             
-            for index in 1...detailModel.service_score {
-                let button = commentView.viewWithTag(1000 + index) as? UIButton
-               button?.selected = true
-                
+            if detailModel.service_score != 0 {
+                for index in 1...detailModel.service_score {
+                    let button = commentView.viewWithTag(1000 + index) as? UIButton
+                    button?.selected = true
+                    
+                }
             }
 
-            for index in 1...detailModel.user_score {
-                let button = commentView.viewWithTag(2000 + index) as? UIButton
-                button?.selected = true
+            if detailModel.user_score != 0 {                
+                for index in 1...detailModel.user_score {
+                    let button = commentView.viewWithTag(2000 + index) as? UIButton
+                    button?.selected = true
+                }
             }
         }
         

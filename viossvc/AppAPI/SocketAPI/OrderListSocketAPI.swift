@@ -71,7 +71,7 @@ class OrderListSocketAPI: BaseSocketAPI, OrderListAPI{
      */
     func getSKillsWithModel(detailModel:OrderDetailModel, dict:[Int : SkillsModel]) -> Array<SkillsModel> {
         
-        if ((detailModel.skills?.hasSuffix(",")) != nil) {
+        if detailModel.skills!.hasSuffix(",") {
             detailModel.skills?.removeAtIndex((detailModel.skills?.endIndex.predecessor())!)
         }
         let skillsIDArray:[String] = (detailModel.skills?.componentsSeparatedByString(","))!

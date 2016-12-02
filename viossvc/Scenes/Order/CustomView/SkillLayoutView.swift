@@ -50,15 +50,6 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SkillLayoutView.layoutStop), name: "LayoutStop", object: nil)
     }
     
-    /**
-     layout结束回调。传出最终高度，修改collectionView高度
-     */
-    func layoutStop() {
-        if delegate != nil {
-            delegate?.layoutStopWithHeight(CGFloat((layout?.finalHeight)!))
-            collectionView!.frame = CGRectMake(0, 0,  UIScreen.mainScreen().bounds.size.width, CGFloat(layout!.finalHeight))
-        }
-    }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -71,7 +62,16 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
         collectionView!.registerClass(SingleSkillCell.classForCoder(), forCellWithReuseIdentifier: "singleCell")
         addSubview(collectionView!)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SkillLayoutView.layoutStop), name: "LayoutStop", object: nil)
-
+        
+    }
+    /**
+     layout结束回调。传出最终高度，修改collectionView高度
+     */
+    func layoutStop() {
+        if delegate != nil {
+            delegate?.layoutStopWithHeight(CGFloat((layout?.finalHeight)!))
+            collectionView!.frame = CGRectMake(0, 0,  UIScreen.mainScreen().bounds.size.width, CGFloat(layout!.finalHeight))
+        }
     }
     
 
