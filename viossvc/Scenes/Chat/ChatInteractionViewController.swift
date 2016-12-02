@@ -18,7 +18,7 @@ class ChatInteractionViewController: BaseCustomPageListTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        self.title = "张晓君"
         
     }
     
@@ -30,7 +30,18 @@ class ChatInteractionViewController: BaseCustomPageListTableViewController {
         modelMe.content = "adladlmclcmlamlacnancla"
         modelMe.from_uid = CurrentUserHelper.shared.uid
         
-     didRequestComplete([model,modelMe])
+        var array = [ChatModel]()
+        for i  in 0 ... 9 {
+            let model = ChatModel()
+            model.content = "按揭款打底裤" + "\(arc4random() % 10)"  + " 圣诞节疯狂" + "\(i)" + (i % 3 > 1 ? "andadnl 案例及大量的 到家了的" : "莱文斯基")
+            model.from_uid = arc4random() % 3 == 1 ? CurrentUserHelper.shared.uid : 123
+            array.append(model)
+            
+        }
+        
+        
+        
+     didRequestComplete(array)
         
     }
 
