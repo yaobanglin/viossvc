@@ -12,8 +12,11 @@ class SingleSkillCell: UICollectionViewCell {
     
     private lazy var deleteButton:UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.clearColor()
+        button.backgroundColor = UIColor.whiteColor()
         button.setTitle("-", forState: .Normal)
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
+        button.layer.borderWidth = 1
         button.layer.borderColor =  UIColor.init(red: 183/255.0, green: 39/255.0, blue: 43/255.0, alpha: 1).CGColor
         button.setTitleColor( UIColor.init(red: 183/255.0, green: 39/255.0, blue: 43/255.0, alpha: 1), forState: .Normal)
         return button
@@ -36,16 +39,26 @@ class SingleSkillCell: UICollectionViewCell {
    override  init(frame: CGRect) {
         super.init(frame: frame)
     contentView.backgroundColor = UIColor.whiteColor()
-    contentView.addSubview(deleteButton)
     contentView.addSubview(titleLabel)
+    contentView.addSubview(deleteButton)
     
-    titleLabel.frame = bounds
+    titleLabel.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
     }
 
     
     
-    func setupTitle(text:String) {
+    func setupTitle(text:String, labelWidth:CGFloat,showDeleteButton:Bool) {
         
+        if showDeleteButton == true {
+            
+            deleteButton.frame = CGRectMake(frame.size.width - 10, -5, 20, 20)
+            contentView.bringSubviewToFront(deleteButton)
+            
+            deleteButton.hidden = false
+        } else {
+            deleteButton.hidden = true
+        }
+        titleLabel.frame = CGRectMake(0, 0, labelWidth, frame.size.height)
         titleLabel.text = text
     }
     
@@ -70,6 +83,13 @@ class SingleSkillCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        if CGRectContainsPoint(deleteButton.frame, point) {
+            
+            return self
+        }
+        return super.hitTest(point, withEvent: event)
     }
     
     

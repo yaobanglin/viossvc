@@ -13,11 +13,17 @@ class CurrentUserHelper: NSObject {
     private let keychainItem:OEZKeychainItemWrapper = OEZKeychainItemWrapper(identifier: "com.yundian.viossvc.account", accessGroup:nil)
     private var _userInfo:UserInfoModel!
     private var _password:String!
+    
     var userInfo:UserInfoModel! {
         get {
             return _userInfo
         }
     }
+    
+     var uid : Int {
+        return _userInfo.uid
+    }
+    
     
     func userLogin(phone:String,password:String,complete:CompleteBlock,error:ErrorBlock) {
         

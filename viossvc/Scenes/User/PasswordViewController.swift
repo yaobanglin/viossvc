@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SVProgressHUD
 class PasswordViewController: BaseLoginViewController {
 
     var childViewControllerData:RegisterModel!
@@ -34,12 +34,11 @@ class PasswordViewController: BaseLoginViewController {
     func didRegisterComplete(resultInt:Int) {
         if registerModel.smsType == SMSVerifyModel.SMSType.Register
         && resultInt == 0 {
-            showErrorWithStatus(AppConst.Text.RegisterPhoneError)
-            let delta = 1.5 * Double(NSEC_PER_SEC)
-            let dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(delta))
-            dispatch_after(dtime, dispatch_get_main_queue(), { [weak self] in
+            
+            SVProgressHUD.showErrorMessage(ErrorMessage: AppConst.Text.RegisterPhoneError, ForDuration: 1.5, completion: { [weak self] in
                 self?.navigationController?.popViewControllerAnimated(true);
-                })
+                
+            })
         }
         else {
             userLogin(registerModel.phone_num,password: registerModel.passwd)

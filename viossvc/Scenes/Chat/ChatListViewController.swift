@@ -14,5 +14,12 @@ class ChatListViewController: BaseListTableViewController {
         didRequestComplete(["","","","","","","","","",""]);
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+                    let viewController:ChatInteractionViewController = storyboardViewController()
+                    viewController.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(viewController, animated: true);
+    }
+    
 
 }

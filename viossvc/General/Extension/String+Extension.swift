@@ -23,6 +23,13 @@ extension String {
         return attributedString.boundingRectWithSize(size, options: .UsesLineFragmentOrigin, context: nil)
     }
     
+    func boundingStringWithSize(size:CGSize,font:CGFloat) ->CGRect {
+        let string : NSString = self
+    
+        return  string.boundingRectWithSize(size, options: [.TruncatesLastVisibleLine , .UsesLineFragmentOrigin , .UsesFontLeading], attributes:[NSFontAttributeName:UIFont.systemFontOfSize(font)], context: nil)
+    }
+    
+    
     func attributedString(font:UIFont,lineSpacing:CGFloat) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: self)
         attributedString.addAttributes(String.stringAttributes(AppConst.SystemFont.S3,lineSpacing:5), range: NSMakeRange(0, attributedString.length))

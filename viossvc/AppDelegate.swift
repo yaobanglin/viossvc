@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
 //        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
         SVProgressHUD.setMinimumDismissTimeInterval(2)
-        
+        SocketRequestManage.shared.start()
         return true
     }
 

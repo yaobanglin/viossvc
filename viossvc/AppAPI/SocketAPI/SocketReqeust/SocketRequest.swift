@@ -15,7 +15,7 @@ class SocketRequest {
     static var errorDict:NSDictionary?;
     var error: ErrorBlock?
     var complete: CompleteBlock?
-    var timestamp: NSTimeInterval = 0
+    var timestamp: NSTimeInterval = NSDate().timeIntervalSince1970
     
     class func errorString(code:Int) ->String {
         if errorDict == nil {
@@ -39,7 +39,7 @@ class SocketRequest {
     
     
     func isReqeustTimeout() -> Bool {
-       return  timestamp + Double(AppConst.Network.TimeoutSec)  >= NSDate().timeIntervalSince1970
+       return  timestamp + Double(AppConst.Network.TimeoutSec)  <= NSDate().timeIntervalSince1970
     }
     
     
