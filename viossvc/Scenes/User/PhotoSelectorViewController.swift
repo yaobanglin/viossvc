@@ -82,7 +82,6 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
             options.version = PHImageRequestOptionsVersion.Current
             PHImageManager.defaultManager().requestImageForAsset(asset as! PHAsset, targetSize: CGSizeMake(width, width), contentMode: .AspectFill, options: options) {
                 (result, objects) -> Void in
-                NSLog("zz")
                 self.photosArray?.append(result!)
                 if i == assets.count - 1 {
                     self.collectionView?.reloadData()

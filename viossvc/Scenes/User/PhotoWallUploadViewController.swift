@@ -16,6 +16,10 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
     
     var seletedPhotosArray:[Int] = []
     
+    var uploaded:[Int: [String: String]] = [:]
+    
+    var doneIndex:[Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,27 +57,48 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
             let uid = CurrentUserHelper.shared.userInfo.uid
             weak var weakSelf = self
             for (index, img) in photosArray!.enumerate() {
-                let name = "thumb"
-                qiniuUploadImage(img, imagePath: "\(uid)/PhotoWall/", imageName: name, index: index, complete: { [weak self](response) in
-                    let imageUrl = response![1] as! String
-                    if imageUrl != "failed" {
-                        NSLog("===>upload2qiniu: %d", index)
-                        var list:[[String: String]] = []
-                        list.append(["thumbnail_url_": imageUrl])
-                        let dict:[String: AnyObject] = ["uid_": uid, "photo_list_": list]
-                        AppAPIHelper.userAPI().uploadPhoto2Wall(dict, complete: { (response) in
-                            NSLog("===>uploaded2server: \(index)")
-//                            if cnt == 8 {
-//                                weakSelf!.navigationController?.popViewControllerAnimated(true)
-//                            }
-                        }, error: { (error) in
-                            NSLog("\(error)")
+                let done = doneIndex.indexOf(index)
+                if done == nil {
+                    qiniuUploadImage(img, imagePath: "\(uid)/PhotoWall/", imageName: "photo", tags: ["index": index], complete: { [weak self] (response) in
+                        weakSelf!.upload2Server(response)
                         })
-                    }
-                })
+                }
                 
             }
             
+        }
+        
+    }
+    
+    func upload2Server(response: AnyObject?) {
+        if response != nil {
+            let uid = CurrentUserHelper.shared.userInfo.uid
+            let imageUrl = response![1] as! String
+            if imageUrl != "failed" {
+                let tags = response![0] as! [String: Int]
+                let index = tags["index"]!
+                uploaded[index] = ["thumbnail_url_": imageUrl + "?imageView2/2/w/80/h/80/interlace/0/q/100"]
+                uploaded[index]?.updateValue(imageUrl, forKey: "photo_url_")
+                doneIndex.append(index)
+                let dict:[String: AnyObject] = ["uid_": uid, "photo_list_": [uploaded[index] as! AnyObject]]
+                AppAPIHelper.userAPI().uploadPhoto2Wall(dict, complete: completeBlockFunc(), error: { (error) in
+                    NSLog("\(error)")
+                })
+            }
+        }
+        
+    }
+    
+    func completeBlockFunc()->CompleteBlock {
+        return { [weak self] (obj) in
+            self?.didRequestComplete(obj)
+        }
+    }
+    
+    func didRequestComplete(data:AnyObject?) {
+        collectionView?.reloadData()
+        if doneIndex.count == seletedPhotosArray.count {
+            navigationController?.popViewControllerAnimated(true)
         }
         
     }
@@ -108,12 +133,16 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCollectionCell" ,forIndexPath: indexPath) as? PhotoCollectionCell {
-            cell.type = .CanRemove
             cell.delegate = self
             if indexPath.row < photosArray!.count {
+                if let _ = doneIndex.indexOf(indexPath.row) {
+                    cell.type = .Selected
+                } else {
+                    cell.type = .CanRemove
+                }
                 cell.updateWithImage(photosArray![indexPath.row], indexPath: indexPath)
             } else {
-                cell.updateWithImage(UIImage.init(named: "balance")!, indexPath: indexPath)
+                cell.updateWithImage(UIImage.init(named: "tianjia")!, indexPath: indexPath)
                 cell.type = .Normal
             }
             cell.update()
@@ -139,10 +168,14 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
     //MARK: - PhotoCollectionCellDelegate
     func rightTopButtonAction(indexPath: NSIndexPath?) {
         if indexPath != nil {
-            seletedPhotosArray.removeAtIndex(indexPath!.row)
-            photosArray?.removeAtIndex(indexPath!.row)
-            collectionView?.reloadData()
-
+            if let cell = collectionView?.cellForItemAtIndexPath(indexPath!) as? PhotoCollectionCell {
+                if cell.type == .CanRemove {
+                    seletedPhotosArray.removeAtIndex(indexPath!.row)
+                    photosArray?.removeAtIndex(indexPath!.row)
+                    collectionView?.reloadData()
+                }
+            }
+            
         }
     }
     

@@ -125,7 +125,7 @@ extension UIViewController {
      - parameter imageName: 图片名
      - parameter complete:  图片完成Block
      */
-    func qiniuUploadImage(image: UIImage, imagePath: String, imageName:String, index:Int, complete:CompleteBlock) {
+    func qiniuUploadImage(image: UIImage, imagePath: String, imageName:String, tags:[String: AnyObject], complete:CompleteBlock) {
         let timestemp = NSDate().timeIntervalSince1970
         let timeStr = String.init(timestemp).stringByReplacingOccurrencesOfString(".", withString: "")
         //0,将图片存到沙盒中
@@ -137,14 +137,15 @@ extension UIViewController {
             let qiniuManager = QNUploadManager()
             qiniuManager.putFile(filePath, key: imagePath + imageName + "_\(timeStr)", token: token, complete: { (info, key, resp) in
                 if resp == nil{
-                    complete([index, "failed"])
+                    NSLog(info.debugDescription)
+                    complete([tags, "failed"])
                     return
                 }
                 //3,返回URL
                 let respDic: NSDictionary? = resp
                 let value:String? = respDic!.valueForKey("key") as? String
                 let imageUrl = AppConst.Network.qiniuHost+value!
-                complete([index, imageUrl])
+                complete([tags, imageUrl])
             }, option: nil)
         }, error: errorBlockFunc())
     }
