@@ -44,7 +44,10 @@ class TourShareViewController: BaseListTableViewController,OEZTableViewDelegate 
          let viewController:TourShareListViewController = storyboardViewController()
          viewController.setValue(model, forKey: "typeModel")
          self.navigationController?.pushViewController(viewController, animated: true);
-
+//            let viewController:ChatInteractionViewController = storyboardViewController()
+//            viewController.hidesBottomBarWhenPushed = true
+//            self.navigationController?.pushViewController(viewController, animated: true);
+        
         default:
             let model = self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as? TourShareModel
             let viewController:TourShareDetailViewController = storyboardViewController()
