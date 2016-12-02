@@ -11,14 +11,17 @@
 		2FB95D161DEFBC1300BBA506 /* PhotoWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */; };
 		2FB95D1A1DEFC00500BBA506 /* PhotoWallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */; };
 		2FB95D1C1DEFC0B500BBA506 /* PhotoWallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */; };
-		7CCEC0501DEECC81006F2BEE /* TourLeaderShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */; };
-		7CCEC0521DEF1C68006F2BEE /* TourLeaderShareScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */; };
+		2FB95D1E1DF0010500BBA506 /* PhotoWallUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */; };
+		2FB95D5C1DF01A2700BBA506 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */; };
+		2FB95D5E1DF02B0C00BBA506 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */; };
 		6E9857CE1DEE6C04002EFD88 /* OrderListSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857CD1DEE6C04002EFD88 /* OrderListSocketAPI.swift */; };
 		6E9857D41DEE6DCD002EFD88 /* OrderListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857D31DEE6DCD002EFD88 /* OrderListAPI.swift */; };
 		6E9857D61DEE70F8002EFD88 /* OrderListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857D51DEE70F8002EFD88 /* OrderListModel.swift */; };
 		6E9857E11DEEBD92002EFD88 /* HandleOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857DF1DEEBD92002EFD88 /* HandleOrderViewController.swift */; };
 		6E9857E21DEEBD92002EFD88 /* HandleOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9857E01DEEBD92002EFD88 /* HandleOrderViewController.xib */; };
 		6E9857E41DEEFAEE002EFD88 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857E31DEEFAEE002EFD88 /* OrderDetailViewController.swift */; };
+		7CCEC0501DEECC81006F2BEE /* TourLeaderShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */; };
+		7CCEC0521DEF1C68006F2BEE /* TourLeaderShareScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */; };
 		ACABD04A304D718D390DA81B /* SkillShareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABD04E9A7A54B8A6094E8F /* SkillShareAPI.swift */; };
 		ACABD1428B9E953E3868C06B /* BaseSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABD10D5E9578A46AACF156 /* BaseSocketAPI.swift */; };
 		ACABD384C1541C829A7047CA /* AppAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABDEB2F2E7F93BFC76AA0F /* AppAPIHelper.swift */; };
@@ -109,14 +112,17 @@
 		2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallViewController.swift; sourceTree = "<group>"; };
 		2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCell.swift; sourceTree = "<group>"; };
 		2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoWallCell.xib; sourceTree = "<group>"; };
-		7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourLeaderShareCell.swift; sourceTree = "<group>"; };
-		7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourLeaderShareScrollView.xib; sourceTree = "<group>"; };
+		2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallUploadViewController.swift; sourceTree = "<group>"; };
+		2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
+		2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		6E9857CD1DEE6C04002EFD88 /* OrderListSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListSocketAPI.swift; sourceTree = "<group>"; };
 		6E9857D31DEE6DCD002EFD88 /* OrderListAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListAPI.swift; sourceTree = "<group>"; };
 		6E9857D51DEE70F8002EFD88 /* OrderListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderListModel.swift; sourceTree = "<group>"; };
 		6E9857DF1DEEBD92002EFD88 /* HandleOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandleOrderViewController.swift; sourceTree = "<group>"; };
 		6E9857E01DEEBD92002EFD88 /* HandleOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HandleOrderViewController.xib; sourceTree = "<group>"; };
 		6E9857E31DEEFAEE002EFD88 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourLeaderShareCell.swift; sourceTree = "<group>"; };
+		7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourLeaderShareScrollView.xib; sourceTree = "<group>"; };
 		99F5EF6682B1172BAA8C79FC /* Pods-viossvc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.release.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.release.xcconfig"; sourceTree = "<group>"; };
 		ACABD04E9A7A54B8A6094E8F /* SkillShareAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillShareAPI.swift; sourceTree = "<group>"; };
 		ACABD10D5E9578A46AACF156 /* BaseSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSocketAPI.swift; sourceTree = "<group>"; };
@@ -632,6 +638,9 @@
 				2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */,
 				2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */,
 				2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */,
+				2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */,
+				2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */,
+				2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */,
 			);
 			name = MyServier;
 			sourceTree = "<group>";
@@ -807,6 +816,7 @@
 				B03B12321DE5BFDE00B00D2E /* TourShareDetailViewController.swift in Sources */,
 				B024A1831DE7DAC40095A691 /* SocketConst.swift in Sources */,
 				B086734F1DE5C62B008DD8A1 /* PasswordViewController.swift in Sources */,
+				2FB95D5E1DF02B0C00BBA506 /* PhotoSelectorViewController.swift in Sources */,
 				B03B122D1DE5BFDE00B00D2E /* SkillShareDetailViewController.swift in Sources */,
 				B03B124C1DE5BFDE00B00D2E /* UIViewController+Extension.swift in Sources */,
 				BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */,
@@ -826,6 +836,7 @@
 				B024A17A1DE7CDCC0095A691 /* SocketRequestManage.swift in Sources */,
 				B03B12481DE5BFDE00B00D2E /* TableViewHeaderView.swift in Sources */,
 				6E9857CE1DEE6C04002EFD88 /* OrderListSocketAPI.swift in Sources */,
+				2FB95D5C1DF01A2700BBA506 /* PhotoCollectionCell.swift in Sources */,
 				B08673501DE5C62B008DD8A1 /* RegisterViewController.swift in Sources */,
 				2FB95D161DEFBC1300BBA506 /* PhotoWallViewController.swift in Sources */,
 				B024A1761DE7CDCC0095A691 /* APISocketHelper.swift in Sources */,
@@ -840,6 +851,7 @@
 				ACABD384C1541C829A7047CA /* AppAPIHelper.swift in Sources */,
 				6E9857D41DEE6DCD002EFD88 /* OrderListAPI.swift in Sources */,
 				BF455B7E1DE84178007D97B0 /* CommenSocketAPI.swift in Sources */,
+				2FB95D1E1DF0010500BBA506 /* PhotoWallUploadViewController.swift in Sources */,
 				ACABD1428B9E953E3868C06B /* BaseSocketAPI.swift in Sources */,
 				6E9857E41DEEFAEE002EFD88 /* OrderDetailViewController.swift in Sources */,
 				ACABDD418C987E1EF6B392A3 /* UserSocketAPI.swift in Sources */,
