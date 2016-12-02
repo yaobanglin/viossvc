@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ *  layout 结束后回调高度 修改容器高度
+ */
 protocol LayoutStopDelegate:NSObjectProtocol {
     
     func layoutStopWithHeight(height:CGFloat)
@@ -17,7 +20,6 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
     
     var collectionView: UICollectionView?
     
-    var bb_height:Float = 0.0
     
     var layout: SkillWidthLayout?
     
@@ -48,11 +50,13 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SkillLayoutView.layoutStop), name: "LayoutStop", object: nil)
     }
     
+    /**
+     layout结束回调。传出最终高度，修改collectionView高度
+     */
     func layoutStop() {
         if delegate != nil {
             delegate?.layoutStopWithHeight(CGFloat((layout?.finalHeight)!))
             collectionView!.frame = CGRectMake(0, 0,  UIScreen.mainScreen().bounds.size.width, CGFloat(layout!.finalHeight))
-
         }
     }
     required init?(coder aDecoder: NSCoder) {
@@ -71,6 +75,14 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
     }
     
 
+    /**
+     SkillWidthLayoutDelegate
+     宽度自适应回调
+     - parameter layout:
+     - parameter atIndexPath: item所在的indexPath
+     
+     - returns: item 所占宽度
+     */
     func autoLayout(layout:SkillWidthLayout, atIndexPath:NSIndexPath)->Float {
         
         let skill = dataSouce![atIndexPath.row]
@@ -95,9 +107,5 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
         
         return dataSouce == nil ? 0 : (dataSouce?.count)!
     }
-    func setupCollectionViewHight() {
-        
-        bb_height = (layout?.finalHeight)!
-        collectionView!.frame = CGRectMake(0, 0,  UIScreen.mainScreen().bounds.size.width, CGFloat(layout!.finalHeight))
-    }
+
 }
