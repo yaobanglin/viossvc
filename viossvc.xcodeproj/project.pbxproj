@@ -108,6 +108,7 @@
 		BFE6E47C1DF0530700480435 /* AddServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E47B1DF0530600480435 /* AddServerController.swift */; };
 		BFE6E47E1DF0535D00480435 /* ServerSuccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E47D1DF0535D00480435 /* ServerSuccessController.swift */; };
 		BFE6E4811DF108B300480435 /* ServerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E4801DF108B300480435 /* ServerTableView.swift */; };
+		BFE6E4831DF1120D00480435 /* MarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E4821DF1120D00480435 /* MarksTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -216,6 +217,7 @@
 		BFE6E47B1DF0530600480435 /* AddServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddServerController.swift; sourceTree = "<group>"; };
 		BFE6E47D1DF0535D00480435 /* ServerSuccessController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSuccessController.swift; sourceTree = "<group>"; };
 		BFE6E4801DF108B300480435 /* ServerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTableView.swift; sourceTree = "<group>"; };
+		BFE6E4821DF1120D00480435 /* MarksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarksTableViewController.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -647,6 +649,7 @@
 				BFE6E4791DF052D800480435 /* ServerManagerViewController.swift */,
 				BFE6E47B1DF0530600480435 /* AddServerController.swift */,
 				BFE6E47D1DF0535D00480435 /* ServerSuccessController.swift */,
+				BFE6E4821DF1120D00480435 /* MarksTableViewController.swift */,
 			);
 			name = MyServier;
 			sourceTree = "<group>";
@@ -789,11 +792,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				BFE6E47C1DF0530700480435 /* AddServerController.swift in Sources */,
-
 				6E82E2651DF01EC70039BBA0 /* SkillLayoutView.swift in Sources */,
-
 				B024A1851DE7FBBF0095A691 /* String+Extension.swift in Sources */,
 				BF9B6BD01DEB1CD1009FFEB7 /* SelectedBankCardViewController.swift in Sources */,
 				B024A1811DE7D4190095A691 /* TourShareSocketAPI.swift in Sources */,
@@ -822,6 +822,7 @@
 				B08F95D81DE5E834001ACB2A /* TourShareModel.swift in Sources */,
 				B03B124B1DE5BFDE00B00D2E /* UITableView+Extension.swift in Sources */,
 				B03B12171DE5BFDE00B00D2E /* UserModel.swift in Sources */,
+				BFE6E4831DF1120D00480435 /* MarksTableViewController.swift in Sources */,
 				B08673511DE5C62B008DD8A1 /* UserHomeViewController.swift in Sources */,
 				B03B124D1DE5BFDE00B00D2E /* TableViewHelper.swift in Sources */,
 				B03B121F1DE5BFDE00B00D2E /* ChatListCell.swift in Sources */,
