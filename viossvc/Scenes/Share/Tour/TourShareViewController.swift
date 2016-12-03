@@ -58,30 +58,27 @@ class TourShareViewController: BaseListTableViewController,OEZTableViewDelegate 
     }
     
     
+    
 
     override func didRequest() {
         var array : [[AnyObject]] = [[],]
         
-
+        AppAPIHelper.tourShareAPI().type({ [weak self](obj) in
+            if obj != nil  {
+                array[0].append(obj as! [TourShareTypeModel])
+                self?.didRequestComplete(array)
+            }
+            }, error: errorBlockFunc())
         
         AppAPIHelper.tourShareAPI().list(0, count: AppConst.DefaultPageSize, type: 0, complete: {[weak self] (obj) in
                 if obj != nil  {
-                      array.append(obj! as! [TourShareModel])
+                      array.append(obj as! [TourShareModel])
                     self?.didRequestComplete(array)
                 }
             
             }, error: errorBlockFunc())
         
-        
-        AppAPIHelper.tourShareAPI().type({ [weak self](obj) in
-                if obj != nil  {
-                    array[0].append(obj! as! [TourShareTypeModel])
-                    self?.didRequestComplete(array)
-                }
-            }, error: errorBlockFunc())
-
-        
-}
+   }
     
     override func didRequestComplete(data: AnyObject?) {
   

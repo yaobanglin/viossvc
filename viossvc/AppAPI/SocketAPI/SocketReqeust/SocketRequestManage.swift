@@ -54,10 +54,9 @@ class SocketRequestManage: NSObject {
     func notifyResponsePacket(packet: SocketDataPacket) {
         if packet.operate_code == SocketConst.OPCode.ChatReceiveMessage.rawValue {
             let response:SocketJsonResponse = SocketJsonResponse(packet:packet)
-            let model:ChatModel? = response.responseJson()
-            if  model != nil {
-                receiveChatMsgBlock?(model)
-            }
+            dispatch_async(dispatch_get_main_queue(), {[weak self] in
+                self?.receiveChatMsgBlock?(response)
+            })
         }
         else {
             objc_sync_enter(self)
@@ -122,6 +121,15 @@ class SocketRequestManage: NSObject {
         return timeNow() - last
     }
     
+    private func isDispatchInterval(inout lastTime:NSTimeInterval,interval:NSTimeInterval) ->Bool {
+        if timeNow() - lastTime >= interval  {
+            lastTime = timeNow()
+            return true
+        }
+        return false
+    }
+    
+    
     private func sendHeart() {
         let packet = SocketDataPacket(opcode: .Heart,dict:[SocketConst.Key.uid: CurrentUserHelper.shared.userInfo.uid])
         sendRequest(packet)
@@ -129,14 +137,13 @@ class SocketRequestManage: NSObject {
     
     func didActionTimer() {
         if _socketHelper != nil && _socketHelper!.isConnected {
-            if  CurrentUserHelper.shared.isLogin &&  lastTimeNow(_lastHeardBeatTime) >= 10 {
+            if  CurrentUserHelper.shared.isLogin
+                &&  isDispatchInterval(&_lastHeardBeatTime!,interval: 10) {
                 sendHeart()
-                _lastHeardBeatTime = timeNow()
             }
             _lastConnectedTime = timeNow()
         }
-        else if( lastTimeNow(_lastConnectedTime) >= 10 ) {
-            _lastConnectedTime = timeNow()
+        else if( isDispatchInterval(&_lastConnectedTime!,interval: 10) ) {
             _socketHelper?.connect()
         }
         checkReqeustTimeout()
