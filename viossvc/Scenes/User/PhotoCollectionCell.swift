@@ -10,8 +10,9 @@ import Foundation
 
 enum PhotoCollectionCellType : Int {
     case Normal = 0
-    case Selected = 1
-    case CanRemove = 2
+    case UnSelect = 1
+    case Selected = 2
+    case CanRemove = 3
 }
 
 protocol PhotoCollectionCellDelegate: NSObjectProtocol {
@@ -50,11 +51,11 @@ class PhotoCollectionCell: UICollectionViewCell {
             typeBtn = UIButton()
             typeBtn?.tag = 1002
             typeBtn?.backgroundColor = UIColor.whiteColor()
-            typeBtn?.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
-            typeBtn?.layer.cornerRadius = 7
+            typeBtn?.titleLabel?.font = UIFont.boldSystemFontOfSize(15)
+            typeBtn?.layer.cornerRadius = 10
             typeBtn?.layer.masksToBounds = true
             let width = contentView.bounds.width
-            typeBtn?.frame = CGRectMake(width - 11, -3, 14, 14)
+            typeBtn?.frame = CGRectMake(width - 15, -5, 20, 20)
             typeBtn?.addTarget(self, action: #selector(rtBtnAction(_:)), forControlEvents: .TouchUpInside)
             contentView.addSubview(typeBtn!)
         }
@@ -92,6 +93,11 @@ class PhotoCollectionCell: UICollectionViewCell {
         switch type {
         case .Normal:
             typeBtn?.hidden = true
+        
+        case .UnSelect:
+            typeBtn?.hidden = false
+            typeBtn?.backgroundColor = UIColor.grayColor()
+            typeBtn?.setTitle("V", forState: .Normal)
             
         case .Selected:
             typeBtn?.hidden = false
