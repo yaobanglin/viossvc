@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */; };
+		2FB95D161DEFBC1300BBA506 /* PhotoWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */; };
+		2FB95D1A1DEFC00500BBA506 /* PhotoWallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */; };
+		2FB95D1C1DEFC0B500BBA506 /* PhotoWallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */; };
+		2FB95D1E1DF0010500BBA506 /* PhotoWallUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */; };
+		2FB95D5C1DF01A2700BBA506 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */; };
+		2FB95D5E1DF02B0C00BBA506 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */; };
 		6E82E2651DF01EC70039BBA0 /* SkillLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */; };
 		6E82E2661DF01EC70039BBA0 /* SingleSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */; };
 		6E82E2671DF01EC70039BBA0 /* SkillWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */; };
@@ -121,6 +127,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallViewController.swift; sourceTree = "<group>"; };
+		2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCell.swift; sourceTree = "<group>"; };
+		2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoWallCell.xib; sourceTree = "<group>"; };
+		2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallUploadViewController.swift; sourceTree = "<group>"; };
+		2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
+		2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillLayoutView.swift; sourceTree = "<group>"; };
 		6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSkillCell.swift; sourceTree = "<group>"; };
 		6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillWidthLayout.swift; sourceTree = "<group>"; };
@@ -262,6 +274,19 @@
 				C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2FB95D611DF1794100BBA506 /* PhotoWall */ = {
+			isa = PBXGroup;
+			children = (
+				2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */,
+				2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */,
+				2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */,
+				2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */,
+				2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */,
+				2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */,
+			);
+			name = PhotoWall;
 			sourceTree = "<group>";
 		};
 		568B61F3BC4BD4BB15E8999D /* Pods */ = {
@@ -670,6 +695,7 @@
 		BFACB2D41DEEA5B700AF0D34 /* MyServier */ = {
 			isa = PBXGroup;
 			children = (
+				2FB95D611DF1794100BBA506 /* PhotoWall */,
 				BFE6E47F1DF104A000480435 /* CustomView */,
 				BFE6E4751DF02E9100480435 /* MyServerViewController.swift */,
 				BFE6E4771DF0529D00480435 /* SMSServerViewController.swift */,
@@ -759,6 +785,7 @@
 				B03B12471DE5BFDE00B00D2E /* PageViewImageCell.xib in Resources */,
 				B03B12301DE5BFDE00B00D2E /* TourShareCell.xib in Resources */,
 				B03B12491DE5BFDE00B00D2E /* TableViewHeaderView.xib in Resources */,
+				2FB95D1C1DEFC0B500BBA506 /* PhotoWallCell.xib in Resources */,
 				B03B12191DE5BFDE00B00D2E /* Assets.xcassets in Resources */,
 				B03B12461DE5BFDE00B00D2E /* LoadMoreView.xib in Resources */,
 				B034EA131DF1894700D2C0CC /* TourLeaderShareScrollView.xib in Resources */,
@@ -864,6 +891,7 @@
 				B03B124D1DE5BFDE00B00D2E /* TableViewHelper.swift in Sources */,
 				B03B121F1DE5BFDE00B00D2E /* ChatListCell.swift in Sources */,
 				B03B122F1DE5BFDE00B00D2E /* TourShareCell.swift in Sources */,
+				2FB95D1A1DEFC00500BBA506 /* PhotoWallCell.swift in Sources */,
 				7C6759001DF14EA700560601 /* ChatWithAnotherSayCell.swift in Sources */,
 				B03B12261DE5BFDE00B00D2E /* MainTabBarController.swift in Sources */,
 				BF9B6BC11DE9620F009FFEB7 /* DrawCashTableViewController.swift in Sources */,
@@ -874,6 +902,7 @@
 				BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */,
 				B024A1831DE7DAC40095A691 /* SocketConst.swift in Sources */,
 				B086734F1DE5C62B008DD8A1 /* PasswordViewController.swift in Sources */,
+				2FB95D5E1DF02B0C00BBA506 /* PhotoSelectorViewController.swift in Sources */,
 				B03B122D1DE5BFDE00B00D2E /* SkillShareDetailViewController.swift in Sources */,
 				B03B124C1DE5BFDE00B00D2E /* UIViewController+Extension.swift in Sources */,
 				BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */,
@@ -895,7 +924,9 @@
 				BFE6E4811DF108B300480435 /* ServerTableView.swift in Sources */,
 				B03B12481DE5BFDE00B00D2E /* TableViewHeaderView.swift in Sources */,
 				6E9857CE1DEE6C04002EFD88 /* OrderListSocketAPI.swift in Sources */,
+				2FB95D5C1DF01A2700BBA506 /* PhotoCollectionCell.swift in Sources */,
 				B08673501DE5C62B008DD8A1 /* RegisterViewController.swift in Sources */,
+				2FB95D161DEFBC1300BBA506 /* PhotoWallViewController.swift in Sources */,
 				B024A1761DE7CDCC0095A691 /* APISocketHelper.swift in Sources */,
 				B03B12151DE5BFDE00B00D2E /* AppConst.swift in Sources */,
 				BFE6E47E1DF0535D00480435 /* ServerSuccessController.swift in Sources */,
@@ -912,6 +943,7 @@
 				ACABD384C1541C829A7047CA /* AppAPIHelper.swift in Sources */,
 				6E9857D41DEE6DCD002EFD88 /* OrderListAPI.swift in Sources */,
 				BF455B7E1DE84178007D97B0 /* CommenSocketAPI.swift in Sources */,
+				2FB95D1E1DF0010500BBA506 /* PhotoWallUploadViewController.swift in Sources */,
 				ACABD1428B9E953E3868C06B /* BaseSocketAPI.swift in Sources */,
 				6E9857E41DEEFAEE002EFD88 /* OrderDetailViewController.swift in Sources */,
 				ACABDD418C987E1EF6B392A3 /* UserSocketAPI.swift in Sources */,

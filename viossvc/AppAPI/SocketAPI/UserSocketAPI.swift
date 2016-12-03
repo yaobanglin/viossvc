@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserSocketAPI:BaseSocketAPI,UserAPI {
+class UserSocketAPI:BaseSocketAPI, UserAPI {
     
     
     func login(model: LoginModel, complete: CompleteBlock, error: ErrorBlock) {
@@ -128,12 +128,24 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
         startModelRequest(packet, modelClass: DrawCashPasswordModel.classForCoder(), complete: complete, error: error)
     }
     
+    //请求用户相册墙信息
+    func photoWallRequest(model: PhotoWallRequestModel, complete: CompleteBlock, error: ErrorBlock) {
+        let packet = SocketDataPacket(opcode: .PhotoWall, model: model)
+        startModelRequest(packet, modelClass: PhotoWallModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    //请求上传照片
+    func uploadPhoto2Wall(data: [String : AnyObject], complete: CompleteBlock, error: ErrorBlock) {
+        let packet = SocketDataPacket(opcode: .UploadPhoto2Wall, dict: data)
+        startRequest(packet, complete: complete, error: error)
+    }
+    
     //V领队服务列表
     func serviceList(complete: CompleteBlock, error: ErrorBlock) {
         let pack = SocketDataPacket(opcode: .ServiceList, dict: ["uid_": CurrentUserHelper.shared.userInfo.uid])
         startModelsRequest(pack, listName: "service_list_", modelClass: UserServerModel.classForCoder(), complete: complete, error: error)
     }
-    
+
     //更新服务列表
     func updateServiceList(model: UpdateServerModel, complete: CompleteBlock, error: ErrorBlock) {
         let packet = SocketDataPacket(opcode: .ServiceList, model: model)
@@ -155,4 +167,5 @@ class UserSocketAPI:BaseSocketAPI,UserAPI {
         let packet = SocketDataPacket(opcode: .HandleSkills, dict: dict)
         startRequest(packet, complete: complete, error: error)
     }
+
 }
