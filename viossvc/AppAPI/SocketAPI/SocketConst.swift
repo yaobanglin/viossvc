@@ -16,6 +16,8 @@ class SocketConst: NSObject {
         case Login = 1001
         //验证手机短信
         case SMSVerify = 1019
+        //验证手机验证码
+        case VerifyCode = 1101
         //注册
         case Register = 1021
         //重置密码
@@ -52,7 +54,9 @@ class SocketConst: NSObject {
         //设置/修改支付密码
         case DrawCashPassword = 1089
         //V领队服务
-        case ServiceList = 1502
+        case ServiceList = 1501
+        //更新V领队服务
+        case UpdateServiceList = 1503
         
         case SkillShareList = 1071
         
