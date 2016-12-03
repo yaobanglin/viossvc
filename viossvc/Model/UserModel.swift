@@ -128,6 +128,18 @@ class DrawCashPasswordModel: BaseModel {
     var change_type: Int = 0
 }
 
+class PhotoWallModel: BaseModel {
+    var photo_url: String?
+    var thumbnail_url: String?
+    var upload_time: String?
+}
+
+class PhotoWallRequestModel: BaseModel {
+    var uid: Int = 0
+    var size: Int = 0
+    var num: Int = 0
+}
+    
 class UserServerModel: BaseModel {
     var service_id: Int = 0
     var service_name: String?

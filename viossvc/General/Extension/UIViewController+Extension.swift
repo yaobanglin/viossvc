@@ -24,8 +24,12 @@ extension UIViewController {
     func errorBlockFunc()->ErrorBlock {
         return { [weak self] (error) in
             XCGLogger.error("\(error) \(self)");
-            self?.showErrorWithStatus(error.localizedDescription)
+            self?.didRequestError(error)
         }
+    }
+    
+    func didRequestError(error:NSError) {
+        self.showErrorWithStatus(error.localizedDescription)
     }
    
     func showErrorWithStatus(status: String!) {
@@ -102,8 +106,9 @@ extension UIViewController {
             let token = result?.valueForKey("img_token_") as! String
             //2,上传图片
             let qiniuManager = QNUploadManager()
-            let timestemp:Int = Int(NSDate().timeIntervalSince1970)
-            qiniuManager.putFile(filePath, key: imageName + "\(timestemp)", token: token, complete: { (info, key, resp) in
+            let timestemp = NSDate().timeIntervalSince1970
+            let timeStr = String.init(timestemp).stringByReplacingOccurrencesOfString(".", withString: "")
+            qiniuManager.putFile(filePath, key: imageName + "\(timeStr)", token: token, complete: { (info, key, resp) in
                 if resp == nil{
                     complete(nil)
                     return
@@ -116,6 +121,41 @@ extension UIViewController {
             }, option: nil)
         }, error: errorBlockFunc())
     }
+    
+    /**
+     七牛上传图片
+     
+     - parameter image:     图片
+     - parameter imagePath: 图片服务器路径
+     - parameter imageName: 图片名
+     - parameter tags: 图片标记
+     - parameter complete:  图片完成Block
+     */
+    func qiniuUploadImage(image: UIImage, imagePath: String, imageName:String, tags:[String: AnyObject], complete:CompleteBlock) {
+        let timestemp = NSDate().timeIntervalSince1970
+        let timeStr = String.init(timestemp).stringByReplacingOccurrencesOfString(".", withString: "")
+        //0,将图片存到沙盒中
+        let filePath = cacheImage(image, imageName: "/tmp_" + timeStr)
+        //1,请求token
+        AppAPIHelper.commenAPI().imageToken({ (result) in
+            let token = result?.valueForKey("img_token_") as! String
+            //2,上传图片
+            let qiniuManager = QNUploadManager()
+            qiniuManager.putFile(filePath, key: imagePath + imageName + "_\(timeStr)", token: token, complete: { (info, key, resp) in
+                if resp == nil{
+                    NSLog(info.debugDescription)
+                    complete([tags, "failed"])
+                    return
+                }
+                //3,返回URL
+                let respDic: NSDictionary? = resp
+                let value:String? = respDic!.valueForKey("key") as? String
+                let imageUrl = AppConst.Network.qiniuHost+value!
+                complete([tags, imageUrl])
+            }, option: nil)
+        }, error: errorBlockFunc())
+    }
+    
     /**
      缓存图片
      
