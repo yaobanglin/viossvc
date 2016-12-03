@@ -168,5 +168,10 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .HandleSkills, dict: dict)
         startRequest(packet, complete: complete, error: error)
     }
+    
+    func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock) {
+        let packet = SocketDataPacket(opcode: .UserInfo, dict: [SocketConst.Key.uid:uid])
+        startModelRequest(packet, modelClass: UserInfoModel.classForCoder(), complete: complete, error: error)
+    }
 
 }

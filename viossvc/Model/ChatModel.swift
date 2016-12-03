@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatModel: BaseModel {
+class ChatMsgModel: BaseModel {
 
     var from_uid : Int = 0
     var to_uid : Int = 0
@@ -21,11 +21,12 @@ class ChatModel: BaseModel {
 }
 
 class ChatSessionModel : BaseModel {
-    var id: String = ""
+    var id: Int = 0
     var type:Int = 0
     var title:String!
     var icon:String!
     var noReading:Int = 0
     var isTop:Bool = false
     var isNotDisturb:Bool = false
+    var lastChatMsg:ChatMsgModel!
 }

@@ -16,7 +16,7 @@ protocol ChatAPI {
      - parameter complete:  发送成功回调
      - parameter error:     发送失败回调
      */
-    func sendMsg(chatModel:ChatModel,complete:CompleteBlock,error:ErrorBlock)
+    func sendMsg(chatModel:ChatMsgModel,complete:CompleteBlock,error:ErrorBlock)
     
     /**
      获取离线消息列表

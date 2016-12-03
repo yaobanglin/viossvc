@@ -94,6 +94,7 @@ class SocketConst: NSObject {
 
 
         case LoginRet = 1002
+        case UserInfo = 1013
         case ChatSendMessage = 2003
         case ChatReceiveMessage = 2004
         case ChatOfflineRequestMessage = 2005
