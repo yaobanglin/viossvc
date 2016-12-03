@@ -82,7 +82,10 @@ class SocketConst: NSObject {
         case TourShareList = 1061
         
         case TourShareDetail = 1065
-        
+        //上传照片到照片墙
+        case UploadPhoto2Wall = 1107
+        //获取照片墙
+        case PhotoWall = 1109
         /**
          修改订单状态
          */

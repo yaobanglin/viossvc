@@ -1122,39 +1122,30 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iim-wf-kp3">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="125"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="tianjia" translatesAutoresizingMaskIntoConstraints="NO" id="Dsl-m7-29G">
+                                                            <rect key="frame" x="209" y="0.0" width="166" height="125"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="166" id="uXX-9P-70L"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="8"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
+                                                    </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tianjia" translatesAutoresizingMaskIntoConstraints="NO" id="Dsl-m7-29G">
-                                                    <rect key="frame" x="217" y="0.0" width="166" height="125"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="166" id="uXX-9P-70L"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="8"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="iim-wf-kp3" secondAttribute="trailing" id="BlC-aS-QkG"/>
                                                 <constraint firstItem="iim-wf-kp3" firstAttribute="top" secondItem="aVf-0V-fTV" secondAttribute="topMargin" constant="-8" id="Hc2-ml-RoD"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="iim-wf-kp3" secondAttribute="bottom" constant="-8" id="Lcx-H9-L8c"/>
-                                                <constraint firstItem="Dsl-m7-29G" firstAttribute="leading" secondItem="aVf-0V-fTV" secondAttribute="leading" constant="15" id="YuZ-3z-z7c"/>
-                                                <constraint firstAttribute="trailing" secondItem="Dsl-m7-29G" secondAttribute="trailing" constant="15" id="efh-lF-eZU"/>
-                                                <constraint firstItem="Dsl-m7-29G" firstAttribute="top" secondItem="aVf-0V-fTV" secondAttribute="top" id="f7B-Ae-mdL"/>
                                                 <constraint firstItem="iim-wf-kp3" firstAttribute="leading" secondItem="aVf-0V-fTV" secondAttribute="leadingMargin" id="mfd-oI-KbB"/>
-                                                <constraint firstItem="Dsl-m7-29G" firstAttribute="centerX" secondItem="aVf-0V-fTV" secondAttribute="centerX" id="wbO-lU-jzU"/>
-                                                <constraint firstAttribute="bottom" secondItem="Dsl-m7-29G" secondAttribute="bottom" id="zvV-rC-00Y"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="YuZ-3z-z7c"/>
-                                                    <exclude reference="efh-lF-eZU"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -5494,12 +5485,12 @@
             <objects>
                 <tableViewController id="YSb-3o-SKv" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="P94-MM-3hi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bZT-3j-4At">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bZT-3j-4At" id="CDb-E9-E27">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -5516,12 +5507,87 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLJ-LJ-84w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3952" y="4915"/>
+            <point key="canvasLocation" x="4782" y="5023"/>
+        </scene>
+        <!--照片选择-->
+        <scene sceneID="Pqh-89-zyY">
+            <objects>
+                <collectionViewController storyboardIdentifier="PhotoSelectorViewController" title="照片选择" id="ta2-Zt-5pg" customClass="PhotoSelectorViewController" customModule="viossvc" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lIc-GG-EYa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eQn-ZW-2YN">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ft3-cL-ygA">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ta2-Zt-5pg" id="PE1-R7-gkk"/>
+                            <outlet property="delegate" destination="ta2-Zt-5pg" id="lK9-Xo-782"/>
+                        </connections>
+                    </collectionView>
+                    <connections>
+                        <outlet property="layout" destination="eQn-ZW-2YN" id="jbN-Oc-ZOK"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TNt-1M-q0m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4618" y="5731"/>
+        </scene>
+        <!--照片上传-->
+        <scene sceneID="mIy-QR-xmm">
+            <objects>
+                <collectionViewController title="照片上传" id="Eci-Eq-1Yc" customClass="PhotoWallUploadViewController" customModule="viossvc" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="UMm-eH-1d5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mhU-PB-yRC">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="TdT-X5-Yh2">
+                                <rect key="frame" x="20" y="84" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Eci-Eq-1Yc" id="JRU-WK-Y41"/>
+                            <outlet property="delegate" destination="Eci-Eq-1Yc" id="9Nz-Qe-EBb"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="zFo-1V-dK8"/>
+                    <connections>
+                        <outlet property="layout" destination="mhU-PB-yRC" id="EeF-yQ-re4"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZYj-T7-yd4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3966" y="5309"/>
         </scene>
         <!--我的相册-->
         <scene sceneID="7IV-fP-mpi">
             <objects>
-                <tableViewController title="我的相册" id="TY5-Ef-Wu0" sceneMemberID="viewController">
+                <tableViewController title="我的相册" id="TY5-Ef-Wu0" customClass="PhotoWallViewController" customModule="viossvc" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="AmC-vd-Aka">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5544,14 +5610,14 @@
                     <navigationItem key="navigationItem" title="我的相册" id="Sxz-WK-ms9">
                         <barButtonItem key="rightBarButtonItem" title="上传" id="QSA-N5-mj9">
                             <connections>
-                                <segue destination="YSb-3o-SKv" kind="push" id="fpZ-JY-Y7a"/>
+                                <segue destination="Eci-Eq-1Yc" kind="push" id="uGS-kh-qV9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nNB-MK-Lh2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3223" y="4915"/>
+            <point key="canvasLocation" x="3269" y="4857"/>
         </scene>
         <!--服务管理-->
         <scene sceneID="eu9-8g-veT">
