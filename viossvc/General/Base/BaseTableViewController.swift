@@ -80,10 +80,14 @@ class BaseRefreshTableViewController :BaseTableViewController {
     }
 
    internal func didRequestComplete(data:AnyObject?) {
-        endRefreshing();
-        self.tableView.reloadData();
+        endRefreshing()
+        self.tableView.reloadData()
     }
     
+    override func didRequestError(error:NSError) {
+        self.endRefreshing()
+        super.didRequestError(error)
+    }
     
     deinit {
         performSelectorRemoveRefreshControl();
@@ -141,6 +145,14 @@ class BasePageListTableViewController :BaseListTableViewController {
         tableViewHelper.didRequestComplete(&self.dataSource,
                                            pageDatas: data as? Array<AnyObject>, controller: self);
         super.didRequestComplete(self.dataSource);
+    }
+    
+    override func didRequestError(error:NSError) {
+        if (!(self.pageIndex == 1) ) {
+            self.endLoadMore()
+        }
+        self.setIsLoadData(true)
+        super.didRequestError(error)
     }
     
     deinit {
