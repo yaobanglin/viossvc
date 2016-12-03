@@ -118,6 +118,7 @@
 		BFE6E47E1DF0535D00480435 /* ServerSuccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E47D1DF0535D00480435 /* ServerSuccessController.swift */; };
 		BFE6E4811DF108B300480435 /* ServerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E4801DF108B300480435 /* ServerTableView.swift */; };
 		BFE6E4831DF1120D00480435 /* MarksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E4821DF1120D00480435 /* MarksTableViewController.swift */; };
+		BFE6E4851DF24B0A00480435 /* UserPictureCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E4841DF24B0A00480435 /* UserPictureCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -236,6 +237,7 @@
 		BFE6E47D1DF0535D00480435 /* ServerSuccessController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSuccessController.swift; sourceTree = "<group>"; };
 		BFE6E4801DF108B300480435 /* ServerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTableView.swift; sourceTree = "<group>"; };
 		BFE6E4821DF1120D00480435 /* MarksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarksTableViewController.swift; sourceTree = "<group>"; };
+		BFE6E4841DF24B0A00480435 /* UserPictureCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPictureCollectionView.swift; sourceTree = "<group>"; };
 		C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_viossvc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA697AD910E53A31887D971A /* Pods-viossvc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -685,6 +687,7 @@
 			isa = PBXGroup;
 			children = (
 				BFE6E4801DF108B300480435 /* ServerTableView.swift */,
+				BFE6E4841DF24B0A00480435 /* UserPictureCollectionView.swift */,
 			);
 			name = CustomView;
 			sourceTree = "<group>";
@@ -910,6 +913,7 @@
 				B03B122B1DE5BFDE00B00D2E /* SkillShareDetailCell.swift in Sources */,
 				B03B122A1DE5BFDE00B00D2E /* SkillShareChatCell.swift in Sources */,
 				ACABD384C1541C829A7047CA /* AppAPIHelper.swift in Sources */,
+				BFE6E4851DF24B0A00480435 /* UserPictureCollectionView.swift in Sources */,
 				6E9857D41DEE6DCD002EFD88 /* OrderListAPI.swift in Sources */,
 				BF455B7E1DE84178007D97B0 /* CommenSocketAPI.swift in Sources */,
 				ACABD1428B9E953E3868C06B /* BaseSocketAPI.swift in Sources */,
