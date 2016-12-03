@@ -13,10 +13,17 @@ typealias ErrorBlock = (NSError) ->()
 
 
 protocol UserAPI {
+    //登录
     func login(model:LoginModel,complete:CompleteBlock,error:ErrorBlock)
+    //获取短信验证码
     func smsVerify(type:SMSVerifyModel.SMSType,phone:String,complete:CompleteBlock,error:ErrorBlock)
+    //验证短信验证码
+    func verifyCode(paramDic: Dictionary<String, AnyObject>, complete:CompleteBlock,error:ErrorBlock)
+    //注册
     func register(model:RegisterModel,complete:CompleteBlock,error:ErrorBlock)
+    //修改登录密码
     func nodifyPasswrod(uid:Int,oldPassword:String,newPasword:String,complete:CompleteBlock,error:ErrorBlock)
+    func logout(uid:Int)
     //获取用户余额
     func userCash(uid:Int, complete:CompleteBlock, error:ErrorBlock)
     //认证用户头像
@@ -25,7 +32,7 @@ protocol UserAPI {
     func notifyUsrInfo(model: NotifyUserInfoModel, complete: CompleteBlock, error: ErrorBlock)
     //获取用户的银行卡信息
     func bankCards(model: BankCardModel, complete: CompleteBlock, error: ErrorBlock)
-    //校验提现密码
+    //校验提现密码//登录密码
     func checkDrawCashPassword(uid: Int, password: String, type: Int, complete: CompleteBlock,error: ErrorBlock)
     //提现
     func drawCash(model: DrawCashModel, complete: CompleteBlock, error: ErrorBlock)
@@ -49,5 +56,9 @@ protocol UserAPI {
     func uploadPhoto2Wall(data: [String: AnyObject], complete: CompleteBlock, error: ErrorBlock)
     //V领队服务
     func serviceList(complete: CompleteBlock, error: ErrorBlock)
+    //更新V领队服务
+    func updateServiceList(model: UpdateServerModel, complete: CompleteBlock, error: ErrorBlock)
+    //操作技能标签
+    func getOrModfyUserSkills(getOrModfy:Int,skills:String,complete: CompleteBlock, error: ErrorBlock)
     
 }

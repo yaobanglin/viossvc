@@ -15,10 +15,18 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .Login, model: model)
         startModelRequest(packet,modelClass:UserInfoModel.classForCoder(), complete: complete, error: error);
     }
+    
+    func logout(uid:Int) {
+        
+    }
 
     func smsVerify(type:SMSVerifyModel.SMSType,phone:String,complete:CompleteBlock,error:ErrorBlock) {
         let packet = SocketDataPacket(opcode: .SMSVerify, model: SMSVerifyModel(phone:phone,type:type))
         startModelRequest(packet, modelClass: SMSVerifyRetModel.classForCoder(), complete: complete, error: error)
+    }
+    
+    func verifyCode(paramDic: Dictionary<String, AnyObject>, complete:CompleteBlock,error:ErrorBlock) {
+        startRequest(SocketDataPacket(opcode: .VerifyCode,dict: paramDic), complete: complete, error: error)
     }
     
     func register(model:RegisterModel,complete:CompleteBlock,error:ErrorBlock) {
@@ -136,6 +144,28 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
     func serviceList(complete: CompleteBlock, error: ErrorBlock) {
         let pack = SocketDataPacket(opcode: .ServiceList, dict: ["uid_": CurrentUserHelper.shared.userInfo.uid])
         startModelsRequest(pack, listName: "service_list_", modelClass: UserServerModel.classForCoder(), complete: complete, error: error)
+    }
+
+    //更新服务列表
+    func updateServiceList(model: UpdateServerModel, complete: CompleteBlock, error: ErrorBlock) {
+        let packet = SocketDataPacket(opcode: .ServiceList, model: model)
+        startModelRequest(packet, modelClass: UpdateServerModel.classForCoder(), complete: complete, error: error)
+    }
+    /**
+     操作技能标签
+     
+     - parameter getOrModfy: 0 获取用户技能 1 修改
+     - parameter skills:     技能标签id 集合
+     - parameter complete:   完成回调
+     - parameter error:      失败错误
+     */
+    func getOrModfyUserSkills(getOrModfy:Int,skills:String,complete: CompleteBlock, error: ErrorBlock) {
+        
+        let dict:[String : AnyObject] = [SocketConst.Key.change_type : getOrModfy,
+                                         SocketConst.Key.skills : skills,
+                                         SocketConst.Key.uid : CurrentUserHelper.shared.userInfo.uid]
+        let packet = SocketDataPacket(opcode: .HandleSkills, dict: dict)
+        startRequest(packet, complete: complete, error: error)
     }
 
 }
