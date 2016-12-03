@@ -10,11 +10,6 @@ import Foundation
 
 class PhotoWallCell: OEZTableViewCell, OEZCalculateProtocol {
     
-//    @IBOutlet weak var rightPhoto: UIImageView!
-//    @IBOutlet weak var centerPhoto: UIImageView!
-//    @IBOutlet weak var leftPhoto: UIImageView!
-//    @IBOutlet weak var timeLine: UIImageView!
-    
     var rightPhoto: UIImageView?
     var centerPhoto: UIImageView?
     var leftPhoto: UIImageView?
@@ -23,6 +18,7 @@ class PhotoWallCell: OEZTableViewCell, OEZCalculateProtocol {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        selectionStyle = .None
         backgroundColor = UIColor.clearColor()
         contentView.backgroundColor = UIColor.clearColor()
         
