@@ -124,7 +124,13 @@ class SkillLayoutView: UIView, UICollectionViewDataSource,UICollectionViewDelega
      */
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        if delegate != nil {
+
+        guard delegate != nil else {return}
+        /**
+         * 判断delegate 是否实现了 点击回调 如果实现了 则调用 selectedAtIndexPath
+         *
+         */
+        if delegate!.respondsToSelector(#selector(delegate?.selectedAtIndexPath(_:indexPath:))) {
             delegate?.selectedAtIndexPath!(self, indexPath: indexPath)
         }
     }

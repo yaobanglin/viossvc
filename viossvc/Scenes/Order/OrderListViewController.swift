@@ -28,9 +28,10 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
         }
         AppAPIHelper.orderAPI().list(last_id, count: 3, complete:  completeBlockFunc(), error: errorBlockFunc())
     }
-    override func didRequest() {
-        didRequest(1)
-    }
+    
+//    override func didRequest() {
+//        didRequest(1)
+//    }
     override func didRequestComplete(data: AnyObject?) {
         let array = data as? Array<OrderListModel>
         
