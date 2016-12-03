@@ -96,11 +96,9 @@ class SkillWidthLayout: UICollectionViewFlowLayout {
      这里只需layout一次
      */
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
-
-
-
-        return true
-
+        
+        return !isLayouted
+        
     }
     
     /**
@@ -130,7 +128,6 @@ class SkillWidthLayout: UICollectionViewFlowLayout {
        // storyBoard宽度 在layout的时候是在storyboard文件上的宽度，所以这里用屏幕宽度
 //        let maxWidth = collectionView?.frame.size.width
         let maxWidth = UIScreen.mainScreen().bounds.width
-        
         
         let itemW = delegate!.autoLayout(self, atIndexPath:indexPath)
         
