@@ -50,6 +50,10 @@ protocol UserAPI {
     func drawcashPassword(model: DrawCashPasswordModel, complete: CompleteBlock, error: ErrorBlock)
     //提现记录
     func drawCashRecord(model: DrawCashModel, complete: CompleteBlock, error: ErrorBlock)
+    //请求照片墙
+    func photoWallRequest(model: PhotoWallRequestModel, complete: CompleteBlock, error: ErrorBlock)
+    //请求上传照片
+    func uploadPhoto2Wall(data: [String: AnyObject], complete: CompleteBlock, error: ErrorBlock)
     //V领队服务
     func serviceList(complete: CompleteBlock, error: ErrorBlock)
     //更新V领队服务

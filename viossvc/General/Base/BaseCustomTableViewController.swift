@@ -110,6 +110,11 @@ class BaseCustomRefreshTableViewController :BaseCustomTableViewController {
         }
     }
     
+    override func didRequestError(error:NSError) {
+        self.endRefreshing()
+        super.didRequestError(error)
+    }
+    
     deinit {
         performSelectorRemoveRefreshControl();
     }
@@ -169,6 +174,15 @@ class BaseCustomPageListTableViewController :BaseCustomListTableViewController {
                                            pageDatas: data as? Array<AnyObject>, controller: self);
         super.didRequestComplete(self.dataSource);
     }
+    
+    override func didRequestError(error:NSError) {
+        if (!(self.pageIndex == 1) ) {
+            self.errorLoadMore()
+        }
+        self.setIsLoadData(true)
+        super.didRequestError(error)
+    }
+    
     deinit {
         removeLoadMore();
     }
