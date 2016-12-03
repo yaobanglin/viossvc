@@ -24,8 +24,6 @@
 		6E9857E21DEEBD92002EFD88 /* HandleOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9857E01DEEBD92002EFD88 /* HandleOrderViewController.xib */; };
 		6E9857E41DEEFAEE002EFD88 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857E31DEEFAEE002EFD88 /* OrderDetailViewController.swift */; };
 		7C7DF0841DF0048100C77978 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7DF0831DF0048100C77978 /* ChatModel.swift */; };
-		7CCEC0501DEECC81006F2BEE /* TourLeaderShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */; };
-		7CCEC0521DEF1C68006F2BEE /* TourLeaderShareScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */; };
 		ACABD04A304D718D390DA81B /* SkillShareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABD04E9A7A54B8A6094E8F /* SkillShareAPI.swift */; };
 		ACABD1428B9E953E3868C06B /* BaseSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABD10D5E9578A46AACF156 /* BaseSocketAPI.swift */; };
 		ACABD384C1541C829A7047CA /* AppAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABDEB2F2E7F93BFC76AA0F /* AppAPIHelper.swift */; };
@@ -127,7 +125,6 @@
 		2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallUploadViewController.swift; sourceTree = "<group>"; };
 		2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
-
 		6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillLayoutView.swift; sourceTree = "<group>"; };
 		6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSkillCell.swift; sourceTree = "<group>"; };
 		6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillWidthLayout.swift; sourceTree = "<group>"; };
@@ -138,8 +135,6 @@
 		6E9857E01DEEBD92002EFD88 /* HandleOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HandleOrderViewController.xib; sourceTree = "<group>"; };
 		6E9857E31DEEFAEE002EFD88 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		7C7DF0831DF0048100C77978 /* ChatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
-		7CCEC04F1DEECC81006F2BEE /* TourLeaderShareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourLeaderShareCell.swift; sourceTree = "<group>"; };
-		7CCEC0511DEF1C68006F2BEE /* TourLeaderShareScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourLeaderShareScrollView.xib; sourceTree = "<group>"; };
 		99F5EF6682B1172BAA8C79FC /* Pods-viossvc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.release.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.release.xcconfig"; sourceTree = "<group>"; };
 		ACABD04E9A7A54B8A6094E8F /* SkillShareAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillShareAPI.swift; sourceTree = "<group>"; };
 		ACABD10D5E9578A46AACF156 /* BaseSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSocketAPI.swift; sourceTree = "<group>"; };
@@ -263,6 +258,19 @@
 				C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2FB95D611DF1794100BBA506 /* PhotoWall */ = {
+			isa = PBXGroup;
+			children = (
+				2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */,
+				2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */,
+				2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */,
+				2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */,
+				2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */,
+				2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */,
+			);
+			name = PhotoWall;
 			sourceTree = "<group>";
 		};
 		568B61F3BC4BD4BB15E8999D /* Pods */ = {
@@ -663,12 +671,7 @@
 		BFACB2D41DEEA5B700AF0D34 /* MyServier */ = {
 			isa = PBXGroup;
 			children = (
-				2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */,
-				2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */,
-				2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */,
-				2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */,
-				2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */,
-				2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */,
+				2FB95D611DF1794100BBA506 /* PhotoWall */,
 				BFE6E47F1DF104A000480435 /* CustomView */,
 				BFE6E4751DF02E9100480435 /* MyServerViewController.swift */,
 				BFE6E4771DF0529D00480435 /* SMSServerViewController.swift */,
