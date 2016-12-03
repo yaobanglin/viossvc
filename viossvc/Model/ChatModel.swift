@@ -14,6 +14,18 @@ class ChatModel: BaseModel {
     var to_uid : Int = 0
     var msg_time : Int = 0
     var content :String!
+    var type:Int = 0
+    var isReading : Bool = true
     
     
+}
+
+class ChatSessionModel : BaseModel {
+    var id: String = ""
+    var type:Int = 0
+    var title:String!
+    var icon:String!
+    var noReading:Int = 0
+    var isTop:Bool = false
+    var isNotDisturb:Bool = false
 }
