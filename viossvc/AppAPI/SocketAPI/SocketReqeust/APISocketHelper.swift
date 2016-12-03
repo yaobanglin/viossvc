@@ -11,16 +11,18 @@ import CocoaAsyncSocket
 import XCGLogger
 import SVProgressHUD
 class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
-//    static let shared = APISocketHelper();
     var socket: GCDAsyncSocket?;
     var dispatch_queue: dispatch_queue_t!;
     var mutableData: NSMutableData = NSMutableData();
 
+    var isConnected : Bool {
+        return socket!.isConnected
+    }
     override init() {
         super.init()
         dispatch_queue = dispatch_queue_create("APISocket_Queue", DISPATCH_QUEUE_CONCURRENT)
         socket = GCDAsyncSocket.init(delegate: self, delegateQueue: dispatch_queue);
-        connect()
+//        connect()
     }
 
     func connect() {
@@ -37,9 +39,10 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
 
         }
     }
-
-    func isConnected() -> Bool {
-        return socket!.isConnected
+    
+    func disconnect() {
+        socket?.delegate = nil;
+        socket?.disconnect()
     }
     
     func sendData(data: NSData) {
@@ -94,6 +97,7 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
     }
 
     @objc func socketDidDisconnect(sock: GCDAsyncSocket, withError err: NSError?) {
+        XCGLogger.error("socketDidDisconnect:\(err)")
 //        self.performSelector(#selector(APISocketHelper.connect), withObject: nil, afterDelay: 5)
 //        SVProgressHUD.showErrorMessage(ErrorMessage: "连接失败，5秒后重连", ForDuration: 5) {[weak self] in
 //            self?.connect()
