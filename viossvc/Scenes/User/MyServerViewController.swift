@@ -17,10 +17,12 @@ class MyServerViewController: BaseTableViewController {
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var serverTabel: ServerTableView!
     @IBOutlet weak var serverTabelCell: UITableViewCell!
+    @IBOutlet weak var pictureCollection: UserPictureCollectionView!
     var markHeight: CGFloat = 100
     var serverHeight: CGFloat = 100
     var pictureHeight: CGFloat = 100
     var serverData: [UserServerModel] = []
+    
     
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
@@ -44,6 +46,11 @@ class MyServerViewController: BaseTableViewController {
                 self?.tableView.reloadData()
             })
         }, error: errorBlockFunc())
+        //我的相册
+        pictureCollection.updateMyPicture(["","","","","","","",""]) {[weak self] (height) in
+            self?.pictureHeight = height as! CGFloat
+            self?.tableView.reloadData()
+        }
     }
     //MARK: --UI
     func initUI() {
