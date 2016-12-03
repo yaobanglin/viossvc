@@ -14,10 +14,11 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
     func login(model: LoginModel, complete: CompleteBlock, error: ErrorBlock) {
         let packet = SocketDataPacket(opcode: .Login, model: model)
         startModelRequest(packet,modelClass:UserInfoModel.classForCoder(), complete: complete, error: error);
+        
     }
     
     func logout(uid:Int) {
-        
+        SocketRequestManage.shared.logout(uid)
     }
 
     func smsVerify(type:SMSVerifyModel.SMSType,phone:String,complete:CompleteBlock,error:ErrorBlock) {
@@ -166,6 +167,11 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
                                          SocketConst.Key.uid : CurrentUserHelper.shared.userInfo.uid]
         let packet = SocketDataPacket(opcode: .HandleSkills, dict: dict)
         startRequest(packet, complete: complete, error: error)
+    }
+    
+    func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock) {
+        let packet = SocketDataPacket(opcode: .UserInfo, dict: [SocketConst.Key.uid:uid])
+        startModelRequest(packet, modelClass: UserInfoModel.classForCoder(), complete: complete, error: error)
     }
 
 }

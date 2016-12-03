@@ -19,7 +19,7 @@ class SocketRequestManage: NSObject {
     private var _reqeustId:UInt32 = 10000
     private var _socketHelper:APISocketHelper?
     private var _sessionId:UInt64 = 0
-    
+    var receiveChatMsgBlock:CompleteBlock! = nil
     func logout(uid:Int) {
         stop()
     }
@@ -52,21 +52,29 @@ class SocketRequestManage: NSObject {
     }
 
     func notifyResponsePacket(packet: SocketDataPacket) {
-        objc_sync_enter(self)
-        _sessionId = packet.session_id
-        let socketReqeust = socketRequests[packet.request_id]
-        socketRequests.removeValueForKey(packet.request_id)
-        objc_sync_exit(self)
-        let response:SocketJsonResponse = SocketJsonResponse(packet:packet)
-        if (packet.type == SocketConst.type.Error.rawValue) {
-            let dict:NSDictionary? = response.responseJson()
-            var errorCode: Int? = dict?["error_"] as? Int
-            if errorCode == nil {
-                errorCode = -1;
+        if packet.operate_code == SocketConst.OPCode.ChatReceiveMessage.rawValue {
+            let response:SocketJsonResponse = SocketJsonResponse(packet:packet)
+            dispatch_async(dispatch_get_main_queue(), {[weak self] in
+                self?.receiveChatMsgBlock?(response)
+            })
+        }
+        else {
+            objc_sync_enter(self)
+            _sessionId = packet.session_id
+            let socketReqeust = socketRequests[packet.request_id]
+            socketRequests.removeValueForKey(packet.request_id)
+            objc_sync_exit(self)
+            let response:SocketJsonResponse = SocketJsonResponse(packet:packet)
+            if (packet.type == SocketConst.type.Error.rawValue) {
+                let dict:NSDictionary? = response.responseJson()
+                var errorCode: Int? = dict?["error_"] as? Int
+                if errorCode == nil {
+                    errorCode = -1;
+                }
+                socketReqeust?.onError(errorCode)
+            } else {
+                socketReqeust?.onComplete(response)
             }
-            socketReqeust?.onError(errorCode)
-        } else {
-            socketReqeust?.onComplete(response)
         }
     }
     
@@ -84,10 +92,8 @@ class SocketRequestManage: NSObject {
     }
     
     
-    private func startRequest(packet: SocketDataPacket) {
-        objc_sync_enter(self)
+    private func sendRequest(packet: SocketDataPacket) {
         _socketHelper?.sendData(packet.serializableData()!);
-         objc_sync_exit(self)
     }
     
     func startJsonRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
@@ -100,7 +106,11 @@ class SocketRequestManage: NSObject {
         objc_sync_enter(self)
         socketRequests[packet.request_id] = socketReqeust;
         objc_sync_exit(self)
-        startRequest(packet)
+        sendRequest(packet)
+    }
+    
+    func sendChatMsg(packet: SocketDataPacket,complete:CompleteBlock,error:ErrorBlock) {
+        sendRequest(packet)
     }
     
     private func timeNow() ->NSTimeInterval {
@@ -111,20 +121,29 @@ class SocketRequestManage: NSObject {
         return timeNow() - last
     }
     
+    private func isDispatchInterval(inout lastTime:NSTimeInterval,interval:NSTimeInterval) ->Bool {
+        if timeNow() - lastTime >= interval  {
+            lastTime = timeNow()
+            return true
+        }
+        return false
+    }
+    
+    
     private func sendHeart() {
         let packet = SocketDataPacket(opcode: .Heart,dict:[SocketConst.Key.uid: CurrentUserHelper.shared.userInfo.uid])
-        startRequest(packet)
+        sendRequest(packet)
     }
+    
     func didActionTimer() {
         if _socketHelper != nil && _socketHelper!.isConnected {
-            if  CurrentUserHelper.shared.isLogin &&  lastTimeNow(_lastHeardBeatTime) >= 10 {
+            if  CurrentUserHelper.shared.isLogin
+                &&  isDispatchInterval(&_lastHeardBeatTime!,interval: 10) {
                 sendHeart()
-                _lastHeardBeatTime = timeNow()
             }
             _lastConnectedTime = timeNow()
         }
-        else if( lastTimeNow(_lastConnectedTime) >= 10 ) {
-            _lastConnectedTime = timeNow()
+        else if( isDispatchInterval(&_lastConnectedTime!,interval: 10) ) {
             _socketHelper?.connect()
         }
         checkReqeustTimeout()

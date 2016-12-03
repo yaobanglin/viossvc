@@ -8,12 +8,25 @@
 
 import UIKit
 
-class ChatModel: BaseModel {
+class ChatMsgModel: BaseModel {
 
     var from_uid : Int = 0
     var to_uid : Int = 0
     var msg_time : Int = 0
     var content :String!
+    var type:Int = 0
+    var isReading : Bool = true
     
     
+}
+
+class ChatSessionModel : BaseModel {
+    var id: Int = 0
+    var type:Int = 0
+    var title:String!
+    var icon:String!
+    var noReading:Int = 0
+    var isTop:Bool = false
+    var isNotDisturb:Bool = false
+    var lastChatMsg:ChatMsgModel!
 }

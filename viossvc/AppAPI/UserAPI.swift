@@ -60,5 +60,6 @@ protocol UserAPI {
     func updateServiceList(model: UpdateServerModel, complete: CompleteBlock, error: ErrorBlock)
     //操作技能标签
     func getOrModfyUserSkills(getOrModfy:Int,skills:String,complete: CompleteBlock, error: ErrorBlock)
-    
+    //获取用户信息
+    func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock)
 }
