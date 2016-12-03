@@ -122,7 +122,9 @@ extension UIViewController {
      七牛上传图片
      
      - parameter image:     图片
+     - parameter imagePath: 图片服务器路径
      - parameter imageName: 图片名
+     - parameter tags: 图片标记
      - parameter complete:  图片完成Block
      */
     func qiniuUploadImage(image: UIImage, imagePath: String, imageName:String, tags:[String: AnyObject], complete:CompleteBlock) {

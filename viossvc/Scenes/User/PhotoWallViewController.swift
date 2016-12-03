@@ -10,7 +10,7 @@ import Foundation
 
 class PhotoWallViewController: BasePageListTableViewController, OEZTableViewDelegate {
     
-    var page = 0
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +32,13 @@ class PhotoWallViewController: BasePageListTableViewController, OEZTableViewDele
         let requestModel = PhotoWallRequestModel()
         requestModel.uid = CurrentUserHelper.shared.userInfo.uid
         requestModel.size = 10
-        requestModel.num = page
+        requestModel.num = pageIndex
         AppAPIHelper.userAPI().photoWallRequest(requestModel, complete: completeBlockFunc(), error: errorBlockFunc())
     }
     
-//    override func didRequest() {
-//        didRequest(1)
-//    }
+    override func didRequest() {
+        didRequest(1)
+    }
     
     override func didRequestComplete(data: AnyObject?) {
         let array = data as? Array<PhotoWallModel>

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SVProgressHUD
+
 
 class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorViewControllerDelegate, PhotoCollectionCellDelegate {
     
@@ -54,29 +56,32 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
     
     func rightItemTapped() {
         if photosArray?.count > 0 {
+            SVProgressHUD.showProgressMessage(ProgressMessage: "照片上传中...")
             let uid = CurrentUserHelper.shared.userInfo.uid
             weak var weakSelf = self
+            var reUp = true
             for (index, img) in photosArray!.enumerate() {
                 let done = doneIndex.indexOf(index)
                 if done == nil {
                     qiniuUploadImage(img, imagePath: "\(uid)/PhotoWall/", imageName: "photo", tags: ["index": index], complete: { [weak self] (response) in
-                        weakSelf!.upload2Server(response)
+                            weakSelf!.upload2Server(response)
                         })
+                    reUp = false
                 }
-                
             }
-            
+            if reUp {
+                SVProgressHUD.dismiss()
+            }
         }
-        
     }
     
     func upload2Server(response: AnyObject?) {
-        if response != nil {
+        if let resp = response as? [AnyObject] {
             let uid = CurrentUserHelper.shared.userInfo.uid
-            let imageUrl = response![1] as! String
+            let imageUrl = resp[1] as! String
+            let tags = resp[0] as? [String: Int]
+            let index = tags!["index"]!
             if imageUrl != "failed" {
-                let tags = response![0] as! [String: Int]
-                let index = tags["index"]!
                 uploaded[index] = ["thumbnail_url_": imageUrl + "?imageView2/2/w/80/h/80/interlace/0/q/100"]
                 uploaded[index]?.updateValue(imageUrl, forKey: "photo_url_")
                 doneIndex.append(index)
@@ -84,6 +89,8 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
                 AppAPIHelper.userAPI().uploadPhoto2Wall(dict, complete: completeBlockFunc(), error: { (error) in
                     NSLog("\(error)")
                 })
+            } else {
+                SVProgressHUD.showErrorMessage(ErrorMessage: "图片 \(index) 上传出错，请重试", ForDuration: 1, completion: nil)
             }
         }
         

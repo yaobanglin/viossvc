@@ -35,7 +35,7 @@ class PhotoCollectionCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.grayColor()
+        backgroundColor = UIColor.clearColor()
         
         photo = contentView.viewWithTag(1001) as? UIImageView
         if photo == nil {
