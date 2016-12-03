@@ -177,7 +177,7 @@ class BaseCustomPageListTableViewController :BaseCustomListTableViewController {
     
     override func didRequestError(error:NSError) {
         if (!(self.pageIndex == 1) ) {
-            self.endLoadMore()
+            self.errorLoadMore()
         }
         self.setIsLoadData(true)
         super.didRequestError(error)
