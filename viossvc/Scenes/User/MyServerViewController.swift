@@ -22,7 +22,7 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
     var allSkillArray:Array<SkillsModel>?
     var skillDict:Dictionary<Int, SkillsModel> = [:]
     @IBOutlet weak var pictureCollection: UserPictureCollectionView!
-    var markHeight: CGFloat = 100
+    var markHeight: CGFloat = 0
     var serverHeight: CGFloat = 100
     var pictureHeight: CGFloat = 100
     var serverData: [UserServerModel] = []
