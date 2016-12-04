@@ -32,15 +32,13 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        getUserSkills()
-        getAllSkills()
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         initData()
     }
     //MARK: --DATA
     func initData() {
+        //我的技能标签
+        getUserSkills()
+        getAllSkills()
         //我的服务
         AppAPIHelper.userAPI().serviceList({ [weak self](result) in
             if result == nil {
@@ -102,8 +100,6 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
             if CurrentUserHelper.shared.userInfo.skills != nil {
                 weakSelf.currentSkillsArray =   AppAPIHelper.orderAPI().getSKillsWithModel(CurrentUserHelper.shared.userInfo.skills, dict:weakSelf.skillDict )
                 weakSelf.skillView.dataSouce = weakSelf.currentSkillsArray
-                
-                
             }
         }, error: errorBlockFunc())
     }
@@ -143,7 +139,7 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
         if indexPath.section == 1 && indexPath.row == 1 {
             return markHeight
         }
-        if indexPath.section == 2 && indexPath.row == 1{
+        if indexPath.section == 2 && indexPath.row == 1 {
             return serverHeight
         }
         if indexPath.section == 3 && indexPath.row == 1 {

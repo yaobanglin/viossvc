@@ -63,24 +63,24 @@ class MarksTableViewController: BaseTableViewController , LayoutStopDelegate{
         
         
         unowned let weakSelf = self
+
         AppAPIHelper.orderAPI().getSkills({ (response) in
             let array = response as? Array<SkillsModel>
             weakSelf.allSkillArray = array
             for skill in array! {
                 let size = skill.skill_name!.boundingRectWithSize(CGSizeMake(0, 21), font: UIFont.systemFontOfSize(15), lineSpacing: 0)
                 skill.labelWidth = size.width + 30
-
+                
                 weakSelf.skillDict[skill.skill_id] = skill
             }
             weakSelf.allSkillView.dataSouce = weakSelf.allSkillArray
             if CurrentUserHelper.shared.userInfo.skills != nil {
-              weakSelf.currentSkillsArray =   AppAPIHelper.orderAPI().getSKillsWithModel(CurrentUserHelper.shared.userInfo.skills, dict:weakSelf.skillDict )
-              weakSelf.selectSkillView.dataSouce = weakSelf.currentSkillsArray
+                weakSelf.currentSkillsArray =   AppAPIHelper.orderAPI().getSKillsWithModel(CurrentUserHelper.shared.userInfo.skills, dict:weakSelf.skillDict )
+                weakSelf.selectSkillView.dataSouce = weakSelf.currentSkillsArray
                 
-
+                
             }
-            }) { (error) in
-        }
+            }, error: errorBlockFunc())
     }
     
     
@@ -88,8 +88,8 @@ class MarksTableViewController: BaseTableViewController , LayoutStopDelegate{
     func getUserSkills() {
     
         unowned let weakSelf = self
+
         AppAPIHelper.userAPI().getOrModfyUserSkills(0, skills: "", complete: { (response) in
-            
             if response != nil {
                 let dict = response as! Dictionary<String, AnyObject>
                 CurrentUserHelper.shared.userInfo.skills = dict["skills_"] as? String
@@ -99,9 +99,7 @@ class MarksTableViewController: BaseTableViewController , LayoutStopDelegate{
                     weakSelf.selectSkillView.dataSouce = weakSelf.currentSkillsArray
                 }
             }
-            }) { (error) in
-                
-        }
+            }, error: errorBlockFunc())
     }
     
     /**
@@ -143,6 +141,9 @@ class MarksTableViewController: BaseTableViewController , LayoutStopDelegate{
                 return
             }
             let skill = allSkillArray![indexPath.item]
+            if currentSkillsArray == nil {
+                currentSkillsArray = []
+            }
             guard !currentSkillsArray!.contains(skill) else {
                 SVProgressHUD.showWainningMessage(WainningMessage: "您已经选择过此标签", ForDuration: 1.5, completion: nil)
                 return
@@ -169,18 +170,16 @@ class MarksTableViewController: BaseTableViewController , LayoutStopDelegate{
         
         unowned let weakSelf = self
         AppAPIHelper.userAPI().getOrModfyUserSkills(1, skills: idString, complete: { (response) in
-
+            
             if response != nil {
                 let dict = response as! Dictionary<String, AnyObject>
                 CurrentUserHelper.shared.userInfo.skills = dict["skills_"] as? String
                 if weakSelf.delegate != nil {
                     weakSelf.delegate?.refreshUserSkill()
                 }
-               weakSelf.navigationController?.popViewControllerAnimated(true)
+                weakSelf.navigationController?.popViewControllerAnimated(true)
             }
-            }) { (error) in
-                
-                
-        }
+            }, error: errorBlockFunc())
     }
+    
 }

@@ -116,7 +116,8 @@ class SettingViewController: BaseTableViewController {
         }
         
         if cell == aboutUSCell{
-            
+            UIApplication.sharedApplication().openURL(NSURL.init(string: "http://www.yundiantrip.com/")!)
+            return
         }
     }
 }
