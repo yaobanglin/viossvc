@@ -63,7 +63,10 @@ class PhotoPreviewView: UIView {
     func setPhotoInfoModel(info: PhotoModel) {
         photoInfo = info
         photo?.kf_setImageWithURL(NSURL(string: photoInfo!.thumbnail_url!))
-        photo?.kf_setImageWithURL(NSURL(string: photoInfo!.photo_url!))
+        if photoInfo?.photo_url != nil {
+            photo?.kf_setImageWithURL(NSURL(string: photoInfo!.photo_url!))
+        }
+        
     }
     
 }
