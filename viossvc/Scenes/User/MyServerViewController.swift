@@ -89,6 +89,21 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate {
         skillView.delegate = self
         skillView.showDelete = false
         skillView.collectionView?.backgroundColor = UIColor(RGBHex: 0xf2f2f2)
+        
+        //headerView
+        if (CurrentUserHelper.shared.userInfo.head_url != nil){
+            let headUrl = NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!)
+            headerImage.kf_setImageWithURL(headUrl, placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+        }
+        
+        if CurrentUserHelper.shared.userInfo.praise_lv > 0 {
+            for i in 100...104 {
+                if i <= 100 + CurrentUserHelper.shared.userInfo.praise_lv {
+                    let starImage: UIImageView = headerContent.viewWithTag(i) as! UIImageView
+                    starImage.image = UIImage.init(named: "star-common-fill")
+                }
+            }
+        }
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
