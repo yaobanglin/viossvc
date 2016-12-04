@@ -62,17 +62,14 @@ class HandleOrderViewController: UIViewController {
         
         unowned let weakSelf = self
         AppAPIHelper.orderAPI().getOrderDetail((orderModel?.order_id)!, complete: { (response) in
+            
             if response != nil{
                 let orderDetailModel = response as! OrderDetailModel
                 
                 weakSelf.locationLabel.text = orderDetailModel.order_addr
             }
             
-            
-            
-            }) { (error) in
-                
-        }
+        }, error: errorBlockFunc())
         
     }
     func setupDataWithModel(orderListModel:OrderListModel) {
@@ -179,7 +176,7 @@ class HandleOrderViewController: UIViewController {
         default:
             break
         }
-
+        
         modfyOrder(status)
     }
     
@@ -202,16 +199,12 @@ class HandleOrderViewController: UIViewController {
         
         unowned let weakSelf = self
         AppAPIHelper.orderAPI().modfyOrderStatus(status, from_uid: (orderModel?.from_uid)!, to_uid: CurrentUserHelper.shared.userInfo.uid, order_id: (orderModel?.order_id)!, complete: { (response) in
-            
             if weakSelf.delegate != nil {
                 weakSelf.delegate?.refreshList()
             }
             weakSelf.dismissViewControllerAnimated(true, completion: nil)
-
-        }) { (error) in
-            weakSelf.dismissViewControllerAnimated(true, completion: nil)
             
-        }
+            }, error: errorBlockFunc())
     }
     
     @IBAction func chatAction(sender: AnyObject) {
