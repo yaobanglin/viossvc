@@ -61,8 +61,8 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
             if result == nil{
                 return
             }
-            
-            self?.pictureCollection.updateMyPicture(["","","","","","","",""]) {[weak self] (height) in
+            let model: PhotoWallModoel = result as! PhotoWallModoel
+            self?.pictureCollection.updateMyPicture(model.photo_list) {[weak self] (height) in
                 self?.pictureHeight = height as! CGFloat
                 self?.tableView.reloadData()
             }
@@ -84,9 +84,7 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
                     weakSelf.skillView.dataSouce = weakSelf.currentSkillsArray
                 }
             }
-        }) { (error) in
-            
-        }
+        }, error: errorBlockFunc())
     }
     func getAllSkills() {
         
@@ -107,14 +105,15 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
                 
                 
             }
-        }) { (error) in
-        }
+        }, error: errorBlockFunc())
     }
     //MARK: --UI
     func initUI() {
         
-        headerImage.layer.cornerRadius = 40
+        headerImage.layer.cornerRadius = headerImage.frame.size.width * 0.5
         headerImage.layer.masksToBounds = true
+        headerImage.layer.borderColor = UIColor(RGBHex: 0xb82624).CGColor
+        headerImage.layer.borderWidth = 2
         
         skillView.showDelete = false
         skillView.collectionView?.backgroundColor = UIColor(RGBHex: 0xf2f2f2)
@@ -133,6 +132,8 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
                 }
             }
         }
+        
+        idAuthIcon.hidden = !(CurrentUserHelper.shared.userInfo.auth_status_ == 1)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -175,7 +176,6 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
     
     /**
      skillView 高度回调
-     
      - parameter layoutView:
      - parameter height:
      */

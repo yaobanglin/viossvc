@@ -15,7 +15,7 @@ class UserPictureItem: UICollectionViewCell {
 
 
 class UserPictureCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    var picturesData: [PhotoWallModel]?
+    var picturesData: [PhotoModel]?
     var itemHeight: CGFloat = 0
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,7 +31,7 @@ class UserPictureCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return picturesData!.count
+        return picturesData == nil ? 0 : picturesData!.count
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let item: UserPictureItem = collectionView.dequeueReusableCellWithReuseIdentifier(UserPictureItem.className(), forIndexPath: indexPath) as! UserPictureItem
@@ -41,7 +41,7 @@ class UserPictureCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     }
     
     func updateMyPicture(data: AnyObject, complete: CompleteBlock?) {
-        picturesData = data as? [PhotoWallModel]
+        picturesData = data as? [PhotoModel]
         reloadData()
         if complete != nil {
             let rows = picturesData!.count / 4

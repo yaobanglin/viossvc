@@ -49,6 +49,11 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        hideKeyboard()
+        hiddlePick()
+    }
     //MARK: --UI
     func initUI() {
         contentView.layer.cornerRadius = 8

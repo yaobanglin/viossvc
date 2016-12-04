@@ -115,5 +115,8 @@ class SettingViewController: BaseTableViewController {
             return
         }
         
+        if cell == aboutUSCell{
+            
+        }
     }
 }

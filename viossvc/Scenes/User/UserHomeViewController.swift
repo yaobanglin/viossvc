@@ -14,7 +14,7 @@ class UserHomeViewController: BaseTableViewController {
     @IBOutlet weak var userCashLabel: UILabel!
     @IBOutlet weak var userHeaderImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-
+    @IBOutlet weak var qustionContent: UIView!
     @IBOutlet weak var bankCardNumLabel: UILabel!
     @IBOutlet weak var userContentView: UIView!
     
@@ -76,7 +76,14 @@ class UserHomeViewController: BaseTableViewController {
                 }
             }
         }
+        
+        let askTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(askTapGestureTapped))
+        qustionContent.addGestureRecognizer(askTapGesture)
     }
+    func askTapGestureTapped() {
+        UIApplication.sharedApplication().openURL(NSURL.init(string: "telprompt:10086")!)
+    }
+    
 
     
 }

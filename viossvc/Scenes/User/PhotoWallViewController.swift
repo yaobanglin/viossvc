@@ -57,7 +57,7 @@ class PhotoWallViewController: BasePageListTableViewController, OEZTableViewDele
     }
     
     override func didRequestComplete(data: AnyObject?) {
-        let model = data as? PhotoWallModel
+        let model = data as? PhotoWallModoel
         
         if model != nil && model?.photo_list.count > 0 {
             array.removeAll()
