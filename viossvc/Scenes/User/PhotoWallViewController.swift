@@ -15,7 +15,7 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
     var array:[AnyObject] = []
     var curModel:PhotoWallModel?
     var firstLaunch = true
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRefreshControl()
@@ -61,6 +61,7 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
         })
     }
     
+
     func didRequestComplete(data: AnyObject?) {
         if let model = data as? PhotoWallModel {
             if pageIndex == 0 {
@@ -86,6 +87,7 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
             setIsLoadData(true)
             return
         }
+
         
         array.removeAll()
         date.removeAll()

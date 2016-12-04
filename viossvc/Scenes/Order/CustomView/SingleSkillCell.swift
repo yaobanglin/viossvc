@@ -24,7 +24,7 @@ class SingleSkillCell: UICollectionViewCell {
     
     private lazy var titleLabel:UILabel = {
         let label = UILabel()
-        label.backgroundColor = UIColor.whiteColor()
+        label.backgroundColor = UIColor.clearColor()
         label.layer.cornerRadius = 15
         label.layer.masksToBounds = true
         label.textAlignment = .Center

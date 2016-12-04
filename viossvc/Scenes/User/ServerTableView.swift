@@ -9,6 +9,7 @@
 import UIKit
 
 class ServerCell: UITableViewCell {
+    @IBOutlet weak var upLine: UIView!
     @IBOutlet weak var serverNameLabel: UILabel!
     @IBOutlet weak var serverTimeLabel: UILabel!
     @IBOutlet weak var serverPriceLabel: UILabel!
@@ -34,6 +35,7 @@ class ServerTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         cell.serverNameLabel.text = model.service_name
         cell.serverPriceLabel.text = "￥\(model.service_price)"
         cell.serverTimeLabel.text = "\(time(model.service_start))--\(time(model.service_end))"
+        cell.upLine.hidden = indexPath.row == 0
         return cell
     }
     func time(minus: Int) -> String {
@@ -46,7 +48,7 @@ class ServerTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func updateData(data: AnyObject!, complete:CompleteBlock) {
         serverData = data as! [UserServerModel]
         reloadData()
-        complete(contentSize.height)
+        complete(contentSize.height+20)
     }
     
 }
