@@ -11,13 +11,11 @@ import UIKit
 class BaseSocketAPI: NSObject {
     
     /**
-     *  请求接口 数据解析成字典
-     *
-     *  @param packet 请求包
-     *  @param complete complete返回字典
-     *  @param error    失败回调
-     *
-     *
+     请求接口 数据解析成字典
+     
+     - parameter packet:   请求包
+     - parameter complete: 成功回调 返回字典
+     - parameter error:    失败回调
      */
     func startRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
         SocketRequestManage.shared.startJsonRequest(packet,complete: {  (response) in
@@ -25,13 +23,13 @@ class BaseSocketAPI: NSObject {
             },error: error)
     }
     
+
     /**
-     *  请求接口 数据result_字段解析成int
-     *
-     *  @param packet 请求包
-     *  @param complete complete返回result_ int值
-     *  @param error    失败回调
-     *
+     请求接口 数据result_字段解析成int
+     
+     - parameter packet:   请求包
+     - parameter complete: 成功回调 返回字典
+     - parameter error:    失败回调
      */
     func startResultIntRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
         SocketRequestManage.shared.startJsonRequest(packet,complete: {  (response) in
@@ -40,13 +38,12 @@ class BaseSocketAPI: NSObject {
     }
     
     /**
-     *  请求接口 数据解析成model实体
-     *
-     *  @param packet 请求包
-     *  @param modelClass 要解析填充的model类class
-     *  @param complete complete返回modelClass的model实体
-     *  @param error    失败回调
-     *
+     请求接口 数据解析成model实体
+     
+     - parameter packet:     请求包
+     - parameter modelClass: 要解析填充的model类class
+     - parameter complete:   成功回调 返回modelClass的model实体
+     - parameter error:      失败回调
      */
     func startModelRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
         SocketRequestManage.shared.startJsonRequest(packet, complete: {  (response) in
@@ -55,13 +52,12 @@ class BaseSocketAPI: NSObject {
     }
     
     /**
-     *  请求接口 数据解析成model实体数组
-     *
-     *  @param packet 请求包
-     *  @param modelClass 要解析填充的model类class
-     *  @param complete complete返回modelClass的model实体数组
-     *  @param error    失败回调
-     *
+     请求接口 数据解析成model实体数组
+     
+     - parameter packet:     请求包
+     - parameter modelClass: 要解析填充的model类class
+     - parameter complete:   成功回调 返回modelClass的model实体数组
+     - parameter error:      失败回调
      */
     func startModelsRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
         SocketRequestManage.shared.startJsonRequest(packet, complete: {  (response) in
@@ -70,13 +66,12 @@ class BaseSocketAPI: NSObject {
     }
     
     /**
-     *  请求接口 数据data_list_字段解析成model实体数组
-     *
-     *  @param packet 请求包
-     *  @param modelClass 要解析填充的model类class
-     *  @param complete complete返回modelClass的model实体数组
-     *  @param error    失败回调
-     *
+     请求接口 数据data_list_字段解析成model实体数组
+     
+     - parameter packet:     请求包
+     - parameter modelClass: 要解析填充的model类class
+     - parameter complete:   成功回调 返回modelClass的model实体数组
+     - parameter error:      失败回调
      */
     func startDataListRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
         
@@ -84,14 +79,13 @@ class BaseSocketAPI: NSObject {
     }
     
     /**
-     *  请求接口 数据listName值的字段解析成model实体数组
-     *
-     *  @param packet 请求包
-     *  @param listName 列表字段名
-     *  @param modelClass 要解析填充的model类class
-     *  @param complete complete返回modelClass的model实体数组
-     *  @param error    失败回调
-     *
+     请求接口 数据listName字段解析成model实体数组
+     
+     - parameter packet:     请求包
+     - parameter listName:   列表字段名
+     - parameter modelClass: 要解析填充的model类class
+     - parameter complete:   成功回调 返回modelClass的model实体数组
+     - parameter error:       失败回调
      */
     func startModelsRequest(packet: SocketDataPacket, listName:String, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
         SocketRequestManage.shared.startJsonRequest(packet, complete: {  (response) in

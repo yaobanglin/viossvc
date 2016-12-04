@@ -9,6 +9,10 @@
 
 import UIKit
 import SVProgressHUD
+protocol RefreshSkillDelegate: NSObjectProtocol {
+    func refreshUserSkill()
+}
+
 class MarksTableViewController: BaseTableViewController , LayoutStopDelegate{
 
     @IBOutlet weak var selectSkillView: SkillLayoutView!
@@ -21,16 +25,28 @@ class MarksTableViewController: BaseTableViewController , LayoutStopDelegate{
     var currentSkillsArray:Array<SkillsModel>?
     var allSkillArray:Array<SkillsModel>?
     var skillDict:Dictionary<Int, SkillsModel> = [:]
-    
+    var delegate:RefreshSkillDelegate?
     @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
     
         selectSkillView.delegate = self
         allSkillView.delegate = self
+
+        submitButton.enabled = false
+        setData()
+
+    }
+    func setData() {
+        guard  currentSkillsArray == nil else {
+            selectSkillView.showDelete = true
+            selectSkillView.dataSouce = currentSkillsArray
+            allSkillView.dataSouce = allSkillArray
+            return
+        }
         getAllSkills()
         getUserSkills()
-        submitButton.enabled = false
+
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
@@ -116,6 +132,8 @@ class MarksTableViewController: BaseTableViewController , LayoutStopDelegate{
         
         if layoutView == selectSkillView {
           
+
+            guard currentSkillsArray?.count > 0 else {return}
             currentSkillsArray?.removeAtIndex(indexPath.item)
 
         } else {
@@ -155,6 +173,9 @@ class MarksTableViewController: BaseTableViewController , LayoutStopDelegate{
             if response != nil {
                 let dict = response as! Dictionary<String, AnyObject>
                 CurrentUserHelper.shared.userInfo.skills = dict["skills_"] as? String
+                if weakSelf.delegate != nil {
+                    weakSelf.delegate?.refreshUserSkill()
+                }
                weakSelf.navigationController?.popViewControllerAnimated(true)
             }
             }) { (error) in

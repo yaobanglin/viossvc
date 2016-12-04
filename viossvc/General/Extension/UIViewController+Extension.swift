@@ -23,7 +23,7 @@ extension UIViewController {
     
     func errorBlockFunc()->ErrorBlock {
         return { [weak self] (error) in
-            XCGLogger.error("\(error) \(self)");
+            XCGLogger.error("\(error) \(self)")
             self?.didRequestError(error)
         }
     }

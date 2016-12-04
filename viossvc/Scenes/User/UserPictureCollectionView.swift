@@ -15,7 +15,7 @@ class UserPictureItem: UICollectionViewCell {
 
 
 class UserPictureCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    var picturesData: [String]?
+    var picturesData: [PhotoWallModel]?
     var itemHeight: CGFloat = 0
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,13 +34,14 @@ class UserPictureCollectionView: UICollectionView, UICollectionViewDelegate, UIC
         return picturesData!.count
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let item = collectionView.dequeueReusableCellWithReuseIdentifier(UserPictureItem.className(), forIndexPath: indexPath)
-        item.backgroundColor = UIColor.redColor()
+        let item: UserPictureItem = collectionView.dequeueReusableCellWithReuseIdentifier(UserPictureItem.className(), forIndexPath: indexPath) as! UserPictureItem
+        let model = picturesData![indexPath.row]
+        item.userPicture.kf_setImageWithURL(NSURL.init(string: model.thumbnail_url!), placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         return item
     }
     
     func updateMyPicture(data: AnyObject, complete: CompleteBlock?) {
-        picturesData = data as? [String]
+        picturesData = data as? [PhotoWallModel]
         reloadData()
         if complete != nil {
             let rows = picturesData!.count / 4

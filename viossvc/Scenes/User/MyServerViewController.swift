@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyServerViewController: BaseTableViewController, LayoutStopDelegate {
+class MyServerViewController: BaseTableViewController, LayoutStopDelegate, RefreshSkillDelegate{
     @IBOutlet weak var zhimaAnthIcon: UIImageView!
     @IBOutlet weak var idAuthIcon: UIImageView!
     @IBOutlet weak var headerImage: UIImageView!
@@ -18,6 +18,9 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate {
     @IBOutlet weak var skillView: SkillLayoutView!
     @IBOutlet weak var serverTabel: ServerTableView!
     @IBOutlet weak var serverTabelCell: UITableViewCell!
+    var currentSkillsArray:Array<SkillsModel>?
+    var allSkillArray:Array<SkillsModel>?
+    var skillDict:Dictionary<Int, SkillsModel> = [:]
     @IBOutlet weak var pictureCollection: UserPictureCollectionView!
     var markHeight: CGFloat = 100
     var serverHeight: CGFloat = 100
@@ -29,6 +32,8 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        getUserSkills()
+        getAllSkills()
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,37 +41,6 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate {
     }
     //MARK: --DATA
     func initData() {
-        //我的标签
-        AppAPIHelper.orderAPI().getSkills({[weak self] (response) in
-            let array = response as? Array<SkillsModel>
-            var skillDict: Dictionary<Int, AnyObject> = [:]
-            for skill in array! {
-                let size = skill.skill_name!.boundingRectWithSize(CGSizeMake(0, 21), font: UIFont.systemFontOfSize(15), lineSpacing: 0)
-                skill.labelWidth = size.width + 30
-                skillDict[skill.skill_id] = skill
-            }
-            
-            AppAPIHelper.userAPI().getOrModfyUserSkills(0, skills: "", complete: { (response) in
-                
-                if response != nil {
-                    let dict = response as! Dictionary<String, AnyObject>
-                    CurrentUserHelper.shared.userInfo.skills = dict["skills_"] as? String
-                    let skillArray = CurrentUserHelper.shared.userInfo.skills?.componentsSeparatedByString(",")
-                    if  skillArray?.count == 0{
-                        return
-                    }
-                    var skillModelArray: [SkillsModel] = []
-                    for skillName in skillArray!{
-                        if Int(skillName) > 0 {
-                            let model = skillDict[Int(skillName)!] as! SkillsModel
-                            skillModelArray.append(model)
-                        }
-                    }
-                    self?.skillView.dataSouce = skillModelArray
-                }
-            }, error: (self?.errorBlockFunc())!)
-          
-        }, error: errorBlockFunc())
         //我的服务
         AppAPIHelper.userAPI().serviceList({ [weak self](result) in
             if result == nil {
@@ -79,17 +53,72 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate {
             })
         }, error: errorBlockFunc())
         //我的相册
-        pictureCollection.updateMyPicture(["","","","","","","",""]) {[weak self] (height) in
-            self?.pictureHeight = height as! CGFloat
-            self?.tableView.reloadData()
+        let requestModel = PhotoWallRequestModel()
+        requestModel.uid = CurrentUserHelper.shared.userInfo.uid
+        requestModel.size = 10
+        requestModel.num = 1
+        AppAPIHelper.userAPI().photoWallRequest(requestModel, complete: {[weak self] (result) in
+            if result == nil{
+                return
+            }
+            
+            self?.pictureCollection.updateMyPicture(["","","","","","","",""]) {[weak self] (height) in
+                self?.pictureHeight = height as! CGFloat
+                self?.tableView.reloadData()
+            }
+        }, error: errorBlockFunc())
+        
+    }
+    
+    
+    func getUserSkills() {
+        
+        unowned let weakSelf = self
+        AppAPIHelper.userAPI().getOrModfyUserSkills(0, skills: "", complete: { (response) in
+            
+            if response != nil {
+                let dict = response as! Dictionary<String, AnyObject>
+                CurrentUserHelper.shared.userInfo.skills = dict["skills_"] as? String
+                if weakSelf.skillDict.count  > 0 {
+                    weakSelf.currentSkillsArray = AppAPIHelper.orderAPI().getSKillsWithModel(CurrentUserHelper.shared.userInfo.skills, dict:weakSelf.skillDict )
+                    weakSelf.skillView.dataSouce = weakSelf.currentSkillsArray
+                }
+            }
+        }) { (error) in
+            
+        }
+    }
+    func getAllSkills() {
+        
+        
+        unowned let weakSelf = self
+        AppAPIHelper.orderAPI().getSkills({ (response) in
+            let array = response as? Array<SkillsModel>
+            weakSelf.allSkillArray = array
+            for skill in array! {
+                let size = skill.skill_name!.boundingRectWithSize(CGSizeMake(0, 21), font: UIFont.systemFontOfSize(15), lineSpacing: 0)
+                skill.labelWidth = size.width + 30
+                
+                weakSelf.skillDict[skill.skill_id] = skill
+            }
+            if CurrentUserHelper.shared.userInfo.skills != nil {
+                weakSelf.currentSkillsArray =   AppAPIHelper.orderAPI().getSKillsWithModel(CurrentUserHelper.shared.userInfo.skills, dict:weakSelf.skillDict )
+                weakSelf.skillView.dataSouce = weakSelf.currentSkillsArray
+                
+                
+            }
+        }) { (error) in
         }
     }
     //MARK: --UI
     func initUI() {
-        skillView.delegate = self
+        
+        headerImage.layer.cornerRadius = 40
+        headerImage.layer.masksToBounds = true
+        
         skillView.showDelete = false
         skillView.collectionView?.backgroundColor = UIColor(RGBHex: 0xf2f2f2)
-        
+        skillView.delegate = self
         //headerView
         if (CurrentUserHelper.shared.userInfo.head_url != nil){
             let headUrl = NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!)
@@ -105,6 +134,7 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate {
             }
         }
     }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 215
@@ -120,14 +150,39 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate {
         }
         return 44
     }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SMSServerViewController.className() {
             let controller = segue.destinationViewController as! SMSServerViewController
             controller.serverData = serverData
+        } else if segue.identifier == MarksTableViewController.className() {
+            let marksVC = segue.destinationViewController as! MarksTableViewController
+            marksVC.allSkillArray = allSkillArray
+            marksVC.currentSkillsArray = currentSkillsArray
+            marksVC.skillDict = skillDict
+            marksVC.delegate =  self
         }
     }
+    
+    
+    func refreshUserSkill() {
+    
+        currentSkillsArray = AppAPIHelper.orderAPI().getSKillsWithModel(CurrentUserHelper.shared.userInfo.skills, dict:skillDict )
+        skillView.dataSouce = currentSkillsArray
+        
+    }
+
+    
+    /**
+     skillView 高度回调
+     
+     - parameter layoutView:
+     - parameter height:
+     */
     func layoutStopWithHeight(layoutView: SkillLayoutView, height: CGFloat) {
         markHeight = height
         tableView.reloadData()
     }
 }
+
+

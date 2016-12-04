@@ -20,7 +20,11 @@ class CurrentUserHelper: NSObject {
         }
     }
     
-     var uid : Int {
+    var isLogin : Bool {
+        return _userInfo != nil
+    }
+    
+    var uid : Int {
         return _userInfo.uid
     }
     
@@ -39,7 +43,6 @@ class CurrentUserHelper: NSObject {
     }
     
     func autoLogin(complete:CompleteBlock,error:ErrorBlock) -> Bool {
-//        keychainItem.resetKeychainItem()
         let phone = keychainItem.objectForKey(kSecAttrAccount) as? String
         let password = keychainItem.objectForKey(kSecValueData) as? String
         if !NSString.isEmpty(phone) &&  !NSString.isEmpty(password)  {
@@ -51,14 +54,15 @@ class CurrentUserHelper: NSObject {
     
     private func loginComplete(model:AnyObject?) {
         self._userInfo = model as? UserInfoModel
-//        keychainItem.resetKeychainItem()
+        keychainItem.resetKeychainItem()
         keychainItem.setObject(_userInfo.phone_num, forKey: kSecAttrAccount)
         keychainItem.setObject(_password, forKey: kSecValueData)
     }
     
     func logout() {
-        self._userInfo = nil
+        AppAPIHelper.userAPI().logout(_userInfo.uid)
         nodifyPassword("")
+        self._userInfo = nil
     }
     
     func nodifyPassword(password:String) {

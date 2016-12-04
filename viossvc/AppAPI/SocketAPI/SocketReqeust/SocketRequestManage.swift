@@ -14,23 +14,28 @@ class SocketRequestManage: NSObject {
     static let shared = SocketRequestManage();
     private var socketRequests = [UInt32: SocketRequest]()
     private var _timer: NSTimer?
-    private var _lastHeardBeatTimer:NSTimeInterval = NSDate().timeIntervalSince1970
+    private var _lastHeardBeatTime:NSTimeInterval!
+    private var _lastConnectedTime:NSTimeInterval!
     private var _reqeustId:UInt32 = 10000
     private var _socketHelper:APISocketHelper?
-    
-    
+    private var _sessionId:UInt64 = 0
+    var receiveChatMsgBlock:CompleteBlock! = nil
     func logout(uid:Int) {
         stop()
     }
     
     func start() {
+        _lastHeardBeatTime = timeNow()
+        _lastConnectedTime = timeNow()
         stop()
         _timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(didActionTimer), userInfo: nil, repeats: true)
         _socketHelper = APISocketHelper()
+        _socketHelper?.connect()
     }
     
     private func stop() {
         _timer?.invalidate()
+        _socketHelper?.disconnect()
     }
     
     var reqeustId:UInt32 {
@@ -47,20 +52,29 @@ class SocketRequestManage: NSObject {
     }
 
     func notifyResponsePacket(packet: SocketDataPacket) {
-        objc_sync_enter(self)
-        let socketReqeust = socketRequests[packet.request_id]
-        socketRequests.removeValueForKey(packet.request_id)
-        objc_sync_exit(self)
-        let response:SocketJsonResponse = SocketJsonResponse(packet:packet)
-        if (packet.type == SocketConst.type.Error.rawValue) {
-            let dict:NSDictionary? = response.responseJson()
-            var errorCode: Int? = dict?["error_"] as? Int
-            if errorCode == nil {
-                errorCode = -1;
+        if packet.operate_code == SocketConst.OPCode.ChatReceiveMessage.rawValue {
+            let response:SocketJsonResponse = SocketJsonResponse(packet:packet)
+            dispatch_async(dispatch_get_main_queue(), {[weak self] in
+                self?.receiveChatMsgBlock?(response)
+            })
+        }
+        else {
+            objc_sync_enter(self)
+            _sessionId = packet.session_id
+            let socketReqeust = socketRequests[packet.request_id]
+            socketRequests.removeValueForKey(packet.request_id)
+            objc_sync_exit(self)
+            let response:SocketJsonResponse = SocketJsonResponse(packet:packet)
+            if (packet.type == SocketConst.type.Error.rawValue) {
+                let dict:NSDictionary? = response.responseJson()
+                var errorCode: Int? = dict?["error_"] as? Int
+                if errorCode == nil {
+                    errorCode = -1;
+                }
+                socketReqeust?.onError(errorCode)
+            } else {
+                socketReqeust?.onComplete(response)
             }
-            socketReqeust?.onError(errorCode)
-        } else {
-            socketReqeust?.onComplete(response)
         }
     }
     
@@ -78,6 +92,9 @@ class SocketRequestManage: NSObject {
     }
     
     
+    private func sendRequest(packet: SocketDataPacket) {
+        _socketHelper?.sendData(packet.serializableData()!);
+    }
     
     func startJsonRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
         
@@ -85,22 +102,49 @@ class SocketRequestManage: NSObject {
         socketReqeust.error = error;
         socketReqeust.complete = complete;
         packet.request_id = reqeustId;
+        packet.session_id = _sessionId;
         objc_sync_enter(self)
         socketRequests[packet.request_id] = socketReqeust;
         objc_sync_exit(self)
-        _socketHelper?.sendData(packet.serializableData()!);
+        sendRequest(packet)
+    }
+    
+    func sendChatMsg(packet: SocketDataPacket,complete:CompleteBlock,error:ErrorBlock) {
+        sendRequest(packet)
+    }
+    
+    private func timeNow() ->NSTimeInterval {
+        return NSDate().timeIntervalSince1970
+    }
+    
+    private func lastTimeNow(last:NSTimeInterval) ->NSTimeInterval {
+        return timeNow() - last
+    }
+    
+    private func isDispatchInterval(inout lastTime:NSTimeInterval,interval:NSTimeInterval) ->Bool {
+        if timeNow() - lastTime >= interval  {
+            lastTime = timeNow()
+            return true
+        }
+        return false
+    }
+    
+    
+    private func sendHeart() {
+        let packet = SocketDataPacket(opcode: .Heart,dict:[SocketConst.Key.uid: CurrentUserHelper.shared.userInfo.uid])
+        sendRequest(packet)
     }
     
     func didActionTimer() {
-        if _socketHelper != nil && _socketHelper!.isConnected() {
-            if  CurrentUserHelper.shared.userInfo != nil &&  _lastHeardBeatTimer + 10 <=  NSDate().timeIntervalSince1970 {
-                let packet = SocketDataPacket(opcode: .Heart,dict:[SocketConst.Key.uid: CurrentUserHelper.shared.userInfo.uid])
-                _socketHelper?.sendData(packet.serializableData()!)
-                _lastHeardBeatTimer = NSDate().timeIntervalSince1970
+        if _socketHelper != nil && _socketHelper!.isConnected {
+            if  CurrentUserHelper.shared.isLogin
+                &&  isDispatchInterval(&_lastHeardBeatTime!,interval: 10) {
+                sendHeart()
             }
+            _lastConnectedTime = timeNow()
         }
-        else {
-            
+        else if( isDispatchInterval(&_lastConnectedTime!,interval: 10) ) {
+            _socketHelper?.connect()
         }
         checkReqeustTimeout()
     }
