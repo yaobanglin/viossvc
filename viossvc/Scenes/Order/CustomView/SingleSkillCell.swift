@@ -38,7 +38,7 @@ class SingleSkillCell: UICollectionViewCell {
     
    override  init(frame: CGRect) {
         super.init(frame: frame)
-    contentView.backgroundColor = UIColor.whiteColor()
+    contentView.backgroundColor = UIColor.clearColor()
     contentView.addSubview(titleLabel)
     contentView.addSubview(deleteButton)
     

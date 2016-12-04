@@ -23,7 +23,7 @@ extension UIViewController {
     
     func errorBlockFunc()->ErrorBlock {
         return { [weak self] (error) in
-            XCGLogger.error("\(error) \(self)");
+            XCGLogger.error("\(error) \(self)")
             self?.didRequestError(error)
         }
     }
@@ -142,6 +142,7 @@ extension UIViewController {
             //2,上传图片
             let qiniuManager = QNUploadManager()
             qiniuManager.putFile(filePath, key: imagePath + imageName + "_\(timeStr)", token: token, complete: { (info, key, resp) in
+                try! NSFileManager.defaultManager().removeItemAtPath(filePath)
                 if resp == nil{
                     NSLog(info.debugDescription)
                     complete([tags, "failed"])

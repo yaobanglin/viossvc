@@ -34,5 +34,11 @@ class AppAPIHelper: NSObject {
         
         return _orderAPI
     }
+    
+    private static var _chatAPI = ChatSocketAPI()
+    
+    class func chatAPI() ->ChatAPI {
+        return _chatAPI
+    }
 }
 

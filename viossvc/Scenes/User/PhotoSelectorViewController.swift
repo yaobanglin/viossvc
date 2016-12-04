@@ -15,7 +15,7 @@ protocol PhotoSelectorViewControllerDelegate: NSObjectProtocol {
     
 }
 
-class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryChangeObserver {
+class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryChangeObserver, PhotoCollectionCellDelegate {
     
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     
@@ -124,6 +124,8 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCollectionCell" ,forIndexPath: indexPath) as? PhotoCollectionCell {
+            cell.type = .UnSelect
+            cell.delegate = self
             if seletedPhotosArray.contains(indexPath.row) {
                 cell.type = .Selected
             }
@@ -138,24 +140,29 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         NSLog("%d", indexPath.row)
-        if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? PhotoCollectionCell {
-            if let index = seletedPhotosArray.indexOf(indexPath.row) {
-                seletedPhotosArray.removeAtIndex(index)
-                cell.type = .Normal
-            } else {
-                seletedPhotosArray.append(indexPath.row)
-                cell.type = .Selected
-            }
-            cell.update()
-            headerTitle?.text = "还能选择\(8 - seletedPhotosArray.count)张照片"
-        }
         
+        PhotoPreviewView.showLocal(photosArray![indexPath.row])
     }
     
     //MARK: - PH
     func photoLibraryDidChange(changeInstance: PHChange) {
         getAllPhotos()
         collectionView?.reloadData()
+    }
+    
+    //MARK: - PhotoCollectionCellDelegate
+    func rightTopButtonAction(indexPath: NSIndexPath?) {
+        if let cell = collectionView!.cellForItemAtIndexPath(indexPath!) as? PhotoCollectionCell {
+            if let index = seletedPhotosArray.indexOf(indexPath!.row) {
+                seletedPhotosArray.removeAtIndex(index)
+                cell.type = .UnSelect
+            } else {
+                seletedPhotosArray.append(indexPath!.row)
+                cell.type = .Selected
+            }
+            cell.update()
+            headerTitle?.text = "还能选择\(8 - seletedPhotosArray.count)张照片"
+        }
     }
 }
 

@@ -128,10 +128,17 @@ class DrawCashPasswordModel: BaseModel {
     var change_type: Int = 0
 }
 
-class PhotoWallModel: BaseModel {
+class PhotoModel: BaseModel {
     var photo_url: String?
     var thumbnail_url: String?
     var upload_time: String?
+}
+
+class PhotoWallModel: BaseModel {
+    var photo_list:[PhotoModel] = []
+    class func photo_listModleClass() -> AnyClass {
+        return PhotoModel.classForCoder()
+    }
 }
 
 class PhotoWallRequestModel: BaseModel {
