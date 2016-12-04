@@ -14,6 +14,7 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
     var date:[String] = []
     var array:[AnyObject] = []
     var curModel:PhotoWallModel?
+    var firstLaunch = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +28,20 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if !firstLaunch {
+            didRequest()
+        } else {
+            firstLaunch = false
+        }
+
+    }
+    
     deinit {
         performSelectorRemoveRefreshControl()
         removeLoadMore()
+        SVProgressHUD.dismiss()
     }
     
     override func didRequest() {

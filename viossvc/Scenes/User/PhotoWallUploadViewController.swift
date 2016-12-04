@@ -191,4 +191,8 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
         seletedPhotosArray = seletedIndex
     }
     
+    
+    deinit {
+        SVProgressHUD.dismiss()
+    }
 }

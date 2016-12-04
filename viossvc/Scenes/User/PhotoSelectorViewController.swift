@@ -74,12 +74,13 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
         let all = PHFetchOptions()
         all.sortDescriptors = [NSSortDescriptor.init(key: "creationDate", ascending: true)]
         let assets = PHAsset.fetchAssetsWithMediaType(.Image, options: all)
-        let screenBounds = UIScreen.mainScreen().bounds
         for i in 0..<assets.count {
-            let asset = assets[i]
+            let asset = assets[i] as! PHAsset
             let options:PHImageRequestOptions = PHImageRequestOptions()
-            options.version = PHImageRequestOptionsVersion.Current
-            PHImageManager.defaultManager().requestImageForAsset(asset as! PHAsset, targetSize: CGSizeMake(screenBounds.width, screenBounds.height), contentMode: .AspectFill, options: options) {
+            options.version = .Original
+            options.resizeMode = .Exact
+            options.deliveryMode = .HighQualityFormat
+            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSizeMake(CGFloat(asset.pixelWidth), CGFloat(asset.pixelHeight)), contentMode: .AspectFit, options: options) {
                 (result, objects) -> Void in
                 if result == nil {
                     return 
