@@ -13,4 +13,6 @@ target 'viossvc' do
     pod 'XCGLogger', '~> 3.5.1'
     pod 'Kingfisher', '~> 2.5.0'
     pod 'Qiniu', '~> 7.1'
+    pod 'SnapKit', '~> 0.22.0'
+    
 end

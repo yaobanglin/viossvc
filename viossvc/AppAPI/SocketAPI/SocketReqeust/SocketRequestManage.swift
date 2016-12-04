@@ -19,7 +19,7 @@ class SocketRequestManage: NSObject {
     private var _reqeustId:UInt32 = 10000
     private var _socketHelper:APISocketHelper?
     private var _sessionId:UInt64 = 0
-    var receiveChatMsgBlock:CompleteBlock! = nil
+    var receiveChatMsgBlock:CompleteBlock?
     func logout(uid:Int) {
         stop()
     }
