@@ -139,6 +139,7 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
     func uploadPhoto2Wall(data: [String : AnyObject], complete: CompleteBlock, error: ErrorBlock) {
         let packet = SocketDataPacket(opcode: .UploadPhoto2Wall, dict: data)
         startRequest(packet, complete: complete, error: error)
+//        startModelsRequest(packet, modelClass: PhotoWallModel.classForCoder(), complete: complete, error: error)
     }
     
     //V领队服务列表

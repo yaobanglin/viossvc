@@ -10,10 +10,10 @@
 		26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */; };
 		2FB95D161DEFBC1300BBA506 /* PhotoWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */; };
 		2FB95D1A1DEFC00500BBA506 /* PhotoWallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */; };
-		2FB95D1C1DEFC0B500BBA506 /* PhotoWallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */; };
 		2FB95D1E1DF0010500BBA506 /* PhotoWallUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */; };
 		2FB95D5C1DF01A2700BBA506 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */; };
 		2FB95D5E1DF02B0C00BBA506 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */; };
+		2FE355411DF2728D00672793 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE355401DF2728D00672793 /* PhotoPreviewView.swift */; };
 		6E82E2651DF01EC70039BBA0 /* SkillLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */; };
 		6E82E2661DF01EC70039BBA0 /* SingleSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */; };
 		6E82E2671DF01EC70039BBA0 /* SkillWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */; };
@@ -134,10 +134,10 @@
 /* Begin PBXFileReference section */
 		2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallViewController.swift; sourceTree = "<group>"; };
 		2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCell.swift; sourceTree = "<group>"; };
-		2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoWallCell.xib; sourceTree = "<group>"; };
 		2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallUploadViewController.swift; sourceTree = "<group>"; };
 		2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
+		2FE355401DF2728D00672793 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
 		6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillLayoutView.swift; sourceTree = "<group>"; };
 		6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSkillCell.swift; sourceTree = "<group>"; };
 		6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillWidthLayout.swift; sourceTree = "<group>"; };
@@ -291,10 +291,10 @@
 			children = (
 				2FB95D151DEFBC1300BBA506 /* PhotoWallViewController.swift */,
 				2FB95D191DEFC00500BBA506 /* PhotoWallCell.swift */,
-				2FB95D1B1DEFC0B500BBA506 /* PhotoWallCell.xib */,
 				2FB95D1D1DF0010500BBA506 /* PhotoWallUploadViewController.swift */,
 				2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */,
 				2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */,
+				2FE355401DF2728D00672793 /* PhotoPreviewView.swift */,
 			);
 			name = PhotoWall;
 			sourceTree = "<group>";
@@ -800,7 +800,6 @@
 				B03B12471DE5BFDE00B00D2E /* PageViewImageCell.xib in Resources */,
 				B03B12301DE5BFDE00B00D2E /* TourShareCell.xib in Resources */,
 				B03B12491DE5BFDE00B00D2E /* TableViewHeaderView.xib in Resources */,
-				2FB95D1C1DEFC0B500BBA506 /* PhotoWallCell.xib in Resources */,
 				B03B12191DE5BFDE00B00D2E /* Assets.xcassets in Resources */,
 				B03B12461DE5BFDE00B00D2E /* LoadMoreView.xib in Resources */,
 				B034EA131DF1894700D2C0CC /* TourLeaderShareScrollView.xib in Resources */,
@@ -890,6 +889,7 @@
 				6E82E2671DF01EC70039BBA0 /* SkillWidthLayout.swift in Sources */,
 				B03B12331DE5BFDE00B00D2E /* TourShareListViewController.swift in Sources */,
 				B086734E1DE5C62B008DD8A1 /* MainViewController.swift in Sources */,
+				2FE355411DF2728D00672793 /* PhotoPreviewView.swift in Sources */,
 				B03B12291DE5BFDE00B00D2E /* SkillShareCell1.swift in Sources */,
 				BF9B6BC41DE96F9E009FFEB7 /* EnterPasswordViewController.swift in Sources */,
 				B03B122C1DE5BFDE00B00D2E /* SkillShareChatViewController.swift in Sources */,
@@ -1087,6 +1087,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/viossvc/Library",
@@ -1100,9 +1101,10 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.trip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.trip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Debug;
 		};
@@ -1111,7 +1113,8 @@
 			baseConfigurationReference = 99F5EF6682B1172BAA8C79FC /* Pods-viossvc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Zhejiang palm Easy Tour Network Technology Co., Ltd.";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/viossvc/Library",
@@ -1125,9 +1128,11 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.viossvc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.trip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2d96044d-94a1-43db-bfad-c1951ae48957";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Release;
 		};

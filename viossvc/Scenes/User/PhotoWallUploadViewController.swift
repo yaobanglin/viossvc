@@ -56,15 +56,14 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
     
     func rightItemTapped() {
         if photosArray?.count > 0 {
-            SVProgressHUD.showProgressMessage(ProgressMessage: "照片上传中...")
+//            SVProgressHUD.showProgressMessage(ProgressMessage: "照片上传中...")
             let uid = CurrentUserHelper.shared.userInfo.uid
-            weak var weakSelf = self
             var reUp = true
             for (index, img) in photosArray!.enumerate() {
                 let done = doneIndex.indexOf(index)
                 if done == nil {
                     qiniuUploadImage(img, imagePath: "\(uid)/PhotoWall/", imageName: "photo", tags: ["index": index], complete: { [weak self] (response) in
-                            weakSelf!.upload2Server(response)
+                            self!.upload2Server(response)
                         })
                     reUp = false
                 }
