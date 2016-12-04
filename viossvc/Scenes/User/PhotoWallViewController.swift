@@ -27,6 +27,12 @@ class PhotoWallViewController: BasePageListTableViewController, OEZTableViewDele
         
     }
     
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        didRequest()
+    }
+    
     func rightItemTapped() {
         
         
