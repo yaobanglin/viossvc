@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//import MJRefresh
+import SVProgressHUD
 
 class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
     
@@ -43,6 +43,7 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
         requestModel.size = 20
         requestModel.num = pageIndex + 1
         AppAPIHelper.userAPI().photoWallRequest(requestModel, complete: didRequestComplete(_:), error: { (error) in
+            SVProgressHUD.showErrorMessage(ErrorMessage: "加载数据失败，请稍后再试", ForDuration: 1.5, completion: nil)
             self.endRefreshing()
             self.endLoadMore()
         })
@@ -110,10 +111,6 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-    
-//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return date[section]
-//    }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
