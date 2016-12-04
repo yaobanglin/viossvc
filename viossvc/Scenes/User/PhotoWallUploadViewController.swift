@@ -56,7 +56,7 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
     
     func rightItemTapped() {
         if photosArray?.count > 0 {
-//            SVProgressHUD.showProgressMessage(ProgressMessage: "照片上传中...")
+            SVProgressHUD.showProgressMessage(ProgressMessage: "照片上传中...")
             let uid = CurrentUserHelper.shared.userInfo.uid
             var reUp = true
             for (index, img) in photosArray!.enumerate() {
