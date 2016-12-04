@@ -17,6 +17,7 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var pickerViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentToTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var timeIconLabel: UILabel!
     enum PickType {
         case StartTime
@@ -48,6 +49,11 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        hideKeyboard()
+        hiddlePick()
     }
     //MARK: --UI
     func initUI() {
@@ -158,9 +164,11 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         timeIconLabel.hidden = pickType == .Type
         pickerViewBottomConstraint.constant = 0
         picker?.reloadAllComponents()
+        contentToTopConstraint.constant = 20
     }
     func hiddlePick() {
         pickerViewBottomConstraint.constant = -225
+        contentToTopConstraint.constant = 100
     }
     
 }

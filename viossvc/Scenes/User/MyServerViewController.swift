@@ -22,7 +22,7 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
     var allSkillArray:Array<SkillsModel>?
     var skillDict:Dictionary<Int, SkillsModel> = [:]
     @IBOutlet weak var pictureCollection: UserPictureCollectionView!
-    var markHeight: CGFloat = 100
+    var markHeight: CGFloat = 0
     var serverHeight: CGFloat = 100
     var pictureHeight: CGFloat = 100
     var serverData: [UserServerModel] = []
@@ -32,46 +32,13 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        getUserSkills()
-        getAllSkills()
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         initData()
     }
     //MARK: --DATA
     func initData() {
-        //我的标签
-        AppAPIHelper.orderAPI().getSkills({[weak self] (response) in
-            let array = response as? Array<SkillsModel>
-            var skillDict: Dictionary<Int, AnyObject> = [:]
-            for skill in array! {
-                let size = skill.skill_name!.boundingRectWithSize(CGSizeMake(0, 21), font: UIFont.systemFontOfSize(15), lineSpacing: 0)
-                skill.labelWidth = size.width + 30
-                skillDict[skill.skill_id] = skill
-            }
-            
-            AppAPIHelper.userAPI().getOrModfyUserSkills(0, skills: "", complete: { (response) in
-                
-                if response != nil {
-                    let dict = response as! Dictionary<String, AnyObject>
-                    CurrentUserHelper.shared.userInfo.skills = dict["skills_"] as? String
-                    let skillArray = CurrentUserHelper.shared.userInfo.skills?.componentsSeparatedByString(",")
-                    if  skillArray?.count == 0{
-                        return
-                    }
-                    var skillModelArray: [SkillsModel] = []
-                    for skillName in skillArray!{
-                        if Int(skillName) > 0 {
-                            let model = skillDict[Int(skillName)!] as! SkillsModel
-                            skillModelArray.append(model)
-                        }
-                    }
-                    self?.skillView.dataSouce = skillModelArray
-                }
-            }, error: (self?.errorBlockFunc())!)
-          
-        }, error: errorBlockFunc())
+        //我的技能标签
+        getUserSkills()
+        getAllSkills()
         //我的服务
         AppAPIHelper.userAPI().serviceList({ [weak self](result) in
             if result == nil {
@@ -84,10 +51,21 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
             })
         }, error: errorBlockFunc())
         //我的相册
-        pictureCollection.updateMyPicture(["","","","","","","",""]) {[weak self] (height) in
-            self?.pictureHeight = height as! CGFloat
-            self?.tableView.reloadData()
-        }
+        let requestModel = PhotoWallRequestModel()
+        requestModel.uid = CurrentUserHelper.shared.userInfo.uid
+        requestModel.size = 10
+        requestModel.num = 1
+        AppAPIHelper.userAPI().photoWallRequest(requestModel, complete: {[weak self] (result) in
+            if result == nil{
+                return
+            }
+            let model: PhotoWallModoel = result as! PhotoWallModoel
+            self?.pictureCollection.updateMyPicture(model.photo_list) {[weak self] (height) in
+                self?.pictureHeight = height as! CGFloat
+                self?.tableView.reloadData()
+            }
+        }, error: errorBlockFunc())
+        
     }
     
     
@@ -104,9 +82,7 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
                     weakSelf.skillView.dataSouce = weakSelf.currentSkillsArray
                 }
             }
-        }) { (error) in
-            
-        }
+        }, error: errorBlockFunc())
     }
     func getAllSkills() {
         
@@ -124,17 +100,36 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
             if CurrentUserHelper.shared.userInfo.skills != nil {
                 weakSelf.currentSkillsArray =   AppAPIHelper.orderAPI().getSKillsWithModel(CurrentUserHelper.shared.userInfo.skills, dict:weakSelf.skillDict )
                 weakSelf.skillView.dataSouce = weakSelf.currentSkillsArray
-                
-                
             }
-        }) { (error) in
-        }
+        }, error: errorBlockFunc())
     }
     //MARK: --UI
     func initUI() {
         
+        headerImage.layer.cornerRadius = headerImage.frame.size.width * 0.5
+        headerImage.layer.masksToBounds = true
+        headerImage.layer.borderColor = UIColor(RGBHex: 0xb82624).CGColor
+        headerImage.layer.borderWidth = 2
+        
         skillView.showDelete = false
         skillView.collectionView?.backgroundColor = UIColor(RGBHex: 0xf2f2f2)
+        skillView.delegate = self
+        //headerView
+        if (CurrentUserHelper.shared.userInfo.head_url != nil){
+            let headUrl = NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!)
+            headerImage.kf_setImageWithURL(headUrl, placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+        }
+        
+        if CurrentUserHelper.shared.userInfo.praise_lv > 0 {
+            for i in 100...104 {
+                if i <= 100 + CurrentUserHelper.shared.userInfo.praise_lv {
+                    let starImage: UIImageView = headerContent.viewWithTag(i) as! UIImageView
+                    starImage.image = UIImage.init(named: "star-common-fill")
+                }
+            }
+        }
+        
+        idAuthIcon.hidden = !(CurrentUserHelper.shared.userInfo.auth_status_ == 1)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -144,7 +139,7 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
         if indexPath.section == 1 && indexPath.row == 1 {
             return markHeight
         }
-        if indexPath.section == 2 && indexPath.row == 1{
+        if indexPath.section == 2 && indexPath.row == 1 {
             return serverHeight
         }
         if indexPath.section == 3 && indexPath.row == 1 {
@@ -177,16 +172,12 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
     
     /**
      skillView 高度回调
-     
      - parameter layoutView:
      - parameter height:
      */
     func layoutStopWithHeight(layoutView: SkillLayoutView, height: CGFloat) {
-        
         markHeight = height
-        print(height)
         tableView.reloadData()
-//        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
 }
 

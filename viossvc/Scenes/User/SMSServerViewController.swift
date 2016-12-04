@@ -25,6 +25,9 @@ class SMSServerViewController: BaseTableViewController {
         super.viewDidLoad()
         nextStepBtn.layer.cornerRadius = 6
     }
+    deinit {
+        timer = nil
+    }
     //codeBtn
     @IBAction func codeBtnTapped(sender: UIButton) {
         AppAPIHelper.userAPI().smsVerify(.Login, phone: CurrentUserHelper.shared.userInfo.phone_num!, complete: {[weak self] (result) in
@@ -53,7 +56,6 @@ class SMSServerViewController: BaseTableViewController {
             codeBtn.setTitleColor(UIColor(RGBHex: 0xb72528), forState: .Normal)
             codeTime = 60
             timer?.invalidate()
-            
             return
         }
         codeTime = codeTime - 1
@@ -73,8 +75,6 @@ class SMSServerViewController: BaseTableViewController {
             return
         }
         if checkTextFieldEmpty([VerifyText]){
-            performSegueWithIdentifier(ServerManagerViewController.className(), sender: nil)
-            return
             let param: Dictionary<String, AnyObject> = ["phone_num_":CurrentUserHelper.shared.userInfo.phone_num!,
                                                         "timestamp_":timeStemp,
                                                         "token_": token,
