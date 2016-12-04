@@ -13,8 +13,9 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
     
     var date:[String] = []
     var array:[AnyObject] = []
-    var curModel:PhotoWallModoel?
-    
+    var curModel:PhotoWallModel?
+    var firstLaunch = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRefreshControl()
@@ -27,9 +28,20 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if !firstLaunch {
+            didRequest()
+        } else {
+            firstLaunch = false
+        }
+
+    }
+    
     deinit {
         performSelectorRemoveRefreshControl()
         removeLoadMore()
+        SVProgressHUD.dismiss()
     }
     
     override func didRequest() {
@@ -51,7 +63,7 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
     
 
     func didRequestComplete(data: AnyObject?) {
-        if let model = data as? PhotoWallModoel {
+        if let model = data as? PhotoWallModel {
             if pageIndex == 0 {
                 curModel = model
                 endRefreshing()

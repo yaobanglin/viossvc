@@ -104,7 +104,11 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
     func didRequestComplete(data:AnyObject?) {
         collectionView?.reloadData()
         if doneIndex.count == seletedPhotosArray.count {
-            navigationController?.popViewControllerAnimated(true)
+            SVProgressHUD.showSuccessMessage(SuccessMessage: "照片上传成功", ForDuration: 1.0, completion: nil)
+            weak var weakSelf = self
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 1.5)), dispatch_get_main_queue(), { () in
+                weakSelf?.navigationController?.popViewControllerAnimated(true)
+            })
         }
         
     }
@@ -191,4 +195,8 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
         seletedPhotosArray = seletedIndex
     }
     
+    
+    deinit {
+        SVProgressHUD.dismiss()
+    }
 }

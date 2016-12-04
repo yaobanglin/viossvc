@@ -80,9 +80,10 @@ class OrderListSocketAPI: BaseSocketAPI, OrderListAPI{
         
         for skillID in skillsIDArray {
             if skillID != "" {
-                let Id = Int(skillID)
+                if let Id = Int(skillID) {
+                    array.append(dict[Id]!)
+                }
                 
-                array.append(dict[Id!]!)
             }
         }
         return array

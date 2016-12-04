@@ -134,7 +134,7 @@ class PhotoModel: BaseModel {
     var upload_time: String?
 }
 
-class PhotoWallModoel: BaseModel {
+class PhotoWallModel: BaseModel {
     var photo_list:[PhotoModel] = []
     class func photo_listModleClass() -> AnyClass {
         return PhotoModel.classForCoder()
