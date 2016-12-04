@@ -78,8 +78,7 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
                 weakSelf.setupDataWithModel(orderDetailModel)
             }
             
-        }) { (error) in
-        }
+            }, error: errorBlockFunc())
         
     }
     
@@ -89,31 +88,28 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
     func getSkills() {
         
         unowned let weakSelf = self
+
         AppAPIHelper.orderAPI().getSkills({ (response) in
-            
             if response != nil {
                 
                 weakSelf.tagsView.hidden = false
                 let array = response as? Array<SkillsModel>
                 
                 for skill in array! {
-                
+                    
                     let size = skill.skill_name!.boundingRectWithSize(CGSizeMake(0, 21), font: UIFont.systemFontOfSize(15), lineSpacing: 0)
                     skill.labelWidth = size.width + 30
                     weakSelf.skillDict[skill.skill_id] = skill
-                
+                    
                 }
                 /**
                  *  如果订单详情已经加载完成 获取预约订单所含技能标签信息
                  */
                 if weakSelf.detailModel != nil {
-                weakSelf.tagsView.dataSouce =  AppAPIHelper.orderAPI().getSKillsWithModel(weakSelf.detailModel!.skills, dict:  weakSelf.skillDict)
+                    weakSelf.tagsView.dataSouce =  AppAPIHelper.orderAPI().getSKillsWithModel(weakSelf.detailModel!.skills, dict:  weakSelf.skillDict)
                 }
             }
-            
-            }) { (error) in
-                
-        }
+        }, error: errorBlockFunc())
         
     }
     /**
@@ -146,7 +142,7 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
         cityLabel.text = detailModel.order_addr
         
         /**
-         *  如果订单被评论过，显示评论信息，反之隐藏
+         *  如果订单被评论过(detailModel.has_evaluate == 1)，显示评论信息，反之隐藏
          */
         if detailModel.has_evaluate == 0 {
             commentMargin.constant = 0
@@ -204,7 +200,7 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
             isOtherOrderViewHeight.constant = 0
             
         } else {
-            isOtherOrderInfoLabel.text = "代订: \(detailModel.other_name)  \(detailModel.other_phone)"
+            isOtherOrderInfoLabel.text = "代订: \(detailModel.other_name!)  \(detailModel.other_phone!)"
         }
 
         

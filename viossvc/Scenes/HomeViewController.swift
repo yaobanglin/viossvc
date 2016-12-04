@@ -17,6 +17,13 @@ class HomeViewController: SegmentedViewController {
         return [ChatListViewController.className(),OrderListViewController.className()];
     }
 
+
     
+    @IBAction func refreshServiceAction(sender: AnyObject) {        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let refreshServiceVC = storyBoard.instantiateViewControllerWithIdentifier("SMSServerViewController")
+        
+        navigationController?.pushViewController(refreshServiceVC, animated: true)
+    }
+
     
 }
