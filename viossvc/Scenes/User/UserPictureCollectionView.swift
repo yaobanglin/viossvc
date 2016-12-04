@@ -28,6 +28,7 @@ class UserPictureCollectionView: UICollectionView, UICollectionViewDelegate, UIC
         collectionViewLayout = layout
         delegate = self
         dataSource = self
+        scrollEnabled = false
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
