@@ -60,6 +60,7 @@ class DrawCashRecordViewController: BasePageListTableViewController {
             let firstObject = self?.tableData.first
             self?.tableData.removeAll()
             if self?.tableData.count == 0{
+                
                 for model in resultModel.withdraw_record{
                     self?.tableData.append(model)
                 }
@@ -81,9 +82,7 @@ class DrawCashRecordViewController: BasePageListTableViewController {
                     }
                 }
             }
-           
-            
-            
+            self?.updateView()
         }, error: errorBlockFunc())
     }
     

@@ -46,7 +46,6 @@ class SocketConst: NSObject {
         case NewBankCard = 1095
         //获取所有技能标签
         case AllSkills = 1041
-        
         //获取身份认证进度
         case AuthStatus = 1057
         //上传身份认证信息
