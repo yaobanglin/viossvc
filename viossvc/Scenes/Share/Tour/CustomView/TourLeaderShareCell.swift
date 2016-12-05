@@ -68,7 +68,7 @@ class TourLeaderShareScrollView : OEZHScrollViewCell {
                 imageView.frame = CGRectMake(edge , 10, 55, 55)
                 imageView.layer.cornerRadius = 55 / 2.0
                 imageView.layer.masksToBounds = true
-                imageView.backgroundColor = UIColor.blueColor()
+//                imageView.backgroundColor = UIColor.blueColor()
                 titleName.frame = CGRectMake(0, 65,UIScreen.width() / 4.0, 105 - 65)
                 titleName.font = UIFont.systemFontOfSize(13)
                 titleName.textColor = UIColor(RGBHex: 0x131F32)

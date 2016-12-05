@@ -44,18 +44,23 @@ class TourShareViewController: BaseListTableViewController,OEZTableViewDelegate 
          let viewController:TourShareListViewController = storyboardViewController()
          viewController.setValue(model, forKey: "typeModel")
          self.navigationController?.pushViewController(viewController, animated: true);
-
-        
-        default:
-            let model = self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as? TourShareModel
-            let viewController:TourShareDetailViewController = storyboardViewController()
-            viewController.share_id = model!.share_id
-            viewController.title = model!.share_theme
-            self.navigationController?.pushViewController(viewController, animated: true);
+    
+        default: break
+            
             
         }
-        
+    
     }
+    
+    func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
+        if UInt(action) == AppConst.Action.CallPhone.rawValue {
+            let model = self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as? TourShareModel
+            if model?.telephone != nil {
+                didActionTel(model!.telephone)
+            }
+        }
+    }
+    
     
     
     

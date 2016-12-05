@@ -23,16 +23,27 @@ class CommTableViewBannerCell: OEZTableViewPageCell {
     
     
    override func pageView(pageView: OEZPageView!, cellForPageAtIndex pageIndex: Int) -> OEZPageViewCell! {
-    let cell:OEZPageViewImageCell? = pageView.dequeueReusableCellWithIdentifier(cellIdentifier) as? OEZPageViewImageCell;
-        cell?.contentImage.image = UIImage(named: "test3");
+        let cell:OEZPageViewImageCell? = pageView.dequeueReusableCellWithIdentifier(cellIdentifier) as? OEZPageViewImageCell;
+        var urlString:String?
+        if bannerSrcs![pageIndex] is String {
+            urlString = bannerSrcs![pageIndex] as? String
+        }
+        else if bannerSrcs![pageIndex] is SkillBannerModel {
+            urlString = (bannerSrcs![pageIndex] as! SkillBannerModel).banner_pic
+        }
+    
+        if urlString != nil {
+            cell?.contentImage.kf_setImageWithURL(NSURL(string:urlString!), placeholderImage: nil)
+        }
         return cell;
     }
     
     override func update(data: AnyObject!) {
-        if data != nil {
-            bannerSrcs = data as? Array<AnyObject>;
-            pageView.reloadData();
-        }
+        bannerSrcs = data != nil ? data as? Array<AnyObject> : []
+        pageView.pageControl.hidden = bannerSrcs?.count < 2
+        pageView.scrollView.scrollEnabled = bannerSrcs?.count > 1
+        pageView.reloadData()
+        
     }
 
     
