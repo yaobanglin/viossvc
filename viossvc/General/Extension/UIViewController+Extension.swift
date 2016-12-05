@@ -105,10 +105,10 @@ extension UIViewController {
         AppAPIHelper.commenAPI().imageToken({ (result) in
             let token = result?.valueForKey("img_token_") as! String
             //2,上传图片
+            let timestamp = NSDate().timeIntervalSince1970
+            let key = "\(imageName)\(timestamp).png"
             let qiniuManager = QNUploadManager()
-            let timestemp = NSDate().timeIntervalSince1970
-            let timeStr = String.init(timestemp).stringByReplacingOccurrencesOfString(".", withString: "")
-            qiniuManager.putFile(filePath, key: imageName + "\(timeStr)", token: token, complete: { (info, key, resp) in
+            qiniuManager.putFile(filePath, key: key, token: token, complete: { (info, key, resp) in
                 if resp == nil{
                     complete(nil)
                     return
@@ -167,7 +167,7 @@ extension UIViewController {
     func cacheImage(image: UIImage ,imageName: String) -> String {
         let data = UIImageJPEGRepresentation(image, 0.5)
         let homeDirectory = NSHomeDirectory()
-        let documentPath = homeDirectory + "/Documents"
+        let documentPath = homeDirectory + "/Documents/"
         let fileManager: NSFileManager = NSFileManager.defaultManager()
         do {
             try fileManager.createDirectoryAtPath(documentPath, withIntermediateDirectories: true, attributes: nil)
