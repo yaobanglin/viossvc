@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatInteractionViewController: BaseCustomPageListTableViewController {
+class ChatInteractionViewController: BaseCustomPageListTableViewController,InputBarViewProcotol {
 
     @IBOutlet weak var inputBar: InputBarView!
     @IBOutlet weak var inputBarHeight: NSLayoutConstraint!
@@ -19,10 +19,16 @@ class ChatInteractionViewController: BaseCustomPageListTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "张晓君"
+       inputBar.registeredDelegate(self)
         
     }
     
     override func didRequest(pageIndex: Int) {
+        
+        if pageIndex > 1 {
+            didRequestComplete([])
+            return
+        }
         let model = ChatMsgModel()
         model.content = "adad我我奥多姆拉丁名"
         
@@ -55,6 +61,32 @@ class ChatInteractionViewController: BaseCustomPageListTableViewController {
         
         return  model.from_uid == CurrentUserHelper.shared.uid ? "ChatWithISayCell" : "ChatWithAnotherSayCell"
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func inputBarDidKeyboardHide(inputBar inputBar: InputBarView, userInfo: Any) {
+        
+        print(userInfo)
+    }
+    
+    func inputBarDidKeyboardShow(inputBar inputBar: InputBarView, userInfo: Any) {
+         print(userInfo)
+    }
+    
+    func inputBarDidSendMessage(message: String) {
+        
+    }
+    func inputBarDidChangeHeight(height: CGFloat) {
+        
+    }
+   
     
     
   
