@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import XCGLogger
 class ChatInteractionViewController: BaseCustomListTableViewController,InputBarViewProcotol,ChatSessionProtocol{
+
+
 
 
     @IBOutlet weak var inputBar: InputBarView!
@@ -36,7 +39,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
                         ChatSessionHelper.shared.didReqeustUserInfoComplete(userInfo!.uid, userInfo: userInfo!)
                     }
                 }, error:  { (error) in
-                    
+                    XCGLogger.error("\(error)")
             })
         }
         
