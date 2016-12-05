@@ -10,17 +10,11 @@ import UIKit
 
 class CustomTextView: UITextView {
    private var placeHolder : String = ""
-    private  var placeHolderFont : UIFont?{
-        set {
-            self.placeHolderFont = newValue
-        }
-        get {
-             return  self.placeHolderFont == nil ? font : self.placeHolderFont
-        }
-        
-       
+    private  var placeHolderFont : UIFont?
+    private var getPlaceHolderFont : UIFont {
+        return  (placeHolderFont == nil ? font : placeHolderFont)!
     }
-   
+
    private var placeHolderTextColor : UIColor = UIColor.lightGrayColor()
    private var isClearPlaceHolder = false
     
@@ -151,14 +145,14 @@ class CustomTextView: UITextView {
         self.textAlignment = NSTextAlignment.Left;
     }
     
-    override init(frame: CGRect, textContainer: NSTextContainer?) {
-        super.init(frame: frame, textContainer: textContainer)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    override init(frame: CGRect, textContainer: NSTextContainer?) {
+//        super.init(frame: frame, textContainer: textContainer)
+//        setup()
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -172,7 +166,7 @@ class CustomTextView: UITextView {
     
     func placeHolderTop(y : CGFloat) -> CGFloat {
         var height  = y + self.scrollIndicatorInsets.top
-        height += (self.font!.lineHeight -  self.placeHolderFont!.lineHeight) / 2.0;
+        height += (self.font!.lineHeight -  getPlaceHolderFont.lineHeight) / 2.0;
         return height
         
     }
@@ -195,7 +189,7 @@ class CustomTextView: UITextView {
             paragraphStyle.alignment = self.textAlignment;
             
             let string : NSString = self.placeHolder
-            string.drawInRect(placeHolderRect, withAttributes: [NSFontAttributeName : placeHolderFont!, NSForegroundColorAttributeName : placeHolderTextColor ,NSParagraphStyleAttributeName : paragraphStyle])
+            string.drawInRect(placeHolderRect, withAttributes: [NSFontAttributeName : getPlaceHolderFont, NSForegroundColorAttributeName : placeHolderTextColor ,NSParagraphStyleAttributeName : paragraphStyle])
             
             isClearPlaceHolder = false
             

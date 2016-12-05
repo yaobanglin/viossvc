@@ -24,7 +24,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
        inputBar.registeredDelegate(self)
         self.title = chatName
         ChatSessionHelper.shared.openChatSession(self)
-
+        
     }
     
     private func updateUserInfo() {
@@ -44,6 +44,9 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     
     func receiveMsg(chatMsgModel: ChatMsgModel) {
         
+        dataSource?.append(chatMsgModel)
+        tableView.reloadData()
+       tableViewScrolToBottom()
     }
     
     func sessionUid() -> Int {
@@ -51,30 +54,24 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     }
     
     override func didRequest() {
-   
         
-
-        let model = ChatMsgModel()
-        model.content = "adad我我奥多姆拉丁名"
         
-        let modelMe = ChatMsgModel()
-        modelMe.content = "adladlmclcmlamlacnancla"
-        modelMe.from_uid = CurrentUserHelper.shared.uid
         
-        var array = [ChatMsgModel]()
-        for i  in 0 ... 9 {
-            let model = ChatMsgModel()
-            model.content = "按揭款打底裤" + "\(arc4random() % 10)"  + " 圣诞节疯狂" + "\(i)" + (i % 3 > 1 ? "andadnl 案例及大量的 到家了的" : "莱文斯基")
-            model.from_uid = arc4random() % 3 == 1 ? CurrentUserHelper.shared.uid : 123
-            array.append(model)
-            
+        
+        let id = dataSource == nil || dataSource?.count == 0 ? 0 : (dataSource?.first as! ChatMsgModel).id
+        
+        
+       var array = ChatMsgHepler.shared.findHistoryMsg(chatUid, lastId: id , pageSize: 30) as [AnyObject]
+        
+        if dataSource != nil {
+            array.appendContentsOf(dataSource!)
         }
-        
-        
-        
-     didRequestComplete(array)
+        didRequestComplete(array)
         
     }
+    
+    
+    
 
   override  func isCalculateCellHeight() -> Bool {
         return true
@@ -133,8 +130,9 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
 
     
     func inputBarDidSendMessage(inputBar inputBar: InputBarView, message: String) {
-     
-        print(message)
+        if !message.isEmpty {
+            ChatMsgHepler.shared.sendMsg(chatUid, msg: message)
+        }
     }
     func inputBarDidChangeHeight(inputBar inputBar: InputBarView, height: CGFloat) {
    
