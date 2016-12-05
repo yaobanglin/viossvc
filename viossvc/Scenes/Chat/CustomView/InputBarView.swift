@@ -8,32 +8,123 @@
 
 import UIKit
 
-class InputBarView: OEZBaseView  {
+ protocol  InputBarViewProcotol : OEZViewActionProtocol{
+    
+    func inputBarDidKeyboardShow(inputBar inputBar: InputBarView,userInfo : [NSObject : AnyObject]?)
+    
+    func inputBarDidKeyboardHide(inputBar inputBar: InputBarView,userInfo : [NSObject : AnyObject]?)
+    
+    func inputBarDidSendMessage(inputBar inputBar: InputBarView ,message: String)
+    
+    func inputBarDidChangeHeight(inputBar inputBar: InputBarView,height: CGFloat)
+    
+}
+
+
+
+class InputBarView: OEZBaseView ,UITextViewDelegate {
 
     @IBOutlet weak var faceButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: CustomTextView!
+    var inputDelegate : InputBarViewProcotol?
+    
+    
     let sendLayer: CALayer = CALayer.init()
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         sendLayerSetting()
+        addNotification()
+        textViewSetting()
+       
+       
+    }
+    func textViewSetting() {
+        textView.delegate = self
+        textView.setPlaceHolder("输入要说的话...")
+        textView.settingPlaceHolderTextColor(UIColor(RGBHex: 0xbdbdbd))
         
+        let  top = (self.textView.bounds.size.height - UIFont.HEIGHT(14)) / 2.0;
+        textView.settingScrollIndicatorInsets(UIEdgeInsetsMake(top, 5, 0, 5))
+    }
+    
+    func  addNotification()  {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(InputBarView.didKeyboardShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(InputBarView.didKeyboardHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func  registeredDelegate(sender : InputBarViewProcotol)  {
+     
+        inputDelegate = sender
     }
     
     
     
+    func didKeyboardShow( notification: NSNotification) {
+        
+        if (textView.isFirstResponder()) {
+//            _keyboardShow = YES;
+//            _isActionEmoji = NO;
+//
+             inputDelegate?.inputBarDidKeyboardShow(inputBar: self, userInfo: notification.userInfo)
+//
+            
+        }
+    }
+    func didKeyboardHide(notification: NSNotification) {
+        
+        if ( textView.isFirstResponder())
+        {
+            if( textView.inputView != nil )
+            {
+                textView.inputView = nil;
+            }
+//            if (![self isTouchEmoji]) {
+//                _keyboardShow = NO;
+            
+            inputDelegate?.inputBarDidKeyboardHide(inputBar: self, userInfo: notification.userInfo)
+                    self.faceButton.selected = false;
+
+//            }
+            
+        }
+    }
     
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n"{
+            
+            didSendMessage()
+            return false;
+        }
+        return true;
+    }
     
+    func textViewDidChange(textView: UITextView) {
+        sendLayerChangeColor(textView.text.length() > 0)
+    }
     
+    func didSendMessage() {
+        let  inputText = textView.text;
+//        inputText = [[EmojiFaceHelper shared] faceReplaceHex:inputText];
+        inputDelegate?.inputBarDidSendMessage(inputBar: self, message: inputText)
+        textView.text = nil;
+        sendLayerChangeColor(false)
+//        [self didChangeHeight:kInputBarHeight];
+//        [self emojiClose];
+//        self.isKVO = YES;
+    }
+
+    @IBAction func emojiFaceAction(sender : UIButton) {
+        
+        
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
+    @IBAction func sendButtonAction(sender : UIButton) {
+        didSendMessage()
+        
+    }
     
     func sendLayerSetting() {
         
@@ -45,7 +136,24 @@ class InputBarView: OEZBaseView  {
     }
     
     func sendLayerChangeColor(canSend: Bool) {
-        sendLayer.backgroundColor = canSend ? UIColor(RGBHex: 0x141F33).CGColor :UIColor(RGBHex: 0xE0E1E2).CGColor
+        if sendButton.userInteractionEnabled != canSend {
+            sendLayer.backgroundColor = canSend ? UIColor(RGBHex: 0x141F33).CGColor :UIColor(RGBHex: 0xE0E1E2).CGColor
+            sendButton.userInteractionEnabled = canSend
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 }
