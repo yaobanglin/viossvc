@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class ChatInteractionViewController: BaseCustomPageListTableViewController,InputBarViewProcotol,ChatSessionProtocol{
+class ChatInteractionViewController: BaseCustomListTableViewController,InputBarViewProcotol,ChatSessionProtocol{
 
 
     @IBOutlet weak var inputBar: InputBarView!
@@ -18,10 +18,12 @@ class ChatInteractionViewController: BaseCustomPageListTableViewController,Input
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+       tableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
        inputBar.registeredDelegate(self)
         self.title = chatSession.title
         ChatSessionHelper.shared.openChatSession(self)
+       
     }
     
     
@@ -33,12 +35,10 @@ class ChatInteractionViewController: BaseCustomPageListTableViewController,Input
        return chatSession.sessionId
     }
     
-    override func didRequest(pageIndex: Int) {
+    override func didRequest() {
+   
         
-        if pageIndex > 1 {
-            didRequestComplete([])
-            return
-        }
+
         let model = ChatMsgModel()
         model.content = "adad我我奥多姆拉丁名"
         
@@ -81,25 +81,70 @@ class ChatInteractionViewController: BaseCustomPageListTableViewController,Input
     
     
     
-    func inputBarDidKeyboardHide(inputBar inputBar: InputBarView, userInfo: Any) {
+    func inputBarDidKeyboardHide(inputBar inputBar: InputBarView, userInfo: [NSObject : AnyObject]?) {
+        let duration = userInfo![UIKeyboardAnimationDurationUserInfoKey]?.doubleValue
+        let rawValue = (userInfo![UIKeyboardAnimationCurveUserInfoKey]?.integerValue)! << 16
+        let curve = UIViewAnimationOptions.init(rawValue: UInt(rawValue))
         
-        print(userInfo)
+
+      
+        UIView.animateWithDuration(duration!, delay: 0, options: curve, animations: {
+            [weak self]() in
+            self!.inputBarChangeHeight(-1)
+            }, completion: nil)
+
+
+        
     }
     
-    func inputBarDidKeyboardShow(inputBar inputBar: InputBarView, userInfo: Any) {
-         print(userInfo)
+    func inputBarDidKeyboardShow(inputBar inputBar: InputBarView, userInfo: [NSObject : AnyObject]?) {
+        
+        let  height =  CGRectGetHeight(userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue())
+        if (height > 0) {
+            
+            let heightTime = userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
+            
+            
+            UIView.animateWithDuration(heightTime, animations: {
+                 [weak self]() in
+                self!.inputBarChangeHeight(height)
+                
+            })
+
+        }
+        
     }
     
-    func inputBarDidSendMessage(message: String) {
+
+    
+    func inputBarDidSendMessage(inputBar inputBar: InputBarView, message: String) {
+     
+        print(message)
+    }
+    func inputBarDidChangeHeight(inputBar inputBar: InputBarView, height: CGFloat) {
+   
         
     }
-    func inputBarDidChangeHeight(height: CGFloat) {
-        
+    func inputBarChangeHeight(height : CGFloat) {
+        inputBarBottom.constant = height
+        self.view.layoutIfNeeded()
+        if height > 0 {
+           tableViewScrolToBottom()
+        }
     }
+    
+    func tableViewScrolToBottom() {
+    
+        if  dataSource?.count > 0 {
+            tableView.scrollToRowAtIndexPath(NSIndexPath.init(forRow: dataSource!.count - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+    }
+
    
     
     
     deinit {
+
         ChatSessionHelper.shared.closeChatSession()
     }
   

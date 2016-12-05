@@ -10,19 +10,19 @@ import UIKit
 
  protocol  InputBarViewProcotol : OEZViewActionProtocol{
     
-    func inputBarDidKeyboardShow(inputBar inputBar: InputBarView,userInfo : Any)
+    func inputBarDidKeyboardShow(inputBar inputBar: InputBarView,userInfo : [NSObject : AnyObject]?)
     
-    func inputBarDidKeyboardHide(inputBar inputBar: InputBarView,userInfo : Any)
+    func inputBarDidKeyboardHide(inputBar inputBar: InputBarView,userInfo : [NSObject : AnyObject]?)
     
-    func inputBarDidSendMessage(message: String)
+    func inputBarDidSendMessage(inputBar inputBar: InputBarView ,message: String)
     
-    func inputBarDidChangeHeight(height: CGFloat)
+    func inputBarDidChangeHeight(inputBar inputBar: InputBarView,height: CGFloat)
     
 }
 
 
 
-class InputBarView: OEZBaseView  {
+class InputBarView: OEZBaseView ,UITextViewDelegate {
 
     @IBOutlet weak var faceButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
@@ -35,12 +35,16 @@ class InputBarView: OEZBaseView  {
         
         super.awakeFromNib()
         sendLayerSetting()
+        addNotification()
         
+       textView.delegate = self
+       
+    }
+    
+    func  addNotification()  {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(InputBarView.didKeyboardShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-    
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(InputBarView.didKeyboardHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-    
-    
     }
     
     func  registeredDelegate(sender : InputBarViewProcotol)  {
@@ -74,20 +78,45 @@ class InputBarView: OEZBaseView  {
             
             inputDelegate?.inputBarDidKeyboardHide(inputBar: self, userInfo: notification.userInfo)
                     self.faceButton.selected = false;
-                    
 
 //            }
             
         }
     }
     
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n"{
+            
+            didSendMessage()
+            return false;
+        }
+        return true;
+    }
     
+    func textViewDidChange(textView: UITextView) {
+        sendLayerChangeColor(textView.text.length() > 0)
+    }
     
+    func didSendMessage() {
+        let  inputText = textView.text;
+//        inputText = [[EmojiFaceHelper shared] faceReplaceHex:inputText];
+        inputDelegate?.inputBarDidSendMessage(inputBar: self, message: inputText)
+        textView.text = nil;
+        sendLayerChangeColor(false)
+//        [self didChangeHeight:kInputBarHeight];
+//        [self emojiClose];
+//        self.isKVO = YES;
+    }
+
+    @IBAction func emojiFaceAction(sender : UIButton) {
+        
+        
+    }
     
-    
-    
-    
-    
+    @IBAction func sendButtonAction(sender : UIButton) {
+        didSendMessage()
+        
+    }
     
     func sendLayerSetting() {
         
@@ -99,8 +128,21 @@ class InputBarView: OEZBaseView  {
     }
     
     func sendLayerChangeColor(canSend: Bool) {
-        sendLayer.backgroundColor = canSend ? UIColor(RGBHex: 0x141F33).CGColor :UIColor(RGBHex: 0xE0E1E2).CGColor
+        if sendButton.userInteractionEnabled != canSend {
+            sendLayer.backgroundColor = canSend ? UIColor(RGBHex: 0x141F33).CGColor :UIColor(RGBHex: 0xE0E1E2).CGColor
+            sendButton.userInteractionEnabled = canSend
+        }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
