@@ -71,6 +71,9 @@ class SocketDataPacket {
         self.type = type.rawValue
         self.operate_code = opcode.rawValue
         self.data = data
+        self.data_length = data == nil ? 0 : UInt16(data!.length)
+        self.packet_length = self.data_length + 0x1a
+        self.timestamp = UInt32(NSDate().timeIntervalSince1970)
     }
 
     convenience init( opcode: SocketConst.OPCode, strData: String,type: SocketConst.type = .User) {
@@ -99,9 +102,9 @@ class SocketDataPacket {
 
     func serializableData() -> NSData? {
         let outdata: NSMutableData = NSMutableData()
-        self.data_length = data == nil ? 0 : UInt16(data!.length)
-        self.packet_length = self.data_length + 0x1a
-        self.timestamp = UInt32(NSDate().timeIntervalSince1970)
+//        self.data_length = data == nil ? 0 : UInt16(data!.length)
+//        self.packet_length = self.data_length + 0x1a
+//        self.timestamp = UInt32(NSDate().timeIntervalSince1970)
         outdata.appendBytes(&self.packetHead, length: sizeof(SocketPacketHead));
         if self.data != nil {
             outdata.appendData(self.data!)

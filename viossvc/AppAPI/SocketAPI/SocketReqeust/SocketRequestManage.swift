@@ -110,6 +110,8 @@ class SocketRequestManage: NSObject {
     }
     
     func sendChatMsg(packet: SocketDataPacket,complete:CompleteBlock,error:ErrorBlock) {
+        packet.request_id = reqeustId;
+        packet.session_id = _sessionId;
         sendRequest(packet)
     }
     
