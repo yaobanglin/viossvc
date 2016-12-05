@@ -52,8 +52,8 @@ class ChatMsgHepler: NSObject {
     }
     
     
-    func findHistory(uid:Int,lastId:Int) -> [ChatMsgModel] {
-        return [ChatMsgModel]()
+    func findHistoryMsg(uid:Int,lastId:Int) -> [ChatMsgModel] {
+        return ChatDataBaseHelper.ChatMsg.findHistoryMsg(uid, lastId: lastId)
     }
     
 
