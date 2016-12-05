@@ -26,7 +26,7 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
 
     @IBOutlet weak var faceButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: CustomTextView!
     var inputDelegate : InputBarViewProcotol?
     
     
@@ -36,9 +36,17 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
         super.awakeFromNib()
         sendLayerSetting()
         addNotification()
-        
-       textView.delegate = self
+        textViewSetting()
        
+       
+    }
+    func textViewSetting() {
+        textView.delegate = self
+        textView.setPlaceHolder("输入要说的话...")
+        textView.settingPlaceHolderTextColor(UIColor(RGBHex: 0xbdbdbd))
+        
+        let  top = (self.textView.bounds.size.height - UIFont.HEIGHT(14)) / 2.0;
+        textView.settingScrollIndicatorInsets(UIEdgeInsetsMake(top, 5, 0, 5))
     }
     
     func  addNotification()  {
