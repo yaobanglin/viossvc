@@ -8,17 +8,14 @@
 
 import UIKit
 
-class ChatMsgModel: BaseModel {
+class ChatMsgModel: BaseDBModel {
 
     var from_uid : Int = 0
     var to_uid : Int = 0
     var msg_time : Int = 0
     var msg_type:Int = 0
-    var content :String!
-    
-    
-    var id:Int = 0
-    var isReading : Bool = true
+    var content :String = ""
+    var status : Int = 0
     
     
     func formatMsgTime() -> String {
@@ -43,15 +40,16 @@ class ChatMsgModel: BaseModel {
     
 }
 
-class ChatSessionModel : BaseModel {
-    var id:Int = 0
+class ChatSessionModel : BaseDBModel {
     var sessionId: Int = 0
     var type:Int = 0
-    var title:String!
-    var icon:String!
+    var title:String = ""
+    var icon:String = ""
     var noReading:Int = 0
     var isTop:Bool = false
     var isNotDisturb:Bool = false
     var lastChatMsg:ChatMsgModel!
-    
+    override class func debarsByPropertyKey() -> [AnyObject]! {
+        return ["lastChatMsg"]
+    }
 }
