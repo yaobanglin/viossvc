@@ -37,16 +37,13 @@ class SettingViewController: BaseTableViewController {
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
-        initData()
         initUI()
     }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.reloadData()
-    }
-    //MARK: --DATA
-    func initData() {
-        
+        authLabel.text = authStatus
+        authCell.accessoryType = authStatus == "未认证" ? .DisclosureIndicator : .None
     }
     //MARK: --UI
     func initUI() {
@@ -54,7 +51,7 @@ class SettingViewController: BaseTableViewController {
         userNumLabel.text = userNum.stringByReplacingCharactersInRange(NSRange.init(location: 4, length: 4), withString: "****")
         //缓存
         cacheLabel.text = String(format:"%.2f M",Double(calculateCacle()))
-        //认证状态
+        
         authLabel.text = authStatus
         authCell.accessoryType = authStatus == "未认证" ? .DisclosureIndicator : .None
     }
