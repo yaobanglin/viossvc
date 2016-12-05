@@ -17,7 +17,7 @@ class SMSServerViewController: BaseTableViewController {
     var serverData: [UserServerModel]?
     var codeTime: Int = 60
     var timer: NSTimer?
-    var timeStemp = ""
+    var timeStemp: Int64 = 0
     var token = ""
     
     //MARK: --LIFECYCLE
@@ -30,6 +30,7 @@ class SMSServerViewController: BaseTableViewController {
     }
     //codeBtn
     @IBAction func codeBtnTapped(sender: UIButton) {
+        
         AppAPIHelper.userAPI().smsVerify(.Login, phone: CurrentUserHelper.shared.userInfo.phone_num!, complete: {[weak self] (result) in
             if result == nil{
                 return
@@ -37,14 +38,9 @@ class SMSServerViewController: BaseTableViewController {
             
             if let strongSelf = self{
                 let model = result as! SMSVerifyRetModel
-                strongSelf.timeStemp = "\(model.timestamp)"
+                strongSelf.timeStemp = model.timestamp as Int64
                 strongSelf.token = model.token
-                
                 strongSelf.codeBtn.enabled = false
-                if strongSelf.timer != nil{
-                    strongSelf.timer?.fire()
-                    return
-                }
                 strongSelf.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: strongSelf, selector: #selector(strongSelf.updateBtnTitle), userInfo: nil, repeats: true)
             }
         }, error: errorBlockFunc())
@@ -75,17 +71,22 @@ class SMSServerViewController: BaseTableViewController {
             return
         }
         if checkTextFieldEmpty([VerifyText]){
+//            performSegueWithIdentifier(ServerManagerViewController.className(), sender: nil)
+//            return
             let param: Dictionary<String, AnyObject> = ["phone_num_":CurrentUserHelper.shared.userInfo.phone_num!,
-                                                        "timestamp_":timeStemp,
+                                                        "timestamp_":Int(timeStemp),
                                                         "token_": token,
                                                         "verify_type_": 1,
-                                                        "verify_code_":VerifyText.text!]
+                                                        "verify_code_":Int(VerifyText.text!)!]
             AppAPIHelper.userAPI().verifyCode(param, complete: { [weak self](result) in
                 self?.performSegueWithIdentifier(ServerManagerViewController.className(), sender: nil)
             }, error: errorBlockFunc())
         }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if serverData == nil {
+            return
+        }
         let controller =  segue.destinationViewController as! ServerManagerViewController
         controller.serverData = serverData!
     }

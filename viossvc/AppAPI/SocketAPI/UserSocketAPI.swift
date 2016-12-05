@@ -150,7 +150,7 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
 
     //更新服务列表
     func updateServiceList(model: UpdateServerModel, complete: CompleteBlock, error: ErrorBlock) {
-        let packet = SocketDataPacket(opcode: .ServiceList, model: model)
+        let packet = SocketDataPacket(opcode: .UpdateServiceList, model: model)
         startModelRequest(packet, modelClass: UpdateServerModel.classForCoder(), complete: complete, error: error)
     }
     /**

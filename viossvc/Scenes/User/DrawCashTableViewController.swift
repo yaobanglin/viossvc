@@ -45,7 +45,7 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
         if CurrentUserHelper.shared.userInfo.currentBanckCardName != nil{
             let bankNum = CurrentUserHelper.shared.userInfo.currentBankCardNumber! as NSString
             let bankName = CurrentUserHelper.shared.userInfo.currentBanckCardName! as NSString
-            if bankNum == "" {
+            if bankNum == "" || bankName == ""{
                 bankNameLabel.text = "银行卡格式错误"
                 return
             }
