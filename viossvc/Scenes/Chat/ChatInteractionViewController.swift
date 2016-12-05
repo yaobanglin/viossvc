@@ -14,21 +14,37 @@ class ChatInteractionViewController: BaseCustomPageListTableViewController,ChatS
     @IBOutlet weak var inputBarHeight: NSLayoutConstraint!
     
     @IBOutlet weak var inputBarBottom: NSLayoutConstraint!
-    var chatSession:ChatSessionModel!
+    var chatUid:Int = 0
+    var chatName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = chatSession.title
+        self.title = chatName
         ChatSessionHelper.shared.openChatSession(self)
+        updateUserInfo()
     }
     
+    private func updateUserInfo() {
+        if chatUid != 0 {
+            AppAPIHelper.userAPI().getUserInfo(chatUid, complete: { [weak self](model) in
+                  let userInfo = model as? UserInfoModel
+                    if userInfo != nil {
+                        self?.title = userInfo!.nickname
+                        ChatSessionHelper.shared.didReqeustUserInfoComplete(userInfo!.uid, userInfo: userInfo!)
+                    }
+                }, error:  { (error) in
+                    
+            })
+        }
+        
+    }
     
     func receiveMsg(chatMsgModel: ChatMsgModel) {
         
     }
     
     func sessionUid() -> Int {
-       return chatSession.sessionId
+       return chatUid
     }
     
     override func didRequest(pageIndex: Int) {
