@@ -58,6 +58,7 @@ class ChatMsgHepler: NSObject {
     
 
     func didChatMsg(chatMsgModel:ChatMsgModel)  {
+        ChatDataBaseHelper.ChatMsg.addModel(chatMsgModel)
         chatSessionHelper?.receiveMsg(chatMsgModel)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var cityLabel: UILabel!
@@ -14,6 +15,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var iconImage: UIImageView!
     var imageUrl: String?
+    var haveChangeImage: Bool = false
     lazy var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController.init()
         return picker
@@ -40,7 +42,12 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     }
     //MARK: --上传头像
     @IBAction func finishItemTapped(sender: AnyObject) {
-        if iconImage.image != UIImage.init(named: "head_boy") && imageUrl == nil  {
+        if CurrentUserHelper.shared.userInfo.nickname == nameText.text && haveChangeImage == false{
+            SVProgressHUD.showWainningMessage(WainningMessage: "未做任何修改", ForDuration: 1, completion: nil)
+            return
+        }
+        
+        if haveChangeImage && imageUrl == nil  {
             showErrorWithStatus("头像上传失败，请稍后再试")
             return
         }
@@ -79,6 +86,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         if indexPath.row == 1 || indexPath.row == 3 {
             return
         }
+        haveChangeImage = true
         let title = indexPath.row == 0 ? "头像" : "性别"
         let firstActionTitle = indexPath.row == 0 ? "照相机":"男"
         let secondActionTitle = indexPath.row == 0 ? "相册":"女"
@@ -112,6 +120,11 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         iconImage.image = image
         qiniuUploadImage(image, imageName: "\(CurrentUserHelper.shared.userInfo.uid)", complete: { [weak self](imageUrl) in
             if imageUrl == nil || imageUrl?.length == 0 {
+                SVProgressHUD.showErrorMessage(ErrorMessage: "头像上传失败，请稍后再试", ForDuration: 1, completion: nil)
+                if (CurrentUserHelper.shared.userInfo.head_url != nil){
+                    let headUrl = NSURL.init(string: CurrentUserHelper.shared.userInfo.head_url!)
+                    self?.iconImage.kf_setImageWithURL(headUrl, placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+                }
                 return
             }
             self?.imageUrl = imageUrl as? String
