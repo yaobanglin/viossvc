@@ -116,7 +116,7 @@ class SocketDataPacket {
         return try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary;
     }
     
-    deinit {
-            XCGLogger.debug("deinit \(self)")
-    }
+//    deinit {
+//            XCGLogger.debug("deinit \(self)")
+//    }
 }

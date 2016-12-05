@@ -56,13 +56,13 @@ class SocketConst: NSObject {
         case ServiceList = 1501
         //更新V领队服务
         case UpdateServiceList = 1503
-        
+        //技能分享列表
         case SkillShareList = 1071
-        
+        //技能分享详情
         case SkillShareDetail = 1073
-        
+        //技能分享评论列表
         case SkillShareComment = 1075
-        
+        //技能分享预约
         case SkillShareEnroll = 1077
         /**
          订单列表
@@ -76,10 +76,11 @@ class SocketConst: NSObject {
          操作技能标签
          */
         case HandleSkills = 1509
+        //旅游分享类别
         case TourShareType = 1059
-        
+        //旅游分享列表
         case TourShareList = 1061
-        
+        //旅游分享详情
         case TourShareDetail = 1065
         //上传照片到照片墙
         case UploadPhoto2Wall = 1107
@@ -90,12 +91,13 @@ class SocketConst: NSObject {
          */
         case ModfyOrderStatus = 2011
         
-
-
         case LoginRet = 1002
         case UserInfo = 1013
+        //发送chat消息
         case ChatSendMessage = 2003
+        //收到chat消息
         case ChatReceiveMessage = 2004
+        //获取chat离线消息
         case ChatOfflineRequestMessage = 2025
         case ChatOfflineReceiveMessage = 2006
     }
