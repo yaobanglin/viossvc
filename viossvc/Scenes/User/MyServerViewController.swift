@@ -74,6 +74,7 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
     
     func getUserSkills() {
         
+        guard CurrentUserHelper.shared.userInfo.skills == nil else {return}
         unowned let weakSelf = self
         AppAPIHelper.userAPI().getOrModfyUserSkills(0, skills: "", complete: { (response) in
             
