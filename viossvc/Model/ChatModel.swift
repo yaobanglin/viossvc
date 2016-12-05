@@ -13,15 +13,19 @@ class ChatMsgModel: BaseModel {
     var from_uid : Int = 0
     var to_uid : Int = 0
     var msg_time : Int = 0
+    var msg_type:Int = 0
     var content :String!
-    var type:Int = 0
+    
+    
+    var id:Int = 0
     var isReading : Bool = true
     
     
 }
 
 class ChatSessionModel : BaseModel {
-    var id: Int = 0
+    var id:Int = 0
+    var sessionId: Int = 0
     var type:Int = 0
     var title:String!
     var icon:String!

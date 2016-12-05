@@ -17,7 +17,7 @@ class ChatMsgHepler: NSObject {
         AppAPIHelper.chatAPI().setReceiveMsgBlock { [weak self] (msg) in
             let chatModel = msg as? ChatMsgModel
             if chatModel != nil {
-                self?.receiveMsg(chatModel!)
+                self?.didChatMsg(chatModel!)
             }
         }
     }
@@ -25,7 +25,7 @@ class ChatMsgHepler: NSObject {
     func sendMsg(toUid:Int,msg:String, type:Int = 0 ) {
         let chatModel = ChatMsgModel()
         chatModel.content = msg
-        chatModel.type = type
+        chatModel.msg_type = type
         chatModel.from_uid = CurrentUserHelper.shared.uid
         chatModel.to_uid = toUid
         chatModel.msg_time = Int(NSDate().timeIntervalSince1970)
@@ -34,24 +34,26 @@ class ChatMsgHepler: NSObject {
             }, error: { (error) in
                 
         })
-        receiveMsg(chatModel)
+        didChatMsg(chatModel)
     }
     
     func offlineMsgs() {
-        AppAPIHelper.chatAPI().offlineMsgList(CurrentUserHelper.shared.uid, complete: { [weak self] (array) in
-                self?.didOfflineMsgsComplete(array as? [ChatMsgModel])
+        AppAPIHelper.chatAPI().offlineMsgList(CurrentUserHelper.shared.uid, complete: { [weak self] (chatModels) in
+                self?.didOfflineMsgsComplete(chatModels as? [ChatMsgModel])
             }, error: { (error) in
                 
         })
     }
     
-    func didOfflineMsgsComplete(array:[ChatMsgModel]!) {
-        
+    func didOfflineMsgsComplete(chatModels:[ChatMsgModel]!) {
+        for chatModel in chatModels {
+            didChatMsg(chatModel)
+        }
     }
     
     
 
-    func receiveMsg(chatMsgModel:ChatMsgModel)  {
+    func didChatMsg(chatMsgModel:ChatMsgModel)  {
         chatSessionHelper?.receiveMsg(chatMsgModel)
     }
 }

@@ -11,7 +11,11 @@ import UIKit
 class ChatSocketAPI:BaseSocketAPI, ChatAPI {
 
     func sendMsg(chatModel:ChatMsgModel,complete:CompleteBlock,error:ErrorBlock) {
-        let pack = SocketDataPacket(opcode: .ChatSendMessage, model: chatModel)
+        
+        var dict = try? OEZJsonModelAdapter.jsonDictionaryFromModel(chatModel)
+        dict?.removeValueForKey("isReading_");
+        dict?.removeValueForKey("id_");
+        let pack = SocketDataPacket(opcode: .ChatSendMessage, dict: dict as! [String:AnyObject])
         SocketRequestManage.shared.sendChatMsg(pack, complete: complete, error: error)
     }
     

@@ -57,6 +57,7 @@ class CurrentUserHelper: NSObject {
         keychainItem.resetKeychainItem()
         keychainItem.setObject(_userInfo.phone_num, forKey: kSecAttrAccount)
         keychainItem.setObject(_password, forKey: kSecValueData)
+        ChatMsgHepler.shared.sendMsg(35, msg: "msg")
     }
     
     func logout() {
