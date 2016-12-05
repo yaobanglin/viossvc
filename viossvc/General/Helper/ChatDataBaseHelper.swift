@@ -19,14 +19,14 @@ class ChatDataBaseHelper: NSObject {
     }
     
      class ChatSession {
-        class func findHistorySession() ->[ChatSessionModel]! {
-            return nil
+        class func findHistorySession() ->[ChatSessionModel] {
+            return [ChatSessionModel]()
         }
     }
     
     class ChatMsg {
-        class func findHistoryMsg(uid:Int,lastId:Int) -> [ChatMsgModel]! {
-            return nil
+        class func findHistoryMsg(uid:Int,lastId:Int) -> [ChatMsgModel] {
+            return [ChatMsgModel]()
         }
     }
 }

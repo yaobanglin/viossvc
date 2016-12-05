@@ -34,10 +34,10 @@ class ChatSessionViewController: BaseTableViewController,ChatSessionsProtocol {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-                    let viewController:ChatInteractionViewController = storyboardViewController()
-                    viewController.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(viewController, animated: true);
+        let viewController:ChatInteractionViewController = storyboardViewController()
+        viewController.chatSession = self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as! ChatSessionModel
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     deinit {
