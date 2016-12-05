@@ -10,17 +10,17 @@ import Foundation
 
 class ChatSessionViewController: BaseTableViewController,ChatSessionsProtocol {
     internal var dataSource = [ChatSessionModel]();
-    
+    private var chatSessionHelper:ChatSessionHelper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateChatSessions()
-        ChatSessionHelper.shared.chatSessionsDelegate = self
+        chatSessionHelper = ChatSessionHelper(chatSessionsDelegate: self)
+        ChatMsgHepler.shared.chatSessionHelper = chatSessionHelper
     }
     
     
-    func updateChatSessions() {
-        dataSource = ChatSessionHelper.shared.chatSessions
+    func updateChatSessions(chatSession:[ChatSessionModel]) {
+        dataSource = chatSession
         tableView.reloadData()
     }
     
@@ -42,7 +42,8 @@ class ChatSessionViewController: BaseTableViewController,ChatSessionsProtocol {
     }
     
     deinit {
-        ChatSessionHelper.shared.chatSessionsDelegate = nil
+        chatSessionHelper.chatSessionsDelegate = nil
+        ChatMsgHepler.shared.chatSessionHelper = nil
     }
 
 }

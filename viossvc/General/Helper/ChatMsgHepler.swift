@@ -52,6 +52,10 @@ class ChatMsgHepler: NSObject {
     }
     
     
+    func findHistory(uid:Int,lastId:Int) -> [ChatMsgModel] {
+        return [ChatMsgModel]()
+    }
+    
 
     func didChatMsg(chatMsgModel:ChatMsgModel)  {
         chatSessionHelper?.receiveMsg(chatMsgModel)

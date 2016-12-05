@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol ChatSessionsProtocol {
-    func updateChatSessions()
+protocol ChatSessionsProtocol : NSObjectProtocol {
+    func updateChatSessions(chatSession:[ChatSessionModel])
 }
 
-protocol ChatSessionProtocol {
+protocol ChatSessionProtocol : NSObjectProtocol {
     
     func receiveMsg(chatMsgModel:ChatMsgModel)
     
@@ -21,11 +21,15 @@ protocol ChatSessionProtocol {
 
 
 class ChatSessionHelper: NSObject {
-    static let shared = ChatSessionHelper()
-    var chatSessions:[ChatSessionModel] = []
-    var chatSessionsDelegate:ChatSessionsProtocol?
-    private var currentChatSessionDelegate:ChatSessionProtocol?
+    private var chatSessions:[ChatSessionModel] = []
+    weak var chatSessionsDelegate:ChatSessionsProtocol?
+    weak private var currentChatSessionDelegate:ChatSessionProtocol?
     
+    init(chatSessionsDelegate:ChatSessionsProtocol) {
+        super.init()
+        self.chatSessionsDelegate = chatSessionsDelegate
+        self.chatSessionsDelegate?.updateChatSessions(chatSessions)
+    }
     func openChatSession(chatSessionDelegate:ChatSessionProtocol) {
         currentChatSessionDelegate = chatSessionDelegate
         let chatSession = findChatSession(currentChatSessionDelegate!.sessionUid())
@@ -72,7 +76,7 @@ class ChatSessionHelper: NSObject {
     }
     
     func updateChatSession(chatSession:ChatSessionModel) {
-        chatSessionsDelegate?.updateChatSessions()
+        chatSessionsDelegate?.updateChatSessions(chatSessions)
     }
     
     
