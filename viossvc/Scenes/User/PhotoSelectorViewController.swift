@@ -23,9 +23,15 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     
     var headerTitle:UILabel?
     
-    var photosArray:[UIImage]? = []
+    var photosAsset:PHFetchResult?
+    
+    var photosArray:[AnyObject]? = []
     
     var seletedPhotosArray:[Int] = []
+    
+    var photoImages:[UIImage?] = []
+    
+    var timer:NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,20 +51,21 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
         
         collectionView?.registerClass(PhotoCollectionCell.self, forCellWithReuseIdentifier: "PhotoCollectionCell")
         collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "PhotoCollectionHeader")
+        
+        initPhotos()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         initNav()
-        getAllPhotos()
-        
+        collectionView?.reloadData()
     }
     
     func rightItemTapped() {
         var thumb:[UIImage]? = []
         if seletedPhotosArray.count > 0 {
             for index in seletedPhotosArray {
-                thumb!.append(photosArray![index])
+                thumb!.append(UIImage.init(data: (photosArray![index] as? NSData)!)!)
             }
             delegate?.selected(thumb, src: nil, seletedIndex: seletedPhotosArray)
         }
@@ -67,32 +74,43 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     }
     
     func initNav() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "确定", style: .Plain, target: self, action: #selector(rightItemTapped))
-    }
-    
-    func getAllPhotos() {
-        let all = PHFetchOptions()
-        all.sortDescriptors = [NSSortDescriptor.init(key: "creationDate", ascending: true)]
-        let assets = PHAsset.fetchAssetsWithMediaType(.Image, options: all)
-        for i in 0..<assets.count {
-            let asset = assets[i] as! PHAsset
-            let options:PHImageRequestOptions = PHImageRequestOptions()
-            options.version = .Original
-            options.resizeMode = .Exact
-            options.deliveryMode = .HighQualityFormat
-            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSizeMake(CGFloat(asset.pixelWidth), CGFloat(asset.pixelHeight)), contentMode: .AspectFit, options: options) {
-                (result, objects) -> Void in
-                if result == nil {
-                    return 
-                }
-                self.photosArray?.append(result!)
-                if i == assets.count - 1 {
-                    self.collectionView?.reloadData()
-                }
-            }
-
+        if navigationItem.rightBarButtonItem == nil {
+            navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "确定", style: .Plain, target: self, action: #selector(rightItemTapped))
         }
         
+    }
+    
+    func getPhoto(index: Int) {
+        if index < photosAsset!.count {
+            let asset = photosAsset![index] as! PHAsset
+            let options:PHImageRequestOptions = PHImageRequestOptions()
+            options.version = .Current
+            options.deliveryMode = .Opportunistic
+            options.networkAccessAllowed = true
+            weak var weakSelf = self
+            PHImageManager.defaultManager().requestImageDataForAsset(asset, options: options, resultHandler: { (data, uti, orientation, info) in
+                if data != nil {
+                    dispatch_async(dispatch_get_global_queue(0, 0), { () in
+                        weakSelf?.photosArray![index] = data!
+                        if weakSelf?.photoImages[index] == nil {
+                            weakSelf?.photoImages[index] = weakSelf?.compress(data!)
+                            dispatch_async(dispatch_get_main_queue(), { () in
+                                weakSelf?.collectionView?.reloadItemsAtIndexPaths([NSIndexPath.init(forItem: index, inSection: 0)])
+                            })
+                        }
+                    })
+                }
+            })
+        }
+    }
+
+    func initPhotos() {
+        let all = PHFetchOptions()
+        all.sortDescriptors = [NSSortDescriptor.init(key: "creationDate", ascending: false)]
+        photosAsset = PHAsset.fetchAssetsWithMediaType(.Image, options: all)
+        photosArray = Array.init(count: photosAsset!.count, repeatedValue: UIImage())
+        photoImages = Array.init(count: photosAsset!.count, repeatedValue: nil)
+        collectionView?.reloadData()
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -119,7 +137,7 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photosArray?.count ?? 0
+        return photosAsset?.count ?? 0
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -130,9 +148,12 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
             if seletedPhotosArray.contains(indexPath.row) {
                 cell.type = .Selected
             }
-            let asset = photosArray![indexPath.row]
-            cell.updateWithImage(asset, indexPath: indexPath)
-            
+            if photoImages[indexPath.row] != nil {
+                cell.updateWithImage(photoImages[indexPath.row]!, indexPath: indexPath)
+            } else {
+                getPhoto(indexPath.row)
+                cell.photo?.image = UIImage.init(named: "head_giry")
+            }
             return cell
         }
         
@@ -142,13 +163,15 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         NSLog("%d", indexPath.row)
         
-        PhotoPreviewView.showLocal(photosArray![indexPath.row])
+        if let data = photosArray![indexPath.row] as? NSData {
+            PhotoPreviewView.showLocal(UIImage.init(data: data)!)
+        }
+        
     }
     
     //MARK: - PH
     func photoLibraryDidChange(changeInstance: PHChange) {
-        getAllPhotos()
-        collectionView?.reloadData()
+        initPhotos()
     }
     
     //MARK: - PhotoCollectionCellDelegate
@@ -165,5 +188,30 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
             headerTitle?.text = "还能选择\(8 - seletedPhotosArray.count)张照片"
         }
     }
+    
+    func compress(imageData: NSData) ->UIImage? {
+        if imageData.length / 1024 > 128 {
+            let srcImg = UIImage.init(data: imageData)
+            let imgWidth = srcImg!.size.width
+            let imgHeight = srcImg!.size.height
+            let width:CGFloat = 160
+            let height = imgHeight / (imgWidth / width)
+            let widthScale = imgWidth / width
+            let heightScala = imgHeight / height
+            
+            UIGraphicsBeginImageContext(CGSizeMake(width, height))
+            if widthScale > heightScala {
+                srcImg?.drawInRect(CGRectMake(0, 0, imgWidth / heightScala, height))
+            } else {
+                srcImg?.drawInRect(CGRectMake(0, 0, width, imgHeight / widthScale))
+            }
+            let dstImg = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            return dstImg
+        }
+        return UIImage.init(data: imageData)
+    }
+    
 }
 
