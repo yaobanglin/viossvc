@@ -132,7 +132,7 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
     //请求用户相册墙信息
     func photoWallRequest(model: PhotoWallRequestModel, complete: CompleteBlock, error: ErrorBlock) {
         let packet = SocketDataPacket(opcode: .PhotoWall, model: model)
-        startModelRequest(packet, modelClass: PhotoWallModoel.classForCoder(), complete: complete, error: error)
+        startModelRequest(packet, modelClass: PhotoWallModel.classForCoder(), complete: complete, error: error)
     }
     
     //请求上传照片

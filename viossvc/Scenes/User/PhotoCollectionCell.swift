@@ -55,7 +55,7 @@ class PhotoCollectionCell: UICollectionViewCell {
             typeBtn?.layer.cornerRadius = 10
             typeBtn?.layer.masksToBounds = true
             let width = contentView.bounds.width
-            typeBtn?.frame = CGRectMake(width - 15, -5, 20, 20)
+            typeBtn?.frame = CGRectMake(width - 17, -3, 20, 20)
             typeBtn?.addTarget(self, action: #selector(rtBtnAction(_:)), forControlEvents: .TouchUpInside)
             contentView.addSubview(typeBtn!)
         }

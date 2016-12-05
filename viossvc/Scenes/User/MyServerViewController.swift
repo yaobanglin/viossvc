@@ -62,7 +62,7 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
             if result == nil{
                 return
             }
-            let model: PhotoWallModoel = result as! PhotoWallModoel
+            let model: PhotoWallModel = result as! PhotoWallModel
             self?.pictureCollection.updateMyPicture(model.photo_list) {[weak self] (height) in
                 self?.pictureHeight = height as! CGFloat
                 self?.tableView.reloadData()
