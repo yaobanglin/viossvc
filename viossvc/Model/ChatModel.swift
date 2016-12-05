@@ -21,6 +21,26 @@ class ChatMsgModel: BaseModel {
     var isReading : Bool = true
     
     
+    func formatMsgTime() -> String {
+        let date = NSDate(timeIntervalSince1970: Double(msg_time))
+        let calendar = NSCalendar.currentCalendar()
+        
+        let last18hours = (-18*60*60 < date.timeIntervalSinceNow)
+        let isToday = calendar.isDateInToday(date)
+        let isLast7Days = (calendar.compareDate(NSDate(timeIntervalSinceNow: -7*24*60*60), toDate: date, toUnitGranularity: .Day) == NSComparisonResult.OrderedAscending)
+        let dateFormatter = NSDateFormatter()
+        if last18hours || isToday {
+            dateFormatter.dateStyle = .NoStyle
+            dateFormatter.timeStyle = .ShortStyle
+        } else if isLast7Days {
+            dateFormatter.dateFormat = "ccc"
+        } else {
+            dateFormatter.dateStyle = .ShortStyle
+            dateFormatter.timeStyle = .NoStyle
+        }
+        return dateFormatter.stringFromDate(date)
+    }
+    
 }
 
 class ChatSessionModel : BaseModel {
@@ -33,4 +53,5 @@ class ChatSessionModel : BaseModel {
     var isTop:Bool = false
     var isNotDisturb:Bool = false
     var lastChatMsg:ChatMsgModel!
+    
 }

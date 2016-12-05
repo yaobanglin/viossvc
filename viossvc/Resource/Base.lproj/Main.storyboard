@@ -691,7 +691,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatListCell" id="HVw-gb-hej" customClass="ChatListCell" customModule="viossvc" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatSessionCell" id="HVw-gb-hej" customClass="ChatSessionCell" customModule="viossvc" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HVw-gb-hej" id="NQS-gn-vAB">
@@ -721,7 +721,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="180巴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGX-WJ-FuD">
-                                                    <rect key="frame" x="68" y="17" width="372" height="16"/>
+                                                    <rect key="frame" x="68" y="17" width="368" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="In9-Sf-3Qi"/>
                                                     </constraints>
@@ -730,12 +730,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 12:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqW-Cp-eY4">
-                                                    <rect key="frame" x="450" y="18" width="116" height="21"/>
+                                                    <rect key="frame" x="446" y="18" width="120" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="W8Y-FB-6kt"/>
-                                                        <constraint firstAttribute="width" constant="116" id="cpR-Sk-ICG"/>
+                                                        <constraint firstAttribute="width" constant="120" id="cpR-Sk-ICG"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -784,10 +784,10 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="contentLabel" destination="f8p-oA-niA" id="VmP-JT-a5H"/>
-                                    <outlet property="headPicImageView" destination="EiS-Dt-6Gu" id="piB-VJ-ywE"/>
-                                    <outlet property="nicknameLabel" destination="aGX-WJ-FuD" id="XPi-pO-Knk"/>
-                                    <outlet property="timeLabel" destination="YqW-Cp-eY4" id="QEC-e4-Q6G"/>
+                                    <outlet property="contentLabel" destination="f8p-oA-niA" id="37c-Qb-yMw"/>
+                                    <outlet property="headPicImageView" destination="EiS-Dt-6Gu" id="O7O-Oy-xDy"/>
+                                    <outlet property="nicknameLabel" destination="aGX-WJ-FuD" id="aKn-OK-lPA"/>
+                                    <outlet property="timeLabel" destination="YqW-Cp-eY4" id="ceG-JE-lxa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

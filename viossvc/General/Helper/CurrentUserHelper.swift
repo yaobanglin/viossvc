@@ -57,13 +57,16 @@ class CurrentUserHelper: NSObject {
         keychainItem.resetKeychainItem()
         keychainItem.setObject(_userInfo.phone_num, forKey: kSecAttrAccount)
         keychainItem.setObject(_password, forKey: kSecValueData)
-        ChatMsgHepler.shared.sendMsg(35, msg: "msg")
+        ChatDataBaseHelper.shared.open(_userInfo.uid)
+        ChatSessionHelper.shared.findHistorySession()
+        ChatMsgHepler.shared.chatSessionHelper = ChatSessionHelper.shared
     }
     
     func logout() {
         AppAPIHelper.userAPI().logout(_userInfo.uid)
         nodifyPassword("")
         self._userInfo = nil
+        ChatDataBaseHelper.shared.close()
     }
     
     func nodifyPassword(password:String) {
