@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SVProgressHUD
 class UserHomeViewController: BaseTableViewController {
     
     
@@ -33,7 +33,9 @@ class UserHomeViewController: BaseTableViewController {
     func initData() {
         checkAuthStatus()
         requsetCommonBankCard()
+        SVProgressHUD.showProgressMessage(ProgressMessage: "初始化用户数据")
         requestUserCash { [weak self](result) in
+            SVProgressHUD.dismiss()
             let userCash =  result as! Int
             self?.userCashLabel.text = "\(Double(userCash)/100)元"
         }

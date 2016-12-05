@@ -8,18 +8,43 @@
 
 import UIKit
 
-class ChatInteractionViewController: BaseCustomPageListTableViewController {
+class ChatInteractionViewController: BaseCustomPageListTableViewController,ChatSessionProtocol {
 
     @IBOutlet weak var inputBar: InputBarView!
     @IBOutlet weak var inputBarHeight: NSLayoutConstraint!
     
     @IBOutlet weak var inputBarBottom: NSLayoutConstraint!
-    
+    var chatUid:Int = 0
+    var chatName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "张晓君"
+        self.title = chatName
+        ChatSessionHelper.shared.openChatSession(self)
+        updateUserInfo()
+    }
+    
+    private func updateUserInfo() {
+        if chatUid != 0 {
+            AppAPIHelper.userAPI().getUserInfo(chatUid, complete: { [weak self](model) in
+                  let userInfo = model as? UserInfoModel
+                    if userInfo != nil {
+                        self?.title = userInfo!.nickname
+                        ChatSessionHelper.shared.didReqeustUserInfoComplete(userInfo!.uid, userInfo: userInfo!)
+                    }
+                }, error:  { (error) in
+                    
+            })
+        }
         
+    }
+    
+    func receiveMsg(chatMsgModel: ChatMsgModel) {
+        
+    }
+    
+    func sessionUid() -> Int {
+       return chatUid
     }
     
     override func didRequest(pageIndex: Int) {
@@ -57,6 +82,9 @@ class ChatInteractionViewController: BaseCustomPageListTableViewController {
     }
     
     
+    deinit {
+        ChatSessionHelper.shared.closeChatSession()
+    }
   
 }
 

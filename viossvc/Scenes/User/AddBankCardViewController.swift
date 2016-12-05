@@ -20,13 +20,19 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
     @IBAction func bindBankCard(sender: AnyObject) {
         
         if checkTextFieldEmpty([cardNumberTextfield,nameTextfiled,bankNameTextfield,phoneNumberTextfield]) {
+            let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", AppConst.Text.PhoneFormat)
+            if predicate.evaluateWithObject(phoneNumberTextfield.text) == false {
+                showErrorWithStatus(AppConst.Text.PhoneFormatErr)
+                return;
+            }
+            
             SVProgressHUD.showProgressMessage(ProgressMessage: "绑定中...")
             AppAPIHelper.userAPI().newBankCard([
                 "uid_":CurrentUserHelper.shared.userInfo.uid,
                 "account_": cardNumberTextfield.text!,
                 "bank_username_":bankNameTextfield.text!,
                 "bank_":1,
-                "is_default_":0
+                "phone_num_":phoneNumberTextfield.text!
                 ], complete: { [weak self](response) in
                     SVProgressHUD.showSuccessMessage(SuccessMessage: "绑定成功", ForDuration: 1, completion: { 
                         self?.navigationController?.popViewControllerAnimated(true)
@@ -35,8 +41,6 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
                 SVProgressHUD.showErrorMessage(ErrorMessage: error.localizedDescription, ForDuration: 1, completion: nil)
             }
         }
-        
-        
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {

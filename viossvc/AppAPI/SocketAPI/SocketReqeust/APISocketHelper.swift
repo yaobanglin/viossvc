@@ -69,7 +69,7 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
     }
 
     @objc func socket(sock: GCDAsyncSocket, didReadData data: NSData, withTag tag: CLong) {
-//        XCGLogger.debug("socket:\(data)")
+        XCGLogger.debug("socket:\(data)")
         mutableData.appendData(data)
         while mutableData.length > 2 {
             var packetLen: Int16 = 0;

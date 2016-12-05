@@ -48,7 +48,7 @@ class ServerTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func updateData(data: AnyObject!, complete:CompleteBlock) {
         serverData = data as! [UserServerModel]
         reloadData()
-        complete(contentSize.height+20)
+        complete(contentSize.height > 0 ? contentSize.height+20 : 0)
     }
     
 }

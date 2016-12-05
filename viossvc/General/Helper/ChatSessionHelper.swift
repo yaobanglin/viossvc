@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol ChatSessionsProtocol {
-    func updates()
+protocol ChatSessionsProtocol : NSObjectProtocol {
+    func updateChatSessions(chatSession:[ChatSessionModel])
 }
 
-protocol ChatSessionProtocol {
+protocol ChatSessionProtocol : NSObjectProtocol {
     
     func receiveMsg(chatMsgModel:ChatMsgModel)
     
@@ -22,62 +22,121 @@ protocol ChatSessionProtocol {
 
 class ChatSessionHelper: NSObject {
     static let shared = ChatSessionHelper()
-    var chatSessions:[ChatSessionModel] = []
-    var chatSessionsDelegate:ChatSessionsProtocol?
-    private var currentChatSessionDelegate:ChatSessionProtocol?
+    private var _chatSessions:[ChatSessionModel] = []
+    var chatSessions:[ChatSessionModel] {
+        return _chatSessions
+    }
+    weak var chatSessionsDelegate:ChatSessionsProtocol?
+    weak private var currentChatSessionDelegate:ChatSessionProtocol?
+    
+
+    func findHistorySession() {
+        
+        _chatSessions = ChatDataBaseHelper.ChatSession.findHistorySession()
+        
+//        
+//        
+//        let chatSession = ChatSessionModel()
+//        chatSession.sessionId = 100
+//        chatSession.title = "180"
+//        chatSession.icon = "http://pic55.nipic.com/file/20141208/19462408_171130083000_2.jpg"
+//        chatSession.lastChatMsg = ChatMsgModel()
+//        chatSession.lastChatMsg.content = "臊堪堪骚登峰街道看开点机房监控大丰街道空间的肯德基打击打击"
+//        chatSession.lastChatMsg.msg_time = Int(NSDate().timeIntervalSince1970)
+//        chatSession.lastChatMsg.from_uid = CurrentUserHelper.shared.uid
+//        chatSession.lastChatMsg.to_uid = 100
+////        ChatDataBaseHelper.ChatSession.addModel(chatSession)
+////        ChatDataBaseHelper.ChatMsg.addModel(chatSession.lastChatMsg)
+//        _chatSessions.append(chatSession)
+        
+        chatSessionSort()
+    }
     
     func openChatSession(chatSessionDelegate:ChatSessionProtocol) {
         currentChatSessionDelegate = chatSessionDelegate
         let chatSession = findChatSession(currentChatSessionDelegate!.sessionUid())
-        chatSession.noReading = 0
-        chatSessionsDelegate?.updates()
+        if chatSession != nil {
+            chatSession.noReading = 0
+            updateChatSession(chatSession)
+        }
     }
+    
     
     func  closeChatSession()  {
         currentChatSessionDelegate = nil
     }
     
     func receiveMsg(chatMsgModel:ChatMsgModel)  {
-        let chatSession = findChatSession(chatMsgModel.from_uid)
-        if chatSession.lastChatMsg == nil
+        let sessionId = chatMsgModel.from_uid == CurrentUserHelper.shared.uid ? chatMsgModel.to_uid : chatMsgModel.from_uid
+        
+        var chatSession = findChatSession(sessionId)
+        if chatSession == nil {
+            chatSession = createChatSession(sessionId)
+            chatSession.lastChatMsg = chatMsgModel
+        }
+        else if chatSession.lastChatMsg == nil
             || chatSession.lastChatMsg.msg_time < chatMsgModel.msg_time {
             chatSession.lastChatMsg = chatMsgModel
-            chatSessions.sortInPlace({ (chatSession1, chatSession2) -> Bool in
-                return chatSession1.lastChatMsg.msg_time > chatSession2.lastChatMsg.msg_time
-            })
+            chatSessionSort()
         }
         
-        if chatMsgModel.to_uid == CurrentUserHelper.shared.uid {
-            if currentChatSessionDelegate != nil && currentChatSessionDelegate?.sessionUid() == chatMsgModel.from_uid {
-                currentChatSessionDelegate?.receiveMsg(chatMsgModel)
-            }
-            else {
-                chatSession.noReading += 1
-            }
+        if currentChatSessionDelegate != nil && currentChatSessionDelegate?.sessionUid() == chatMsgModel.from_uid {
+            currentChatSessionDelegate?.receiveMsg(chatMsgModel)
         }
-        chatSessionsDelegate?.updates()
+        else if chatMsgModel.from_uid != CurrentUserHelper.shared.uid {
+            chatSession.noReading += 1
+        }
+        
+        updateChatSession(chatSession)
     }
     
-    func updateChatSession(uid:Int,userInfo:UserInfoModel!) {
+    
+    
+    func didReqeustUserInfoComplete(uid:Int,userInfo:UserInfoModel!) {
         if userInfo != nil {
             let chatSession = findChatSession(uid)
-            chatSession.title = userInfo.nickname
+            chatSession.title = userInfo.nickname!
+            chatSession.icon = userInfo.head_url!
+            updateChatSession(chatSession)
         }
-        chatSessionsDelegate?.updates()
     }
     
-    func findChatSession(uid:Int) ->ChatSessionModel {
-        for  chatSession in chatSessions {
-            if chatSession.id == uid {
+    
+    func updateChatSession(chatSession:ChatSessionModel) {
+        ChatDataBaseHelper.ChatSession.updateModel(chatSession)
+        chatSessionsDelegate?.updateChatSessions(_chatSessions)
+    }
+    
+    private func chatSessionSort() {
+        _chatSessions.sortInPlace({ (chatSession1, chatSession2) -> Bool in
+            return chatSession1.lastChatMsg?.msg_time > chatSession2.lastChatMsg?.msg_time
+        })
+    }
+    
+    private func updateChatSessionUserInfo(uid:Int) {
+        AppAPIHelper.userAPI().getUserInfo(uid, complete: { [weak self](model) in
+            self?.didReqeustUserInfoComplete(uid, userInfo: model as? UserInfoModel)
+            }, error: {(error) in})
+    }
+    
+    private func createChatSession(uid:Int) -> ChatSessionModel {
+        let chatSession = ChatSessionModel()
+        chatSession.sessionId = uid
+        _chatSessions.insert(chatSession, atIndex: 0)
+        if chatSession.type == 0 {
+            updateChatSessionUserInfo(uid)
+        }
+        ChatDataBaseHelper.ChatSession.addModel(chatSession)
+        return chatSession
+
+    }
+    
+    private func findChatSession(uid:Int) ->ChatSessionModel! {
+        for  chatSession in _chatSessions {
+            if chatSession.sessionId == uid {
                 return chatSession
             }
         }
-        let chatSession = ChatSessionModel()
-        chatSession.id = uid
-        AppAPIHelper.userAPI().getUserInfo(uid, complete: { [weak self](model) in
-            self?.updateChatSession(uid, userInfo: model as? UserInfoModel)
-            }, error: {(error) in})
-        chatSessions.insert(chatSession, atIndex: 0)
-        return chatSession
+        return nil
     }
 }

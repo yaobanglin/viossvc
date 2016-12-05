@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
         SVProgressHUD.setMinimumDismissTimeInterval(2)
         SocketRequestManage.shared.start()
+        
         return true
     }
 

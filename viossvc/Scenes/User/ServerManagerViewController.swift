@@ -56,6 +56,17 @@ class ServerManagerViewController: BaseListTableViewController,OEZTableViewDeleg
         newServiceBtn.layer.borderColor = UIColor.blackColor().CGColor
         newServiceBtn.layer.cornerRadius = 8
         newServiceBtn.layer.borderWidth = 0.5
+        
+        if serverData == nil || serverData?.count == 0 {
+            //我的服务
+            AppAPIHelper.userAPI().serviceList({ [weak self](result) in
+                if result == nil {
+                    return
+                }
+                self?.serverData = result as? [UserServerModel]
+                self?.didRequestComplete(self?.serverData)
+            }, error: errorBlockFunc())
+        }
     }
     //删除服务
     func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
