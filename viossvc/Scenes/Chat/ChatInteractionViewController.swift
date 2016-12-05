@@ -27,7 +27,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
        inputBar.registeredDelegate(self)
         self.title = chatName
         ChatSessionHelper.shared.openChatSession(self)
-        
+        updateUserInfo()
     }
     
     private func updateUserInfo() {
