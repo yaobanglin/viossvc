@@ -29,9 +29,7 @@ class ChatSessionHelper: NSObject {
     weak var chatSessionsDelegate:ChatSessionsProtocol?
     weak private var currentChatSessionDelegate:ChatSessionProtocol?
     
-    
-    
-    
+
     func findHistorySession() {
         
         _chatSessions = ChatDataBaseHelper.ChatSession.findHistorySession()
@@ -57,19 +55,23 @@ class ChatSessionHelper: NSObject {
     func openChatSession(chatSessionDelegate:ChatSessionProtocol) {
         currentChatSessionDelegate = chatSessionDelegate
         let chatSession = findChatSession(currentChatSessionDelegate!.sessionUid())
-        chatSession.noReading = 0
-        updateChatSession(chatSession)
-        updateChatSessionUserInfo(currentChatSessionDelegate!.sessionUid())
+        if chatSession != nil {
+            chatSession.noReading = 0
+            updateChatSession(chatSession)
+        }
     }
+    
     
     func  closeChatSession()  {
         currentChatSessionDelegate = nil
     }
     
     func receiveMsg(chatMsgModel:ChatMsgModel)  {
-        var chatSession = findChatSession(chatMsgModel.from_uid)
+        let sessionId = chatMsgModel.from_uid == CurrentUserHelper.shared.uid ? chatMsgModel.to_uid : chatMsgModel.from_uid
+        
+        var chatSession = findChatSession(sessionId)
         if chatSession == nil {
-            chatSession = createChatSession(chatMsgModel.from_uid)
+            chatSession = createChatSession(sessionId)
             chatSession.lastChatMsg = chatMsgModel
         }
         else if chatSession.lastChatMsg == nil
@@ -81,7 +83,7 @@ class ChatSessionHelper: NSObject {
         if currentChatSessionDelegate != nil && currentChatSessionDelegate?.sessionUid() == chatMsgModel.from_uid {
             currentChatSessionDelegate?.receiveMsg(chatMsgModel)
         }
-        else if chatMsgModel.to_uid != CurrentUserHelper.shared.uid {
+        else if chatMsgModel.from_uid != CurrentUserHelper.shared.uid {
             chatSession.noReading += 1
         }
         
@@ -90,7 +92,7 @@ class ChatSessionHelper: NSObject {
     
     
     
-    func updateUserInfo(uid:Int,userInfo:UserInfoModel!) {
+    func didReqeustUserInfoComplete(uid:Int,userInfo:UserInfoModel!) {
         if userInfo != nil {
             let chatSession = findChatSession(uid)
             chatSession.title = userInfo.nickname!
@@ -110,9 +112,10 @@ class ChatSessionHelper: NSObject {
             return chatSession1.lastChatMsg?.msg_time > chatSession2.lastChatMsg?.msg_time
         })
     }
+    
     private func updateChatSessionUserInfo(uid:Int) {
         AppAPIHelper.userAPI().getUserInfo(uid, complete: { [weak self](model) in
-            self?.updateUserInfo(uid, userInfo: model as? UserInfoModel)
+            self?.didReqeustUserInfoComplete(uid, userInfo: model as? UserInfoModel)
             }, error: {(error) in})
     }
     
@@ -120,7 +123,9 @@ class ChatSessionHelper: NSObject {
         let chatSession = ChatSessionModel()
         chatSession.sessionId = uid
         _chatSessions.insert(chatSession, atIndex: 0)
-        updateChatSessionUserInfo(uid)
+        if chatSession.type == 0 {
+            updateChatSessionUserInfo(uid)
+        }
         ChatDataBaseHelper.ChatSession.addModel(chatSession)
         return chatSession
 

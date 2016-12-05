@@ -27,7 +27,7 @@ class ChatSocketAPI:BaseSocketAPI, ChatAPI {
     func setReceiveMsgBlock(complete:CompleteBlock) {
         SocketRequestManage.shared.receiveChatMsgBlock = { (response) in
             let jsonResponse = response as! SocketJsonResponse
-            let model:ChatMsgModel? = jsonResponse.responseJson()
+            let model = jsonResponse.responseModel(ChatMsgModel.classForCoder()) as? ChatMsgModel
             if  model != nil {
                 complete(model)
             }
