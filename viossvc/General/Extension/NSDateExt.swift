@@ -14,7 +14,7 @@ extension NSDate{
     /**
      *  字符串转日期
      */
-    static func yt_convertDateStrToStr(dateStr: String, format: String) -> NSDate {
+    static func yt_convertDateStrToDate(dateStr: String, format: String) -> NSDate {
         if dateStr == "0000-00-00 00:00:00" {
             return NSDate()
         }
