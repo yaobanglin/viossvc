@@ -10,12 +10,11 @@ import Foundation
 
 class ChatSessionViewController: BaseTableViewController,ChatSessionsProtocol {
     internal var dataSource = [ChatSessionModel]();
-    private var chatSessionHelper:ChatSessionHelper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chatSessionHelper = ChatSessionHelper(chatSessionsDelegate: self)
-        ChatMsgHepler.shared.chatSessionHelper = chatSessionHelper
+        ChatSessionHelper.shared.chatSessionsDelegate = self
+        updateChatSessions(ChatSessionHelper.shared.chatSessions)
     }
     
     
@@ -35,15 +34,14 @@ class ChatSessionViewController: BaseTableViewController,ChatSessionsProtocol {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-                    let viewController:ChatInteractionViewController = storyboardViewController()
-                    viewController.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(viewController, animated: true);
+        let viewController:ChatInteractionViewController = storyboardViewController()
+        viewController.chatSession = self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as! ChatSessionModel
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     deinit {
-        chatSessionHelper.chatSessionsDelegate = nil
-        ChatMsgHepler.shared.chatSessionHelper = nil
+        ChatSessionHelper.shared.chatSessionsDelegate = nil
     }
 
 }

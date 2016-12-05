@@ -7,20 +7,30 @@
 //
 
 import UIKit
+class ChatInteractionViewController: BaseCustomPageListTableViewController,InputBarViewProcotol,ChatSessionProtocol{
 
-class ChatInteractionViewController: BaseCustomPageListTableViewController,InputBarViewProcotol {
 
     @IBOutlet weak var inputBar: InputBarView!
     @IBOutlet weak var inputBarHeight: NSLayoutConstraint!
     
     @IBOutlet weak var inputBarBottom: NSLayoutConstraint!
-    
+    var chatSession:ChatSessionModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "张晓君"
+
        inputBar.registeredDelegate(self)
+        self.title = chatSession.title
+        ChatSessionHelper.shared.openChatSession(self)
+    }
+    
+    
+    func receiveMsg(chatMsgModel: ChatMsgModel) {
         
+    }
+    
+    func sessionUid() -> Int {
+       return chatSession.sessionId
     }
     
     override func didRequest(pageIndex: Int) {
@@ -89,6 +99,9 @@ class ChatInteractionViewController: BaseCustomPageListTableViewController,Input
    
     
     
+    deinit {
+        ChatSessionHelper.shared.closeChatSession()
+    }
   
 }
 
