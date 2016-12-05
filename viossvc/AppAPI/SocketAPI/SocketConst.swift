@@ -96,7 +96,7 @@ class SocketConst: NSObject {
         case UserInfo = 1013
         case ChatSendMessage = 2003
         case ChatReceiveMessage = 2004
-        case ChatOfflineRequestMessage = 2005
+        case ChatOfflineRequestMessage = 2025
         case ChatOfflineReceiveMessage = 2006
     }
     enum type:UInt8 {

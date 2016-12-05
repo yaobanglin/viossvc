@@ -36,14 +36,12 @@ class ChatSessionViewController: BaseTableViewController,ChatSessionsProtocol {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
        
         let model =  self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as! ChatSessionModel
-        if model.type == 0 {
+        if model.type == ChatSessionType.Chat.rawValue {
             let viewController:ChatInteractionViewController = storyboardViewController()
             viewController.chatUid = model.sessionId
             viewController.chatName = model.title
             self.navigationController?.pushViewController(viewController, animated: true)
         }
-        
-        
         
     }
     

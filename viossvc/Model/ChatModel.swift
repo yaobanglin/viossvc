@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum ChatMsgType:Int {
+    case Chat = 0
+}
+
 class ChatMsgModel: BaseDBModel {
 
     var from_uid : Int = 0
@@ -38,6 +42,10 @@ class ChatMsgModel: BaseDBModel {
         return dateFormatter.stringFromDate(date)
     }
     
+}
+
+enum ChatSessionType:Int {
+    case Chat = 0
 }
 
 class ChatSessionModel : BaseDBModel {

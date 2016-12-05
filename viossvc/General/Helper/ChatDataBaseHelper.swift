@@ -48,7 +48,7 @@ class ChatDataBaseHelper: NSObject {
     func findModels(sql: String!, values: [AnyObject]!,modelClass:AnyClass) -> [AnyObject]! {
         let rs = executeQuery(sql, values:values)
         var array = [AnyObject]()
-        if rs.next() {
+        while rs.next() {
             array.append(resultSetToModel(rs,modelClass:modelClass))
         }
         defer {
@@ -192,10 +192,10 @@ class ChatDataBaseHelper: NSObject {
             if lastId != 0 {
                  sql += "AND id_ < \(lastId)"
             }
-            sql += " ORDER BY msg_time_ DESC limt 1,\(pageSize)"
+            sql += " ORDER BY id_ DESC limit 0,\(pageSize)"
             var array = ChatDataBaseHelper.shared.findModels(sql, values: [uid,uid], modelClass: ChatMsgModel.classForCoder()) as! [ChatMsgModel]
             array.sortInPlace( { (chatMsg1, chatMsg2) -> Bool in
-                return chatMsg1.msg_time < chatMsg2.msg_time
+                return chatMsg1.id < chatMsg2.id
             })
             return array
         }

@@ -33,7 +33,7 @@ class SocketRequest {
     
     deinit {
         
-        XCGLogger.debug("deinit \(self)")
+        XCGLogger.debug(" \(self)")
         
     }
     

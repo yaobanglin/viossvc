@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XCGLogger
 
 
 class ChatMsgHepler: NSObject {
@@ -32,7 +33,7 @@ class ChatMsgHepler: NSObject {
         AppAPIHelper.chatAPI().sendMsg(chatModel, complete: { (obj) in
             
             }, error: { (error) in
-                
+            XCGLogger.debug("\(error)")
         })
         didChatMsg(chatModel)
     }
@@ -41,7 +42,7 @@ class ChatMsgHepler: NSObject {
         AppAPIHelper.chatAPI().offlineMsgList(CurrentUserHelper.shared.uid, complete: { [weak self] (chatModels) in
                 self?.didOfflineMsgsComplete(chatModels as? [ChatMsgModel])
             }, error: { (error) in
-                
+                XCGLogger.debug("\(error)")
         })
     }
     
@@ -58,7 +59,12 @@ class ChatMsgHepler: NSObject {
     
 
     func didChatMsg(chatMsgModel:ChatMsgModel)  {
+        XCGLogger.debug("\(chatMsgModel)")
         ChatDataBaseHelper.ChatMsg.addModel(chatMsgModel)
         chatSessionHelper?.receiveMsg(chatMsgModel)
+//        if chatMsgModel.from_uid != CurrentUserHelper.shared.uid {
+//            sendMsg(chatMsgModel.from_uid, msg: chatMsgModel.content)
+//        }
+        
     }
 }
