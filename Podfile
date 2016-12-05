@@ -14,5 +14,5 @@ target 'viossvc' do
     pod 'Kingfisher', '~> 2.5.0'
     pod 'Qiniu', '~> 7.1'
     pod 'SnapKit', '~> 0.22.0'
-    
+    pod 'FMDB', '~> 2.6.2'
 end
