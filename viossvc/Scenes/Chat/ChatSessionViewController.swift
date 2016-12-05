@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ChatListViewController: BaseTableViewController,ChatSessionsProtocol {
+class ChatSessionViewController: BaseTableViewController,ChatSessionsProtocol {
     internal var dataSource = [ChatSessionModel]();
     
     

@@ -14,7 +14,7 @@ class HomeViewController: SegmentedViewController {
     
     
     func segmentedViewControllerIdentifiers() -> [String]! {
-        return [ChatListViewController.className(),OrderListViewController.className()];
+        return [ChatSessionViewController.className(),OrderListViewController.className()];
     }
 
 

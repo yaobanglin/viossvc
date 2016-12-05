@@ -56,7 +56,7 @@
 		B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B03B11C31DE5BFDD00B00D2E /* LaunchScreen.storyboard */; };
 		B03B121B1DE5BFDE00B00D2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B03B11C51DE5BFDD00B00D2E /* Main.storyboard */; };
 		B03B121C1DE5BFDE00B00D2E /* errorcode.plist in Resources */ = {isa = PBXBuildFile; fileRef = B03B11C71DE5BFDD00B00D2E /* errorcode.plist */; };
-		B03B121E1DE5BFDE00B00D2E /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11CB1DE5BFDD00B00D2E /* ChatListViewController.swift */; };
+		B03B121E1DE5BFDE00B00D2E /* ChatSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11CB1DE5BFDD00B00D2E /* ChatSessionViewController.swift */; };
 		B03B121F1DE5BFDE00B00D2E /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11CD1DE5BFDD00B00D2E /* ChatListCell.swift */; };
 		B03B12201DE5BFDE00B00D2E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11CE1DE5BFDD00B00D2E /* HomeViewController.swift */; };
 		B03B12261DE5BFDE00B00D2E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03B11D51DE5BFDD00B00D2E /* MainTabBarController.swift */; };
@@ -183,7 +183,7 @@
 		B03B11C41DE5BFDD00B00D2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B03B11C61DE5BFDD00B00D2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B03B11C71DE5BFDD00B00D2E /* errorcode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = errorcode.plist; sourceTree = "<group>"; };
-		B03B11CB1DE5BFDD00B00D2E /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		B03B11CB1DE5BFDD00B00D2E /* ChatSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatSessionViewController.swift; sourceTree = "<group>"; };
 		B03B11CD1DE5BFDD00B00D2E /* ChatListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		B03B11CE1DE5BFDD00B00D2E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B03B11D51DE5BFDD00B00D2E /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 		B03B11CA1DE5BFDD00B00D2E /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				B03B11CB1DE5BFDD00B00D2E /* ChatListViewController.swift */,
+				B03B11CB1DE5BFDD00B00D2E /* ChatSessionViewController.swift */,
 				7C7DF0871DF02B2900C77978 /* ChatInteractionViewController.swift */,
 				B03B11CC1DE5BFDD00B00D2E /* CustomView */,
 			);
@@ -841,7 +841,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7216018706741901D5FE5A13 /* [CP] Copy Pods Resources */ = {
@@ -954,7 +954,7 @@
 				B024A1781DE7CDCC0095A691 /* SocketDataPacket.swift in Sources */,
 				7C7DF0881DF02B2900C77978 /* ChatInteractionViewController.swift in Sources */,
 				B03B12201DE5BFDE00B00D2E /* HomeViewController.swift in Sources */,
-				B03B121E1DE5BFDE00B00D2E /* ChatListViewController.swift in Sources */,
+				B03B121E1DE5BFDE00B00D2E /* ChatSessionViewController.swift in Sources */,
 				BFE6E4781DF0529D00480435 /* SMSServerViewController.swift in Sources */,
 				B03B124A1DE5BFDE00B00D2E /* UIScreen+Extension.swift in Sources */,
 				B03B122B1DE5BFDE00B00D2E /* SkillShareDetailCell.swift in Sources */,
