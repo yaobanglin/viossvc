@@ -18,3 +18,18 @@ class BaseModel: OEZModel {
         
     }
 }
+
+
+class BaseDBModel: BaseModel {
+    var id:Int = 0
+    
+    
+    func primaryKeyValue() ->AnyObject! {
+        return id
+    }
+    
+    class func tableName() ->String {
+        return self.className()
+    }
+    
+}

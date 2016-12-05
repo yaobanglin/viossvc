@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate {
     @IBOutlet weak var contentView: UIView!
@@ -88,6 +89,15 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         dismissController()
     }
     @IBAction func SureBtnTapped(sender: AnyObject) {
+        if checkServerTime([time(startTimeLabel.text!),time(endTimeLabel.text!)]) == false {
+            return
+        }
+        
+        if time(startTimeLabel.text!) > time(endTimeLabel.text!) {
+            SVProgressHUD.showWainningMessage(WainningMessage: "服务结束时间应晚于服务开始时间", ForDuration: 1, completion: nil)
+            return
+        }
+        
         if checkTextFieldEmpty([serviceNameText,servicePriceText]) {
             let model = UserServerModel()
             model.change_type = changeModel == nil ? 2 : 1
@@ -116,6 +126,15 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         let hourStr = hour > 9 ? "\(hour)":"0\(hour)"
         let minusStr = leftMinus > 9 ? "\(minus)":"0\(leftMinus)"
         return "\(hourStr):\(minusStr)"
+    }
+    func checkServerTime(times: [Int]) -> Bool {
+        for time in times {
+            if time < 8*60 || time > 21*60 {
+                SVProgressHUD.showWainningMessage(WainningMessage: "请将服务时间设置介于早上8：00~晚上9：00之间", ForDuration: 1, completion: nil)
+                return false
+            }
+        }
+        return true
     }
     //MARK: --TextField
     func textFieldDidBeginEditing(textField: UITextField) {

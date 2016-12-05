@@ -362,6 +362,13 @@
 			path = SocketReqeust;
 			sourceTree = "<group>";
 		};
+		B037D0901DF53DE500B8CE1A /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 		B03B11B91DE5BFDD00B00D2E /* Marco */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +578,7 @@
 		B03B120B1DE5BFDE00B00D2E /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B037D0901DF53DE500B8CE1A /* DataBase */,
 				B03B120C1DE5BFDE00B00D2E /* TableViewHelper.swift */,
 				B011C2C11DE6DFEB00CB897A /* CurrentUserHelper.swift */,
 				B04807E71DF2EE8700F72E54 /* ChatMsgHepler.swift */,
