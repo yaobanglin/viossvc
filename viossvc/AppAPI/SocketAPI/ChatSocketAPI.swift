@@ -7,20 +7,20 @@
 //
 
 import UIKit
-
+import XCGLogger
 class ChatSocketAPI:BaseSocketAPI, ChatAPI {
 
     func sendMsg(chatModel:ChatMsgModel,complete:CompleteBlock,error:ErrorBlock) {
-        
+         XCGLogger.debug("\(chatModel)")
         var dict = try? OEZJsonModelAdapter.jsonDictionaryFromModel(chatModel)
-        dict?.removeValueForKey("isReading_");
+        dict?.removeValueForKey("status_");
         dict?.removeValueForKey("id_");
-        let pack = SocketDataPacket(opcode: .ChatSendMessage, dict: dict as! [String:AnyObject])
+        let pack = SocketDataPacket(opcode: .ChatSendMessage, dict: dict as! [String:AnyObject],type:.Chat)
         SocketRequestManage.shared.sendChatMsg(pack, complete: complete, error: error)
     }
     
     func offlineMsgList(uid:Int,complete:CompleteBlock,error:ErrorBlock) {
-        let pack = SocketDataPacket(opcode: .ChatOfflineRequestMessage, dict: [SocketConst.Key.uid: uid])
+        let pack = SocketDataPacket(opcode: .ChatOfflineRequestMessage, dict: [SocketConst.Key.uid: uid],type:.Chat)
         startModelsRequest(pack, listName: "msg_list_", modelClass: ChatMsgModel.classForCoder(), complete: complete, error: error)
     }
     
