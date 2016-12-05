@@ -18,3 +18,4 @@ struct SocketPacketHead {
 #pragma pack()
 
 #import <Qiniu/QiniuSDK.h>
+#import <FMDB/FMDB.h>
