@@ -122,7 +122,7 @@ class BaseCustomRefreshTableViewController :BaseCustomTableViewController {
 
 
 class BaseCustomListTableViewController :BaseCustomRefreshTableViewController {
-    private var dataSource:Array<AnyObject>?;
+    internal var dataSource:Array<AnyObject>?;
     
     override func didRequestComplete(data: AnyObject?) {
         dataSource = data as? Array<AnyObject>;

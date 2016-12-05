@@ -80,7 +80,7 @@ class ChatSessionHelper: NSObject {
             chatSessionSort()
         }
         
-        if currentChatSessionDelegate != nil && currentChatSessionDelegate?.sessionUid() == chatMsgModel.from_uid {
+        if currentChatSessionDelegate != nil {
             currentChatSessionDelegate?.receiveMsg(chatMsgModel)
         }
         else if chatMsgModel.from_uid != CurrentUserHelper.shared.uid {
