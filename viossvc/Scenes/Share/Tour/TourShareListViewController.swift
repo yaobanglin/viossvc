@@ -27,10 +27,6 @@ class TourShareListViewController: BasePageListTableViewController , OEZTableVie
     }
     
     
-    func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
-        
-    }
-    
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view:TableViewHeaderView? = TableViewHeaderView.loadFromNib();
@@ -46,6 +42,17 @@ class TourShareListViewController: BasePageListTableViewController , OEZTableVie
         self.navigationController?.pushViewController(viewController, animated: true);
 
     }
+    
+    func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
+        if UInt(action) == AppConst.Action.CallPhone.rawValue {
+            let model = self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as? TourShareModel
+            if model?.telephone != nil {
+                didActionTel(model!.telephone)
+            }
+        }
+    }
+    
+    
     
     override func didRequest(pageIndex: Int) {
         
