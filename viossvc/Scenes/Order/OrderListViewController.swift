@@ -52,6 +52,7 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
             handleVC.modalPresentationStyle = .Custom
             handleVC.delegate = self
             handleVC.setupDataWithModel(orderModel)
+            handleVC.navigationVC = navigationController
             presentViewController(handleVC, animated: true) {
                 
             }

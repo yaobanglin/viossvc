@@ -38,6 +38,8 @@ class HandleOrderViewController: UIViewController {
     @IBOutlet weak var nicknameLabel: UILabel!
     var orderModel:OrderListModel?
     
+    var navigationVC:UINavigationController?
+    
     weak var delegate:OrderRefreshDelegate?
     weak var listVC:OrderListViewController?
     private var dateFormatter:NSDateFormatter = {
@@ -208,6 +210,17 @@ class HandleOrderViewController: UIViewController {
     }
     
     @IBAction func chatAction(sender: AnyObject) {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController:ChatInteractionViewController = storyBoard.instantiateViewControllerWithIdentifier(ChatInteractionViewController.className()) as! ChatInteractionViewController
+            viewController.chatUid = (orderModel?.from_uid)!
+        viewController.chatName = (orderModel?.from_name)!
+//        let navigationVC = UINavigationController(rootViewController: self)
+        
+        dismissViewControllerAnimated(true) { 
+            
+            self.navigationVC!.pushViewController(viewController, animated: true)
+        }
     }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
