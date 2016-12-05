@@ -23,8 +23,8 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
     var skillDict:Dictionary<Int, SkillsModel> = [:]
     @IBOutlet weak var pictureCollection: UserPictureCollectionView!
     var markHeight: CGFloat = 0
-    var serverHeight: CGFloat = 100
-    var pictureHeight: CGFloat = 100
+    var serverHeight: CGFloat = 0
+    var pictureHeight: CGFloat = 0
     var serverData: [UserServerModel] = []
     
     
@@ -32,6 +32,9 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         initData()
     }
     //MARK: --DATA
@@ -53,7 +56,7 @@ class MyServerViewController: BaseTableViewController, LayoutStopDelegate, Refre
         //我的相册
         let requestModel = PhotoWallRequestModel()
         requestModel.uid = CurrentUserHelper.shared.userInfo.uid
-        requestModel.size = 10
+        requestModel.size = 12
         requestModel.num = 1
         AppAPIHelper.userAPI().photoWallRequest(requestModel, complete: {[weak self] (result) in
             if result == nil{
