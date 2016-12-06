@@ -47,6 +47,7 @@ class ChatMsgHepler: NSObject {
     }
     
     func didOfflineMsgsComplete(chatModels:[ChatMsgModel]!) {
+        //!!!: 离线消息多时要优化
         for chatModel in chatModels {
             didChatMsg(chatModel)
         }

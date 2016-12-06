@@ -36,7 +36,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
                   let userInfo = model as? UserInfoModel
                     if userInfo != nil {
                         self?.title = userInfo!.nickname
-                        ChatSessionHelper.shared.didReqeustUserInfoComplete(userInfo!.uid, userInfo: userInfo!)
+                        ChatSessionHelper.shared.didReqeustUserInfoComplete(userInfo!)
                     }
                 }, error:  { (error) in
                     XCGLogger.error("\(error)")

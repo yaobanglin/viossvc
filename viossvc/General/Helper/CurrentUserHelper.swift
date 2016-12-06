@@ -43,10 +43,9 @@ class CurrentUserHelper: NSObject {
     }
     
     func autoLogin(complete:CompleteBlock,error:ErrorBlock) -> Bool {
-        let phone = keychainItem.objectForKey(kSecAttrAccount) as? String
-        let password = keychainItem.objectForKey(kSecValueData) as? String
-        if !NSString.isEmpty(phone) &&  !NSString.isEmpty(password)  {
-            userLogin(phone!, password:password!, complete: complete, error: error)
+        let account = lastLoginAccount()
+        if !NSString.isEmpty(account.phone) &&  !NSString.isEmpty(account.password)  {
+            userLogin(account.phone!, password:account.password!, complete: complete, error: error)
             return true
         }
         return false
@@ -79,8 +78,8 @@ class CurrentUserHelper: NSObject {
         keychainItem.setObject(password, forKey: kSecValueData)
     }
     
-    func lastLoginPhone()->String? {
-        return keychainItem.objectForKey(kSecAttrAccount) as? String 
+    func lastLoginAccount()->(phone:String?,password:String?){
+        return (keychainItem.objectForKey(kSecAttrAccount) as? String,keychainItem.objectForKey(kSecValueData) as? String)
     }
     
     
