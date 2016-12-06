@@ -35,6 +35,12 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     
     var theLastIndexPath:NSIndexPath?
     
+    let preloadNum = 300
+    
+    deinit {
+    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         PHPhotoLibrary.sharedPhotoLibrary().registerChangeObserver(self)
@@ -55,7 +61,7 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
         
         collectionView?.registerClass(PhotoCollectionCell.self, forCellWithReuseIdentifier: "PhotoCollectionCell")
         collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "PhotoCollectionHeader")
-        
+        collectionView?.decelerationRate = UIScrollViewDecelerationRateFast
         initPhotos()
     }
     
@@ -84,30 +90,67 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
         
     }
     
-    func getPhoto(index: Int) {
-        if index < photosAsset!.count*6 {
+    func getPhotoHD(index: Int, completed: (AnyObject?) ->()) {
+        if index < photosAsset!.count {
             let asset = photosAsset![index%photosAsset!.count] as! PHAsset
             let options:PHImageRequestOptions = PHImageRequestOptions()
             options.version = .Current
             options.deliveryMode = .FastFormat
             options.networkAccessAllowed = true
             options.resizeMode = .Fast
-            weak var weakSelf = self
-            
             PHImageManager.defaultManager().requestImageDataForAsset(asset, options: options, resultHandler: { (data, uti, orientation, info) in
                 if data != nil {
                     dispatch_async(dispatch_get_global_queue(0, 0), { () in
-                        weakSelf?.photosArray[index] = data!
-                        if weakSelf?.photoImages[index] == nil {
-                            if weakSelf!.theLastIndexPath!.row - index < 36 {
-                                weakSelf?.photoImages[index] = weakSelf?.compress(data!)
+                        self.photosArray[index] = data!
+                        completed(index)
+                    })
+                }
+            })
+        }
+    }
+    
+    func getPhotoThumb(index: Int, feture: Bool) {
+        if index < photosAsset!.count {
+            let asset = photosAsset![index%photosAsset!.count] as! PHAsset
+            let options:PHImageRequestOptions = PHImageRequestOptions()
+            options.version = .Current
+            options.deliveryMode = .FastFormat
+            options.networkAccessAllowed = true
+            options.resizeMode = .Fast
+            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSizeZero, contentMode: .AspectFit, options: options, resultHandler: { (result, info) in
+                if self.photoImages[index] == nil {
+                    self.photoImages[index] = result!
+                    if self.photoImages.count > 30 {
+                        if index == 30 {
+                            if !feture {
                                 dispatch_async(dispatch_get_main_queue(), { () in
-                                    weakSelf?.collectionView?.reloadItemsAtIndexPaths([NSIndexPath.init(forItem: index, inSection: 0)])
+                                    self.collectionView?.reloadData()
                                 })
                             }
-                            
+                        } else if (!feture || index - self.theLastIndexPath!.row < 30) && index > self.preloadNum {
+                            dispatch_async(dispatch_get_main_queue(), { () in
+                                self.collectionView?.reloadItemsAtIndexPaths([NSIndexPath.init(forItem: index, inSection: 0)])
+                            })
                         }
-                    })
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), { () in
+                            self.collectionView?.reloadItemsAtIndexPaths([NSIndexPath.init(forItem: index, inSection: 0)])
+                        })
+                    }
+                } else {
+                    if index == 30 {
+                        if !feture {
+                            dispatch_async(dispatch_get_main_queue(), { () in
+                                self.collectionView?.reloadData()
+                            })
+                        }
+                    } else {
+                        if index - self.theLastIndexPath!.row < 30 {
+                            dispatch_async(dispatch_get_main_queue(), { () in
+                                self.collectionView?.reloadItemsAtIndexPaths([NSIndexPath.init(forItem: index, inSection: 0)])
+                            })
+                        }
+                    }
                 }
             })
         }
@@ -117,10 +160,29 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
         let all = PHFetchOptions()
         all.sortDescriptors = [NSSortDescriptor.init(key: "creationDate", ascending: false)]
         photosAsset = PHAsset.fetchAssetsWithMediaType(.Image, options: all)
+        photosArray = Array.init(count: photosAsset!.count, repeatedValue: nil)
+        photoImages = Array.init(count: photosAsset!.count, repeatedValue: nil)
+        if preloadNum > 0 {
+            for i in 0..<(photoImages.count > preloadNum ? preloadNum : photoImages.count) {
+                self.getPhotoThumb(i, feture: i > 32 ? true : false)
+            }
+        } else {
+            if photoImages.count > 120 {
+                for i in 0..<120 {
+                    self.getPhotoThumb(i, feture: i > 32 ? true : false)
+                }
+                dispatch_async(dispatch_get_global_queue(0, 0), { () in
+                    for i in 120..<self.photoImages.count {
+                        self.getPhotoThumb(i, feture: i > 32 ? true : false)
+                    }
+                })
+            } else {
+                for i in 0..<photoImages.count {
+                    self.getPhotoThumb(i, feture: i > 32 ? true : false)
+                }
+            }
+        }
         
-        photosArray = Array.init(count: photosAsset!.count*6, repeatedValue: nil)
-        photoImages = Array.init(count: photosAsset!.count*6, repeatedValue: nil)
-        collectionView?.reloadData()
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -147,12 +209,10 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return photosAsset?.count ?? 0
-        return photosAsset != nil ? photosAsset!.count*6 : 0
+        return photosAsset?.count ?? 0
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        NSLog("===>indexPath: \(indexPath.row)")
         theLastIndexPath = indexPath
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCollectionCell" ,forIndexPath: indexPath) as? PhotoCollectionCell {
             cell.type = .UnSelect
@@ -167,10 +227,17 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
                     photoImages[indexPath.row] = compress(data)
                     cell.updateWithImage(photoImages[indexPath.row]!, indexPath: indexPath)
                 } else {
-                    getPhoto(indexPath.row)
-                    cell.photo?.image = UIImage.init(named: "head_giry")
+                    getPhotoThumb(indexPath.row, feture: false)
                 }
             }
+            if preloadNum > 0 {
+                if indexPath.row + preloadNum < photoImages.count {
+                    if photoImages[indexPath.row + preloadNum] == nil {
+                        getPhotoThumb(indexPath.row + preloadNum, feture: true)
+                    }
+                }
+            }
+            
             return cell
         }
         
@@ -178,12 +245,17 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        NSLog("%d", indexPath.row)
-        
         if let data = photosArray[indexPath.row] {
             PhotoPreviewView.showLocal(UIImage.init(data: data)!)
+        } else {
+            weak var weakSelf = self
+            if let img = photoImages[indexPath.row] {
+                PhotoPreviewView.showLocal(img)
+                getPhotoHD(indexPath.row, completed: { (index) in
+                    PhotoPreviewView.update(UIImage.init(data: weakSelf!.photosArray[indexPath.row]!)!)
+                })
+            }
         }
-        
     }
     
     //MARK: - PH
@@ -198,8 +270,11 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
                 seletedPhotosArray.removeAtIndex(index)
                 cell.type = .UnSelect
             } else {
-                seletedPhotosArray.append(indexPath!.row)
                 cell.type = .Selected
+                weak var weakSelf = self
+                getPhotoHD(indexPath!.row, completed: { (index) in
+                    weakSelf?.seletedPhotosArray.append(indexPath!.row)
+                })
             }
             cell.update()
             headerTitle?.text = "还能选择\(8 - seletedPhotosArray.count)张照片"
