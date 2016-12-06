@@ -13,6 +13,7 @@ class PhotoPreviewView: UIView {
     
     private static var view = PhotoPreviewView.init(frame: UIScreen.mainScreen().bounds)
     class func defaultView() ->PhotoPreviewView {
+        view.tag = 196349143
         return view
     }
     
@@ -30,6 +31,14 @@ class PhotoPreviewView: UIView {
         let view = PhotoPreviewView.defaultView()
         view.photo?.image = image
         UIApplication.sharedApplication().keyWindow?.addSubview(view)
+    }
+    
+    static func update(image: UIImage) {
+        if let view = UIApplication.sharedApplication().keyWindow?.viewWithTag(196349143) as? PhotoPreviewView {
+            dispatch_async(dispatch_get_main_queue(), { () in
+                view.photo?.image = image
+            })
+        }
     }
     
     override init(frame: CGRect) {
