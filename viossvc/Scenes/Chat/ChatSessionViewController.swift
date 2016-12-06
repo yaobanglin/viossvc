@@ -15,6 +15,11 @@ class ChatSessionViewController: BaseTableViewController,ChatSessionsProtocol {
         super.viewDidLoad()
         ChatSessionHelper.shared.chatSessionsDelegate = self
         updateChatSessions(ChatSessionHelper.shared.chatSessions)
+        
+        
+        let abc = "\\xF0\\x9F\\x98\\x84"
+        print("\n ",abc)
+        
     }
     
     
