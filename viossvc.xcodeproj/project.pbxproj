@@ -119,6 +119,8 @@
 		BF9B6BD21DEB1CF3009FFEB7 /* AddBankCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD11DEB1CF3009FFEB7 /* AddBankCardViewController.swift */; };
 		BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */; };
 		BF9B6BD71DEB1E3A009FFEB7 /* AuthUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */; };
+		BFA9FAB11DF6AEAE00E2A67C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA9FAB01DF6AEAE00E2A67C /* Fabric.framework */; };
+		BFA9FAB31DF6AEBF00E2A67C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA9FAB21DF6AEBF00E2A67C /* Crashlytics.framework */; };
 		BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */; };
 		BFACB2CF1DED1EAC00AF0D34 /* SVProgressHUDExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */; };
 		BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */; };
@@ -250,6 +252,8 @@
 		BF9B6BD11DEB1CF3009FFEB7 /* AddBankCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBankCardViewController.swift; sourceTree = "<group>"; };
 		BF9B6BD41DEB1DED009FFEB7 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		BF9B6BD61DEB1E3A009FFEB7 /* AuthUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthUserViewController.swift; sourceTree = "<group>"; };
+		BFA9FAB01DF6AEAE00E2A67C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Pods/Fabric/Fabric.framework; sourceTree = "<group>"; };
+		BFA9FAB21DF6AEBF00E2A67C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Pods/Crashlytics/Crashlytics.framework; sourceTree = "<group>"; };
 		BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 		BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVProgressHUDExt.swift; sourceTree = "<group>"; };
 		BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDrawCashPassworController.swift; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA9FAB31DF6AEBF00E2A67C /* Crashlytics.framework in Frameworks */,
+				BFA9FAB11DF6AEAE00E2A67C /* Fabric.framework in Frameworks */,
 				B08673461DE5C4C0008DD8A1 /* libstdc++.tbd in Frameworks */,
 				B03B124F1DE5BFDE00B00D2E /* OEZCommSDK.framework in Frameworks */,
 				26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */,
@@ -283,6 +289,8 @@
 		10CEA088AA8041FD84B55B62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BFA9FAB21DF6AEBF00E2A67C /* Crashlytics.framework */,
+				BFA9FAB01DF6AEAE00E2A67C /* Fabric.framework */,
 				B08673451DE5C4C0008DD8A1 /* libstdc++.tbd */,
 				B08673431DE5C4B6008DD8A1 /* libc++.tbd */,
 				C1F4A51972EC343500CF6D69 /* Pods_viossvc.framework */,
@@ -757,6 +765,7 @@
 				B0CF59DB1DE5BEC300C40C9C /* Resources */,
 				20FE2FBA84F3CB41DC07B34E /* [CP] Embed Pods Frameworks */,
 				7216018706741901D5FE5A13 /* [CP] Copy Pods Resources */,
+				BFEC3F231DF6A73600B36A0E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -872,6 +881,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-viossvc/Pods-viossvc-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BFEC3F231DF6A73600B36A0E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 13b0dd85b007ad78249b02fc26fa3972dff8da79 09fbffcee88c3bfa1086819566cdaf4b4c0f451fe57b9699cd9525804778308d";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1111,6 +1133,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/viossvc/Library",
+					"$(PROJECT_DIR)/Pods/Fabric",
+					"$(PROJECT_DIR)/Pods/Crashlytics",
 				);
 				INFOPLIST_FILE = viossvc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1122,7 +1146,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.trip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
@@ -1140,6 +1164,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/viossvc/Library",
+					"$(PROJECT_DIR)/Pods/Fabric",
+					"$(PROJECT_DIR)/Pods/Crashlytics",
 				);
 				INFOPLIST_FILE = viossvc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1151,7 +1177,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.trip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "43053e43-8348-4899-b17d-5808f6cc6210";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
