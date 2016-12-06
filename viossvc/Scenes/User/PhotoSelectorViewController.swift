@@ -267,17 +267,20 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     //MARK: - PhotoCollectionCellDelegate
     func rightTopButtonAction(indexPath: NSIndexPath?) {
         if let cell = collectionView!.cellForItemAtIndexPath(indexPath!) as? PhotoCollectionCell {
-            if seletedPhotosArray.count == 8 {
-                return
-            }
             if let index = seletedPhotosArray.indexOf(indexPath!.row) {
                 seletedPhotosArray.removeAtIndex(index)
                 cell.type = .UnSelect
             } else {
+                if seletedPhotosArray.count == 8 {
+                    return
+                }
                 cell.type = .Selected
                 weak var weakSelf = self
                 getPhotoHD(indexPath!.row, completed: { (index) in
                     weakSelf?.seletedPhotosArray.append(indexPath!.row)
+                    dispatch_async(dispatch_get_main_queue(), { () in
+                        weakSelf?.headerTitle?.text = "还能选择\(8 - (weakSelf?.seletedPhotosArray.count)! ?? 0)张照片"
+                    })
                 })
             }
             cell.update()

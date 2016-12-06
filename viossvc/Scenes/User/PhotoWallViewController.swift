@@ -60,7 +60,7 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
     func request(pageIndex: Int) {
         let requestModel = PhotoWallRequestModel()
         requestModel.uid = CurrentUserHelper.shared.userInfo.uid
-        requestModel.size = 20
+        requestModel.size = 21
         requestModel.num = pageIndex + 1
         AppAPIHelper.userAPI().photoWallRequest(requestModel, complete: complete(_:), error: { (error) in
             SVProgressHUD.showErrorMessage(ErrorMessage: "加载数据失败，请稍后再试", ForDuration: 1.5, completion: nil)
