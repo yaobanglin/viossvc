@@ -19,11 +19,11 @@ class FaceKeyboardView: OEZNibView ,UICollectionViewDelegate, UICollectionViewDa
      let identifierCell = "FaceCollectionCell"
     override func awakeFromNib() {
         super.awakeFromNib()
-        //     self.collectionView.contentSize = CGSizeMake(LCDW * 4, 200);
         
         self.collectionView.registerClass(FaceCollectionCell.classForCoder() , forCellWithReuseIdentifier: identifierCell)
         self.pageControl.pageIndicatorTintColor = UIColor.grayColor();
         self.pageControl.currentPageIndicatorTintColor =  UIColor.darkGrayColor();
+        self.pageControl.numberOfPages = EmojiFaceHelper.shared.getFaceArray().count / 28
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
