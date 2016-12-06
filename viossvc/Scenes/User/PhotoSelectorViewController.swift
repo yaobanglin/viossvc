@@ -267,6 +267,9 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     //MARK: - PhotoCollectionCellDelegate
     func rightTopButtonAction(indexPath: NSIndexPath?) {
         if let cell = collectionView!.cellForItemAtIndexPath(indexPath!) as? PhotoCollectionCell {
+            if seletedPhotosArray.count == 8 {
+                return
+            }
             if let index = seletedPhotosArray.indexOf(indexPath!.row) {
                 seletedPhotosArray.removeAtIndex(index)
                 cell.type = .UnSelect
