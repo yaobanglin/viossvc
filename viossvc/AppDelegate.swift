@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()];
         navigationBar.translucent = false;
         navigationBar.tintColor = UIColor.whiteColor();
-        (UIBarButtonItem.appearance() as UIBarButtonItem).setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), forBarMetrics:.Default);
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), forBarMetrics:.Default);
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent;
         UITableView.appearance().backgroundColor = AppConst.Color.C6;
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)

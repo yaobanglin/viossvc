@@ -170,9 +170,15 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         startRequest(packet, complete: complete, error: error)
     }
     
+    func getUserInfos(uids:[String],complete: CompleteBlock, error: ErrorBlock) {
+        let packet = SocketDataPacket(opcode: .UserInfo, dict: ["uid_str_":uids.joinWithSeparator(",")])
+        startModelsRequest(packet, listName:"userinfo_list_",  modelClass: UserInfoModel.classForCoder(), complete: complete, error: error)
+    }
+    
     func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock) {
-        let packet = SocketDataPacket(opcode: .UserInfo, dict: [SocketConst.Key.uid:uid])
-        startModelRequest(packet, modelClass: UserInfoModel.classForCoder(), complete: complete, error: error)
+        getUserInfos(["\(uid)"], complete: { (array) in
+                complete((array as? [AnyObject])?.first)
+            }, error: error)
     }
 
 }
