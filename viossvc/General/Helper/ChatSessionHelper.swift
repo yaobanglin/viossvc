@@ -107,9 +107,7 @@ class ChatSessionHelper: NSObject {
                             self?.didReqeustUserInfoComplete(userInfo)
                         }
                     }
-                }, error: { (error) in
-                    
-            })
+                }, error: nil)
         }
     }
     

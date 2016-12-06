@@ -13,6 +13,17 @@ class CurrentUserHelper: NSObject {
     private let keychainItem:OEZKeychainItemWrapper = OEZKeychainItemWrapper(identifier: "com.yundian.viossvc.account", accessGroup:nil)
     private var _userInfo:UserInfoModel!
     private var _password:String!
+    private var _deviceToken:String!
+    
+    var deviceToken:String! {
+        get {
+            return _deviceToken
+        }
+        set {
+            _deviceToken = newValue
+            updateDeviceToken()
+        }
+    }
     
     var userInfo:UserInfoModel! {
         get {
@@ -57,7 +68,7 @@ class CurrentUserHelper: NSObject {
         keychainItem.setObject(_userInfo.phone_num, forKey: kSecAttrAccount)
         keychainItem.setObject(_password, forKey: kSecValueData)
         initChatHelper()
-       
+        updateDeviceToken()
     }
     
     private func initChatHelper() {
@@ -80,6 +91,13 @@ class CurrentUserHelper: NSObject {
     
     func lastLoginAccount()->(phone:String?,password:String?){
         return (keychainItem.objectForKey(kSecAttrAccount) as? String,keychainItem.objectForKey(kSecValueData) as? String)
+    }
+    
+    
+    private func updateDeviceToken() {
+        if isLogin && !NSString.isEmpty(_deviceToken) {
+            AppAPIHelper.userAPI().updateDeviceToken(uid, deviceToken: _deviceToken, complete: nil, error: nil)
+        }
     }
     
     

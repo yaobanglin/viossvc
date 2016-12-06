@@ -170,15 +170,21 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         startRequest(packet, complete: complete, error: error)
     }
     
-    func getUserInfos(uids:[String],complete: CompleteBlock, error: ErrorBlock) {
+    func getUserInfos(uids:[String],complete: CompleteBlock, error: ErrorBlock?) {
         let packet = SocketDataPacket(opcode: .UserInfo, dict: ["uid_str_":uids.joinWithSeparator(",")])
         startModelsRequest(packet, listName:"userinfo_list_",  modelClass: UserInfoModel.classForCoder(), complete: complete, error: error)
     }
     
-    func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock) {
+    func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock?) {
         getUserInfos(["\(uid)"], complete: { (array) in
                 complete((array as? [AnyObject])?.first)
             }, error: error)
+    }
+    
+    
+    func updateDeviceToken(uid:Int,deviceToken:String,complete: CompleteBlock?, error: ErrorBlock?) {
+        let packet = SocketDataPacket(opcode: .UpdateDeviceToken, dict: [SocketConst.Key.uid:uid,"device_token_":deviceToken])
+        startRequest(packet, complete: complete, error: error)
     }
 
 }

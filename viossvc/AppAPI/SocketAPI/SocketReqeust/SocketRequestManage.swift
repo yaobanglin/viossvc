@@ -96,7 +96,7 @@ class SocketRequestManage: NSObject {
         _socketHelper?.sendData(packet.serializableData()!);
     }
     
-    func startJsonRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
+    func startJsonRequest(packet: SocketDataPacket, complete: CompleteBlock?, error: ErrorBlock?) {
         
         let socketReqeust = SocketRequest();
         socketReqeust.error = error;
