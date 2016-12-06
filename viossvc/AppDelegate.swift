@@ -11,7 +11,7 @@ import XCGLogger
 import SVProgressHUD
 @UIApplicationMain
 
-class AppDelegate: UIResponder, UIApplicationDelegate , GeTuiSdkDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -49,7 +49,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GeTuiSdkDelegate {
     func pushMessageRegister() {
         //注册消息推送
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () in
+            
+#if TARGET_IPHONE_SIMULATOR
             GeTuiSdk.startSdkWithAppId("d2YVUlrbRU6yF0PFQJfPkA", appKey: "yEIPB4YFxw64Ag9yJpaXT9", appSecret: "TMQWRB2KrG7QAipcBKGEyA", delegate: self)
+#endif
             
             let notifySettings = UIUserNotificationSettings.init(forTypes: [.Alert, .Badge, .Sound], categories: nil)
             UIApplication.sharedApplication().registerUserNotificationSettings(notifySettings)
@@ -65,9 +68,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GeTuiSdkDelegate {
         token = token.stringByReplacingOccurrencesOfString(">", withString: "")
         
         XCGLogger.debug("\(token)")
+#if TARGET_IPHONE_SIMULATOR
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () in
             GeTuiSdk.registerDeviceToken(token)
         })
+#endif
+        CurrentUserHelper.shared.deviceToken = token
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
