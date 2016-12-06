@@ -26,6 +26,7 @@ class AppConst {
         static let S3 = UIFont.systemFontOfSize(13)
         static let S4 = UIFont.systemFontOfSize(12)
         static let S5 = UIFont.systemFontOfSize(10)
+        static let S14 = UIFont.systemFontOfSize(14)
     };
     class Network {
         #if false //是否测试环境

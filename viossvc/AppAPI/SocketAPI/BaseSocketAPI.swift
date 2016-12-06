@@ -17,9 +17,9 @@ class BaseSocketAPI: NSObject {
      - parameter complete: 成功回调 返回字典
      - parameter error:    失败回调
      */
-    func startRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
+    func startRequest(packet: SocketDataPacket, complete: CompleteBlock?, error: ErrorBlock?) {
         SocketRequestManage.shared.startJsonRequest(packet,complete: {  (response) in
-            complete((response as? SocketJsonResponse)?.responseJsonObject())
+            complete?((response as? SocketJsonResponse)?.responseJsonObject())
             },error: error)
     }
     
@@ -31,7 +31,7 @@ class BaseSocketAPI: NSObject {
      - parameter complete: 成功回调 返回字典
      - parameter error:    失败回调
      */
-    func startResultIntRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
+    func startResultIntRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock?) {
         SocketRequestManage.shared.startJsonRequest(packet,complete: {  (response) in
             complete((response as? SocketJsonResponse)?.responseResult())
             },error: error)
@@ -45,7 +45,7 @@ class BaseSocketAPI: NSObject {
      - parameter complete:   成功回调 返回modelClass的model实体
      - parameter error:      失败回调
      */
-    func startModelRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
+    func startModelRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock?) {
         SocketRequestManage.shared.startJsonRequest(packet, complete: {  (response) in
             complete?((response as? SocketJsonResponse)?.responseModel(modelClass))
             }, error: error)
@@ -59,7 +59,7 @@ class BaseSocketAPI: NSObject {
      - parameter complete:   成功回调 返回modelClass的model实体数组
      - parameter error:      失败回调
      */
-    func startModelsRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
+    func startModelsRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock?) {
         SocketRequestManage.shared.startJsonRequest(packet, complete: {  (response) in
             complete?((response as? SocketJsonResponse)?.responseModels(modelClass))
             }, error: error)
@@ -73,7 +73,7 @@ class BaseSocketAPI: NSObject {
      - parameter complete:   成功回调 返回modelClass的model实体数组
      - parameter error:      失败回调
      */
-    func startDataListRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
+    func startDataListRequest(packet: SocketDataPacket, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock?) {
         
        startModelsRequest(packet, listName:"data_list_", modelClass: modelClass, complete: complete, error: error)
     }
@@ -87,7 +87,7 @@ class BaseSocketAPI: NSObject {
      - parameter complete:   成功回调 返回modelClass的model实体数组
      - parameter error:       失败回调
      */
-    func startModelsRequest(packet: SocketDataPacket, listName:String, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock) {
+    func startModelsRequest(packet: SocketDataPacket, listName:String, modelClass: AnyClass, complete: CompleteBlock?, error: ErrorBlock?) {
         SocketRequestManage.shared.startJsonRequest(packet, complete: {  (response) in
             let dict:[String:AnyObject]? = ((response as? SocketJsonResponse)?.responseJsonObject()) as? [String:AnyObject]
             if dict != nil {

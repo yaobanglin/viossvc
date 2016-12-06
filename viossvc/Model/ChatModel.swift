@@ -9,7 +9,7 @@
 import UIKit
 
 enum ChatMsgType:Int {
-    case Chat = 0
+    case Text = 0
 }
 
 class ChatMsgModel: BaseDBModel {

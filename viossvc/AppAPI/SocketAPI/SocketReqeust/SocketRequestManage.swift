@@ -96,7 +96,7 @@ class SocketRequestManage: NSObject {
         _socketHelper?.sendData(packet.serializableData()!);
     }
     
-    func startJsonRequest(packet: SocketDataPacket, complete: CompleteBlock, error: ErrorBlock) {
+    func startJsonRequest(packet: SocketDataPacket, complete: CompleteBlock?, error: ErrorBlock?) {
         
         let socketReqeust = SocketRequest();
         socketReqeust.error = error;
@@ -106,6 +106,7 @@ class SocketRequestManage: NSObject {
         objc_sync_enter(self)
         socketRequests[packet.request_id] = socketReqeust;
         objc_sync_exit(self)
+        XCGLogger.debug("Request \(packet.operate_code) \(packet.request_id) \(packet.session_id)")
         sendRequest(packet)
     }
     
