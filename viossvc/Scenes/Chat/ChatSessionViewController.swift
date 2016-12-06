@@ -16,7 +16,7 @@ class ChatSessionViewController: BaseTableViewController,ChatSessionsProtocol {
         ChatSessionHelper.shared.chatSessionsDelegate = self
         updateChatSessions(ChatSessionHelper.shared.chatSessions)
     }
-    
+
     
     func updateChatSessions(chatSession:[ChatSessionModel]) {
         dataSource = chatSession
