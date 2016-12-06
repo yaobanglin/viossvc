@@ -61,7 +61,8 @@ protocol UserAPI {
     //操作技能标签
     func getOrModfyUserSkills(getOrModfy:Int,skills:String,complete: CompleteBlock, error: ErrorBlock)
     //获取用户信息
-    func getUserInfos(uids:[String],complete: CompleteBlock, error: ErrorBlock)
+    func getUserInfos(uids:[String],complete: CompleteBlock, error: ErrorBlock?)
     //
-    func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock)
+    func getUserInfo(uid:Int,complete: CompleteBlock, error: ErrorBlock?)
+    func updateDeviceToken(uid:Int,deviceToken:String,complete: CompleteBlock?, error: ErrorBlock?)
 }

@@ -9,29 +9,17 @@
 import UIKit
 import XCGLogger
 import SVProgressHUD
-
 @UIApplicationMain
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate , GeTuiSdkDelegate {
 
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let navigationBar:UINavigationBar = UINavigationBar.appearance() as UINavigationBar;
-        navigationBar.setBackgroundImage(UIImage(named: "head_bg"), forBarMetrics: .Default)
-        
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()];
-        navigationBar.translucent = false;
-        navigationBar.tintColor = UIColor.whiteColor();
-        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), forBarMetrics:.Default);
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent;
-        UITableView.appearance().backgroundColor = AppConst.Color.C6;
-        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
-//        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
-        SVProgressHUD.setMinimumDismissTimeInterval(2)
+        appearance()
         SocketRequestManage.shared.start()
-        
+        pushMessageRegister()
         return true
     }
 
@@ -56,7 +44,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    
+    func pushMessageRegister() {
+        //注册消息推送
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () in
+            GeTuiSdk.startSdkWithAppId("d2YVUlrbRU6yF0PFQJfPkA", appKey: "yEIPB4YFxw64Ag9yJpaXT9", appSecret: "TMQWRB2KrG7QAipcBKGEyA", delegate: self)
+            
+            let notifySettings = UIUserNotificationSettings.init(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+            UIApplication.sharedApplication().registerUserNotificationSettings(notifySettings)
+            UIApplication.sharedApplication().registerForRemoteNotifications()
+            
+        })
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        var token = deviceToken.description
+        token = token.stringByReplacingOccurrencesOfString(" ", withString: "")
+        token = token.stringByReplacingOccurrencesOfString("<", withString: "")
+        token = token.stringByReplacingOccurrencesOfString(">", withString: "")
+        
+        XCGLogger.debug("\(token)")
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () in
+            GeTuiSdk.registerDeviceToken(token)
+        })
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        
+    }
+    
+    private func appearance() {
+        let navigationBar:UINavigationBar = UINavigationBar.appearance() as UINavigationBar;
+        navigationBar.setBackgroundImage(UIImage(named: "head_bg"), forBarMetrics: .Default)
+        
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()];
+        navigationBar.translucent = false;
+        navigationBar.tintColor = UIColor.whiteColor();
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), forBarMetrics:.Default);
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent;
+        UITableView.appearance().backgroundColor = AppConst.Color.C6;
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
+        //        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
+        SVProgressHUD.setMinimumDismissTimeInterval(2)
+    }
 
 }
 

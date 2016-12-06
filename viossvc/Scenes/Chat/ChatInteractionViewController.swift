@@ -39,9 +39,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
                         self?.title = userInfo!.nickname
                         ChatSessionHelper.shared.didReqeustUserInfoComplete(userInfo!)
                     }
-                }, error:  { (error) in
-                    XCGLogger.error("\(error)")
-            })
+                }, error:nil)
         }
         
     }
