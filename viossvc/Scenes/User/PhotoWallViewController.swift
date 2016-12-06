@@ -8,7 +8,6 @@
 
 import Foundation
 import SVProgressHUD
-import MJRefresh
 
 class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
     
@@ -17,76 +16,77 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
     var curModel:PhotoWallModel?
     var firstLaunch = true
 
-    let header:MJRefreshStateHeader = MJRefreshStateHeader()
-    let footer:MJRefreshAutoStateFooter = MJRefreshAutoStateFooter()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupRefreshControl()
+        setupLoadMore()
         tableView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         tableView.estimatedRowHeight = 90
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .None
         tableView.registerClass(PhotoWallCell.self, forCellReuseIdentifier: "PhotoWallCell")
-        header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
-        tableView.mj_header = header
-        footer.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
-        tableView.mj_footer = footer
-        
-    }
-    
-    func headerRefresh() {
-        pageIndex = 0
-        footer.state = .Idle
-        request(pageIndex)
-    }
-    
-    func footerRefresh() {
-        pageIndex += 1
-        request(pageIndex)
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        header.beginRefreshing()
+        if !firstLaunch {
+            didRequest()
+        } else {
+            firstLaunch = false
+        }
+
     }
     
     deinit {
-        header.endRefreshing()
-        footer.endRefreshing()
+        performSelectorRemoveRefreshControl()
+        removeLoadMore()
         SVProgressHUD.dismiss()
     }
     
-    func request(pageIndex: Int) {
+    override func didRequest() {
+        pageIndex = 0
+        didRequest(0)
+    }
+    
+    override func didRequest(pageIndex: Int) {
         let requestModel = PhotoWallRequestModel()
         requestModel.uid = CurrentUserHelper.shared.userInfo.uid
-        requestModel.size = 21
+        requestModel.size = 24
         requestModel.num = pageIndex + 1
-        AppAPIHelper.userAPI().photoWallRequest(requestModel, complete: complete(_:), error: { (error) in
+        AppAPIHelper.userAPI().photoWallRequest(requestModel, complete: didRequestComplete(_:), error: { (error) in
             SVProgressHUD.showErrorMessage(ErrorMessage: "加载数据失败，请稍后再试", ForDuration: 1.5, completion: nil)
-            self.endLoad()
+            self.endRefreshing()
+            self.endLoadMore()
         })
     }
-
-     func complete(data: AnyObject?) {
+    
+    func didRequestComplete(data: AnyObject?) {
         if let model = data as? PhotoWallModel {
             if pageIndex == 0 {
                 curModel = model
+                endRefreshing()
+                setIsLoadMore(true)
             } else {
                 if model.photo_list.count > 0 {
                     curModel?.photo_list += model.photo_list
+                    endLoadMore()
                 } else {
-                    endLoad()
-                    footer.state = .NoMoreData
+                    notLoadMore()
+                    setIsLoadData(true)
                     return
                 }
             }
         } else {
-            endLoad()
-            footer.state = .NoMoreData
+            if pageIndex == 0 {
+                endRefreshing()
+            } else {
+                notLoadMore()
+            }
+            setIsLoadData(true)
             return
         }
-
+        
         array.removeAll()
         date.removeAll()
         
@@ -115,13 +115,8 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
             array.append(subArray)
             date.append(day)
             tableView.reloadData()
-           endLoad()
         }
-        
-    }
-    func endLoad() {
-        header.endRefreshing()
-        footer.endRefreshing()
+        setIsLoadData(true)
     }
     
     //MARK: - TableView
