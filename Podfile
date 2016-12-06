@@ -16,4 +16,6 @@ target 'viossvc' do
     pod 'SnapKit', '~> 0.22.0'
     pod 'FMDB', '~> 2.6.2'
     pod 'GTSDK', '~> 1.4.3'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
