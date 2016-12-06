@@ -9,47 +9,151 @@
 import UIKit
 
 class EmojiFaceHelper: NSObject {
-//    static let shared  = EmojiFaceHelper()
-//    
-//    private var m_faceArray  = [String]
-//    func getFaceArray() -> Array {
-//     return m_faceArray
-//    }
+    static let shared  = EmojiFaceHelper()
+    
+    private var m_faceArray  = [String]()
+    func getFaceArray() -> [String] {
+        return m_faceArray
+    }
+    
+    
+    override init() {
+       super.init()
+        initFace()
+
+    }
 //    
 //    func replaceFace(string: String) -> String {
-//        
+//        return ""
 //    }
 //    func faceReplaceHex(string : String) -> String {
+//        return ""
+//    }
+    func EMOJI_CODE_TO_SYMBOL(x : Int) -> uint {
+        let sym = (((0x808080F0 | (x & 0x3F000) >> 4) | (x & 0xFC0) << 10) | (x & 0x1C0000) << 18) | (x & 0x3F) << 24
+        return   uint(sym)
+    }
+    
+    func MULITTHREEBYTEUTF16TOUNICODE(x : Int , y : Int) -> Int {
+        return (((((x ^ 0xD800) << 2) | ((y ^ 0xDC00) >> 8)) << 8) | ((y ^ 0xDC00) & 0xFF)) + 0x10000
+    }
+    
+
+ private   func xStringReplaceEmoji(array: [Int]) -> NSString {
+        
+        
+        let bytes = array
+        let data = NSData(bytes: bytes, length: bytes.count)
+        let dogString = NSString.init(data: data, encoding: NSUTF8StringEncoding)
+        return dogString == nil ? "" : dogString!
+    }
+    
+ private   func emojiStringArray(array: [[Int]]) -> [String] {
+        
+        var  emojiArray = [String]()
+        for bytes in array {
+            emojiArray.append(xStringReplaceEmoji(bytes) as String)
+        }
+        return emojiArray
+    }
+
+ private   func initFace() {
+        
+//        let array1 = [[0xF0,0x9F,0x98,0x84], [0xF0,0x9F,0x98,0x9C], [0xF0,0x9F,0x98,0x9E], [0xF0,0x9F,0x98,0xB0], [0xF0,0x9F,0x98,0xB0], [0xF0,0x9F,0x98,0x9D], [0xF0,0x9F,0x98,0xA3]]
 //        
+//
+//        let  array2 = [[0xF0,0x9F,0x98,0x93], [0xF0,0x9F,0x98,0x8A], [0xF0,0x9F,0x98,0xB3], [0xF0,0x9F,0x98,0xA2], [0xF0,0x9F,0x98,0xA8], [0xF0,0x9F,0x98,0x89], [0xF0,0x9F,0x98,0x81]]
+//        let  array3 = [[0xF0,0x9F,0x98,0x82], [0xF0,0x9F,0x98,0xB1], [0xF0,0x9F,0x98,0x8D], [0xF0,0x9F,0x98,0x94], [0xF0,0x9F,0x98,0xAD], [0xF0,0x9F,0x98,0xA0], [0xF0,0x9F,0x98,0x98]]
+//        let  array4 = [[0xF0,0x9F,0x98,0x8C], [0xF0,0x9F,0x98,0xAA], [0xF0,0x9F,0x98,0xA1], [0xF0,0x9F,0x98,0x9A], [0xF0,0x9F,0x98,0x92], [0xF0,0x9F,0x98,0xA5], []]
+//        let  array5 = [[0xF0,0x9F,0x98,0x96], [0xF0,0x9F,0x91,0xA8], [0xF0,0x9F,0x91,0x8A], [0xF0,0x9F,0x99,0x8F], [0xF0,0x9F,0x98,0xB7], [0xF0,0x9F,0x91,0xA9], [0xE2,0x9C,0x8A]]
+//        let  array6 = [[0xF0,0x9F,0x91,0x8F], [0xF0,0x9F,0x98,0xB2], [0xF0,0x9F,0x8C,0x9F], [0xE2,0x9C,0x8C], [0xF0,0x9F,0x92,0xAA], [0xF0,0x9F,0x91,0xBF], [0xF0,0x9F,0x91,0x84]]
+//        let  array7 = [[0xF0,0x9F,0x91,0x86], [0xF0,0x9F,0x91,0x97], [0xF0,0x9F,0x98,0x8F], [0xF0,0x9F,0x91,0x8D], [0xF0,0x9F,0x91,0x87], [0xF0,0x9F,0x8E,0x80], [0xF0,0x9F,0x91,0xA6]]
+//        let  array8 = [[0xF0,0x9F,0x91,0x8E], [0xF0,0x9F,0x91,0x89], [0xE2,0x9D,0xA4], [0xF0,0x9F,0x91,0xA7], [0xF0,0x9F,0x91,0x8C], [0xF0,0x9F,0x91,0x8C], []]
+//        let  array9 = [[0xF0,0x9F,0x92,0x94], [0xF0,0x9F,0x8D,0x83], [0xF0,0x9F,0x8E,0x85], [0xF0,0x9F,0x8D,0xBA], [0xF0,0x9F,0x92,0x8E], [0xF0,0x9F,0x8C,0x99], [0xF0,0x9F,0x8E,0x81]]
+//        let array10  = [[0xF0,0x9F,0x8E,0x82], [0xF0,0x9F,0x90,0xB6], [0xE2,0x98,0x80], [0xF0,0x9F,0x93,0xB1], [0xF0,0x9F,0x8F,0xA0], [0xF0,0x9F,0x90,0xB1], [0xE2,0x98,0x81]]
+//        let array11 = [[0xF0,0x9F,0x94,0x8D], [0xF0,0x9F,0x9A,0x97], [0xF0,0x9F,0x8C,0xB9], [0xE2,0x9A,0xA1], [0xF0,0x9F,0x92,0xA3], [0xF0,0x9F,0x95,0x99], [0xF0,0x9F,0x8C,0xBB]]
+//        let array12 = [[0xE2,0x98,0x94], [0xE2,0x9A,0xBD], [0xE2,0x9C,0x8C], [0xF0,0x9F,0x8D,0x81], [0xF0,0x9F,0x91,0xBB], [0xE2,0x98,0x95], []]
+//        
+//        
+//        
+//        var array = [[Int]]()
+//        array.appendContentsOf(array1)
+//        array.appendContentsOf(array2)
+//        array.appendContentsOf(array3)
+//        array.appendContentsOf(array4)
+//        array.appendContentsOf(array5)
+//        array.appendContentsOf(array6)
+//        array.appendContentsOf(array7)
+//        array.appendContentsOf(array8)
+//        array.appendContentsOf(array9)
+//        array.appendContentsOf(array10)
+//        array.appendContentsOf(array11)
+//        array.appendContentsOf(array12)
+//        
+//        m_faceArray = emojiStringArray(array)
+    
+        
+        for i  in 0x1F600...0x1F64F {
+            if i < 0x1F641 || i > 0x1F644 {
+                var sym = EMOJI_CODE_TO_SYMBOL(i)
+                
+                 let emojiT = NSString.init(bytes: &sym , length: sizeofValue(sym), encoding: NSUTF8StringEncoding)
+                
+                m_faceArray.append(emojiT as! String)
+            }
+        }
+    
+    for i  in 1...m_faceArray.count / 28 {
+        m_faceArray[(28 * i) - 1] = ""
+        
+    }
+    
+    }
+//   
+//    func multibyteFaceToFaceUnicode(strFace : String) -> String {
+//        var  curChar : unichar = 0x00
+//        var  nextChar : unichar = 0x00
+//        var faceUnicode = NSString()
+//        let nsStrFace = strFace as NSString
+//        for (var  i = 0 ; i < nsStrFace.length; ) {
+//            curChar = nsStrFace.characterAtIndex(i)
+//            nextChar = nsStrFace.length > i + 1 ? nsStrFace.characterAtIndex(i + 1): 0x00
+//            if( curChar == 0x0200d )//特殊多表情组合符号
+//            {
+//                faceUnicode = faceUnicode.stringByAppendingFormat("[0x%05x]",curChar)
+//                i += 1
+//            }
+//            else
+//            {
+//                let code = MULITTHREEBYTEUTF16TOUNICODE(Int(curChar), y:Int(nextChar))
+//                if code >= 0xFFFFF//4字节组成的表情
+//                {
+//                    if nextChar != 0x00 && nextChar != 0xfe0f {
+//                        faceUnicode = faceUnicode.stringByAppendingFormat("[0x%05x][0x%05x]",curChar,nextChar)
+//                    }
+//                    else {
+//                      faceUnicode = faceUnicode.stringByAppendingFormat("[0x%05x]",curChar);
+//                    }
+//                    
+//                }
+//                else
+//                {
+//                    faceUnicode = faceUnicode.stringByAppendingFormat("[0x%05x]",Int(code));
+//                }
+//                i += 2;
+//            }
+//
+//            
+//            
+//        }
+//        
+//
+//        return faceUnicode as String
 //    }
-//    func EMOJI_CODE_TO_SYMBOL(x : Int) -> Int {
-//        return (((0x808080F0 | (x & 0x3F000) >> 4) | (x & 0xFC0) << 10) | (x & 0x1C0000) << 18) | (x & 0x3F) << 24
-//    }
+//
 //    
-//    func MULITTHREEBYTEUTF16TOUNICODE(x : Int , y : Int) -> Int {
-//        return (((((x ^ 0xD800) << 2) | ((y ^ 0xDC00) >> 8)) << 8) | ((y ^ 0xDC00) & 0xFF)) + 0x10000
-//    }
-    
-//    func initFace() {
-//        m_faceArray.appendContentsOf(["\xF0\x9F\x98\x84","\xF0\x9F\x98\x9C", "\xF0\x9F\x98\x9E",  "\xF0\x9F\x98\xB0",  "\xF0\x9F\x98\xB0",  "\xF0\x9F\x98\x9D",  "\xF0\x9F\x98\xA3"])
-//        
-//        
-//        m_faceArray.appendContentsOf(["\xF0\x9F\x98\x84","\xF0\x9F\x98\x9C", "\xF0\x9F\x98\x9E",  "\xF0\x9F\x98\xB0",  "\xF0\x9F\x98\xB0",  "\xF0\x9F\x98\x9D",  "\xF0\x9F\x98\xA3"])
-//        
-//        
-//        
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x98\x84",  "\xF0\x9F\x98\x9C",  "\xF0\x9F\x98\x9E",  "\xF0\x9F\x98\xB0",  "\xF0\x9F\x98\xB0",  "\xF0\x9F\x98\x9D",  "\xF0\x9F\x98\xA3"]];
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x98\x93",  "\xF0\x9F\x98\x8A",  "\xF0\x9F\x98\xB3",  "\xF0\x9F\x98\xA2",  "\xF0\x9F\x98\xA8",  "\xF0\x9F\x98\x89",  "\xF0\x9F\x98\x81"]];
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x98\x82",  "\xF0\x9F\x98\xB1",  "\xF0\x9F\x98\x8D",  "\xF0\x9F\x98\x94",  "\xF0\x9F\x98\xAD",  "\xF0\x9F\x98\xA0",  "\xF0\x9F\x98\x98"]];
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x98\x8C",  "\xF0\x9F\x98\xAA",  "\xF0\x9F\x98\xA1",  "\xF0\x9F\x98\x9A",  "\xF0\x9F\x98\x92",  "\xF0\x9F\x98\xA5",  ""]];
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x98\x96",  "\xF0\x9F\x91\xA8",  "\xF0\x9F\x91\x8A",  "\xF0\x9F\x99\x8F",  "\xF0\x9F\x98\xB7",  "\xF0\x9F\x91\xA9",  "\xE2\x9C\x8A"]];
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x91\x8F",  "\xF0\x9F\x98\xB2",  "\xF0\x9F\x8C\x9F",  "\xE2\x9C\x8C",  "\xF0\x9F\x92\xAA",  "\xF0\x9F\x91\xBF",  "\xF0\x9F\x91\x84"]];
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x91\x86",  "\xF0\x9F\x91\x97",  "\xF0\x9F\x98\x8F",  "\xF0\x9F\x91\x8D",  "\xF0\x9F\x91\x87",  "\xF0\x9F\x8E\x80",  "\xF0\x9F\x91\xA6"]];
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x91\x8E",  "\xF0\x9F\x91\x89",  "\xE2\x9D\xA4",  "\xF0\x9F\x91\xA7",  "\xF0\x9F\x91\x8C",  "\xF0\x9F\x91\x8C",  ""]];
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x92\x94",  "\xF0\x9F\x8D\x83",  "\xF0\x9F\x8E\x85",  "\xF0\x9F\x8D\xBA",  "\xF0\x9F\x92\x8E",  "\xF0\x9F\x8C\x99",  "\xF0\x9F\x8E\x81"]];
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x8E\x82",  "\xF0\x9F\x90\xB6",  "\xE2\x98\x80",  "\xF0\x9F\x93\xB1",  "\xF0\x9F\x8F\xA0",  "\xF0\x9F\x90\xB1",  "\xE2\x98\x81"]];
-//        [m_faceArray addObjectsFromArray: [ "\xF0\x9F\x94\x8D",  "\xF0\x9F\x9A\x97",  "\xF0\x9F\x8C\xB9",  "\xE2\x9A\xA1",  "\xF0\x9F\x92\xA3",  "\xF0\x9F\x95\x99",  "\xF0\x9F\x8C\xBB"]];
-//        [m_faceArray addObjectsFromArray: [ "\xE2\x98\x94",  "\xE2\x9A\xBD",  "\xE2\x9C\x8C",  "\xF0\x9F\x8D\x81",  "\xF0\x9F\x91\xBB",  "\xE2\x98\x95",  ""]];
-//    }
-    
+//    
+//    
 }
+
+

@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="ZVM-42-J72" customClass="FaceKeyboardView">
+        <view contentMode="scaleToFill" id="ZVM-42-J72" customClass="FaceKeyboardView" customModule="viossvc" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="216"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -24,8 +24,8 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <connections>
-                        <outlet property="dataSource" destination="ZVM-42-J72" id="edZ-9Q-Hnf"/>
-                        <outlet property="delegate" destination="ZVM-42-J72" id="MmA-k2-vu5"/>
+                        <outlet property="dataSource" destination="ZVM-42-J72" id="prn-WI-sCy"/>
+                        <outlet property="delegate" destination="ZVM-42-J72" id="Of2-Qk-3Ku"/>
                     </connections>
                 </collectionView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="10x-h6-Q3U">
@@ -49,8 +49,8 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="collectionView" destination="2MC-ef-uS5" id="8TD-Ma-D2s"/>
-                <outlet property="pageControl" destination="10x-h6-Q3U" id="R4M-VG-FEf"/>
+                <outlet property="collectionView" destination="2MC-ef-uS5" id="0An-5i-07F"/>
+                <outlet property="pageControl" destination="10x-h6-Q3U" id="a9E-cU-ZHh"/>
             </connections>
         </view>
     </objects>
