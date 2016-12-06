@@ -68,8 +68,9 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         
         didRequestComplete(array)
         if id == 0 {
+//            tableViewScrolToBottom(false)
             
-            tableViewScrolToBottom()
+            self.performSelector(#selector(self.tableViewScrolToBottom), withObject: nil, afterDelay: 0.3)
         }
     }
     
@@ -131,24 +132,32 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     func inputBarDidChangeHeight(inputBar inputBar: InputBarView, height: CGFloat) {
         inputBarHeight.constant = height;
         self.view.layoutIfNeeded()
-        tableViewScrolToBottom()
+        _tableViewScrolToBottom(true)
         
     }
     func inputBarChangeHeight(height : CGFloat) {
         inputBarBottom.constant = height
         self.view.layoutIfNeeded()
         if height > 0 {
-           tableViewScrolToBottom()
+           _tableViewScrolToBottom(false)
         }
     }
     
     func tableViewScrolToBottom() {
         
         if  dataSource?.count > 0 {
-            tableView.scrollToRowAtIndexPath(NSIndexPath.init(forRow: dataSource!.count - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            tableView.scrollToRowAtIndexPath(NSIndexPath.init(forRow: dataSource!.count - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
         }
     }
     
+    func _tableViewScrolToBottom(animated : Bool? = true){
+        
+        if  dataSource?.count > 0 {
+            tableView.scrollToRowAtIndexPath(NSIndexPath.init(forRow: dataSource!.count - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: animated!)
+        }
+  
+        
+    }
     deinit {
 
         ChatSessionHelper.shared.closeChatSession()
