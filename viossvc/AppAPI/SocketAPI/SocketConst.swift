@@ -100,6 +100,7 @@ class SocketConst: NSObject {
         //获取chat离线消息
         case ChatOfflineRequestMessage = 2025
         case ChatOfflineReceiveMessage = 2006
+        case UpdateDeviceToken = 1031
     }
     enum type:UInt8 {
         case Error = 0

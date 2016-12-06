@@ -28,7 +28,11 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var textView: CustomTextView!
     var inputDelegate : InputBarViewProcotol?
+    var isKVO : Bool = false
+//    var isChangeTextViewHeight = false
     
+    
+    let inputBarHeight : CGFloat = 50
     
     let sendLayer: CALayer = CALayer.init()
     override func awakeFromNib() {
@@ -47,6 +51,9 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
         
         let  top = (self.textView.bounds.size.height - UIFont.HEIGHT(14)) / 2.0;
         textView.settingScrollIndicatorInsets(UIEdgeInsetsMake(top, 5, 0, 5))
+        
+        
+        textView.addObserver(self, forKeyPath: "contentSize", options: .New, context: nil)
     }
     
     func  addNotification()  {
@@ -92,6 +99,20 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
         }
     }
     
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "contentSize" && object === textView {
+            
+            let contentH = getHeight()
+            let viewHeight = self.bounds.height
+            if !isKVO && viewHeight != contentH  {
+                inputDelegate?.inputBarDidChangeHeight(inputBar: self, height: contentH)
+            }
+            textView.scrollRectToVisible(CGRectMake(0, textView.contentSize.height - UIFont.HEIGHT(14), textView.contentSize.width,UIFont.HEIGHT(14)), animated: false)
+        }
+
+    }
+    
+    
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "\n"{
             
@@ -103,6 +124,7 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
     
     func textViewDidChange(textView: UITextView) {
         sendLayerChangeColor(textView.text.length() > 0)
+        isKVO = false
     }
     
     func didSendMessage() {
@@ -111,9 +133,9 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
         inputDelegate?.inputBarDidSendMessage(inputBar: self, message: inputText)
         textView.text = nil;
         sendLayerChangeColor(false)
+        isKVO = true
 //        [self didChangeHeight:kInputBarHeight];
 //        [self emojiClose];
-//        self.isKVO = YES;
     }
 
     @IBAction func emojiFaceAction(sender : UIButton) {
@@ -144,16 +166,30 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
     
     
     
-    
-    
-    
-    
+    func getHeight() -> CGFloat {
+    var height = inputBarHeight
+        if textView.text.length() != 0 {
+           
+            height =  ceil(textView.sizeThatFits(textView.frame.size).height)
+            height = height > 73 ? 73 : height
+            height += 20
+        }
+        //    else
+        //    {
+        //        //全选剪贴的情况
+        //        height = kInputBarHeight;
+        //    }
+        height = height > inputBarHeight ? height : inputBarHeight;
+        return height;
+    }
+
     
     
     
         
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        textView.removeObserver(self, forKeyPath: "contentSize")
     }
     
 }
