@@ -19,9 +19,12 @@ class ChatSessionCell: OEZTableViewCell {
         if chatSession != nil {
             nicknameLabel.text = chatSession?.title
             headPicImageView.kf_setImageWithURL(NSURL(string: chatSession!.icon),placeholderImage:UIImage(named: "head_boy"))
-            contentLabel.text = ""
-            if chatSession?.lastChatMsg.msg_type == ChatMsgType.Chat.rawValue {
+            
+            if chatSession?.lastChatMsg.msg_type == ChatMsgType.Text.rawValue {
                 contentLabel.text = chatSession?.lastChatMsg?.content
+            }
+            else {
+                contentLabel.text = ""
             }
             timeLabel.text = chatSession?.lastChatMsg?.formatMsgTime()
         }

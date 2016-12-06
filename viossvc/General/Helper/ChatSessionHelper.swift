@@ -33,22 +33,7 @@ class ChatSessionHelper: NSObject {
     func findHistorySession() {
         
         _chatSessions = ChatDataBaseHelper.ChatSession.findHistorySession()
-        
-//        
-//        
-//        let chatSession = ChatSessionModel()
-//        chatSession.sessionId = 100
-//        chatSession.title = "180"
-//        chatSession.icon = "http://pic55.nipic.com/file/20141208/19462408_171130083000_2.jpg"
-//        chatSession.lastChatMsg = ChatMsgModel()
-//        chatSession.lastChatMsg.content = "臊堪堪骚登峰街道看开点机房监控大丰街道空间的肯德基打击打击"
-//        chatSession.lastChatMsg.msg_time = Int(NSDate().timeIntervalSince1970)
-//        chatSession.lastChatMsg.from_uid = CurrentUserHelper.shared.uid
-//        chatSession.lastChatMsg.to_uid = 100
-////        ChatDataBaseHelper.ChatSession.addModel(chatSession)
-////        ChatDataBaseHelper.ChatMsg.addModel(chatSession.lastChatMsg)
-//        _chatSessions.append(chatSession)
-        
+        syncUserInfos()
         chatSessionSort()
     }
     
@@ -92,9 +77,9 @@ class ChatSessionHelper: NSObject {
     
     
     
-    func didReqeustUserInfoComplete(uid:Int,userInfo:UserInfoModel!) {
+    func didReqeustUserInfoComplete(userInfo:UserInfoModel!) {
         if userInfo != nil {
-            let chatSession = findChatSession(uid)
+            let chatSession = findChatSession(userInfo.uid)
             chatSession.title = userInfo.nickname!
             chatSession.icon = userInfo.head_url!
             updateChatSession(chatSession)
@@ -107,6 +92,25 @@ class ChatSessionHelper: NSObject {
         chatSessionsDelegate?.updateChatSessions(_chatSessions)
     }
     
+    private func syncUserInfos() {
+        var getInfoIds = [String]()
+        for  chatSesion in _chatSessions {
+            if chatSesion.type == ChatSessionType.Chat.rawValue && NSString.isEmpty(chatSesion.title) {
+                getInfoIds.append("\(chatSesion.sessionId)")
+            }
+        }
+        if getInfoIds.count > 0 {
+            AppAPIHelper.userAPI().getUserInfos(getInfoIds, complete: { [weak self] (array) in
+                    let userInfos = array as? [UserInfoModel]
+                    if userInfos != nil {
+                        for userInfo in userInfos! {
+                            self?.didReqeustUserInfoComplete(userInfo)
+                        }
+                    }
+                }, error: nil)
+        }
+    }
+    
     private func chatSessionSort() {
         _chatSessions.sortInPlace({ (chatSession1, chatSession2) -> Bool in
             return chatSession1.lastChatMsg?.msg_time > chatSession2.lastChatMsg?.msg_time
@@ -115,7 +119,7 @@ class ChatSessionHelper: NSObject {
     
     private func updateChatSessionUserInfo(uid:Int) {
         AppAPIHelper.userAPI().getUserInfo(uid, complete: { [weak self](model) in
-            self?.didReqeustUserInfoComplete(uid, userInfo: model as? UserInfoModel)
+            self?.didReqeustUserInfoComplete(model as? UserInfoModel)
             }, error: {(error) in})
     }
     

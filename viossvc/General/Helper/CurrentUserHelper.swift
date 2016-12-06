@@ -13,6 +13,17 @@ class CurrentUserHelper: NSObject {
     private let keychainItem:OEZKeychainItemWrapper = OEZKeychainItemWrapper(identifier: "com.yundian.viossvc.account", accessGroup:nil)
     private var _userInfo:UserInfoModel!
     private var _password:String!
+    private var _deviceToken:String!
+    
+    var deviceToken:String! {
+        get {
+            return _deviceToken
+        }
+        set {
+            _deviceToken = newValue
+            updateDeviceToken()
+        }
+    }
     
     var userInfo:UserInfoModel! {
         get {
@@ -43,10 +54,9 @@ class CurrentUserHelper: NSObject {
     }
     
     func autoLogin(complete:CompleteBlock,error:ErrorBlock) -> Bool {
-        let phone = keychainItem.objectForKey(kSecAttrAccount) as? String
-        let password = keychainItem.objectForKey(kSecValueData) as? String
-        if !NSString.isEmpty(phone) &&  !NSString.isEmpty(password)  {
-            userLogin(phone!, password:password!, complete: complete, error: error)
+        let account = lastLoginAccount()
+        if !NSString.isEmpty(account.phone) &&  !NSString.isEmpty(account.password)  {
+            userLogin(account.phone!, password:account.password!, complete: complete, error: error)
             return true
         }
         return false
@@ -58,7 +68,7 @@ class CurrentUserHelper: NSObject {
         keychainItem.setObject(_userInfo.phone_num, forKey: kSecAttrAccount)
         keychainItem.setObject(_password, forKey: kSecValueData)
         initChatHelper()
-       
+        updateDeviceToken()
     }
     
     private func initChatHelper() {
@@ -79,8 +89,15 @@ class CurrentUserHelper: NSObject {
         keychainItem.setObject(password, forKey: kSecValueData)
     }
     
-    func lastLoginPhone()->String? {
-        return keychainItem.objectForKey(kSecAttrAccount) as? String 
+    func lastLoginAccount()->(phone:String?,password:String?){
+        return (keychainItem.objectForKey(kSecAttrAccount) as? String,keychainItem.objectForKey(kSecValueData) as? String)
+    }
+    
+    
+    private func updateDeviceToken() {
+        if isLogin && !NSString.isEmpty(_deviceToken) {
+            AppAPIHelper.userAPI().updateDeviceToken(uid, deviceToken: _deviceToken, complete: nil, error: nil)
+        }
     }
     
     

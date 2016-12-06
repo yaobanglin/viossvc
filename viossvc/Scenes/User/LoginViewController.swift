@@ -22,7 +22,6 @@ class BaseLoginViewController: UITableViewController {
         setTextFieldAttributedPlaceholder(textField2);
         self.view.userInteractionEnabled = true;
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(didActionHideKeyboard(_:))))
-        textField1.text = CurrentUserHelper.shared.lastLoginPhone()
     }
     
     private func setTextFieldAttributedPlaceholder(textField:UITextField) {
@@ -83,6 +82,12 @@ class BaseLoginViewController: UITableViewController {
 
 class LoginViewController: BaseLoginViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let account = CurrentUserHelper.shared.lastLoginAccount()
+        textField1.text = account.phone
+        textField2.text = account.password
+    }
 
     
     

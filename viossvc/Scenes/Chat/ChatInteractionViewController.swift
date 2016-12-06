@@ -28,6 +28,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         self.title = chatName
         ChatSessionHelper.shared.openChatSession(self)
         updateUserInfo()
+        
     }
     
     private func updateUserInfo() {
@@ -36,11 +37,9 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
                   let userInfo = model as? UserInfoModel
                     if userInfo != nil {
                         self?.title = userInfo!.nickname
-                        ChatSessionHelper.shared.didReqeustUserInfoComplete(userInfo!.uid, userInfo: userInfo!)
+                        ChatSessionHelper.shared.didReqeustUserInfoComplete(userInfo!)
                     }
-                }, error:  { (error) in
-                    XCGLogger.error("\(error)")
-            })
+                }, error:nil)
         }
         
     }
@@ -57,20 +56,21 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     }
     
     override func didRequest() {
-        
-        
-        
-        
-        let id = dataSource == nil || dataSource?.count == 0 ? 0 : (dataSource?.first as! ChatMsgModel).id
-        
-        
-       var array = ChatMsgHepler.shared.findHistoryMsg(chatUid, lastId: id , pageSize: 30) as [AnyObject]
+     let id = dataSource == nil || dataSource?.count == 0 ? 0 : (dataSource?.first as! ChatMsgModel).id
+       var array = ChatMsgHepler.shared.findHistoryMsg(chatUid, lastId: id , pageSize: 20) as [AnyObject]
+        if array.count == 0 {
+            removeRefreshControl()
+        }
         
         if dataSource != nil {
             array.appendContentsOf(dataSource!)
         }
-        didRequestComplete(array)
         
+        didRequestComplete(array)
+        if id == 0 {
+            
+            tableViewScrolToBottom()
+        }
     }
     
     
@@ -138,7 +138,9 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         }
     }
     func inputBarDidChangeHeight(inputBar inputBar: InputBarView, height: CGFloat) {
-   
+        inputBarHeight.constant = height;
+        self.view.layoutIfNeeded()
+        tableViewScrolToBottom()
         
     }
     func inputBarChangeHeight(height : CGFloat) {
@@ -150,14 +152,11 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     }
     
     func tableViewScrolToBottom() {
-    
+        
         if  dataSource?.count > 0 {
             tableView.scrollToRowAtIndexPath(NSIndexPath.init(forRow: dataSource!.count - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
         }
     }
-
-   
-    
     
     deinit {
 

@@ -60,6 +60,9 @@ class TourShareDetailViewController: BaseCustomRefreshTableViewController {
     }
     
     @IBAction func didActionTelPhone(sender: AnyObject) {
+        if let telephone = tourShareModel.telephone {
+            didActionTel(telephone)
+        }
     }
 
 }

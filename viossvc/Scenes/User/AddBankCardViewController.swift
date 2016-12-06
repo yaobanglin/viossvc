@@ -30,7 +30,7 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
             AppAPIHelper.userAPI().newBankCard([
                 "uid_":CurrentUserHelper.shared.userInfo.uid,
                 "account_": cardNumberTextfield.text!,
-                "bank_username_":bankNameTextfield.text!,
+                "bank_username_":nameTextfiled.text!,
                 "bank_":1,
                 "phone_num_":phoneNumberTextfield.text!
                 ], complete: { [weak self](response) in

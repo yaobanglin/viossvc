@@ -18,7 +18,7 @@ extension String {
         paragraphStyle.lineSpacing = lineSpacing
         return [NSFontAttributeName:font,NSParagraphStyleAttributeName:paragraphStyle]
     }
-     func boundingRectWithSize(size:CGSize,font:UIFont,lineSpacing:CGFloat) ->CGRect {
+     func boundingRectWithSize(size:CGSize,font:UIFont,lineSpacing:CGFloat? = 5) ->CGRect {
         let attributedString = self.attributedString(font, lineSpacing: lineSpacing)
         return attributedString.boundingRectWithSize(size, options: .UsesLineFragmentOrigin, context: nil)
     }
@@ -30,16 +30,16 @@ extension String {
     }
     
     
-    func attributedString(font:UIFont,lineSpacing:CGFloat) -> NSAttributedString {
+    func attributedString(font:UIFont,lineSpacing:CGFloat? = 5) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: self)
-        attributedString.addAttributes(String.stringAttributes(AppConst.SystemFont.S3,lineSpacing:5), range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttributes(String.stringAttributes(font,lineSpacing:lineSpacing!), range: NSMakeRange(0, attributedString.length))
         return attributedString
     }
     
     func length() -> Int {
         return self.characters.count
     }
-    
+
    static func bankCardName(bankCardNum: String) -> String {
     
         if  bankCardNum.length()<16 || bankCardNum.length()>19{
