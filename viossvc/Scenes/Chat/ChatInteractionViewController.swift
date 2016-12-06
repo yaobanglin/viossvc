@@ -28,6 +28,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         self.title = chatName
         ChatSessionHelper.shared.openChatSession(self)
         updateUserInfo()
+        
     }
     
     private func updateUserInfo() {
@@ -139,7 +140,9 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         }
     }
     func inputBarDidChangeHeight(inputBar inputBar: InputBarView, height: CGFloat) {
-   
+        inputBarHeight.constant = height;
+        self.view.layoutIfNeeded()
+        tableViewScrolToBottom()
         
     }
     func inputBarChangeHeight(height : CGFloat) {

@@ -103,7 +103,8 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
         if keyPath == "contentSize" && object === textView {
             
             let contentH = getHeight()
-            if !isKVO && CGRectGetHeight(self.bounds) != contentH  {
+            let viewHeight = self.bounds.height
+            if !isKVO && viewHeight != contentH  {
                 inputDelegate?.inputBarDidChangeHeight(inputBar: self, height: contentH)
             }
             textView.scrollRectToVisible(CGRectMake(0, textView.contentSize.height - UIFont.HEIGHT(14), textView.contentSize.width,UIFont.HEIGHT(14)), animated: false)

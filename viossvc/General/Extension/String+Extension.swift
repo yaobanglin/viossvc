@@ -32,7 +32,7 @@ extension String {
     
     func attributedString(font:UIFont,lineSpacing:CGFloat? = 5) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: self)
-        attributedString.addAttributes(String.stringAttributes(font,lineSpacing:5), range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttributes(String.stringAttributes(font,lineSpacing:lineSpacing!), range: NSMakeRange(0, attributedString.length))
         return attributedString
     }
     
