@@ -25,6 +25,31 @@ class SMSServerViewController: BaseTableViewController {
         super.viewDidLoad()
         nextStepBtn.layer.cornerRadius = 6
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if CurrentUserHelper.shared.userInfo.auth_status_ == -1 {
+            let alertController = UIAlertController.init(title: "身份认证", message: "您还未进行身份认证，前往设置", preferredStyle: .Alert)
+            let setAction = UIAlertAction.init(title: "前去认证", style: .Default, handler: { [weak self](sender) in
+                alertController.dismissController()
+                self?.navigationController?.pushViewControllerWithIdentifier(AuthUserViewController.className(), animated: true)
+                })
+            let cancelAction = UIAlertAction.init(title: "取消", style: .Default, handler: { [weak self](sender) in
+                alertController.dismissController()
+                self?.navigationController?.popViewControllerAnimated(true)
+            })
+            alertController.addAction(cancelAction)
+            alertController.addAction(setAction)
+            presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        if CurrentUserHelper.shared.userInfo.auth_status_  == 0 {
+            SVProgressHUD.showWainningMessage(WainningMessage: "个人认证尚未通过，请稍后再试", ForDuration: 1, completion: {[weak self] in
+                self?.navigationController?.popViewControllerAnimated(true)
+                return
+            })
+        }
+    }
     deinit {
         timer = nil
     }
