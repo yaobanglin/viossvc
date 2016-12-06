@@ -69,6 +69,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         
         didRequestComplete(array)
         if id == 0 {
+            
             tableViewScrolToBottom()
         }
     }
