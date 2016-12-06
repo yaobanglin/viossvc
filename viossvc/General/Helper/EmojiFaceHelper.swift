@@ -23,7 +23,7 @@ class EmojiFaceHelper: NSObject {
 
     }
     
-   private func EMOJI_CODE_TO_SYMBOL(x : Int) -> UInt64 {
+   private func EMOJI_CODE_TO_SYMBOL(x : UInt64) -> UInt64 {
         let sym = (((0x808080F0 | (x & 0x3F000) >> 4) | (x & 0xFC0) << 10) | (x & 0x1C0000) << 18) | (x & 0x3F) << 24
         return   UInt64(sym)
     }
@@ -55,7 +55,7 @@ class EmojiFaceHelper: NSObject {
         var count:Int = 0
         for i  in 0x1F600...0x1F69F {
             if i < 0x1F641 || ( i > 0x1F644 && i < 0x1F650) || i > 0x1F67F {
-                var sym = EMOJI_CODE_TO_SYMBOL(i)
+                var sym = EMOJI_CODE_TO_SYMBOL(UInt64(i))
                 
                let emojiT = NSString(bytes: &sym , length: 4, encoding: NSUTF8StringEncoding)
                 m_faceArray.append(emojiT as! String)
