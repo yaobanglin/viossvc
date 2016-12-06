@@ -23,7 +23,7 @@ class SocketConst: NSObject {
         //重置密码
         case NodifyPasswrod = 1011
         //修改用户信息
-        case NodifyUserInfo = 1023
+        case NodifyUserInfo = 1093
         //获取图片token
         case GetImageToken = 1047
         //获取用户余额
