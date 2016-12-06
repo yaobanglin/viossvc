@@ -31,7 +31,7 @@ class InputBarView: OEZBaseView ,UITextViewDelegate,FaceKeyboardViewDelegate {
     var faceKeyboardView : UIView = UIView()
     
     
-    var inputDelegate : InputBarViewProcotol?
+    weak var inputDelegate : InputBarViewProcotol?
     var isKVO : Bool = false
 //    var isChangeTextViewHeight = false
     
