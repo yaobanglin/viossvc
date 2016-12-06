@@ -57,20 +57,20 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     }
     
     override func didRequest() {
-        
-        
-        
-        
-        let id = dataSource == nil || dataSource?.count == 0 ? 0 : (dataSource?.first as! ChatMsgModel).id
-        
-        
-       var array = ChatMsgHepler.shared.findHistoryMsg(chatUid, lastId: id , pageSize: 30) as [AnyObject]
+     let id = dataSource == nil || dataSource?.count == 0 ? 0 : (dataSource?.first as! ChatMsgModel).id
+       var array = ChatMsgHepler.shared.findHistoryMsg(chatUid, lastId: id , pageSize: 20) as [AnyObject]
+        if array.count == 0 {
+            removeRefreshControl()
+        }
         
         if dataSource != nil {
             array.appendContentsOf(dataSource!)
         }
-        didRequestComplete(array)
         
+        didRequestComplete(array)
+        if id == 0 {
+            tableViewScrolToBottom()
+        }
     }
     
     
@@ -150,14 +150,11 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     }
     
     func tableViewScrolToBottom() {
-    
+        
         if  dataSource?.count > 0 {
             tableView.scrollToRowAtIndexPath(NSIndexPath.init(forRow: dataSource!.count - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
         }
     }
-
-   
-    
     
     deinit {
 

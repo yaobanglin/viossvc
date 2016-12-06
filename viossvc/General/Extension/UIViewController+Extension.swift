@@ -181,4 +181,18 @@ extension UIViewController {
         let filePath: String = String(format: "%@%@", documentPath, key)
         return filePath
     }
+    
+    func didActionTel(telPhone:String) {
+        let alert = UIAlertController.init(title: "呼叫", message: telPhone, preferredStyle: .Alert)
+        let ensure = UIAlertAction.init(title: "确定", style: .Default, handler: { (action: UIAlertAction) in
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(telPhone)")!)
+        })
+        let cancel = UIAlertAction.init(title: "取消", style: .Cancel, handler: { (action: UIAlertAction) in
+            
+        })
+        alert.addAction(ensure)
+        alert.addAction(cancel)
+        presentViewController(alert, animated: true, completion: nil)
+        
+    }
 }
