@@ -43,7 +43,6 @@ class PhotoCollectionCell: UICollectionViewCell {
             photo = UIImageView()
             photo?.tag = 1001
             photo?.frame = bounds
-            photo?.image = UIImage.init(named: "head_giry")
             contentView.addSubview(photo!)
         }
         

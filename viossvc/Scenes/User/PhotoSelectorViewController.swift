@@ -75,7 +75,7 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
         var thumb:[UIImage]? = []
         if seletedPhotosArray.count > 0 {
             for index in seletedPhotosArray {
-                thumb!.append(UIImage.init(data: (photosArray[index])!)!)
+                thumb!.append(compress(photosArray[index]!)!)
             }
             delegate?.selected(thumb, src: nil, seletedIndex: seletedPhotosArray)
         }
@@ -228,6 +228,7 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
                     cell.updateWithImage(photoImages[indexPath.row]!, indexPath: indexPath)
                 } else {
                     getPhotoThumb(indexPath.row, feture: false)
+                    cell.update()
                 }
             }
             if preloadNum > 0 {
@@ -282,12 +283,11 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     }
     
     func compress(imageData: NSData) ->UIImage? {
-        if imageData.length / 1024 > 16 {
-            NSLog("\(imageData.length / 1024)")
+        if imageData.length / 1024 > 1024 {
             let srcImg = UIImage.init(data: imageData)
             let imgWidth = srcImg!.size.width
             let imgHeight = srcImg!.size.height
-            let width:CGFloat = 120
+            let width:CGFloat = 960
             let height = imgHeight / (imgWidth / width)
             let widthScale = imgWidth / width
             let heightScala = imgHeight / height
