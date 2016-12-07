@@ -147,8 +147,8 @@ class ChatDataBaseHelper: NSObject {
                                 "title_ nvarchar(255)," +
                                 "icon_ nvarchar(255)," +
                                 "noReading_ integer DEFAULT(0)," +
-                                "isTop_ char(1) DEFAULT('0')," +
-                                "isNotDisturb_ char(1) DEFAULT('0'));"
+                                "isTop_ integer DEFAULT(0)," +
+                                "isNotDisturb_ integer DEFAULT(0));"
             
             ChatDataBaseHelper.shared.executeStatements(sqlString)
             
