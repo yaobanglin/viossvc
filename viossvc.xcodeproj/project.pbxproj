@@ -31,6 +31,8 @@
 		7C7DF0861DF026E000C77978 /* InputBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7DF0851DF026E000C77978 /* InputBarView.swift */; };
 		7C7DF0881DF02B2900C77978 /* ChatInteractionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7DF0871DF02B2900C77978 /* ChatInteractionViewController.swift */; };
 		7CA9A53B1DF547A500618FCC /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA9A53A1DF547A500618FCC /* CustomTextView.swift */; };
+		7CFB87FD1DF665B9009E78E2 /* FaceKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB87FC1DF665B9009E78E2 /* FaceKeyboardView.swift */; };
+		7CFB87FF1DF665F3009E78E2 /* FaceKeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB87FE1DF665F3009E78E2 /* FaceKeyboardView.xib */; };
 		ACABD04A304D718D390DA81B /* SkillShareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABD04E9A7A54B8A6094E8F /* SkillShareAPI.swift */; };
 		ACABD1428B9E953E3868C06B /* BaseSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABD10D5E9578A46AACF156 /* BaseSocketAPI.swift */; };
 		ACABD384C1541C829A7047CA /* AppAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABDEB2F2E7F93BFC76AA0F /* AppAPIHelper.swift */; };
@@ -105,6 +107,7 @@
 		B08673531DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */; };
 		B08F95D61DE5E821001ACB2A /* SkillShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F95D51DE5E821001ACB2A /* SkillShareModel.swift */; };
 		B08F95D81DE5E834001ACB2A /* TourShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08F95D71DE5E834001ACB2A /* TourShareModel.swift */; };
+		B0C12C861DF6E4D5001629B3 /* EmojiFaceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C12C851DF6E4D5001629B3 /* EmojiFaceHelper.swift */; };
 		BF455B7E1DE84178007D97B0 /* CommenSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455B7D1DE84178007D97B0 /* CommenSocketAPI.swift */; };
 		BF455B801DE841D5007D97B0 /* CommenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF455B7F1DE841D5007D97B0 /* CommenAPI.swift */; };
 		BF5EB9861DE7CC9200961A24 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5EB9851DE7CC9200961A24 /* ResetPasswordViewController.swift */; };
@@ -159,6 +162,8 @@
 		7C7DF0851DF026E000C77978 /* InputBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarView.swift; sourceTree = "<group>"; };
 		7C7DF0871DF02B2900C77978 /* ChatInteractionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInteractionViewController.swift; sourceTree = "<group>"; };
 		7CA9A53A1DF547A500618FCC /* CustomTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		7CFB87FC1DF665B9009E78E2 /* FaceKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceKeyboardView.swift; sourceTree = "<group>"; };
+		7CFB87FE1DF665F3009E78E2 /* FaceKeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceKeyboardView.xib; sourceTree = "<group>"; };
 		99F5EF6682B1172BAA8C79FC /* Pods-viossvc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-viossvc.release.xcconfig"; path = "Pods/Target Support Files/Pods-viossvc/Pods-viossvc.release.xcconfig"; sourceTree = "<group>"; };
 		ACABD04E9A7A54B8A6094E8F /* SkillShareAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillShareAPI.swift; sourceTree = "<group>"; };
 		ACABD10D5E9578A46AACF156 /* BaseSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSocketAPI.swift; sourceTree = "<group>"; };
@@ -237,6 +242,7 @@
 		B08673521DE5C6B8008DD8A1 /* NodifyUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodifyUserInfoViewController.swift; sourceTree = "<group>"; };
 		B08F95D51DE5E821001ACB2A /* SkillShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillShareModel.swift; sourceTree = "<group>"; };
 		B08F95D71DE5E834001ACB2A /* TourShareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareModel.swift; sourceTree = "<group>"; };
+		B0C12C851DF6E4D5001629B3 /* EmojiFaceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiFaceHelper.swift; sourceTree = "<group>"; };
 		B0CF59DD1DE5BEC300C40C9C /* viossvc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = viossvc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF455B7D1DE84178007D97B0 /* CommenSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommenSocketAPI.swift; sourceTree = "<group>"; };
 		BF455B7F1DE841D5007D97B0 /* CommenAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommenAPI.swift; path = SocketAPI/CommenAPI.swift; sourceTree = "<group>"; };
@@ -565,6 +571,8 @@
 				B03B12041DE5BFDE00B00D2E /* PageViewImageCell.xib */,
 				B03B12051DE5BFDE00B00D2E /* TableViewHeaderView.swift */,
 				B03B12061DE5BFDE00B00D2E /* TableViewHeaderView.xib */,
+				7CFB87FC1DF665B9009E78E2 /* FaceKeyboardView.swift */,
+				7CFB87FE1DF665F3009E78E2 /* FaceKeyboardView.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -586,6 +594,7 @@
 		B03B120B1DE5BFDE00B00D2E /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B0C12C851DF6E4D5001629B3 /* EmojiFaceHelper.swift */,
 				B037D0901DF53DE500B8CE1A /* DataBase */,
 				B03B120C1DE5BFDE00B00D2E /* TableViewHelper.swift */,
 				B011C2C11DE6DFEB00CB897A /* CurrentUserHelper.swift */,
@@ -831,6 +840,7 @@
 				BF5EB9881DE8070500961A24 /* city.plist in Resources */,
 				B03B124E1DE5BFDE00B00D2E /* MJRefresh.bundle in Resources */,
 				B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */,
+				7CFB87FF1DF665F3009E78E2 /* FaceKeyboardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,6 +944,7 @@
 				B03B12311DE5BFDE00B00D2E /* TourShareDetailCell.swift in Sources */,
 				BFE6E47A1DF052D800480435 /* ServerManagerViewController.swift in Sources */,
 				BF455B801DE841D5007D97B0 /* CommenAPI.swift in Sources */,
+				B0C12C861DF6E4D5001629B3 /* EmojiFaceHelper.swift in Sources */,
 				6E9857E11DEEBD92002EFD88 /* HandleOrderViewController.swift in Sources */,
 				B024A17F1DE7D3710095A691 /* TourShareAPI.swift in Sources */,
 				B08F95D81DE5E834001ACB2A /* TourShareModel.swift in Sources */,
@@ -988,6 +999,7 @@
 				B03B12151DE5BFDE00B00D2E /* AppConst.swift in Sources */,
 				BFE6E47E1DF0535D00480435 /* ServerSuccessController.swift in Sources */,
 				BF5EB9861DE7CC9200961A24 /* ResetPasswordViewController.swift in Sources */,
+				7CFB87FD1DF665B9009E78E2 /* FaceKeyboardView.swift in Sources */,
 				6E82E2661DF01EC70039BBA0 /* SingleSkillCell.swift in Sources */,
 				B024A1781DE7CDCC0095A691 /* SocketDataPacket.swift in Sources */,
 				7C7DF0881DF02B2900C77978 /* ChatInteractionViewController.swift in Sources */,
@@ -1146,7 +1158,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.assistant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.trip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
@@ -1177,7 +1189,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.assistant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.trip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "43053e43-8348-4899-b17d-5808f6cc6210";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";

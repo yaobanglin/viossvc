@@ -84,6 +84,11 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
             return
         }
         
+        if bankNameLabel.text == "银行卡格式错误"{
+            SVProgressHUD.showErrorMessage(ErrorMessage: "银行卡格式错误", ForDuration: 1, completion: nil)
+            return
+        }
+        
         if checkTextFieldEmpty([drawCashText]) {
             view.endEditing(true)
             let passwordController: EnterPasswordViewController =  storyboard?.instantiateViewControllerWithIdentifier("EnterPasswordViewController") as! EnterPasswordViewController

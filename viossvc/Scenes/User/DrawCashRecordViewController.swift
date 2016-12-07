@@ -45,14 +45,16 @@ class DrawCashRecordViewController: BasePageListTableViewController {
     func requestDrawCashData(pageIndex: Int) {
         let model: DrawCashModel = DrawCashModel()
         model.uid = CurrentUserHelper.shared.userInfo.uid
-        model.account =  CurrentUserHelper.shared.userInfo.currentBankCardNumber
+//        model.account =  CurrentUserHelper.shared.userInfo.currentBankCardNumber
         model.size = 10
         model.num = pageIndex
         AppAPIHelper.userAPI().drawCashRecord(model, complete: {[weak self] (result) in
             
             if result == nil{
+                self?.didRequestComplete(result)
                 return
             }
+            
             let resultModel: DrawCashModel = result as! DrawCashModel
             if self?.tableData.count == 0{
                 self?.tableData = (self?.monthModel(resultModel.withdraw_record))!

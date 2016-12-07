@@ -13,20 +13,35 @@ class ChatSessionCell: OEZTableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var noReadNumLabel: UILabel!
+    
+    @IBOutlet weak var noReadWidthConstraint: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        noReadNumLabel.backgroundColor = UIColor.redColor()
+    }
     
     override func update(data: AnyObject!) {
-        let chatSession = data as? ChatSessionModel
-        if chatSession != nil {
-            nicknameLabel.text = chatSession?.title
-            headPicImageView.kf_setImageWithURL(NSURL(string: chatSession!.icon),placeholderImage:UIImage(named: "head_boy"))
-            
-            if chatSession?.lastChatMsg.msg_type == ChatMsgType.Text.rawValue {
-                contentLabel.text = chatSession?.lastChatMsg?.content
-            }
-            else {
-                contentLabel.text = ""
-            }
-            timeLabel.text = chatSession?.lastChatMsg?.formatMsgTime()
+        let chatSession = data as! ChatSessionModel
+        nicknameLabel.text = chatSession.title
+        headPicImageView.kf_setImageWithURL(NSURL(string: chatSession.icon),placeholderImage:UIImage(named: "head_boy"))
+        
+        if chatSession.lastChatMsg.msg_type == ChatMsgType.Text.rawValue {
+            contentLabel.text = chatSession.lastChatMsg?.content
+        }
+        else {
+            contentLabel.text = ""
+        }
+        timeLabel.text = chatSession.lastChatMsg?.formatMsgTime()
+        noReadNumLabel.hidden = chatSession.noReading == 0
+        noReadNumLabel.text = "\(chatSession.noReading)"
+        if chatSession.noReading > 9 {
+            noReadWidthConstraint.constant = 12 + 7
+        }
+        if chatSession.noReading > 99 {
+            noReadWidthConstraint.constant = 12 + 15
+            noReadNumLabel.text = "99+"
         }
     }
 }
