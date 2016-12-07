@@ -146,8 +146,15 @@ class InputBarView: OEZBaseView ,UITextViewDelegate,FaceKeyboardViewDelegate {
         textView.text = nil;
         sendLayerChangeColor(false)
         isKVO = true
+        
+        DidChangeHeight()
 
     }
+    
+    func DidChangeHeight()  {
+        inputDelegate?.inputBarDidChangeHeight(inputBar: self, height:getHeight())
+    }
+    
     
     func faceKeyboardView(faceKeyboardView: FaceKeyboardView, didKeyCode keyCode: String) {
    

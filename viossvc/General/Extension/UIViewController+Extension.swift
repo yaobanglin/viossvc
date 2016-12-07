@@ -100,6 +100,7 @@ extension UIViewController {
      - parameter complete:  图片完成Block
      */
     func qiniuUploadImage(image: UIImage, imageName: String, complete:CompleteBlock) {
+        
         //0,将图片存到沙盒中
         let filePath = cacheImage(image, imageName: imageName)
         //1,请求token

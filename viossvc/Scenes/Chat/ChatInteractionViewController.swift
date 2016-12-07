@@ -8,10 +8,12 @@
 
 import UIKit
 import XCGLogger
+
+private let  sectionHeaderHeight : CGFloat  = 50.0
 class ChatInteractionViewController: BaseCustomListTableViewController,InputBarViewProcotol,ChatSessionProtocol{
 
-
-
+    let  showTime  = 300
+  
 
     @IBOutlet weak var inputBar: InputBarView!
     @IBOutlet weak var inputBarHeight: NSLayoutConstraint!
@@ -23,12 +25,26 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       tableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
+       
        inputBar.registeredDelegate(self)
         self.title = chatName
         ChatSessionHelper.shared.openChatSession(self)
         updateUserInfo()
+        didRequest()
+        settingTableView()
+
+    }
+    
+    func settingTableView() {
+       tableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
+        tableView.registerClass(ChatSectionView.classForCoder(), forHeaderFooterViewReuseIdentifier: "ChatSectionView")
+        tableView.tableHeaderView = UIView(frame:CGRectMake(0,0,0,0.5))
         
+
+    }
+    
+    override func autoRefreshLoad() -> Bool {
+        return false
     }
     
     private func updateUserInfo() {
@@ -68,8 +84,9 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         
         didRequestComplete(array)
         if id == 0 {
+//            _tableViewScrolToBottom(false)
             
-            tableViewScrolToBottom()
+            self.performSelector(#selector(self.tableViewScrolToBottom), withObject: nil, afterDelay: 0.1)
         }
     }
     
@@ -80,12 +97,68 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         return true
     }
     
+    override func tableView(tableView: UITableView, cellDataForRowAtIndexPath indexPath: NSIndexPath) -> AnyObject? {
+        var datas:[AnyObject]? = dataSource;
+        return  (datas != nil && datas!.count > indexPath.section ) ? datas![indexPath.section] : nil;
+        
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        return 1
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return dataSource == nil ? 0 : dataSource!.count
+    }
+    
     override func tableView(tableView: UITableView, cellIdentifierForRowAtIndexPath indexPath: NSIndexPath) -> String? {
         let model = self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as! ChatMsgModel
         
         
         return  model.from_uid == CurrentUserHelper.shared.uid ? "ChatWithISayCell" : "ChatWithAnotherSayCell"
     }
+    
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return  isTimeToShow(section) ? sectionHeaderHeight : 0.1
+    }
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
+    }
+
+//    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        view.backgroundColor = UIColor.clearColor()
+//    }
+    
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var headerView : ChatSectionView?
+        if isTimeToShow(section) {
+            let model = self.tableView(tableView, cellDataForRowAtIndexPath: NSIndexPath.init(forRow: 0, inSection: section)) as! ChatMsgModel
+            headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("ChatSectionView") as? ChatSectionView
+            headerView?.update(model)
+        }
+       return headerView
+        
+    }
+    
+    func isTimeToShow(index : Int) -> Bool {
+        var  isShow = false
+        if dataSource != nil {
+            if index == 0 {
+                isShow = true
+            }else {
+                let currentModel = dataSource![index] as!  ChatMsgModel
+                let beforeModel = dataSource![index - 1] as! ChatMsgModel
+                isShow = currentModel.msg_time - beforeModel.msg_time >= showTime
+            }
+        }
+        
+        return isShow
+    }
+    
     
     
     func inputBarDidKeyboardHide(inputBar inputBar: InputBarView, userInfo: [NSObject : AnyObject]?) {
@@ -131,28 +204,117 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     func inputBarDidChangeHeight(inputBar inputBar: InputBarView, height: CGFloat) {
         inputBarHeight.constant = height;
         self.view.layoutIfNeeded()
-        tableViewScrolToBottom()
+        _tableViewScrolToBottom(true)
         
     }
     func inputBarChangeHeight(height : CGFloat) {
         inputBarBottom.constant = height
         self.view.layoutIfNeeded()
         if height > 0 {
-           tableViewScrolToBottom()
+           _tableViewScrolToBottom(false)
         }
     }
     
     func tableViewScrolToBottom() {
         
         if  dataSource?.count > 0 {
-            tableView.scrollToRowAtIndexPath(NSIndexPath.init(forRow: dataSource!.count - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            
+            tableView.scrollToRowAtIndexPath(NSIndexPath.init(forRow: 0, inSection: dataSource!.count - 1), atScrollPosition: UITableViewScrollPosition.Top, animated: false)
         }
     }
     
+    func _tableViewScrolToBottom(animated : Bool? = true){
+        
+        if  dataSource?.count > 0 {
+            tableView.scrollToRowAtIndexPath(NSIndexPath.init(forRow: 0, inSection: dataSource!.count - 1), atScrollPosition: UITableViewScrollPosition.Top, animated: animated!)
+        }
+  
+        
+    }
     deinit {
 
         ChatSessionHelper.shared.closeChatSession()
     }
   
+}
+
+ class ChatSectionView: UITableViewHeaderFooterView,OEZUpdateProtocol {
+//    var label : UILabel = UILabel()
+    let layerLeft : CALayer = CALayer()
+    let layerRight : CALayer = CALayer()
+    let stringLabel = UILabel.init()
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        let color = AppConst.Color.C3
+        layerLeft.backgroundColor = color.CGColor
+        layerRight.backgroundColor = color.CGColor
+        self.layer.addSublayer(layerLeft)
+        self.layer.addSublayer(layerRight)
+        
+        stringLabel.textAlignment = .Center
+        stringLabel.font = UIFont.SIZE(11)
+        stringLabel.textColor = color
+        stringLabel.frame = CGRectMake(0, 0, UIScreen.width(), sectionHeaderHeight)
+        self.addSubview(stringLabel)
+        
+        
+        
+    }
+    
+    
+    
+    func update(data: AnyObject!) {
+        let  model = data as! ChatMsgModel
+        let string = model.formatMsgTime() as NSString
+        
+         stringLabel.text = string as String
+        
+        let strWidth =   string.sizeWithAttributes([NSFontAttributeName : UIFont.SIZE(11)]).width
+        let width = UIScreen.width() - 50 - strWidth
+        let layerWidth = width > 120 ? 60 : (width - 20) / 2.0
+        let startX = (UIScreen.width() - strWidth - 50 - 2 * layerWidth) / 2.0
+        layerLeft.frame = CGRectMake(startX, (sectionHeaderHeight - 0.5) / 2.0, layerWidth, 0.5)
+        layerRight.frame = CGRectMake(startX + layerWidth + strWidth  + 50, (sectionHeaderHeight - 0.5) / 2.0, layerWidth, 0.5)
+        
+    }
+    
+//    init(frame: CGRect,model: ChatMsgModel) {
+//       super.init(reuseIdentifier: "ChatSectionView")
+//        
+//       let  label = detailTextLabel!
+////        self.addSubview(label)
+//        label.textAlignment = .Center
+//        label.font = UIFont.SIZE(11)
+//        label.textColor = AppConst.Color.C3
+//        let string = model.formatMsgTime() as NSString
+//        
+//        label.text  = string as String
+//        
+//        let  strWidth =   string.sizeWithAttributes([NSFontAttributeName : UIFont.SIZE(11)]).width
+//        let width = UIScreen.width() - 50 - strWidth
+//        let layerWidth = width > 120 ? 60 : (width - 20) / 2.0
+//        
+//        let layer1 = CALayer()
+//        layer1.backgroundColor = AppConst.Color.C3.CGColor
+//        
+//        let startX = (UIScreen.width() - strWidth - 50 - 2 * layerWidth) / 2.0
+//        layer1.frame = CGRectMake(startX, (frame.height - 0.5) / 2.0, layerWidth, 0.5)
+//        
+//        let layer2 = CALayer()
+//        layer2.backgroundColor = AppConst.Color.C3.CGColor
+//        
+//        layer2.frame = CGRectMake(startX + layerWidth + strWidth  + 50, (frame.height - 0.5) / 2.0, layerWidth, 0.5)
+//        
+//        self.layer.addSublayer(layer1)
+//        self.layer.addSublayer(layer2)
+//        
+//        
+//    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
 }
 
