@@ -31,7 +31,6 @@ class UserInfoModel: UserModel {
     var credit_lv: Int = 0
     var gender: Int = 0
     var has_recharged: Int = 0
-    
     var latitude: Double = 0.0
     var longitude: Double = 0.0
     var nickname: String?
