@@ -52,7 +52,7 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
     override func didRequest(pageIndex: Int) {
         let requestModel = PhotoWallRequestModel()
         requestModel.uid = CurrentUserHelper.shared.userInfo.uid
-        requestModel.size = 20
+        requestModel.size = 24
         requestModel.num = pageIndex + 1
         AppAPIHelper.userAPI().photoWallRequest(requestModel, complete: didRequestComplete(_:), error: { (error) in
             SVProgressHUD.showErrorMessage(ErrorMessage: "加载数据失败，请稍后再试", ForDuration: 1.5, completion: nil)
@@ -61,7 +61,6 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
         })
     }
     
-
     func didRequestComplete(data: AnyObject?) {
         if let model = data as? PhotoWallModel {
             if pageIndex == 0 {
@@ -87,7 +86,6 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
             setIsLoadData(true)
             return
         }
-
         
         array.removeAll()
         date.removeAll()
