@@ -79,10 +79,12 @@ class ChatSessionHelper: NSObject {
     
     func didReqeustUserInfoComplete(userInfo:UserInfoModel!) {
         if userInfo != nil {
-            let chatSession = findChatSession(userInfo.uid)
-            chatSession.title = userInfo.nickname!
-            chatSession.icon = userInfo.head_url!
-            updateChatSession(chatSession)
+            if let chatSession = findChatSession(userInfo.uid) {
+                chatSession.title = userInfo.nickname!
+                chatSession.icon = userInfo.head_url!
+                updateChatSession(chatSession)
+            }
+            
         }
     }
     
