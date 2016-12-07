@@ -8,14 +8,17 @@
 
 import UIKit
 import SVProgressHUD
-
-class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+import CoreLocation
+import MapKit
+import SVProgressHUD
+class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,CLLocationManagerDelegate {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var sexLabel: UILabel!
     @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var iconImage: UIImageView!
     var imageUrl: String?
     var haveChangeImage: Bool = false
+    var locationManager = CLLocationManager()
     lazy var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController.init()
         return picker
@@ -37,10 +40,16 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         }
         
         sexLabel.text = CurrentUserHelper.shared.userInfo.gender == 1 ? "男" : "女"
+        
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         imagePicker.delegate = self
+        if CLLocationManager.locationServicesEnabled() {
+            creatLocationManager()
+        }else{
+           
+        }
     }
     //MARK: --上传头像
     @IBAction func finishItemTapped(sender: AnyObject) {
@@ -68,6 +77,8 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         }
         param.nickname = nameText.text
         param.uid = CurrentUserHelper.shared.userInfo.uid
+        param.longitude = CurrentUserHelper.shared.userInfo.longitude
+        param.latitude = CurrentUserHelper.shared.userInfo.latitude
         AppAPIHelper.userAPI().notifyUsrInfo(param, complete: {[weak self] (result) in
             CurrentUserHelper.shared.userInfo.address = self?.cityLabel.text
             CurrentUserHelper.shared.userInfo.nickname = self?.nameText.text
@@ -139,5 +150,51 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
                 }, error: self!.errorBlockFunc())
         })
     }
-    
+    //MARK: --CLLocationManagerDelegate
+    func creatLocationManager() {
+        locationManager.delegate = self
+        if CLLocationManager.authorizationStatus() == .Denied {
+            openLocation()
+            return
+        }else if CLLocationManager.authorizationStatus() == .NotDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        }else{
+            locationManager.startUpdatingLocation()
+        }
+    }
+    func openLocation() {
+        
+        let alertController = UIAlertController.init(title: "定位失败", message: "定位失败，请前往设置页面打开定位功能", preferredStyle: .Alert)
+        let setAction = UIAlertAction.init(title: "前去设置", style: .Default, handler: { [weak self](sender) in
+            alertController.dismissController()
+            self?.navigationController?.popViewControllerAnimated(false)
+            if #available(iOS 10, *) {
+                UIApplication.sharedApplication().openURL(NSURL.init(string: UIApplicationOpenSettingsURLString)!)
+            } else {
+                UIApplication.sharedApplication().openURL(NSURL.init(string: "prefs:root=LOCATION_SERVICES")!)
+            }
+            
+            })
+        let cancelAction = UIAlertAction.init(title: "取消", style: .Default, handler: { [weak self](sender) in
+            alertController.dismissController()
+            self?.navigationController?.popViewControllerAnimated(true)
+            })
+        alertController.addAction(cancelAction)
+        alertController.addAction(setAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .Denied {
+            openLocation()
+            return
+        }
+        locationManager.startUpdatingLocation()
+    }
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        openLocation()
+    }
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        CurrentUserHelper.shared.userInfo.latitude = newLocation.coordinate.latitude
+        CurrentUserHelper.shared.userInfo.longitude = newLocation.coordinate.longitude
+    }
 }
