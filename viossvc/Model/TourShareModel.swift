@@ -9,7 +9,7 @@
 import UIKit
 
 class TourShareModel: BaseModel {
-    var share_id:Int = 0	//旅游分享id
+    var share_id:Int = 0	//商务分享id
     var share_type:String!	//分享类别
     var share_theme:String!	//分享的title,eg."楼中楼"
     var per_cash:String!	//人均消费 eg."500元/人"
