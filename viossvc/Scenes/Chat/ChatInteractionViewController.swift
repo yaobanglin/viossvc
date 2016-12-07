@@ -88,14 +88,6 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     func inputBarDidKeyboardHide(inputBar inputBar: InputBarView, userInfo: [NSObject : AnyObject]?) {
         let duration = userInfo![UIKeyboardAnimationDurationUserInfoKey]?.doubleValue
         let rawValue = (userInfo![UIKeyboardAnimationCurveUserInfoKey]?.integerValue)! << 16
@@ -107,7 +99,6 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
             [weak self]() in
             self!.inputBarChangeHeight(-1)
             }, completion: nil)
-
 
         
     }

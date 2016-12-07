@@ -22,18 +22,22 @@ import UIKit
 
 
 
-class InputBarView: OEZBaseView ,UITextViewDelegate {
+class InputBarView: OEZBaseView ,UITextViewDelegate,FaceKeyboardViewDelegate {
 
     @IBOutlet weak var faceButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var textView: CustomTextView!
-    var inputDelegate : InputBarViewProcotol?
+    var faceKeyboard :FaceKeyboardView = FaceKeyboardView.loadFromNib()
+    var faceKeyboardView : UIView = UIView()
+    
+    
+    weak var inputDelegate : InputBarViewProcotol?
     var isKVO : Bool = false
 //    var isChangeTextViewHeight = false
     
     
     let inputBarHeight : CGFloat = 50
-    
+    let kFaceKeyboardHeight : CGFloat = 216
     let sendLayer: CALayer = CALayer.init()
     override func awakeFromNib() {
         
@@ -42,8 +46,17 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
         addNotification()
         textViewSetting()
        
-       
+        facekeyboardSetting()
     }
+    func facekeyboardSetting() {
+        faceKeyboard.frame = CGRectMake(0, 0, UIScreen.width(), kFaceKeyboardHeight)
+        faceKeyboard.faceDelegate = self
+        
+        faceKeyboardView.frame = faceKeyboard.frame
+        
+        faceKeyboardView.addSubview(faceKeyboard)
+    }
+    
     func textViewSetting() {
         textView.delegate = self
         textView.setPlaceHolder("输入要说的话...")
@@ -92,7 +105,7 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
 //                _keyboardShow = NO;
             
             inputDelegate?.inputBarDidKeyboardHide(inputBar: self, userInfo: notification.userInfo)
-                    self.faceButton.selected = false;
+            faceButton.selected = false
 
 //            }
             
@@ -129,20 +142,62 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
     
     func didSendMessage() {
         let  inputText = textView.text;
-//        inputText = [[EmojiFaceHelper shared] faceReplaceHex:inputText];
         inputDelegate?.inputBarDidSendMessage(inputBar: self, message: inputText)
         textView.text = nil;
         sendLayerChangeColor(false)
         isKVO = true
-//        [self didChangeHeight:kInputBarHeight];
-//        [self emojiClose];
+
+    }
+    
+    func faceKeyboardView(faceKeyboardView: FaceKeyboardView, didKeyCode keyCode: String) {
+   
+        
+        
+        
+        if keyCode.length() > 0{
+            textView.insertText(keyCode)
+        }else {
+           
+            textView.deleteBackward()
+        }
+
+        
+        sendLayerChangeColor(textView.text.length() > 0)
     }
 
     @IBAction func emojiFaceAction(sender : UIButton) {
         
+        if faceButton.selected {
+            textView.inputView = nil
+        }
+        let isSelected = faceButton.selected
+        UIView.animateWithDuration(0.2) { 
+            self.resignTextViewFirstResponder()
+        }
+       
+        
+         faceButton.selected = !isSelected
+
+        setFaceBottonImage()
+        if faceButton.selected {
+            textView.inputView = faceKeyboardView
+//            [self emojiOpen];
+        }
+        
+        
+        UIView.animateWithDuration(0.2) {
+            self.becomeTextViewFirstResponder()
+        }
+        
+
         
     }
-    
+    func setFaceBottonImage() {
+//        let image = UIImage(named: faceButton.selected ? "cm_emojiHigh" : "cm_emojiGray")
+//        faceButton.setImage(image, forState: .Normal)
+    }
+
+
     @IBAction func sendButtonAction(sender : UIButton) {
         didSendMessage()
         
@@ -184,9 +239,18 @@ class InputBarView: OEZBaseView ,UITextViewDelegate {
     }
 
     
+    func becomeTextViewFirstResponder() {
+        textView.becomeFirstResponder()
+    }
     
+    func resignTextViewFirstResponder() {
+        textView.resignFirstResponder()
+    }
+    func isTextViewFirstResponder() -> Bool{
+      return  textView.isFirstResponder()
+    }
+
     
-        
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         textView.removeObserver(self, forKeyPath: "contentSize")
