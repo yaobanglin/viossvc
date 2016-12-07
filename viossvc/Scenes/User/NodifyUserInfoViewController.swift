@@ -48,7 +48,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         if CLLocationManager.locationServicesEnabled() {
             creatLocationManager()
         }else{
-           
+            openLocation()
         }
     }
     //MARK: --上传头像
