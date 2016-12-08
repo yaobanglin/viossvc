@@ -76,11 +76,11 @@ class SocketConst: NSObject {
          操作技能标签
          */
         case HandleSkills = 1509
-        //旅游分享类别
+        //商务分享类别
         case TourShareType = 1059
-        //旅游分享列表
+        //商务分享列表
         case TourShareList = 1061
-        //旅游分享详情
+        //商务分享详情
         case TourShareDetail = 1065
         //上传照片到照片墙
         case UploadPhoto2Wall = 1107
