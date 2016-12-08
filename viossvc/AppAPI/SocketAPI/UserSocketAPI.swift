@@ -12,13 +12,17 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
     
     
     func login(model: LoginModel, complete: CompleteBlock, error: ErrorBlock) {
-        let packet = SocketDataPacket(opcode: .Login, model: model)
-        startModelRequest(packet,modelClass:UserInfoModel.classForCoder(), complete: complete, error: error);
+        SocketRequestManage.shared.start()
         
+        let when = dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC))
+        dispatch_after(when,dispatch_get_main_queue(),{
+            let packet = SocketDataPacket(opcode: .Login, model: model)
+            self.startModelRequest(packet,modelClass:UserInfoModel.classForCoder(), complete: complete, error: error);
+        })
     }
     
     func logout(uid:Int) {
-        SocketRequestManage.shared.logout(uid)
+        SocketRequestManage.shared.stop()
     }
 
     func smsVerify(type:SMSVerifyModel.SMSType,phone:String,complete:CompleteBlock,error:ErrorBlock) {
