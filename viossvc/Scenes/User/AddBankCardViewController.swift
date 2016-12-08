@@ -34,6 +34,15 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
                 "bank_":1,
                 "phone_num_":phoneNumberTextfield.text!
                 ], complete: { [weak self](response) in
+                    if response == nil{
+                        SVProgressHUD.showErrorMessage(ErrorMessage: "绑定失败,请稍后再试", ForDuration: 1, completion: nil)
+                        return
+                    }
+                    let result: Int = response as! Int
+                    if result == 1{
+                        SVProgressHUD.showErrorMessage(ErrorMessage: "银行不匹配", ForDuration: 1, completion: nil)
+                        return
+                    }
                     SVProgressHUD.showSuccessMessage(SuccessMessage: "绑定成功", ForDuration: 1, completion: { 
                         self?.navigationController?.popViewControllerAnimated(true)
                     })
