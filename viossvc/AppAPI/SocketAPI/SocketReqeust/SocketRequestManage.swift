@@ -20,9 +20,6 @@ class SocketRequestManage: NSObject {
     private var _socketHelper:APISocketHelper?
     private var _sessionId:UInt64 = 0
     var receiveChatMsgBlock:CompleteBlock?
-    func logout(uid:Int) {
-        stop()
-    }
     
     func start() {
         _lastHeardBeatTime = timeNow()
@@ -33,9 +30,11 @@ class SocketRequestManage: NSObject {
         _socketHelper?.connect()
     }
     
-    private func stop() {
+    func stop() {
         _timer?.invalidate()
+        _timer = nil
         _socketHelper?.disconnect()
+        _socketHelper = nil
     }
     
     var reqeustId:UInt32 {

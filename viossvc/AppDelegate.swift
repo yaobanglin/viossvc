@@ -15,7 +15,7 @@ import Crashlytics
  
 @UIApplicationMain
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
 
     var window: UIWindow?
 
@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Fabric.with([Crashlytics.self])
         appearance()
-        SocketRequestManage.shared.start()
         pushMessageRegister()
         return true
     }
@@ -55,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //注册消息推送
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () in
             
-#if TARGET_OS_IPHONE
+#if true
             GeTuiSdk.startSdkWithAppId("d2YVUlrbRU6yF0PFQJfPkA", appKey: "yEIPB4YFxw64Ag9yJpaXT9", appSecret: "TMQWRB2KrG7QAipcBKGEyA", delegate: self)
 #endif
             
@@ -73,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         token = token.stringByReplacingOccurrencesOfString(">", withString: "")
         
         XCGLogger.debug("\(token)")
-#if TARGET_OS_IPHONE
+#if true
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () in
             GeTuiSdk.registerDeviceToken(token)
         })

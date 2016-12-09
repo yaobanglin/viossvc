@@ -50,6 +50,8 @@
 		B024A1811DE7D4190095A691 /* TourShareSocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1801DE7D4190095A691 /* TourShareSocketAPI.swift */; };
 		B024A1831DE7DAC40095A691 /* SocketConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1821DE7DAC40095A691 /* SocketConst.swift */; };
 		B024A1851DE7FBBF0095A691 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024A1841DE7FBBF0095A691 /* String+Extension.swift */; };
+		B02DB25A1DF985890044F910 /* libGeTuiSdk-1.4.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B02DB2591DF985890044F910 /* libGeTuiSdk-1.4.3.a */; };
+		B02DB25C1DF985B70044F910 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B02DB25B1DF985B70044F910 /* libsqlite3.tbd */; };
 		B034EA111DF1894100D2C0CC /* TourLeaderShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B034EA101DF1894100D2C0CC /* TourLeaderShareCell.swift */; };
 		B034EA131DF1894700D2C0CC /* TourLeaderShareScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B034EA121DF1894600D2C0CC /* TourLeaderShareScrollView.xib */; };
 		B037D08C1DF50E3600B8CE1A /* ChatDataBaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037D08B1DF50E3600B8CE1A /* ChatDataBaseHelper.swift */; };
@@ -183,6 +185,8 @@
 		B024A1801DE7D4190095A691 /* TourShareSocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourShareSocketAPI.swift; sourceTree = "<group>"; };
 		B024A1821DE7DAC40095A691 /* SocketConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConst.swift; sourceTree = "<group>"; };
 		B024A1841DE7FBBF0095A691 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		B02DB2591DF985890044F910 /* libGeTuiSdk-1.4.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGeTuiSdk-1.4.3.a"; path = "../../Pods/GTSDK/libGeTuiSdk-1.4.3.a"; sourceTree = "<group>"; };
+		B02DB25B1DF985B70044F910 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B034EA101DF1894100D2C0CC /* TourLeaderShareCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourLeaderShareCell.swift; sourceTree = "<group>"; };
 		B034EA121DF1894600D2C0CC /* TourLeaderShareScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TourLeaderShareScrollView.xib; sourceTree = "<group>"; };
 		B037D08B1DF50E3600B8CE1A /* ChatDataBaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDataBaseHelper.swift; sourceTree = "<group>"; };
@@ -283,11 +287,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02DB25C1DF985B70044F910 /* libsqlite3.tbd in Frameworks */,
 				BFA9FAB31DF6AEBF00E2A67C /* Crashlytics.framework in Frameworks */,
 				BFA9FAB11DF6AEAE00E2A67C /* Fabric.framework in Frameworks */,
 				B08673461DE5C4C0008DD8A1 /* libstdc++.tbd in Frameworks */,
 				B03B124F1DE5BFDE00B00D2E /* OEZCommSDK.framework in Frameworks */,
 				2FFBC4EC1DF8EF190039A0E6 /* MapKit.framework in Frameworks */,
+				B02DB25A1DF985890044F910 /* libGeTuiSdk-1.4.3.a in Frameworks */,
 				26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */,
+				B02DB25B1DF985B70044F910 /* libsqlite3.tbd */,
 				BFA9FAB21DF6AEBF00E2A67C /* Crashlytics.framework */,
 				BFA9FAB01DF6AEAE00E2A67C /* Fabric.framework */,
 				B08673451DE5C4C0008DD8A1 /* libstdc++.tbd */,
@@ -612,6 +619,7 @@
 		B03B120D1DE5BFDE00B00D2E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				B02DB2591DF985890044F910 /* libGeTuiSdk-1.4.3.a */,
 				B03B120E1DE5BFDE00B00D2E /* MJRefresh */,
 				B03B12101DE5BFDE00B00D2E /* OEZCommSDK.framework */,
 			);
@@ -1161,6 +1169,10 @@
 				INFOPLIST_FILE = viossvc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/GTSDK",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1192,6 +1204,10 @@
 				INFOPLIST_FILE = viossvc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/GTSDK",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"$(inherited)",
