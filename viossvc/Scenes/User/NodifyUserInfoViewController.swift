@@ -72,8 +72,10 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         let param = NotifyUserInfoModel()
         param.address = cityLabel.text
         param.gender = sexLabel.text == "男" ? 1 : 0
-        if iconImage.image != UIImage.init(named: "head_boy") {
+        if haveChangeImage && imageUrl != nil {
             param.head_url = imageUrl
+        }else{
+            param.head_url = CurrentUserHelper.shared.userInfo.head_url
         }
         param.nickname = nameText.text
         param.uid = CurrentUserHelper.shared.userInfo.uid
