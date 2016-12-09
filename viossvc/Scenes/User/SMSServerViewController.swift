@@ -96,8 +96,8 @@ class SMSServerViewController: BaseTableViewController {
             return
         }
         if checkTextFieldEmpty([VerifyText]){
-//            performSegueWithIdentifier(ServerManagerViewController.className(), sender: nil)
-//            return
+            performSegueWithIdentifier(ServerManagerViewController.className(), sender: nil)
+            return
             let param: Dictionary<String, AnyObject> = ["phone_num_":CurrentUserHelper.shared.userInfo.phone_num!,
                                                         "timestamp_":Int(timeStemp),
                                                         "token_": token,

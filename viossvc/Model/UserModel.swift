@@ -114,7 +114,7 @@ class DrawCashModel: BaseModel {
 
 class BankCardModel: BaseModel {
     var account:String?
-    var bank = 0
+    var bank_id = 0
     var bank_username:String?
     var is_default = 0
 }
