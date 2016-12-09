@@ -78,7 +78,7 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
     
     //MARK: --DrawCash
     @IBAction func drawCashBtnTapped(sender: UIButton) {
-        
+        MobClick.event(AppConst.Event.drawcash)
         if CurrentUserHelper.shared.userInfo.currentBanckCardName == nil {
             SVProgressHUD.showErrorMessage(ErrorMessage: "请选择提现银行卡", ForDuration: 1, completion: nil)
             return
@@ -104,6 +104,7 @@ class DrawCashTableViewController: BaseTableViewController, UITextFieldDelegate 
         }
     }
     @IBAction func allDrawBtnTapped(sender: AnyObject) {
+        MobClick.event(AppConst.Event.drawcash_total)
         drawCashText.text = cashNumLabel.text
         updateView(drawCashText.text!)
     }

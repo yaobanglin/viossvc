@@ -11,7 +11,6 @@ import XCGLogger
 import SVProgressHUD
 import Fabric
 import Crashlytics
-
  
 @UIApplicationMain
 
@@ -24,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         Fabric.with([Crashlytics.self])
         appearance()
         pushMessageRegister()
+        umapp()
         return true
     }
 
@@ -99,5 +99,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         SVProgressHUD.setMinimumDismissTimeInterval(2)
     }
 
+    private func umapp(){
+        
+        UMAnalyticsConfig.sharedInstance().appKey = AppConst.UMAppkey
+        UMAnalyticsConfig.sharedInstance().channelId = ""
+        MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
+        //version标识
+        let version: String? = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
+        MobClick.setAppVersion(version)
+        //日志加密设置
+        MobClick.setEncryptEnabled(true)
+        //使用集成测试服务
+        MobClick.setLogEnabled(true)
+    }
 }
 
