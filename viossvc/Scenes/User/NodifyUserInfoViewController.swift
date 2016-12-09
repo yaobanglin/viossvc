@@ -85,7 +85,13 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
             CurrentUserHelper.shared.userInfo.address = self?.cityLabel.text
             CurrentUserHelper.shared.userInfo.nickname = self?.nameText.text
             CurrentUserHelper.shared.userInfo.gender = self?.sexLabel.text == "男" ? 1 : 0
-            self?.navigationController?.popViewControllerAnimated(true)
+            if self?.haveChangeImage == true {
+                SVProgressHUD.showSuccessMessage(SuccessMessage: "头像图片成功，请静待人工审核", ForDuration: 1, completion:{
+                    self?.navigationController?.popViewControllerAnimated(true)
+                })
+            }else{
+                self?.navigationController?.popViewControllerAnimated(true)
+            }
         }, error: errorBlockFunc())
     }
     //MARK: --常住地选择
