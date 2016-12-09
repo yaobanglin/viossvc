@@ -28,6 +28,20 @@ class AppConst {
         static let S5 = UIFont.systemFontOfSize(10)
         static let S14 = UIFont.systemFontOfSize(14)
     };
+    
+    class Event {
+        static let login = "login"
+        static let sign_btn = "sign_btn"
+        static let sign_confrim = "sign_confrim"
+        static let sign_last = "sign_last"
+        static let sign_next = "sign_next"
+        static let bank_add = "bank_add"
+        static let bank_select = "bank_select"
+        static let drawcash = "drawcash"
+        static let drawcash_pwd = "drawcash_pwd"
+        static let drawcash_total = "drawcash_total"
+    }
+    
     class Network {
         #if false //是否测试环境
         static let TcpServerIP:String = "103.40.192.101";
@@ -57,4 +71,6 @@ class AppConst {
         case CallPhone = 10001
         case HandleOrder = 11001
     }
+    
+    static let UMAppkey = "584a3eb345297d271600127e"
 }

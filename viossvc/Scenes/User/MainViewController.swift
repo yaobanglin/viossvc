@@ -69,6 +69,7 @@ class MainViewController: UIViewController {
         navigationController?.pushViewControllerWithIdentifier(MainViewController.className(), animated: true, valuesForKeys: [MainViewController.childViewControllerIdentifierKey:LoginViewController.className()])
     }
     @IBAction func didActionRegister(sender: AnyObject) {
+        MobClick.event(AppConst.Event.sign_btn)
         navigationController?.pushViewControllerWithIdentifier(MainViewController.className(), animated: true, valuesForKeys: [MainViewController.childViewControllerIdentifierKey:RegisterViewController.className()])
     }
     

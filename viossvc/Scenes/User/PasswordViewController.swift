@@ -15,6 +15,7 @@ class PasswordViewController: BaseLoginViewController {
         get { return childViewControllerData }
     }
     @IBAction func didActionOk(sender: AnyObject) {
+        MobClick.event(AppConst.Event.sign_confrim)
         if checkTextFieldEmpty([textField1,textField2]) {
             if textField1.text?.trim() == textField2.text?.trim()  {
                 hideKeyboard()

@@ -26,6 +26,7 @@ class RegisterViewController: BaseLoginViewController {
     
     
     @IBAction func didActionNext(sender: AnyObject) {
+        MobClick.event(AppConst.Event.sign_next)
         if checkTextFieldEmpty([textField1,textField2]) && checkPhoneFormat(textField1.text!) {
             let verify_code:Int? = Int(textField2.text!.trim());
             if( verify_code != nil ) {

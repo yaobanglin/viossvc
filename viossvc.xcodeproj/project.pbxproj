@@ -129,6 +129,7 @@
 		BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */; };
 		BFACB2CF1DED1EAC00AF0D34 /* SVProgressHUDExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */; };
 		BFACB2D31DED7F1E00AF0D34 /* SetDrawCashPassworController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */; };
+		BFC81E9E1DFA9E6600ADC291 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */; };
 		BFDAB1041DEFEE320012671B /* NSDateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDAB1031DEFEE320012671B /* NSDateExt.swift */; };
 		BFE6E4761DF02E9100480435 /* MyServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E4751DF02E9100480435 /* MyServerViewController.swift */; };
 		BFE6E4781DF0529D00480435 /* SMSServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6E4771DF0529D00480435 /* SMSServerViewController.swift */; };
@@ -267,6 +268,7 @@
 		BFACB2CC1DEC523800AF0D34 /* LoginNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 		BFACB2CE1DED1EAC00AF0D34 /* SVProgressHUDExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVProgressHUDExt.swift; sourceTree = "<group>"; };
 		BFACB2D21DED7F1E00AF0D34 /* SetDrawCashPassworController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDrawCashPassworController.swift; sourceTree = "<group>"; };
+		BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMMobClick.framework; path = "Pods/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.1.5/UMMobClick.framework"; sourceTree = "<group>"; };
 		BFDAB1031DEFEE320012671B /* NSDateExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExt.swift; sourceTree = "<group>"; };
 		BFE6E4751DF02E9100480435 /* MyServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyServerViewController.swift; sourceTree = "<group>"; };
 		BFE6E4771DF0529D00480435 /* SMSServerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSServerViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFC81E9E1DFA9E6600ADC291 /* UMMobClick.framework in Frameworks */,
 				B02DB25C1DF985B70044F910 /* libsqlite3.tbd in Frameworks */,
 				BFA9FAB31DF6AEBF00E2A67C /* Crashlytics.framework in Frameworks */,
 				BFA9FAB11DF6AEAE00E2A67C /* Fabric.framework in Frameworks */,
@@ -301,6 +304,7 @@
 		10CEA088AA8041FD84B55B62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */,
 				B02DB25B1DF985B70044F910 /* libsqlite3.tbd */,
 				BFA9FAB21DF6AEBF00E2A67C /* Crashlytics.framework */,
 				BFA9FAB01DF6AEAE00E2A67C /* Fabric.framework */,
@@ -882,7 +886,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7216018706741901D5FE5A13 /* [CP] Copy Pods Resources */ = {
@@ -1155,6 +1159,7 @@
 					"$(PROJECT_DIR)/viossvc/Library",
 					"$(PROJECT_DIR)/Pods/Fabric",
 					"$(PROJECT_DIR)/Pods/Crashlytics",
+					"$(PROJECT_DIR)/Pods/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.1.5",
 				);
 				INFOPLIST_FILE = viossvc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1191,6 +1196,7 @@
 					"$(PROJECT_DIR)/viossvc/Library",
 					"$(PROJECT_DIR)/Pods/Fabric",
 					"$(PROJECT_DIR)/Pods/Crashlytics",
+					"$(PROJECT_DIR)/Pods/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.1.5",
 				);
 				INFOPLIST_FILE = viossvc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

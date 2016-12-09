@@ -58,10 +58,12 @@ class SelectedBankCardViewController: BaseListTableViewController{
 
     //MARK: --UI
     @IBAction func addNewBankCard() {
+        MobClick.event(AppConst.Event.bank_add)
         performSegueWithIdentifier("bankCardToAddNew", sender: nil)
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        MobClick.event(AppConst.Event.bank_select)
         model = dataSource![indexPath.row] as? BankCardModel
         SVProgressHUD.showProgressMessage(ProgressMessage:"切换中...")
         AppAPIHelper.userAPI().defaultBanKCard(model!.account!, complete: { [weak self](result) in
