@@ -31,7 +31,7 @@ class AddBankCardViewController: BaseTableViewController, UITextFieldDelegate{
                 "uid_":CurrentUserHelper.shared.userInfo.uid,
                 "account_": cardNumberTextfield.text!,
                 "bank_username_":nameTextfiled.text!,
-                "bank_":1,
+//                "bank_id_":1,
                 "phone_num_":phoneNumberTextfield.text!
                 ], complete: { [weak self](response) in
                     if response == nil{
