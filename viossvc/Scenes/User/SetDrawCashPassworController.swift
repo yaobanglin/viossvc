@@ -19,6 +19,7 @@ class SetDrawCashPassworController: UIViewController {
     
     //MARK: --LIFECYCLE
     override func viewDidLoad() {
+        MobClick.event(AppConst.Event.drawcash_pwd)
         super.viewDidLoad()
     }
     override func viewWillAppear(animated: Bool) {

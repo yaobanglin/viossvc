@@ -18,6 +18,24 @@ class ChatMsgHepler: NSObject {
         AppAPIHelper.chatAPI().setReceiveMsgBlock { [weak self] (msg) in
             let chatModel = msg as? ChatMsgModel
             if chatModel != nil {
+                AppAPIHelper.userAPI().getUserInfo(chatModel!.from_uid, complete: { [weak self] (userInfo) in
+                    if let user = userInfo as? UserInfoModel {
+                        if UIApplication.sharedApplication().applicationState == .Background {
+                            let localNotify = UILocalNotification()
+                            localNotify.fireDate = NSDate().dateByAddingTimeInterval(0.1)
+                            localNotify.timeZone = NSTimeZone.defaultTimeZone()
+                            localNotify.applicationIconBadgeNumber += 1
+                            localNotify.soundName = UILocalNotificationDefaultSoundName
+                            if #available(iOS 8.2, *) {
+                                localNotify.alertTitle = "优悦助理"
+                            } else {
+                                // Fallback on earlier versions
+                            }
+                            localNotify.alertBody =  user.nickname! + " : " + chatModel!.content
+                            UIApplication.sharedApplication().scheduleLocalNotification(localNotify)
+                        }
+                    }
+                    }, error: nil)
                 self?.didChatMsg(chatModel!)
             }
         }

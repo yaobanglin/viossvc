@@ -18,4 +18,5 @@ target 'viossvc' do
     pod 'GTSDK', '~> 1.4.3'
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'UMengAnalytics-NO-IDFA'
 end

@@ -20,3 +20,4 @@ struct SocketPacketHead {
 #import <Qiniu/QiniuSDK.h>
 #import <FMDB/FMDB.h>
 #import <GTSDK/GeTuiSdk.h>
+#import <UMMobClick/MobClick.h>

@@ -23,6 +23,15 @@ class BaseLoginViewController: UITableViewController {
         self.view.userInteractionEnabled = true;
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(didActionHideKeyboard(_:))))
     }
+    //友盟页面统计
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        MobClick.beginLogPageView(NSStringFromClass(self.classForCoder))
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        MobClick.beginLogPageView(NSStringFromClass(self.classForCoder))
+    }
     
     private func setTextFieldAttributedPlaceholder(textField:UITextField) {
         let attributes = [NSFontAttributeName:UIFont.systemFontOfSize(15),
@@ -65,7 +74,7 @@ class BaseLoginViewController: UITableViewController {
     }
     
     func didLoginComplete(userInfo:UserInfoModel?) {
-       
+        
         SVProgressHUD.dismiss()
         UIApplication.sharedApplication().keyWindow!.rootViewController = self.storyboardViewController() as MainTabBarController
         
@@ -92,6 +101,7 @@ class LoginViewController: BaseLoginViewController {
     
     
     @IBAction func didActionLogin(sender: AnyObject) {
+        MobClick.event(AppConst.Event.login)
         if checkTextFieldEmpty([textField1,textField2]) && checkPhoneFormat(textField1.text!) {
             hideKeyboard();
             let loginModel = LoginModel();
