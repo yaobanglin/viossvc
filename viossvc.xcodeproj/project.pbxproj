@@ -14,6 +14,7 @@
 		2FB95D5C1DF01A2700BBA506 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */; };
 		2FB95D5E1DF02B0C00BBA506 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */; };
 		2FE355411DF2728D00672793 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE355401DF2728D00672793 /* PhotoPreviewView.swift */; };
+		2FFBC4EC1DF8EF190039A0E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */; };
 		6E82E2651DF01EC70039BBA0 /* SkillLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */; };
 		6E82E2661DF01EC70039BBA0 /* SingleSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */; };
 		6E82E2671DF01EC70039BBA0 /* SkillWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */; };
@@ -148,6 +149,7 @@
 		2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		2FE355401DF2728D00672793 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
+		2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillLayoutView.swift; sourceTree = "<group>"; };
 		6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSkillCell.swift; sourceTree = "<group>"; };
 		6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillWidthLayout.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				BFA9FAB11DF6AEAE00E2A67C /* Fabric.framework in Frameworks */,
 				B08673461DE5C4C0008DD8A1 /* libstdc++.tbd in Frameworks */,
 				B03B124F1DE5BFDE00B00D2E /* OEZCommSDK.framework in Frameworks */,
+				2FFBC4EC1DF8EF190039A0E6 /* MapKit.framework in Frameworks */,
 				B02DB25A1DF985890044F910 /* libGeTuiSdk-1.4.3.a in Frameworks */,
 				26204D46B20AD37B417084D0 /* Pods_viossvc.framework in Frameworks */,
 			);
@@ -304,6 +307,7 @@
 		10CEA088AA8041FD84B55B62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */,
 				BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */,
 				B02DB25B1DF985B70044F910 /* libsqlite3.tbd */,
 				BFA9FAB21DF6AEBF00E2A67C /* Crashlytics.framework */,
@@ -813,6 +817,12 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -886,7 +896,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7216018706741901D5FE5A13 /* [CP] Copy Pods Resources */ = {
@@ -1188,8 +1198,8 @@
 			baseConfigurationReference = 99F5EF6682B1172BAA8C79FC /* Pods-viossvc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Zhejiang palm Easy Tour Network Technology Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zhejiang palm Easy Tour Network Technology Co., Ltd.";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1212,7 +1222,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.trip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";

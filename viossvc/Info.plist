@@ -6,6 +6,17 @@
 	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
 	<string>优悦助理</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>MKDirectionsRequest</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.apple.maps.directionsrequest</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -21,7 +32,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>12062020</string>
+	<string>12101730</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -38,6 +49,10 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MKDirectionsApplicationSupportedModes</key>
+	<array>
+		<string>MKDirectionsModeOther</string>
+	</array>
 	<key>NSAllowsArbitraryLoads</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
