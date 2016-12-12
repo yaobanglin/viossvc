@@ -97,6 +97,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     //MARK: --常住地选择
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CitysSelectViewController.className() {
+            MobClick.event(AppConst.Event.user_location)
             let controller: CitysSelectViewController = segue.destinationViewController as! CitysSelectViewController
             controller.cityName = cityLabel.text
             controller.selectCity =  { [weak self](cityName) in
@@ -110,6 +111,11 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
         if indexPath.row == 1 || indexPath.row == 3 {
             return
         }
+        if indexPath.row == 0 {
+            MobClick.event(AppConst.Event.user_icon)
+        }else{
+            MobClick.event(AppConst.Event.user_sex)
+        }
         
         let title = indexPath.row == 0 ? "头像" : "性别"
         let firstActionTitle = indexPath.row == 0 ? "照相机":"男"
@@ -120,6 +126,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
                 self?.sexLabel.text = firstActionTitle
                 return
             }
+            
             self?.imagePicker.sourceType = .Camera
             self?.presentViewController((self?.imagePicker)!, animated: true, completion: nil)
         }

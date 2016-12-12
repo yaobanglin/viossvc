@@ -3512,6 +3512,7 @@
                         <outlet property="cacheCell" destination="Rv3-i1-1NB" id="9tD-0H-gfq"/>
                         <outlet property="cacheLabel" destination="LRp-Cf-tKQ" id="diF-0l-gV0"/>
                         <outlet property="userNumLabel" destination="TEK-DY-Bzh" id="XN2-pJ-oRa"/>
+                        <outlet property="versionCell" destination="apm-et-2sT" id="BHh-Pw-q3o"/>
                         <outlet property="versionLabel" destination="QFR-Id-rVP" id="e3o-0A-UcB"/>
                         <segue destination="Sqh-HA-MIL" kind="push" identifier="AuthUserViewController" id="gaj-zb-bRY"/>
                     </connections>

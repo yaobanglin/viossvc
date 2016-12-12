@@ -25,7 +25,7 @@ class PhotoWallViewController: UITableViewController, PhotoWallCellDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .None
         tableView.registerClass(PhotoWallCell.self, forCellReuseIdentifier: "PhotoWallCell")
-        
+        MobClick.event(AppConst.Event.server_picture)
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -83,6 +83,7 @@ class UserHomeViewController: BaseTableViewController {
         qustionContent.addGestureRecognizer(askTapGesture)
     }
     func askTapGestureTapped() {
+        MobClick.event(AppConst.Event.user_question)
         UIApplication.sharedApplication().openURL(NSURL.init(string: "telprompt:0571-87611687")!)
     }
     

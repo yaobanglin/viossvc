@@ -13,6 +13,7 @@ class SkillShareChatViewController: BasePageListTableViewController {
     var share_id:Int = 0
     override func viewDidLoad() {
         super.viewDidLoad();
+        MobClick.event(AppConst.Event.skillshare_comment)
     }
 
     override func didRequest(pageIndex: Int) {

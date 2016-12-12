@@ -20,6 +20,7 @@ class SkillShareDetailViewController: BaseCustomRefreshTableViewController,OEZTa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        MobClick.event(AppConst.Event.skillshare_detail)
         var frame:CGRect = bannerView.frame
         frame.size.height = UIScreen.width()*185.0/375.0
         bannerView.frame = frame

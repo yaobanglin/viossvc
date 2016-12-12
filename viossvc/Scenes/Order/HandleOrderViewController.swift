@@ -183,11 +183,12 @@ class HandleOrderViewController: UIViewController {
     }
     
     @IBAction func acceptOrderAction(sender: AnyObject) {
-
+        MobClick.event(AppConst.Event.order_accept)
         modfyOrder(OrderStatus.WaittingPay.rawValue)
     }
 
     @IBAction func rejectOrderAction(sender: AnyObject) {
+        MobClick.event(AppConst.Event.order_refuse)
         modfyOrder(OrderStatus.Reject.rawValue)
     }
     

@@ -30,6 +30,7 @@ class AuthUserViewController: BaseTableViewController, UIImagePickerControllerDe
         
     }
     @IBAction func authUser(sender: AnyObject) {
+        MobClick.event(AppConst.Event.user_anthuser)
         if frontPicUrl == nil {
             SVProgressHUD.showErrorMessage(ErrorMessage: "请上传正面图片", ForDuration: 1, completion: nil)
             return

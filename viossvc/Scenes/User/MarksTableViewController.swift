@@ -32,10 +32,10 @@ class MarksTableViewController: BaseTableViewController , LayoutStopDelegate{
     
         selectSkillView.delegate = self
         allSkillView.delegate = self
-
+        
         submitButton.enabled = false
         setData()
-
+        MobClick.event(AppConst.Event.server_mark)
     }
     func setData() {
         guard  currentSkillsArray == nil else {

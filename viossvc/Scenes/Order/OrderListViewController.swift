@@ -16,7 +16,7 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        MobClick.event(AppConst.Event.order_list)
     }
     
     override func didRequest(pageIndex: Int) {

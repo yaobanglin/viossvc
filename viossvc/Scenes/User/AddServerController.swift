@@ -70,21 +70,25 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         }
     }
     @IBAction func choseStarTime(sender: AnyObject) {
+        MobClick.event(AppConst.Event.server_start)
         pickType = .StartTime
         isTime = true
         showPickView()
     }
     @IBAction func choseEndTime(sender: AnyObject) {
+        MobClick.event(AppConst.Event.server_end)
         pickType = .EndTime
         isTime = true
         showPickView()
     }
     @IBAction func choseType(sender: AnyObject) {
+        MobClick.event(AppConst.Event.server_type)
         pickType = .Type
         isTime = false
         showPickView()
     }
     @IBAction func cancelBtnTapped(sender: AnyObject) {
+        MobClick.event(AppConst.Event.server_cancelAdd)
         hiddlePick()
         dismissController()
     }
@@ -139,6 +143,9 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     //MARK: --TextField
     func textFieldDidBeginEditing(textField: UITextField) {
         hiddlePick()
+        if textField == servicePriceText {
+            MobClick.event(AppConst.Event.server_price)
+        }
     }
     //MARK: --Picker
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
