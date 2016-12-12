@@ -23,6 +23,7 @@ class BankCardCell: OEZTableViewCell {
         }
         if cardName.length <= 0 {
             cardName = "未知银行"
+            return
         }
         bankCardNumLabel.text = "\(cardName.substringToIndex(4))(\(cardNum.substringFromIndex(cardNum.length-4)))"
     }

@@ -20,6 +20,23 @@ class TourShareListViewController: BasePageListTableViewController , OEZTableVie
 //        listType = listType < typeNames.count ? listType : 0 ;
         title = typeModel.type_title;
         tableView.registerNib(TourShareCell.self, forCellReuseIdentifier: "TourShareListCell");
+        
+        switch typeModel.type_title {
+        case "美食":
+            MobClick.event(AppConst.Event.share_eat)
+            break
+        case "娱乐":
+            MobClick.event(AppConst.Event.share_fun)
+            break
+        case "住宿":
+            MobClick.event(AppConst.Event.share_hotel)
+            break
+        case "景点":
+            MobClick.event(AppConst.Event.share_travel)
+            break
+        default:
+            break
+        }
     }
     
     override func isCalculateCellHeight() -> Bool {
