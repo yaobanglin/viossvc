@@ -72,9 +72,10 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     }
     
     override func didRequest() {
-     let id = dataSource == nil || dataSource?.count == 0 ? 0 : (dataSource?.first as! ChatMsgModel).id
-       var array = ChatMsgHepler.shared.findHistoryMsg(chatUid, lastId: id , pageSize: 20) as [AnyObject]
-        if array.count == 0 {
+       let pageSize = 20
+       let offset = dataSource == nil ? 0 : dataSource!.count
+       var array = ChatMsgHepler.shared.findHistoryMsg(chatUid, offset: offset , pageSize: pageSize) as [AnyObject]
+        if array.count <  pageSize {
             removeRefreshControl()
         }
         
@@ -83,7 +84,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         }
         
         didRequestComplete(array)
-        if id == 0 {
+        if offset == 0 {
 //            _tableViewScrolToBottom(false)
             
             self.performSelector(#selector(self.tableViewScrolToBottom), withObject: nil, afterDelay: 0.1)
