@@ -33,8 +33,10 @@ class SocketRequestManage: NSObject {
     func stop() {
         _timer?.invalidate()
         _timer = nil
+        objc_sync_enter(self)
         _socketHelper?.disconnect()
         _socketHelper = nil
+        objc_sync_exit(self)
     }
     
     var reqeustId:UInt32 {
