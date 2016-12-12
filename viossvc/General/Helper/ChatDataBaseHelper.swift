@@ -187,15 +187,15 @@ class ChatDataBaseHelper: NSObject {
            ChatDataBaseHelper.shared.executeStatements(sqlString)
         }
         
-        class func findHistoryMsg(uid:Int,lastId:Int,pageSize:Int) -> [ChatMsgModel] {
+        class func findHistoryMsg(uid:Int,offset:Int,pageSize:Int) -> [ChatMsgModel] {
             var sql = "SELECT * FROM ChatMsg WHERE ( from_uid_ = ? OR to_uid_ = ? ) "
-            if lastId != 0 {
-                 sql += "AND id_ < \(lastId)"
-            }
-            sql += " ORDER BY id_ DESC limit 0,\(pageSize)"
+//            if lastId != 0 {
+//                 sql += "AND id_ < \(lastId)"
+//            }
+            sql += " ORDER BY msg_time_ DESC limit \(offset),\(pageSize)"
             var array = ChatDataBaseHelper.shared.findModels(sql, values: [uid,uid], modelClass: ChatMsgModel.classForCoder()) as! [ChatMsgModel]
             array.sortInPlace( { (chatMsg1, chatMsg2) -> Bool in
-                return chatMsg1.id < chatMsg2.id
+                return chatMsg1.msg_time < chatMsg2.msg_time
             })
             return array
         }

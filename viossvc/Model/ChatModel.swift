@@ -34,7 +34,7 @@ class ChatMsgModel: BaseDBModel {
             dateFormatter.dateStyle = .NoStyle
             dateFormatter.timeStyle = .ShortStyle
         } else if isLast7Days {
-            dateFormatter.dateFormat = "ccc"
+            dateFormatter.dateFormat = "ccc hh:mm"
         } else {
             dateFormatter.dateStyle = .ShortStyle
             dateFormatter.timeStyle = .NoStyle
