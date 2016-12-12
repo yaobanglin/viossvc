@@ -70,6 +70,7 @@ class ServerManagerViewController: BaseListTableViewController,OEZTableViewDeleg
     }
     //删除服务
     func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
+        MobClick.event(AppConst.Event.server_delete)
         let deleteModel = serverData![indexPath.row]
         for (index, model) in addData.enumerate() {
             if deleteModel == model {
@@ -91,6 +92,7 @@ class ServerManagerViewController: BaseListTableViewController,OEZTableViewDeleg
         let model = serverData![indexPath.row]
         controller.changeModel = model
         controller.complete = { [weak self] (result) in
+            MobClick.event(AppConst.Event.server_update)
             let model: UserServerModel = result as! UserServerModel
             self?.changeData.append(model)
             self?.serverData?[indexPath.row] = model
@@ -100,9 +102,11 @@ class ServerManagerViewController: BaseListTableViewController,OEZTableViewDeleg
     
     //新建服务
     @IBAction func newServiceBtnTapped(sender: UIButton) {
+        MobClick.event(AppConst.Event.server_add)
         let controller: AddServerController = storyboard?.instantiateViewControllerWithIdentifier(AddServerController.className()) as! AddServerController
         controller.modalPresentationStyle = .Custom
         controller.complete = { [weak self] (result) in
+            MobClick.event(AppConst.Event.server_add)
             let model: UserServerModel = result as! UserServerModel
             self?.addData.append(model)
             self?.serverData?.append(model)
@@ -113,6 +117,8 @@ class ServerManagerViewController: BaseListTableViewController,OEZTableViewDeleg
     
     // next
     @IBAction func nextItemTapped(sender: AnyObject) {
+        MobClick.event(AppConst.Event.server_sure)
+        
         let model = UpdateServerModel()
         model.service_list = addData + changeData + deleteData
         if model.service_list.count == 0 {

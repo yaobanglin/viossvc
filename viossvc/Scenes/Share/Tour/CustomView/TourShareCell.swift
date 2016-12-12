@@ -29,6 +29,7 @@ class TourShareCell: OEZTableViewCell, OEZCalculateProtocol {
     
     
     @IBAction func didActionTel(sender: AnyObject) {
+        MobClick.event(AppConst.Event.share_phone)
         self.didSelectRowAction(AppConst.Action.CallPhone.rawValue, data: nil)
     }
 }

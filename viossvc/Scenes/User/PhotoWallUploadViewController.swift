@@ -55,6 +55,7 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
     }
     
     func rightItemTapped() {
+        MobClick.event(AppConst.Event.server_addPicture)
         if photosArray?.count > 0 {
             SVProgressHUD.showProgressMessage(ProgressMessage: "照片上传中...")
             let uid = CurrentUserHelper.shared.userInfo.uid
