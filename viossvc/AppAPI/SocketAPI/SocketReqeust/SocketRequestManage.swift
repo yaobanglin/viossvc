@@ -100,6 +100,9 @@ class SocketRequestManage: NSObject {
                 self?._socketHelper?.sendData(packet.serializableData()!);
             })
         }
+        else {
+            _socketHelper?.sendData(packet.serializableData()!);
+        }
         objc_sync_exit(self)
     }
     
