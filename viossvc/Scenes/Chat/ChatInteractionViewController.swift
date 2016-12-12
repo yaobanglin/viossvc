@@ -62,6 +62,8 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     
     func receiveMsg(chatMsgModel: ChatMsgModel) {
         
+        
+        guard chatMsgModel.from_uid == chatUid || chatMsgModel.from_uid == CurrentUserHelper.shared.userInfo.uid else {return}
         dataSource?.append(chatMsgModel)
         tableView.reloadData()
        tableViewScrolToBottom()
