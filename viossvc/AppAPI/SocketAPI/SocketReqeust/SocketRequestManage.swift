@@ -92,16 +92,18 @@ class SocketRequestManage: NSObject {
     
     
     private func sendRequest(packet: SocketDataPacket) {
+        let block:dispatch_block_t = {
+            [weak self] in
+            self?._socketHelper?.sendData(packet.serializableData()!)
+        }
         objc_sync_enter(self)
         if _socketHelper == nil {
             SocketRequestManage.shared.start()
             let when = dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC))
-            dispatch_after(when,dispatch_get_main_queue(),{ [weak self] in
-                self?._socketHelper?.sendData(packet.serializableData()!);
-            })
+            dispatch_after(when,dispatch_get_main_queue(),block)
         }
         else {
-            _socketHelper?.sendData(packet.serializableData()!);
+            block()
         }
         objc_sync_exit(self)
     }
