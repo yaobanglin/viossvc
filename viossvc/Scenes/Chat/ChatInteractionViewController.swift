@@ -24,7 +24,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        MobClick.event(AppConst.Event.order_chat)
        
        inputBar.registeredDelegate(self)
         self.title = chatName

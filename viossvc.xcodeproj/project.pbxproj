@@ -692,6 +692,19 @@
 			path = viossvc;
 			sourceTree = "<group>";
 		};
+		BF6C09701DFF9D8500242D3B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BFE6E4751DF02E9100480435 /* MyServerViewController.swift */,
+				BFE6E4771DF0529D00480435 /* SMSServerViewController.swift */,
+				BFE6E4791DF052D800480435 /* ServerManagerViewController.swift */,
+				BFE6E47B1DF0530600480435 /* AddServerController.swift */,
+				BFE6E47D1DF0535D00480435 /* ServerSuccessController.swift */,
+				BFE6E4821DF1120D00480435 /* MarksTableViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		BF9B6BC21DE96F3F009FFEB7 /* Commen */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,14 +769,9 @@
 		BFACB2D41DEEA5B700AF0D34 /* MyServier */ = {
 			isa = PBXGroup;
 			children = (
+				BF6C09701DFF9D8500242D3B /* Controller */,
 				2FB95D611DF1794100BBA506 /* PhotoWall */,
 				BFE6E47F1DF104A000480435 /* CustomView */,
-				BFE6E4751DF02E9100480435 /* MyServerViewController.swift */,
-				BFE6E4771DF0529D00480435 /* SMSServerViewController.swift */,
-				BFE6E4791DF052D800480435 /* ServerManagerViewController.swift */,
-				BFE6E47B1DF0530600480435 /* AddServerController.swift */,
-				BFE6E47D1DF0535D00480435 /* ServerSuccessController.swift */,
-				BFE6E4821DF1120D00480435 /* MarksTableViewController.swift */,
 			);
 			name = MyServier;
 			sourceTree = "<group>";

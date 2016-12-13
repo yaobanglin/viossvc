@@ -3027,7 +3027,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="brY-cr-orc">
-                                            <rect key="frame" x="552" y="12" width="20" height="20"/>
+                                            <rect key="frame" x="572" y="12" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="VFn-O6-HkR"/>
                                                 <constraint firstAttribute="width" constant="20" id="iCg-yZ-aDn"/>
@@ -3037,7 +3037,7 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="brY-cr-orc" secondAttribute="trailing" constant="20" id="0Fx-qp-3N5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="brY-cr-orc" secondAttribute="trailing" id="0Fx-qp-3N5"/>
                                         <constraint firstItem="brY-cr-orc" firstAttribute="centerY" secondItem="7BF-gm-cVi" secondAttribute="centerY" id="BCR-xp-GAS"/>
                                         <constraint firstItem="n6V-rl-6LM" firstAttribute="centerY" secondItem="7BF-gm-cVi" secondAttribute="centerY" id="U4M-uq-CwS"/>
                                         <constraint firstItem="n6V-rl-6LM" firstAttribute="leading" secondItem="7BF-gm-cVi" secondAttribute="leadingMargin" constant="20" id="bSW-ca-xtb"/>
@@ -3512,6 +3512,7 @@
                         <outlet property="cacheCell" destination="Rv3-i1-1NB" id="9tD-0H-gfq"/>
                         <outlet property="cacheLabel" destination="LRp-Cf-tKQ" id="diF-0l-gV0"/>
                         <outlet property="userNumLabel" destination="TEK-DY-Bzh" id="XN2-pJ-oRa"/>
+                        <outlet property="versionCell" destination="apm-et-2sT" id="BHh-Pw-q3o"/>
                         <outlet property="versionLabel" destination="QFR-Id-rVP" id="e3o-0A-UcB"/>
                         <segue destination="Sqh-HA-MIL" kind="push" identifier="AuthUserViewController" id="gaj-zb-bRY"/>
                     </connections>
