@@ -32,6 +32,7 @@ class CitysSelectViewController: BaseTableViewController {
         super.viewDidLoad()
         initData()
         initNav()
+        initIndexView()
     }
     //MARK: --Data
     func initData() {
@@ -53,10 +54,18 @@ class CitysSelectViewController: BaseTableViewController {
                 break
             }
         }
+        
         if selectIndex == nil {
             selectIndex = NSIndexPath.init(forRow: 0, inSection: 0)
         }
     }
+    //MARK: --索引
+    func initIndexView() {
+        tableView.sectionIndexColor = UIColor(RGBHex: 0x666666)
+        
+    
+    }
+    
     //MARK: --nav
     func initNav() {
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "确定", style: .Plain, target: self, action: #selector(rightItemTapped))
@@ -94,5 +103,13 @@ class CitysSelectViewController: BaseTableViewController {
         let lastIndex:NSIndexPath = selectIndex == nil ? indexPath : selectIndex!
         selectIndex = indexPath
         tableView.reloadRowsAtIndexPaths([lastIndex,selectIndex!], withRowAnimation: .Automatic)
+    }
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return keys as? [String]
+    }
+    override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+        let indexPath = NSIndexPath.init(forRow: 0, inSection: index)
+        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+        return index
     }
 }
