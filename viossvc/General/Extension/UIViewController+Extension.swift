@@ -30,7 +30,8 @@ extension UIViewController {
     }
     
     func didRequestError(error:NSError) {
-        self.showErrorWithStatus(error.localizedDescription)
+        let errorMsg = AppConst.errorMsgs[Int(error.code)]
+        self.showErrorWithStatus(errorMsg)
     }
    
     func showErrorWithStatus(status: String!) {
