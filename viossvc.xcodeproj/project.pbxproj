@@ -1224,7 +1224,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "43053e43-8348-4899-b17d-5808f6cc6210";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};
