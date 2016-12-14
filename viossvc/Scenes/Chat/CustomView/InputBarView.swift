@@ -206,6 +206,7 @@ class InputBarView: OEZBaseView ,UITextViewDelegate,FaceKeyboardViewDelegate {
 
 
     @IBAction func sendButtonAction(sender : UIButton) {
+        MobClick.event(AppConst.Event.message_send)
         didSendMessage()
         
     }

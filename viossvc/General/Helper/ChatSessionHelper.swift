@@ -52,6 +52,8 @@ class ChatSessionHelper: NSObject {
     }
     
     func receiveMsg(chatMsgModel:ChatMsgModel)  {
+        
+
         let sessionId = chatMsgModel.from_uid == CurrentUserHelper.shared.uid ? chatMsgModel.to_uid : chatMsgModel.from_uid
         
         var chatSession = findChatSession(sessionId)

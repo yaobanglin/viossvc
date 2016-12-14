@@ -30,10 +30,12 @@ class SMSServerViewController: BaseTableViewController {
         if CurrentUserHelper.shared.userInfo.auth_status_ == -1 {
             let alertController = UIAlertController.init(title: "身份认证", message: "您还未进行身份认证，前往设置", preferredStyle: .Alert)
             let setAction = UIAlertAction.init(title: "前去认证", style: .Default, handler: { [weak self](sender) in
+                MobClick.event(AppConst.Event.order_aply)
                 alertController.dismissController()
                 self?.navigationController?.pushViewControllerWithIdentifier(AuthUserViewController.className(), animated: true)
                 })
             let cancelAction = UIAlertAction.init(title: "取消", style: .Default, handler: { [weak self](sender) in
+                MobClick.event(AppConst.Event.order_unaply)
                 alertController.dismissController()
                 self?.navigationController?.popViewControllerAnimated(true)
             })
@@ -98,6 +100,7 @@ class SMSServerViewController: BaseTableViewController {
         if checkTextFieldEmpty([VerifyText]){
 //            performSegueWithIdentifier(ServerManagerViewController.className(), sender: nil)
 //            return
+            MobClick.event(AppConst.Event.server_next)
             let param: Dictionary<String, AnyObject> = ["phone_num_":CurrentUserHelper.shared.userInfo.phone_num!,
                                                         "timestamp_":Int(timeStemp),
                                                         "token_": token,

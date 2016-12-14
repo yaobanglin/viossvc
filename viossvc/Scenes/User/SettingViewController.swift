@@ -17,6 +17,7 @@ class SettingViewController: BaseTableViewController {
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var aboutUSCell: UITableViewCell!
     @IBOutlet weak var cacheCell: UITableViewCell!
+    @IBOutlet weak var versionCell: UITableViewCell!
     var authStatus: String? {
         get{
             switch CurrentUserHelper.shared.userInfo.auth_status_ {
@@ -56,6 +57,7 @@ class SettingViewController: BaseTableViewController {
         authCell.accessoryType = authStatus == "未认证" ? .DisclosureIndicator : .None
     }
     @IBAction func logoutBtnTapped(sender: AnyObject) {
+        MobClick.event(AppConst.Event.user_logout)
         CurrentUserHelper.shared.logout()
         let rootController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController")
         UIApplication.sharedApplication().keyWindow!.rootViewController = rootController
@@ -100,6 +102,7 @@ class SettingViewController: BaseTableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if cell == cacheCell{
+            MobClick.event(AppConst.Event.user_clearcache)
             clearCacleSizeCompletion({ [weak self] in
                 self?.cacheLabel.text = String(format:"%.2f M",Double(self!.calculateCacle()))
                 SVProgressHUD.showSuccessMessage(SuccessMessage: "清除成功", ForDuration: 1, completion: nil)
@@ -110,6 +113,10 @@ class SettingViewController: BaseTableViewController {
         if cell == authCell && authStatus == "未认证"{
             performSegueWithIdentifier("AuthUserViewController", sender: nil)
             return
+        }
+        
+        if cell == versionCell {
+            MobClick.event(AppConst.Event.user_version)
         }
         
         if cell == aboutUSCell{
