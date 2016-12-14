@@ -25,7 +25,10 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     
     var photosAsset:PHFetchResult?
     
-    var photosArray:[NSData?] = []
+    lazy var photosArray:[NSData?] = {
+        let photosArray:[NSData?] = []
+        return photosArray
+    }()
     
     var seletedPhotosArray:[Int] = []
     
@@ -36,6 +39,11 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
     var theLastIndexPath:NSIndexPath?
     
     let preloadNum = 300
+    
+    lazy var thumb:[UIImage]? = {
+        let thumb:[UIImage]? = []
+        return thumb
+    }()
     
     deinit {
     
@@ -70,12 +78,19 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
         initNav()
         collectionView?.reloadData()
     }
+ 
     
     func rightItemTapped() {
-        var thumb:[UIImage]? = []
         if seletedPhotosArray.count > 0 {
             for index in seletedPhotosArray {
-                thumb!.append(compress(photosArray[index]!)!)
+                
+                if photosArray[index] == nil {
+                    
+                }
+                else{
+                   thumb!.append(compress(photosArray[index]!)!)
+                }
+                
             }
             delegate?.selected(thumb, src: nil, seletedIndex: seletedPhotosArray)
         }
@@ -219,6 +234,10 @@ class PhotoSelectorViewController: UICollectionViewController, PHPhotoLibraryCha
             cell.delegate = self
             if seletedPhotosArray.contains(indexPath.row) {
                 cell.type = .Selected
+                weak var weakSelf = self
+                getPhotoHD(indexPath.row, completed: { (index) in
+                    PhotoPreviewView.update(UIImage.init(data: weakSelf!.photosArray[indexPath.row]!)!)
+                })
             }
             if photoImages[indexPath.row] != nil {
                 cell.updateWithImage(photoImages[indexPath.row]!, indexPath: indexPath)
