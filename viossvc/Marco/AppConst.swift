@@ -92,6 +92,7 @@ class AppConst {
         #endif
         static let TimeoutSec:UInt16 = 10
         static let qiniuHost = "http://ofr5nvpm7.bkt.clouddn.com/"
+        static let qiniuImgStyle = "?imageView2/2/w/160/h/160/interlace/0/q/100"
     }
     class Text {
         static let PhoneFormatErr = "请输入正确的手机号"
@@ -111,4 +112,5 @@ class AppConst {
     }
     
     static let UMAppkey = "584a3eb345297d271600127e"
+    
 }
