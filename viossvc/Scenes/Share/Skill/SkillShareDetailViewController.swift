@@ -26,6 +26,10 @@ class SkillShareDetailViewController: BaseCustomRefreshTableViewController,OEZTa
         bannerView.frame = frame
         tableView.tableHeaderView = bannerView
         enroolButtonHeightConstraint.constant = 0
+        //手势
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(SkillShareDetailViewController.handleSwipeGesture(_:)))
+        swipeLeftGesture.direction = UISwipeGestureRecognizerDirection.Left
+        view.addGestureRecognizer(swipeLeftGesture)
     }
     override func refreshWhiteMode() -> Bool {
         return true;
@@ -36,14 +40,14 @@ class SkillShareDetailViewController: BaseCustomRefreshTableViewController,OEZTa
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated);
+        super.viewWillAppear(animated)
         navigationController?.navigationBar.subviews[0].alpha = 0
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true);
-        navigationController?.navigationBar.subviews[0].alpha = 1
+//        navigationController?.navigationBar.subviews[0].alpha = 1
     }
     //MARK:TableViewHelperProtocol
     override func isCalculateCellHeight() -> Bool {
@@ -165,6 +169,21 @@ class SkillShareDetailViewController: BaseCustomRefreshTableViewController,OEZTa
         AppAPIHelper.skillShareAPI().enroll(share_id, uid: CurrentUserHelper.shared.userInfo.uid, complete: { [weak self](resultInt) in
             self?.didEnrollComplete(resultInt as? Int);
             }, error: errorBlockFunc())
+    }
+    
+    //手势执行的方法
+    func handleSwipeGesture(sender: UISwipeGestureRecognizer){
+        let deviant = sender.numberOfTouchesRequired
+        let direction = sender.direction
+        switch (direction){
+        case UISwipeGestureRecognizerDirection.Right:
+            navigationController?.navigationBar.subviews[0].alpha = CGFloat(deviant) / CGFloat(UIScreen.width())
+            break
+
+        default:
+            break;
+        }
+
     }
     
 }
