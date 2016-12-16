@@ -57,8 +57,10 @@ class SegmentedViewController: UIViewController , SegmentedViewControllerProtoco
     final func _showViewController(viewController:UIViewController?) {
         if viewController != nil {
             if courrentShowController != nil {
-                self.transitionFromViewController(courrentShowController!, toViewController: viewController!, duration: 0.5, options: .CurveEaseInOut, animations: nil, completion: { (Bool) in
+                segmentedControl.userInteractionEnabled = false
+                self.transitionFromViewController(courrentShowController!, toViewController: viewController!, duration: 0.1, options: .CurveEaseInOut, animations: nil, completion: { (Bool) in
                     if Bool {
+                        self.segmentedControl.userInteractionEnabled = true
                         viewController?.didMoveToParentViewController(self);
                         self.courrentShowController = viewController!;
                     }
