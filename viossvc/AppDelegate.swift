@@ -111,6 +111,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         MobClick.setEncryptEnabled(true)
         //使用集成测试服务
         MobClick.setLogEnabled(true)
+        //Crash
+        MobClick.setCrashReportEnabled(false)
     }
 }
 
