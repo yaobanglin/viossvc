@@ -112,5 +112,4 @@ class AppConst {
     }
     
     static let UMAppkey = "584a3eb345297d271600127e"
-    
 }

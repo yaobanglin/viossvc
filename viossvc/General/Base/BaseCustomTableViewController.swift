@@ -24,7 +24,7 @@ class BaseCustomTableViewController: UIViewController, UITableViewDelegate, UITa
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        MobClick.beginLogPageView(NSStringFromClass(self.classForCoder))
+        MobClick.endLogPageView(NSStringFromClass(self.classForCoder))
     }
     
     final func initTableView() {
