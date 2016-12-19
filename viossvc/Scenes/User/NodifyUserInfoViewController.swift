@@ -21,6 +21,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
     var locationManager = CLLocationManager()
     lazy var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController.init()
+        picker.allowsEditing = true
         return picker
     }()
     //MARK: --LIFECYCLE
@@ -165,6 +166,7 @@ class NodifyUserInfoViewController: BaseTableViewController, UIImagePickerContro
                 }, error: self!.errorBlockFunc())
         })
     }
+
     //MARK: --CLLocationManagerDelegate
     func creatLocationManager() {
         locationManager.delegate = self

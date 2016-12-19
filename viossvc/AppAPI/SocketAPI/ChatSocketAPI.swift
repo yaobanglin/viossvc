@@ -15,6 +15,10 @@ class ChatSocketAPI:BaseSocketAPI, ChatAPI {
         var dict = try? OEZJsonModelAdapter.jsonDictionaryFromModel(chatModel)
         dict?.removeValueForKey("status_");
         dict?.removeValueForKey("id_");
+        //对要发送的聊天信息进行编码
+//        let utf8str = dict?["content_"]!.dataUsingEncoding(NSUTF8StringEncoding)
+//        let content_base64 = utf8str!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+//        dict?["content_"] = content_base64
         let pack = SocketDataPacket(opcode: .ChatSendMessage, dict: dict as! [String:AnyObject],type:.Chat)
         SocketRequestManage.shared.sendChatMsg(pack, complete: complete, error: error)
     }
@@ -29,8 +33,18 @@ class ChatSocketAPI:BaseSocketAPI, ChatAPI {
             let jsonResponse = response as! SocketJsonResponse
             let model = jsonResponse.responseModel(ChatMsgModel.classForCoder()) as? ChatMsgModel
             if  model != nil {
+                //解码
+//                model?.content = try! self.decodeBase64Str(model!.content)
                 complete(model)
             }
         }
     }
+    
+    func decodeBase64Str(base64Str:String) throws -> String{
+        //解码
+        let data = NSData(base64EncodedString: base64Str, options: NSDataBase64DecodingOptions(rawValue: 0))
+        let base64Decoded = String(data: data!, encoding: NSUTF8StringEncoding)
+        return base64Decoded!
+    }
+
 }

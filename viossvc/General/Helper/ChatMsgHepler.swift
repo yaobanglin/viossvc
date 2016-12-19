@@ -48,6 +48,7 @@ class ChatMsgHepler: NSObject {
         chatModel.from_uid = CurrentUserHelper.shared.uid
         chatModel.to_uid = toUid
         chatModel.msg_time = Int(NSDate().timeIntervalSince1970)
+        //发送数据
         AppAPIHelper.chatAPI().sendMsg(chatModel, complete: { (obj) in
             
             }, error: { (error) in
@@ -67,10 +68,19 @@ class ChatMsgHepler: NSObject {
     func didOfflineMsgsComplete(chatModels:[ChatMsgModel]!) {
         //!!!: 离线消息多时要优化
         for chatModel in chatModels {
+//            //base64解码
+//            chatModel.content = try! decodeBase64Str(chatModel.content)
             didChatMsg(chatModel)
         }
     }
     
+    func decodeBase64Str(base64Str:String) throws -> String{
+        //解码
+        let data = NSData(base64EncodedString: base64Str, options: NSDataBase64DecodingOptions(rawValue: 0))
+        let base64Decoded = String(data: data!, encoding: NSUTF8StringEncoding)
+        return base64Decoded!
+    }
+
     
     func findHistoryMsg(uid:Int,offset:Int,pageSize:Int) -> [ChatMsgModel] {
         return ChatDataBaseHelper.ChatMsg.findHistoryMsg(uid, offset: offset, pageSize:pageSize)

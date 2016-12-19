@@ -24,7 +24,7 @@ class BaseTableViewController: UITableViewController , TableViewHelperProtocol {
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        MobClick.beginLogPageView(NSStringFromClass(self.classForCoder))
+        MobClick.endLogPageView(NSStringFromClass(self.classForCoder))
     }
     //MARK:TableViewHelperProtocol
     func isCacheCellHeight() -> Bool {
