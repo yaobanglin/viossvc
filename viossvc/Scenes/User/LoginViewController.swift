@@ -30,7 +30,7 @@ class BaseLoginViewController: UITableViewController {
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        MobClick.beginLogPageView(NSStringFromClass(self.classForCoder))
+        MobClick.endLogPageView(NSStringFromClass(self.classForCoder))
     }
     
     private func setTextFieldAttributedPlaceholder(textField:UITextField) {
