@@ -72,7 +72,7 @@ class OrderListCell : OEZTableViewCell {
         nicknameLabel.text = orderListModel.from_name
         serviceLabel.text = orderListModel.service_name
         
-        moneyLabel.text = "\(Float(orderListModel.order_price))元"
+        moneyLabel.text = "\(Float(orderListModel.order_price)/100)元"
         statusLabel.text = statusDict[OrderStatus(rawValue: (orderListModel.order_status))!]
         statusLabel.textColor = statusColor[OrderStatus(rawValue: (orderListModel.order_status))!]
         timeLabel.text = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: Double(orderListModel.start_time)))
