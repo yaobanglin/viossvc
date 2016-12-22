@@ -15,13 +15,5 @@ class MainTabBarController: UITabBarController {
         //友盟的帐号统计
         MobClick.profileSignInWithPUID("\(CurrentUserHelper.shared.userInfo.uid)")
     }
-    //友盟页面统计
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        MobClick.beginLogPageView(MainTabBarController.className())
-    }
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        MobClick.endLogPageView(MainTabBarController.className())
-    }
+
 }

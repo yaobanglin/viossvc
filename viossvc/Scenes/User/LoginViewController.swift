@@ -23,16 +23,7 @@ class BaseLoginViewController: UITableViewController {
         self.view.userInteractionEnabled = true;
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(didActionHideKeyboard(_:))))
     }
-    //友盟页面统计
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        MobClick.beginLogPageView(NSStringFromClass(self.classForCoder))
-    }
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        MobClick.endLogPageView(NSStringFromClass(self.classForCoder))
-    }
-    
+
     private func setTextFieldAttributedPlaceholder(textField:UITextField) {
         let attributes = [NSFontAttributeName:UIFont.systemFontOfSize(15),
                           NSForegroundColorAttributeName:UIColor(white:1,alpha: 0.5)];

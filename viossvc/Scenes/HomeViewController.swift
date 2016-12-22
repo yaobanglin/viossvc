@@ -26,13 +26,5 @@ class HomeViewController: SegmentedViewController {
         navigationController?.pushViewController(refreshServiceVC, animated: true)
     }
 
-    //友盟页面统计
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        MobClick.beginLogPageView(HomeViewController.className())
-    }
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        MobClick.endLogPageView(HomeViewController.className())
-    }
+
 }
