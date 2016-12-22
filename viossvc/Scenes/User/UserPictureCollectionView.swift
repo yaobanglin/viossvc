@@ -37,7 +37,7 @@ class UserPictureCollectionView: UICollectionView, UICollectionViewDelegate, UIC
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let item: UserPictureItem = collectionView.dequeueReusableCellWithReuseIdentifier(UserPictureItem.className(), forIndexPath: indexPath) as! UserPictureItem
         let model = picturesData![indexPath.row]
-        item.userPicture.kf_setImageWithURL(NSURL.init(string: model.thumbnail_url!), placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+        item.userPicture.kf_setImageWithURL(NSURL.init(string: model.photo_url! + AppConst.Network.qiniuImgStyle), placeholderImage: UIImage.init(named: "head_boy"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         return item
     }
     

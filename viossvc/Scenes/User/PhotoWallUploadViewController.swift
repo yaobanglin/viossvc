@@ -82,7 +82,7 @@ class PhotoWallUploadViewController: UICollectionViewController, PhotoSelectorVi
             let tags = resp[0] as? [String: Int]
             let index = tags!["index"]!
             if imageUrl != "failed" {
-                uploaded[index] = ["thumbnail_url_": imageUrl + "?imageView2/2/w/80/h/80/interlace/0/q/100"]
+                uploaded[index] = ["thumbnail_url_": imageUrl + AppConst.Network.qiniuImgStyle]
                 uploaded[index]?.updateValue(imageUrl, forKey: "photo_url_")
                 doneIndex.append(index)
                 let dict:[String: AnyObject] = ["uid_": uid, "photo_list_": [uploaded[index] as! AnyObject]]

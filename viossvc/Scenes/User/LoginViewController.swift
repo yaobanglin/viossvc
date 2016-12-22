@@ -24,7 +24,6 @@ class BaseLoginViewController: UITableViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(didActionHideKeyboard(_:))))
     }
 
-    
     private func setTextFieldAttributedPlaceholder(textField:UITextField) {
         let attributes = [NSFontAttributeName:UIFont.systemFontOfSize(15),
                           NSForegroundColorAttributeName:UIColor(white:1,alpha: 0.5)];
