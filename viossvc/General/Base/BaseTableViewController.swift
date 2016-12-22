@@ -17,15 +17,7 @@ class BaseTableViewController: UITableViewController , TableViewHelperProtocol {
             tableView.tableFooterView = UIView(frame:CGRectMake(0,0,0,0.5));
         }
     }
-    //友盟页面统计
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        MobClick.beginLogPageView(NSStringFromClass(self.classForCoder))
-    }
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        MobClick.beginLogPageView(NSStringFromClass(self.classForCoder))
-    }
+
     //MARK:TableViewHelperProtocol
     func isCacheCellHeight() -> Bool {
         return false;

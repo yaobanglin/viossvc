@@ -17,15 +17,7 @@ class BaseCustomTableViewController: UIViewController, UITableViewDelegate, UITa
         initTableView();
         
     }
-    //友盟页面统计
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        MobClick.beginLogPageView(NSStringFromClass(self.classForCoder))
-    }
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        MobClick.beginLogPageView(NSStringFromClass(self.classForCoder))
-    }
+
     
     final func initTableView() {
         if tableView == nil  {
