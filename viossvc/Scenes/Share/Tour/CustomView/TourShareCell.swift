@@ -20,6 +20,8 @@ class TourShareCell: OEZTableViewCell, OEZCalculateProtocol {
 
     @IBOutlet weak var didActionTel: UIButton!
     override func update(data: AnyObject!) {
+        contentView.backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clearColor()
         let model = data as! TourShareModel
         titleLabel.text = model.share_theme
         addrLabel.text = model.addr_region
