@@ -41,11 +41,10 @@ class ChatSessionHelper: NSObject {
         currentChatSessionDelegate = chatSessionDelegate
         let chatSession = findChatSession(currentChatSessionDelegate!.sessionUid())
         if chatSession != nil {
-            if UIApplication.sharedApplication().applicationIconBadgeNumber > chatSession.noReading {
-                UIApplication.sharedApplication().applicationIconBadgeNumber -= chatSession.noReading
-            } else {
-                
+            if UIApplication.sharedApplication().applicationIconBadgeNumber < chatSession.noReading {
                 UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+            } else {
+                UIApplication.sharedApplication().applicationIconBadgeNumber -= chatSession.noReading
             }
 
             chatSession.noReading = 0
