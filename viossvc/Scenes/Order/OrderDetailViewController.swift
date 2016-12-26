@@ -135,8 +135,8 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
      */
     func setupDataWithModel(detailModel:OrderDetailModel) {
 
-        setDetailModelInfo(detailModel)
-        
+
+        setBaseInfo(detailModel)
         /**
          *  如果订单被评论过(detailModel.has_evaluate == 1)，显示评论信息，反之隐藏
          */
