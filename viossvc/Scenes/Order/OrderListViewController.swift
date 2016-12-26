@@ -80,9 +80,10 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
         unowned let weakSelf = self
         AppAPIHelper.orderAPI().getOrderDetail(orderModel.order_id, complete: { (response) in
             if response != nil{
+                let orderDetailModel = response as! OrderDetailModel
+                weakSelf.detailModel = orderDetailModel
                 weakSelf.performSegueWithIdentifier("orderToDetail", sender: indexPath)
             }
-            
             }, error: errorBlockFunc())
         
     }
