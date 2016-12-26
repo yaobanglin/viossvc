@@ -33,7 +33,7 @@ class CommTableViewBannerCell: OEZTableViewPageCell {
         }
     
         if urlString != nil {
-            cell?.contentImage.kf_setImageWithURL(NSURL(string:urlString!), placeholderImage: nil)
+            cell?.contentImage.kf_setImageWithURL(NSURL(string:urlString!), placeholderImage: UIImage(named: "750·378_placeholder"))
         }
         return cell;
     }
