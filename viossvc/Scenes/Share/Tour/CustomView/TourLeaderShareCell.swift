@@ -85,7 +85,7 @@ class TourLeaderShareScrollView : OEZHScrollViewCell {
     override func update(data: AnyObject!) {
         let model = data as! TourShareTypeModel
         
-        imageView.kf_setImageWithURL(NSURL.init(string: model.type_pic), placeholderImage: UIImage(named: ""))
+        imageView.kf_setImageWithURL(NSURL.init(string: model.type_pic), placeholderImage: UIImage(named: "750·378_placeholder"))
         titleName.text = model.type_title
     }
     

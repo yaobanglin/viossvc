@@ -902,7 +902,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HT7-fP-L6u">
                                             <rect key="frame" x="10" y="10" width="580" height="100"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test2" translatesAutoresizingMaskIntoConstraints="NO" id="WMP-b9-r3U">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="WMP-b9-r3U">
                                                     <rect key="frame" x="13" y="12" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="Vrb-kO-Gms"/>
@@ -6331,9 +6331,9 @@
         <image name="renzheng" width="18" height="18"/>
         <image name="setting" width="22" height="22"/>
         <image name="sms" width="18" height="20"/>
+        <image name="square_placeholder" width="150" height="150"/>
         <image name="star-common-fill" width="25" height="25"/>
         <image name="star-common-hollow" width="25" height="25"/>
-        <image name="test2" width="75" height="75"/>
         <image name="test_111" width="9" height="7"/>
         <image name="tianjia" width="45" height="45"/>
         <image name="tixian" width="25" height="25"/>

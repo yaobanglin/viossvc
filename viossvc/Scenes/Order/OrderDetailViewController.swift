@@ -52,9 +52,16 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
         super.viewDidLoad()
         title = "订单详情"
 
+        setupData()
+    }
+
+    func setupData() {
         tagsView.delegate = self
-        
-        getOrderDetail()
+        if detailModel != nil {
+            setupDataWithModel(detailModel!)
+        } else {
+            getOrderDetail()
+        }
         
         /**
          *  如果订单是预约订单 加载技能标签信息
@@ -64,12 +71,10 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
         }
     }
 
-
     /**
      获取订单详情
      */
     func getOrderDetail() {
-        
         unowned let weakSelf = self
         AppAPIHelper.orderAPI().getOrderDetail((orderModel?.order_id)!, complete: { (response) in
             if response != nil{
@@ -130,57 +135,22 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
      */
     func setupDataWithModel(detailModel:OrderDetailModel) {
 
-        if detailModel.from_head != nil {
-
-            headerImageView.kf_setImageWithURL(NSURL(string: detailModel.from_head!), placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
-            
-        }
-        nicknameLabel.text = detailModel.from_name
-        serviceNameLabel.text = "【\(detailModel.service_name!)】"
-        dateLabel.text = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: Double(detailModel.start))) + "-" + dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: Double(detailModel.end)))
-
-        cityLabel.text = detailModel.order_addr
+        setDetailModelInfo(detailModel)
         
         /**
          *  如果订单被评论过(detailModel.has_evaluate == 1)，显示评论信息，反之隐藏
          */
         if detailModel.has_evaluate == 0 {
-            commentMargin.constant = 0
-            commentView.hidden = true
-            commentViewHeight.constant = 0
-            
+            hideComment()
         } else {
-            servantCommentInfoLabel.text = "服务者评价"
-            serviceCommentInfoLabel.text = "\(detailModel.service_name!)"
-            commentRemarksTextView.text = detailModel.evaluate__remarks
-            
-            if detailModel.service_score != 0 {
-                for index in 1...detailModel.service_score {
-                    let button = commentView.viewWithTag(1000 + index) as? UIButton
-                    button?.selected = true
-                    
-                }
-            }
-
-            if detailModel.user_score != 0 {                
-                for index in 1...detailModel.user_score {
-                    let button = commentView.viewWithTag(2000 + index) as? UIButton
-                    button?.selected = true
-                }
-            }
+            setDetailModelInfo(detailModel)
         }
         
         /**
          *  如果是订单是2 则为预约订单 展示相关信息 反之为邀约订单 隐藏相关
          */
         guard orderModel?.order_type == 2 else {
-            isOtherOrderView.hidden = true
-            commentMargin.constant = 0
-
-            isOtherOrderViewHeight.constant = 0
-            marginHeight.constant = 0
-            tagsViewHeight.constant = 0
-            tagsView.hidden = true
+            hideYY_OrderInfo()
             return
         }
         
@@ -195,16 +165,66 @@ class OrderDetailViewController: UIViewController , LayoutStopDelegate{
          *  如果是不是代订订单隐藏相关信息（detailModel.is_other == 0 ）
          */
         if detailModel.is_other == 0 {
-            marginHeight.constant = 0
-            isOtherOrderView.hidden = true
-            isOtherOrderViewHeight.constant = 0
-            
+            hideOtherInfo()
         } else {
             isOtherOrderInfoLabel.text = "代订: \(detailModel.other_name!)  \(detailModel.other_phone!)"
         }
 
         
     }
+    func setBaseInfo(detailModel:OrderDetailModel) {
+        if detailModel.from_head != nil {
+            headerImageView.kf_setImageWithURL(NSURL(string: detailModel.from_head!), placeholderImage: UIImage(named: "head_giry"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+        }
+        nicknameLabel.text = detailModel.from_name
+        serviceNameLabel.text = "【\(detailModel.service_name!)】"
+        dateLabel.text = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: Double(detailModel.start))) + "-" + dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: Double(detailModel.end)))
+        
+        cityLabel.text = detailModel.order_addr
+    }
     
+    func setDetailModelInfo(detailModel:OrderDetailModel) {
+        servantCommentInfoLabel.text = "服务者评价"
+        serviceCommentInfoLabel.text = "\(detailModel.service_name!)"
+        commentRemarksTextView.text = detailModel.evaluate__remarks
+        
+        if detailModel.service_score != 0 {
+            for index in 1...detailModel.service_score {
+                let button = commentView.viewWithTag(1000 + index) as? UIButton
+                button?.selected = true
+                
+            }
+        }
+        
+        if detailModel.user_score != 0 {
+            for index in 1...detailModel.user_score {
+                let button = commentView.viewWithTag(2000 + index) as? UIButton
+                button?.selected = true
+            }
+        }
+    }
     
+    func hideOtherInfo() {
+        marginHeight.constant = 0
+        isOtherOrderView.hidden = true
+        isOtherOrderViewHeight.constant = 0
+
+    }
+    
+    func hideYY_OrderInfo() {
+        isOtherOrderView.hidden = true
+        commentMargin.constant = 0
+        
+        isOtherOrderViewHeight.constant = 0
+        marginHeight.constant = 0
+        tagsViewHeight.constant = 0
+        tagsView.hidden = true
+    }
+    
+    func hideComment() {
+        commentMargin.constant = 0
+        commentView.hidden = true
+        commentViewHeight.constant = 0
+
+    }
 }
