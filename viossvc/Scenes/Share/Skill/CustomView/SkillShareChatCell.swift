@@ -22,7 +22,7 @@ class SkillShareChatCell: OEZTableViewCell ,OEZCalculateProtocol {
         let model = data as! SkillShareCommentModel
         
         contentLabel.text = model.content;
-        headPicImageView.kf_setImageWithURL(NSURL.init(string: model.head_url!), placeholderImage: UIImage(named: "test1"))
+        headPicImageView.kf_setImageWithURL(NSURL.init(string: model.head_url!), placeholderImage: UIImage(named: "head_giry"))
         
     }
 

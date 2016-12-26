@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="194"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pDr-Zw-04E">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="690·220_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="pDr-Zw-04E">
                         <rect key="frame" x="10" y="0.0" width="580" height="109"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lML-q0-29z">
@@ -111,4 +111,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="690·220_placeholder" width="690" height="220"/>
+    </resources>
 </document>

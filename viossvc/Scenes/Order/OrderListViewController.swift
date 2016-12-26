@@ -13,6 +13,8 @@ import Foundation
 class OrderListViewController: BasePageListTableViewController,OEZTableViewDelegate, OrderRefreshDelegate{
     
     var currentPageIndex = 1
+    var detailModel:OrderDetailModel?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +46,7 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
          */
         if orderModel.order_status > 6 {
             
-            performSegueWithIdentifier("orderToDetail", sender: indexPath)
-            
+            pushToDetailPage(indexPath)
             
         } else {
             let handleVC = HandleOrderViewController()
@@ -67,6 +68,24 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
     }
     
     
+    
+    func pushToDetailPage(indexPath:NSIndexPath) {
+        
+        
+        getOrderDetail(indexPath)
+        
+    }
+    func getOrderDetail(indexPath:NSIndexPath) {
+        let orderModel = dataSource![indexPath.row] as! OrderListModel
+        unowned let weakSelf = self
+        AppAPIHelper.orderAPI().getOrderDetail(orderModel.order_id, complete: { (response) in
+            if response != nil{
+                weakSelf.performSegueWithIdentifier("orderToDetail", sender: indexPath)
+            }
+            
+            }, error: errorBlockFunc())
+        
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         
@@ -78,6 +97,7 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
             
             let detailVC = segue.destinationViewController as! OrderDetailViewController
             detailVC.orderModel = orderModel
+            detailVC.detailModel = detailModel
             
         }
     }

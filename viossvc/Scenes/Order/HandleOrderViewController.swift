@@ -87,7 +87,7 @@ class HandleOrderViewController: UIViewController {
     
     func setData() {
         if orderModel?.from_url != nil{
-            headerImageVIew.kf_setImageWithURL(NSURL(string: (orderModel?.from_url)!), placeholderImage: nil, optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+            headerImageVIew.kf_setImageWithURL(NSURL(string: (orderModel?.from_url)!), placeholderImage: UIImage(named: "head_giry"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         }
         startTimeLabel.text = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: Double(orderModel!.start_time)))
         endTimeLabel.text = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: Double(orderModel!.end_time)))

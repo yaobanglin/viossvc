@@ -26,7 +26,7 @@ class TourShareCell: OEZTableViewCell, OEZCalculateProtocol {
         titleLabel.text = model.share_theme
         addrLabel.text = model.addr_region
         typeLabel.text = model.share_type
-        bannerImageView.kf_setImageWithURL(NSURL(string: model.brief_pic),placeholderImage:nil)
+        bannerImageView.kf_setImageWithURL(NSURL(string: model.brief_pic),placeholderImage:UIImage(named: "690·220_placeholder"))
     }
     
     
