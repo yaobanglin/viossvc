@@ -127,14 +127,12 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     func timeStr(minus: Int) -> String {
         let hour = minus / 60
         let leftMinus = minus % 60
-        let hourStr = hour > 9 ? "\(hour)":"0\(hour)"
-        let minusStr = leftMinus > 9 ? "\(minus)":"0\(leftMinus)"
-        return "\(hourStr):\(minusStr)"
+        return String(format: "%02d:%02d", hour, leftMinus)
     }
     func checkServerTime(times: [Int]) -> Bool {
         for time in times {
-            if time < 8*60 || time > 21*60 {
-                SVProgressHUD.showWainningMessage(WainningMessage: "请将服务时间设置介于早上8：00~晚上9：00之间", ForDuration: 1, completion: nil)
+            if time < 6*60 || time > 21*60 {
+                SVProgressHUD.showWainningMessage(WainningMessage: "请将服务时间设置介于早上6：00~晚上9：00之间", ForDuration: 1, completion: nil)
                 return false
             }
         }
