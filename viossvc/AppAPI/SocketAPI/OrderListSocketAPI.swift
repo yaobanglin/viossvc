@@ -21,7 +21,6 @@ class OrderListSocketAPI: BaseSocketAPI, OrderListAPI{
         
         let dict:[String : AnyObject] = [SocketConst.Key.uid : CurrentUserHelper.shared.userInfo.uid, SocketConst.Key.last_id : last_id, SocketConst.Key.count : count]
         let packet = SocketDataPacket(opcode: .OrderList, dict: dict)
-        print("=================\(dict)======================")
         startDataListRequest(packet, modelClass: OrderListModel.classForCoder(), complete: complete, error: error)
         
     }

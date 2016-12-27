@@ -65,7 +65,7 @@ class OrderListCell : OEZTableViewCell {
     override func update(data: AnyObject!) {
         let orderListModel = data as! OrderListModel
         if orderListModel.from_url!.hasPrefix("http"){
-            headPicImageView.kf_setImageWithURL(NSURL(string: orderListModel.from_url!), placeholderImage: UIImage(named: ""), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
+            headPicImageView.kf_setImageWithURL(NSURL(string: orderListModel.from_url!), placeholderImage: UIImage(named: "head_giry"), optionsInfo: nil, progressBlock: nil, completionHandler: nil)
         }
         
         orderTypeLabel.text = orderListModel.order_type == 0 ? "邀约" : "预约"

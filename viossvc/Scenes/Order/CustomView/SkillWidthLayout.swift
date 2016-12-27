@@ -79,7 +79,7 @@ class SkillWidthLayout: UICollectionViewFlowLayout {
                     /**
                      在最后一个layout结束后 发送通知
                      或者下面👇这个方法里发通知
-                     ****   override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool  ******
+                     ****   override func collectionViewContentSize() -> CGSize  ******
 
                      */
                     NSNotificationCenter.defaultCenter().postNotificationName("LayoutStop", object: nil, userInfo: nil)

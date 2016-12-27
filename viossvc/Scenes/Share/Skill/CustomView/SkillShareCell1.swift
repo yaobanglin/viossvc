@@ -50,7 +50,7 @@ class SkillShareCell1: OEZTableViewCell {
             if model.entry_num > 0 {
                 timeAndNumLabel.text! += "\(model.entry_num)人\(string)"
             }
-            picImageView.kf_setImageWithURL(NSURL(string: model.brief_pic),placeholderImage: UIImage(named: ""))
+            picImageView.kf_setImageWithURL(NSURL(string: model.brief_pic),placeholderImage: UIImage(named: "square_placeholder"))
 
     }
 

@@ -50,6 +50,14 @@
                                         <constraint firstAttribute="width" constant="35" id="Gk1-Gb-GhL"/>
                                         <constraint firstAttribute="height" constant="35" id="tfg-fD-Xqa"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                            <color key="value" red="0.72156862745098038" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orderDetailLocation" translatesAutoresizingMaskIntoConstraints="NO" id="r5T-yo-wI1">
                                     <rect key="frame" x="23" y="130" width="20" height="20"/>

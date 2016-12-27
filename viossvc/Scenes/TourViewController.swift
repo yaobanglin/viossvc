@@ -15,14 +15,5 @@ class TourViewController: SegmentedViewController {
         return [TourShareViewController.className(),SkillShareViewController.className()];
     }
     
-    //友盟页面统计
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        MobClick.beginLogPageView(TourViewController.className())
-    }
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        MobClick.endLogPageView(TourViewController.className())
-    }
 }
 
