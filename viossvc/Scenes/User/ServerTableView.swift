@@ -33,17 +33,21 @@ class ServerTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         let cell: ServerCell = tableView.dequeueReusableCellWithIdentifier(ServerCell.className()) as! ServerCell
         let model = serverData[indexPath.row]
         cell.serverNameLabel.text = model.service_name
+        cell.serverNameLabel.backgroundColor = UIColor.grayColor()
         cell.serverPriceLabel.text = "￥\(Double(model.service_price)/100)"
+        cell.serverPriceLabel.backgroundColor = UIColor.redColor()
         cell.serverTimeLabel.text = "\(time(model.service_start))--\(time(model.service_end))"
+        cell.serverTimeLabel.backgroundColor = UIColor.yellowColor()
         cell.upLine.hidden = indexPath.row == 0
         return cell
     }
     func time(minus: Int) -> String {
         let hour = minus / 60
         let leftMinus = minus % 60
-        let hourStr = hour > 9 ? "\(hour)" : "0\(hour)"
-        let minusStr = leftMinus > 9 ? "\(minus)" : "0\(leftMinus)"
-        return "\(hourStr):\(minusStr)"
+        return String(format: "%02d:%02d", hour, leftMinus) //"\(hourStr):\(minusStr)"
+//        let hourStr = hour > 9 ? "\(hour)" : "0\(hour)"
+//        let minusStr = leftMinus > 9 ? "\(minus)" : "0\(leftMinus)"
+//        return "\(hourStr):\(minusStr)"
     }
     func updateData(data: AnyObject!, complete:CompleteBlock) {
         serverData = data as! [UserServerModel]
