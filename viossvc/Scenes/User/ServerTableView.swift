@@ -33,11 +33,8 @@ class ServerTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         let cell: ServerCell = tableView.dequeueReusableCellWithIdentifier(ServerCell.className()) as! ServerCell
         let model = serverData[indexPath.row]
         cell.serverNameLabel.text = model.service_name
-        cell.serverNameLabel.backgroundColor = UIColor.grayColor()
         cell.serverPriceLabel.text = "￥\(Double(model.service_price)/100)"
-        cell.serverPriceLabel.backgroundColor = UIColor.redColor()
         cell.serverTimeLabel.text = "\(time(model.service_start))--\(time(model.service_end))"
-        cell.serverTimeLabel.backgroundColor = UIColor.yellowColor()
         cell.upLine.hidden = indexPath.row == 0
         return cell
     }
