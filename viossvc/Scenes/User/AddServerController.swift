@@ -131,8 +131,8 @@ class AddServerController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     }
     func checkServerTime(times: [Int]) -> Bool {
         for time in times {
-            if time < 6*60 || time > 21*60 {
-                SVProgressHUD.showWainningMessage(WainningMessage: "请将服务时间设置介于早上6：00~晚上9：00之间", ForDuration: 1, completion: nil)
+            if time < 6*60 || time > 23*60 {
+                SVProgressHUD.showWainningMessage(WainningMessage: "请将服务时间设置介于早上6：00~晚上11：00之间", ForDuration: 1, completion: nil)
                 return false
             }
         }
