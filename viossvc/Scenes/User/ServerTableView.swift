@@ -41,9 +41,10 @@ class ServerTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func time(minus: Int) -> String {
         let hour = minus / 60
         let leftMinus = minus % 60
-        let hourStr = hour > 9 ? "\(hour)" : "0\(hour)"
-        let minusStr = leftMinus > 9 ? "\(minus)" : "0\(leftMinus)"
-        return "\(hourStr):\(minusStr)"
+        return String(format: "%02d:%02d", hour, leftMinus) //"\(hourStr):\(minusStr)"
+//        let hourStr = hour > 9 ? "\(hour)" : "0\(hour)"
+//        let minusStr = leftMinus > 9 ? "\(minus)" : "0\(leftMinus)"
+//        return "\(hourStr):\(minusStr)"
     }
     func updateData(data: AnyObject!, complete:CompleteBlock) {
         serverData = data as! [UserServerModel]
