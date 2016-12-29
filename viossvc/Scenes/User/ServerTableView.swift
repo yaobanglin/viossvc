@@ -18,6 +18,7 @@ class ServerCell: UITableViewCell {
         var upview = contentView.viewWithTag(1000)
         if upview == nil {
             upview = UIView()
+            upview?.tag = 1000
             upview?.backgroundColor = UIColor.grayColor()
             contentView.addSubview(upview!)
             upview?.snp_makeConstraints(closure: { (make) in
