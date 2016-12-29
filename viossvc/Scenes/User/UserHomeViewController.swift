@@ -84,7 +84,18 @@ class UserHomeViewController: BaseTableViewController {
     }
     func askTapGestureTapped() {
         MobClick.event(AppConst.Event.user_question)
-        UIApplication.sharedApplication().openURL(NSURL.init(string: "telprompt:0571-87611687")!)
+        let serviceTel = "0571-87611687"
+        let alert = UIAlertController.init(title: "呼叫", message: serviceTel, preferredStyle: .Alert)
+        let ensure = UIAlertAction.init(title: "确定", style: .Default, handler: { (action: UIAlertAction) in
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(serviceTel)")!)
+        })
+        let cancel = UIAlertAction.init(title: "取消", style: .Cancel, handler: { (action: UIAlertAction) in
+            
+        })
+        alert.addAction(ensure)
+        alert.addAction(cancel)
+        presentViewController(alert, animated: true, completion: nil)
+//        UIApplication.sharedApplication().openURL(NSURL.init(string: "telprompt:0571-87611687")!)
     }
     
 
