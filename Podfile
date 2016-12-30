@@ -19,4 +19,6 @@ target 'viossvc' do
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'UMengAnalytics-NO-IDFA'
+    pod 'AMapSearch'
+
 end
