@@ -28,6 +28,9 @@
 		6E5ADC6F1E1687A800E6823F /* ShowMapHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5ADC631E1687A800E6823F /* ShowMapHeaderView.swift */; };
 		6E5ADC701E1687A900E6823F /* YD_Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5ADC641E1687A800E6823F /* YD_Annotation.swift */; };
 		6E5ADC711E1687A900E6823F /* YD_AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5ADC651E1687A800E6823F /* YD_AnnotationView.swift */; };
+		6E5ADC731E168A4300E6823F /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5ADC721E168A4300E6823F /* MAMapKit.framework */; };
+		6E5ADC751E168A5A00E6823F /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5ADC741E168A5A00E6823F /* AMapFoundationKit.framework */; };
+		6E5ADC771E168A6400E6823F /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5ADC761E168A6400E6823F /* AMapSearchKit.framework */; };
 		6E82E2651DF01EC70039BBA0 /* SkillLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */; };
 		6E82E2661DF01EC70039BBA0 /* SingleSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */; };
 		6E82E2671DF01EC70039BBA0 /* SkillWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */; };
@@ -177,6 +180,9 @@
 		6E5ADC631E1687A800E6823F /* ShowMapHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowMapHeaderView.swift; sourceTree = "<group>"; };
 		6E5ADC641E1687A800E6823F /* YD_Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YD_Annotation.swift; sourceTree = "<group>"; };
 		6E5ADC651E1687A800E6823F /* YD_AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YD_AnnotationView.swift; sourceTree = "<group>"; };
+		6E5ADC721E168A4300E6823F /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = Pods/AMap2DMap/MAMapKit.framework; sourceTree = "<group>"; };
+		6E5ADC741E168A5A00E6823F /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapFoundationKit.framework; path = Pods/AMapFoundation/AMapFoundationKit.framework; sourceTree = "<group>"; };
+		6E5ADC761E168A6400E6823F /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = Pods/AMapSearch/AMapSearchKit.framework; sourceTree = "<group>"; };
 		6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillLayoutView.swift; sourceTree = "<group>"; };
 		6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSkillCell.swift; sourceTree = "<group>"; };
 		6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillWidthLayout.swift; sourceTree = "<group>"; };
@@ -317,6 +323,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E5ADC771E168A6400E6823F /* AMapSearchKit.framework in Frameworks */,
+				6E5ADC751E168A5A00E6823F /* AMapFoundationKit.framework in Frameworks */,
+				6E5ADC731E168A4300E6823F /* MAMapKit.framework in Frameworks */,
 				BFC81E9E1DFA9E6600ADC291 /* UMMobClick.framework in Frameworks */,
 				B02DB25C1DF985B70044F910 /* libsqlite3.tbd in Frameworks */,
 				BFA9FAB31DF6AEBF00E2A67C /* Crashlytics.framework in Frameworks */,
@@ -335,6 +344,9 @@
 		10CEA088AA8041FD84B55B62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E5ADC761E168A6400E6823F /* AMapSearchKit.framework */,
+				6E5ADC741E168A5A00E6823F /* AMapFoundationKit.framework */,
+				6E5ADC721E168A4300E6823F /* MAMapKit.framework */,
 				2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */,
 				BFC81E9D1DFA9E6600ADC291 /* UMMobClick.framework */,
 				B02DB25B1DF985B70044F910 /* libsqlite3.tbd */,
@@ -1242,6 +1254,22 @@
 					"$(PROJECT_DIR)/Pods/Fabric",
 					"$(PROJECT_DIR)/Pods/Crashlytics",
 					"$(PROJECT_DIR)/Pods/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.1.5",
+					"$(PROJECT_DIR)/Pods/AMap2DMap",
+					"$(PROJECT_DIR)/Pods/AMapFoundation",
+					"$(PROJECT_DIR)/Pods/AMapSearch",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AMap2DMap\"",
+					"\"${PODS_ROOT}/Headers/Public/AMapFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public/AMapSearch\"",
+					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					"\"${PODS_ROOT}/Headers/Public/GTSDK\"",
+					"\"${PODS_ROOT}/Headers/Public/UMengAnalytics-NO-IDFA\"",
+					"\"${PODS_ROOT}/Headers/Public/AMapSearch \"${PODS_ROOT}/Headers/Public/AMap2DMap",
+					"\"${PODS_ROOT}/Headers/Public/AMapFoundation",
 				);
 				INFOPLIST_FILE = viossvc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1279,6 +1307,22 @@
 					"$(PROJECT_DIR)/Pods/Fabric",
 					"$(PROJECT_DIR)/Pods/Crashlytics",
 					"$(PROJECT_DIR)/Pods/UMengAnalytics-NO-IDFA/umsdk_IOS_analyics_no-idfa_v4.1.5",
+					"$(PROJECT_DIR)/Pods/AMap2DMap",
+					"$(PROJECT_DIR)/Pods/AMapFoundation",
+					"$(PROJECT_DIR)/Pods/AMapSearch",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AMap2DMap\"",
+					"\"${PODS_ROOT}/Headers/Public/AMapFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public/AMapSearch\"",
+					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
+					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
+					"\"${PODS_ROOT}/Headers/Public/GTSDK\"",
+					"\"${PODS_ROOT}/Headers/Public/UMengAnalytics-NO-IDFA\"",
+					"\"${PODS_ROOT}/Headers/Public/AMapSearch \"${PODS_ROOT}/Headers/Public/AMap2DMap",
+					"\"${PODS_ROOT}/Headers/Public/AMapFoundation",
 				);
 				INFOPLIST_FILE = viossvc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
