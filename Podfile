@@ -19,4 +19,6 @@ target 'viossvc' do
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'UMengAnalytics-NO-IDFA'
+    pod 'AMap2DMap', '~> 4.2.0'
+    pod 'AMapSearch'
 end
