@@ -3755,7 +3755,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hcb-h4-geY">
-                                                                        <rect key="frame" x="342" y="14" width="194" height="16"/>
+                                                                        <rect key="frame" x="342" y="14" width="224" height="16"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -3777,7 +3777,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DcP-XK-tUa">
-                                                                        <rect key="frame" x="28" y="14" width="214" height="16"/>
+                                                                        <rect key="frame" x="18" y="14" width="224" height="16"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -3792,9 +3792,9 @@
                                                                     <constraint firstItem="Zu6-l6-D7I" firstAttribute="top" secondItem="hPD-q4-XOM" secondAttribute="topMargin" constant="-8" id="k8g-My-cNu"/>
                                                                     <constraint firstItem="DcP-XK-tUa" firstAttribute="centerY" secondItem="hPD-q4-XOM" secondAttribute="centerY" id="nZ9-5q-OuJ"/>
                                                                     <constraint firstItem="Jcp-Fw-3WH" firstAttribute="centerX" secondItem="hPD-q4-XOM" secondAttribute="centerX" id="sEe-XF-0V1"/>
-                                                                    <constraint firstAttribute="trailingMargin" secondItem="Hcb-h4-geY" secondAttribute="trailing" constant="40" id="ssh-6G-m9Z"/>
+                                                                    <constraint firstAttribute="trailingMargin" secondItem="Hcb-h4-geY" secondAttribute="trailing" constant="10" id="ssh-6G-m9Z"/>
                                                                     <constraint firstItem="Hcb-h4-geY" firstAttribute="centerY" secondItem="hPD-q4-XOM" secondAttribute="centerY" id="tVO-tK-3jB"/>
-                                                                    <constraint firstItem="DcP-XK-tUa" firstAttribute="leading" secondItem="hPD-q4-XOM" secondAttribute="leadingMargin" constant="20" id="wW2-WU-fpY"/>
+                                                                    <constraint firstItem="DcP-XK-tUa" firstAttribute="leading" secondItem="hPD-q4-XOM" secondAttribute="leadingMargin" constant="10" id="wW2-WU-fpY"/>
                                                                     <constraint firstItem="Jcp-Fw-3WH" firstAttribute="centerY" secondItem="hPD-q4-XOM" secondAttribute="centerY" id="wjR-5q-n6f"/>
                                                                 </constraints>
                                                                 <variation key="default">

@@ -27,14 +27,14 @@ class ServerTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: --delegate and datasource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 21//serverData.count
+        return serverData.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: ServerCell = tableView.dequeueReusableCellWithIdentifier(ServerCell.className()) as! ServerCell
-//        let model = serverData[indexPath.row]
-        cell.serverNameLabel.text = indexPath.row/2==0 ? "asjdhagskdjs这是一个测试" : "这是一个测试"//model.service_name
-        cell.serverPriceLabel.text = "￥10000.00"//"￥\(Double(model.service_price)/100)"
-        cell.serverTimeLabel.text = "12:00-24:00"//"\(time(model.service_start))--\(time(model.service_end))"
+        let model = serverData[indexPath.row]
+        cell.serverNameLabel.text = model.service_name
+        cell.serverPriceLabel.text = "￥\(Double(model.service_price)/100)"
+        cell.serverTimeLabel.text = "\(time(model.service_start))--\(time(model.service_end))"
         cell.upLine.hidden = indexPath.row == 0
         return cell
     }
