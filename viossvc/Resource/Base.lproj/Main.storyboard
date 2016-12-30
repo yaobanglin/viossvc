@@ -3755,13 +3755,13 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hcb-h4-geY">
-                                                                        <rect key="frame" x="342" y="13" width="194" height="18"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <rect key="frame" x="342" y="14" width="194" height="16"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcp-Fw-3WH">
-                                                                        <rect key="frame" x="252" y="13" width="80" height="18"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcp-Fw-3WH">
+                                                                        <rect key="frame" x="252" y="14" width="80" height="16"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="80" id="XaH-hA-G14"/>
                                                                         </constraints>
@@ -3776,8 +3776,8 @@
                                                                             <constraint firstAttribute="height" constant="0.5" id="2Zz-Ur-Y51"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DcP-XK-tUa">
-                                                                        <rect key="frame" x="28" y="13" width="214" height="18"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DcP-XK-tUa">
+                                                                        <rect key="frame" x="28" y="14" width="214" height="16"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -4548,8 +4548,8 @@
                                                 <rect key="frame" x="417" y="0.0" width="83" height="50"/>
                                                 <state key="selected" image="black_point"/>
                                             </button>
-                                            <button opaque="NO" tag="104" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xo-ah-Dbj">
-                                                <rect key="frame" x="333" y="0.0" width="84" height="50"/>
+                                            <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xo-ah-Dbj">
+                                                <rect key="frame" x="334" y="0.0" width="83" height="50"/>
                                                 <state key="selected" image="black_point"/>
                                             </button>
                                             <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nI6-Oh-nUH">
@@ -4560,8 +4560,8 @@
                                                 <rect key="frame" x="250" y="0.0" width="83" height="50"/>
                                                 <state key="selected" image="black_point"/>
                                             </button>
-                                            <button opaque="NO" tag="101" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aN8-Xh-XEX">
-                                                <rect key="frame" x="83" y="0.0" width="84" height="50"/>
+                                            <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aN8-Xh-XEX">
+                                                <rect key="frame" x="84" y="0.0" width="83" height="50"/>
                                                 <state key="selected" image="black_point"/>
                                             </button>
                                         </subviews>
@@ -5371,15 +5371,15 @@
                                         <rect key="frame" x="10" y="155" width="500" height="50"/>
                                         <subviews>
                                             <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uuw-5M-746">
-                                                <rect key="frame" x="0.0" y="0.0" width="83" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="84" height="50"/>
                                                 <state key="selected" image="black_point"/>
                                             </button>
                                             <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hux-q7-Qva">
                                                 <rect key="frame" x="417" y="0.0" width="83" height="50"/>
                                                 <state key="selected" image="black_point"/>
                                             </button>
-                                            <button opaque="NO" tag="104" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHc-eB-tv4">
-                                                <rect key="frame" x="333" y="0.0" width="84" height="50"/>
+                                            <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHc-eB-tv4">
+                                                <rect key="frame" x="334" y="0.0" width="83" height="50"/>
                                                 <state key="selected" image="black_point"/>
                                             </button>
                                             <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FcH-4e-P9P">
@@ -5390,8 +5390,8 @@
                                                 <rect key="frame" x="250" y="0.0" width="83" height="50"/>
                                                 <state key="selected" image="black_point"/>
                                             </button>
-                                            <button opaque="NO" tag="101" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hj0-3z-HmE">
-                                                <rect key="frame" x="83" y="0.0" width="84" height="50"/>
+                                            <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hj0-3z-HmE">
+                                                <rect key="frame" x="84" y="0.0" width="83" height="50"/>
                                                 <state key="selected" image="black_point"/>
                                             </button>
                                         </subviews>
@@ -5780,14 +5780,14 @@
                                     <constraint firstAttribute="width" constant="80" id="uoO-IC-WT2"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="提交审核成功" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrP-Xt-wGJ">
-                                <rect key="frame" x="246" y="253" width="108" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提交审核成功" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrP-Xt-wGJ">
+                                <rect key="frame" x="246" y="254" width="108" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="我们会在一个工作日内通过审 \n核,审核完毕后我们会通过短 \n信进行通知" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XT3-DS-4cy">
-                                <rect key="frame" x="50" y="306" width="500" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我们会在一个工作日内通过审 \n核,审核完毕后我们会通过短 \n信进行通知" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XT3-DS-4cy">
+                                <rect key="frame" x="55" y="306" width="490" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
