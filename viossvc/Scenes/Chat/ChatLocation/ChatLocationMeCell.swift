@@ -11,12 +11,13 @@ import UIKit
 class ChatLocationMeCell: ChatLocationCell {
 
 
-
-    override func setupDataWithAdress(title:String?,adress:String?, isOther:Bool) {
-        super.setupDataWithAdress(title, adress:adress, isOther: isOther)
+    override func setupDataWithContent(content: String?) {
+        
+        super.setupDataWithContent(content)
         var image = UIImage(named: "msg-bubble-me")
         image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         bundleImageView.image = image?.resizableImageWithCapInsets(UIEdgeInsetsMake(17, 23  , 17, 23), resizingMode: UIImageResizingMode.Stretch)
     }
-    
+
+
 }

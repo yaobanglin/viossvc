@@ -20,5 +20,15 @@ class POIInfoModel: NSObject {
     var isSelect = false
     
     
+    func modelToString()-> String {
+        
+        if name == nil {
+            name = "位置分享"
+        }
+        if detail == nil {
+            detail = "位置分享"
+        }
+        return name! + "," + detail! + "|" + String(latiude) + "," + String(longtiude)
+    }
 }
 

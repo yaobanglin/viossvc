@@ -2385,7 +2385,7 @@
                                         </constraints>
                                         <state key="normal" image="face-btn"/>
                                         <connections>
-                                            <action selector="emojiFaceAction:" destination="aAR-Iz-osf" eventType="touchUpInside" id="2Rz-vN-lWl"/>
+                                            <action selector="getLocationPage:" destination="aAR-Iz-osf" eventType="touchUpInside" id="bpI-rI-RTW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IX-ph-lLi">
@@ -2404,7 +2404,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3RU-nQ-Kx5" customClass="CustomTextView" customModule="viossvc" customModuleProvider="target">
-                                        <rect key="frame" x="50" y="10" width="475" height="30"/>
+                                        <rect key="frame" x="50" y="10" width="435" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="cju-dq-40A"/>
@@ -2419,23 +2419,37 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCz-1q-U0b">
+                                        <rect key="frame" x="485" y="9" width="50" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="unP-96-auL"/>
+                                        </constraints>
+                                        <state key="normal" image="face-btn"/>
+                                        <connections>
+                                            <action selector="emojiFaceAction:" destination="aAR-Iz-osf" eventType="touchUpInside" id="ifn-KO-GRR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.94901960780000005" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="2ZB-02-qLb"/>
-                                    <constraint firstItem="7IX-ph-lLi" firstAttribute="leading" secondItem="3RU-nQ-Kx5" secondAttribute="trailing" constant="10" id="7QE-IM-A9F"/>
+                                    <constraint firstItem="7IX-ph-lLi" firstAttribute="leading" secondItem="3RU-nQ-Kx5" secondAttribute="trailing" constant="50" id="7QE-IM-A9F"/>
                                     <constraint firstAttribute="bottom" secondItem="EXn-Vr-6Hn" secondAttribute="bottom" id="8yO-2l-Yqa"/>
                                     <constraint firstItem="3RU-nQ-Kx5" firstAttribute="leading" secondItem="EXn-Vr-6Hn" secondAttribute="trailing" id="B4y-Kn-E2i"/>
+                                    <constraint firstItem="zCz-1q-U0b" firstAttribute="leading" secondItem="3RU-nQ-Kx5" secondAttribute="trailing" id="G9U-de-Qab"/>
                                     <constraint firstItem="3RU-nQ-Kx5" firstAttribute="top" secondItem="aAR-Iz-osf" secondAttribute="top" constant="10" id="GhX-xq-GLQ"/>
+                                    <constraint firstItem="zCz-1q-U0b" firstAttribute="centerY" secondItem="EXn-Vr-6Hn" secondAttribute="centerY" id="MZx-jd-PrM"/>
                                     <constraint firstItem="3RU-nQ-Kx5" firstAttribute="leading" secondItem="EXn-Vr-6Hn" secondAttribute="trailing" id="YYI-9d-Psy"/>
                                     <constraint firstAttribute="bottom" secondItem="7IX-ph-lLi" secondAttribute="bottom" id="Zil-ys-stb"/>
                                     <constraint firstAttribute="bottom" secondItem="3RU-nQ-Kx5" secondAttribute="bottom" constant="10" id="aFl-Xc-ZYo"/>
                                     <constraint firstItem="EXn-Vr-6Hn" firstAttribute="leading" secondItem="aAR-Iz-osf" secondAttribute="leading" id="heI-kc-2GA"/>
                                     <constraint firstAttribute="trailing" secondItem="7IX-ph-lLi" secondAttribute="trailing" constant="5" id="l2z-n8-FE5"/>
-                                    <constraint firstItem="7IX-ph-lLi" firstAttribute="leading" secondItem="3RU-nQ-Kx5" secondAttribute="trailing" constant="10" id="p6b-Fc-aCd"/>
+                                    <constraint firstItem="7IX-ph-lLi" firstAttribute="leading" secondItem="zCz-1q-U0b" secondAttribute="trailing" id="njs-mr-gHi"/>
+                                    <constraint firstItem="7IX-ph-lLi" firstAttribute="leading" secondItem="3RU-nQ-Kx5" secondAttribute="trailing" constant="50" id="p6b-Fc-aCd"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="faceButton" destination="EXn-Vr-6Hn" id="bCL-0A-3Yn"/>
+                                    <outlet property="LocationButton" destination="EXn-Vr-6Hn" id="XaD-as-TBY"/>
+                                    <outlet property="faceButton" destination="zCz-1q-U0b" id="Vyw-hr-ljy"/>
                                     <outlet property="sendButton" destination="7IX-ph-lLi" id="c95-Uk-NoJ"/>
                                     <outlet property="textView" destination="3RU-nQ-Kx5" id="R4i-GS-Ymi"/>
                                 </connections>

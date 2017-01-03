@@ -51,9 +51,7 @@ class ShowLocationDetailViewController: UIViewController {
         super.viewDidLoad()
         guard poiModel != nil else {return}
         
-        
-        mapView.centerCoordinate = CLLocationCoordinate2D(latitude: poiModel!.latiude, longitude: poiModel!.longtiude)
-        addCenterAnnotation()
+
     }
 
     func addCenterAnnotation() {
@@ -62,6 +60,18 @@ class ShowLocationDetailViewController: UIViewController {
         annotation.subtitle = poiModel?.detail
         annotation.title = poiModel?.name
         mapView.addAnnotations([annotation])
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if CLLocationManager.locationServicesEnabled() == false || CLLocationManager.authorizationStatus() != .AuthorizedWhenInUse {
+            
+            let alert = UIAlertController.init(title: "提示", message: "无法获取您的位置信息。请到手机系统的[设置]->[隐私]->[定位服务]中打开定位服务，并允许优悦助理使用定位服务", preferredStyle: .Alert)
+            let goto = UIAlertAction.init(title: "确定", style: .Default, handler: { (action) in
+                self.navigationController?.popViewControllerAnimated(true)
+            })
+            alert.addAction(goto)
+            presentViewController(alert, animated: true, completion: {})
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,6 +86,9 @@ extension ShowLocationDetailViewController:MAMapViewDelegate, OpenMapDelegate{
             if isFirst {
                 mapView?.setZoomLevel(12, animated: true)
                 isFirst = false
+                
+                mapView.centerCoordinate = CLLocationCoordinate2D(latitude: poiModel!.latiude, longitude: poiModel!.longtiude)
+                addCenterAnnotation()
             }
         }
     }
@@ -91,7 +104,7 @@ extension ShowLocationDetailViewController:MAMapViewDelegate, OpenMapDelegate{
             }
             annotationView?.nameLabel.text = poiModel?.name
             annotationView?.adressLabel.text = poiModel?.detail
-            annotationView!.image = UIImage(named: "datou")
+            annotationView!.image = UIImage(named: "chat_location")
             annotationView?.delegate = self
             return annotationView
         }

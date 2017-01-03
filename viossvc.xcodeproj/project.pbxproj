@@ -31,6 +31,10 @@
 		6E5ADC731E168A4300E6823F /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5ADC721E168A4300E6823F /* MAMapKit.framework */; };
 		6E5ADC751E168A5A00E6823F /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5ADC741E168A5A00E6823F /* AMapFoundationKit.framework */; };
 		6E5ADC771E168A6400E6823F /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5ADC761E168A6400E6823F /* AMapSearchKit.framework */; };
+		6E5ADC9B1E1B878D00E6823F /* datou.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5ADC991E1B878D00E6823F /* datou.png */; };
+		6E5ADC9C1E1B878D00E6823F /* fangda.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5ADC9A1E1B878D00E6823F /* fangda.png */; };
+		6E5ADC9E1E1B879200E6823F /* 2222.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5ADC9D1E1B879200E6823F /* 2222.png */; };
+		6E5ADCA01E1B879600E6823F /* select_duihao.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5ADC9F1E1B879600E6823F /* select_duihao.png */; };
 		6E82E2651DF01EC70039BBA0 /* SkillLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */; };
 		6E82E2661DF01EC70039BBA0 /* SingleSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */; };
 		6E82E2671DF01EC70039BBA0 /* SkillWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */; };
@@ -183,6 +187,10 @@
 		6E5ADC721E168A4300E6823F /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = Pods/AMap2DMap/MAMapKit.framework; sourceTree = "<group>"; };
 		6E5ADC741E168A5A00E6823F /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapFoundationKit.framework; path = Pods/AMapFoundation/AMapFoundationKit.framework; sourceTree = "<group>"; };
 		6E5ADC761E168A6400E6823F /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = Pods/AMapSearch/AMapSearchKit.framework; sourceTree = "<group>"; };
+		6E5ADC991E1B878D00E6823F /* datou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = datou.png; sourceTree = "<group>"; };
+		6E5ADC9A1E1B878D00E6823F /* fangda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fangda.png; sourceTree = "<group>"; };
+		6E5ADC9D1E1B879200E6823F /* 2222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2222.png; sourceTree = "<group>"; };
+		6E5ADC9F1E1B879600E6823F /* select_duihao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select_duihao.png; sourceTree = "<group>"; };
 		6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillLayoutView.swift; sourceTree = "<group>"; };
 		6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSkillCell.swift; sourceTree = "<group>"; };
 		6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillWidthLayout.swift; sourceTree = "<group>"; };
@@ -384,6 +392,10 @@
 		6E5ADC591E1687A800E6823F /* ChatLocation */ = {
 			isa = PBXGroup;
 			children = (
+				6E5ADC9D1E1B879200E6823F /* 2222.png */,
+				6E5ADC991E1B878D00E6823F /* datou.png */,
+				6E5ADC9A1E1B878D00E6823F /* fangda.png */,
+				6E5ADC9F1E1B879600E6823F /* select_duihao.png */,
 				6E5ADC5A1E1687A800E6823F /* ChatLocationAnotherCell.swift */,
 				6E5ADC5B1E1687A800E6823F /* ChatLocationCell.swift */,
 				6E5ADC5C1E1687A800E6823F /* ChatLocationMeCell.swift */,
@@ -923,15 +935,19 @@
 				B03B121B1DE5BFDE00B00D2E /* Main.storyboard in Resources */,
 				B03B12471DE5BFDE00B00D2E /* PageViewImageCell.xib in Resources */,
 				B03B12301DE5BFDE00B00D2E /* TourShareCell.xib in Resources */,
+				6E5ADCA01E1B879600E6823F /* select_duihao.png in Resources */,
+				6E5ADC9E1E1B879200E6823F /* 2222.png in Resources */,
 				B03B12491DE5BFDE00B00D2E /* TableViewHeaderView.xib in Resources */,
 				B03B12191DE5BFDE00B00D2E /* Assets.xcassets in Resources */,
 				B03B12461DE5BFDE00B00D2E /* LoadMoreView.xib in Resources */,
 				B034EA131DF1894700D2C0CC /* TourLeaderShareScrollView.xib in Resources */,
+				6E5ADC9B1E1B878D00E6823F /* datou.png in Resources */,
 				6E9857E21DEEBD92002EFD88 /* HandleOrderViewController.xib in Resources */,
 				B03B121C1DE5BFDE00B00D2E /* errorcode.plist in Resources */,
 				BF5EB9881DE8070500961A24 /* city.plist in Resources */,
 				B03B124E1DE5BFDE00B00D2E /* MJRefresh.bundle in Resources */,
 				B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */,
+				6E5ADC9C1E1B878D00E6823F /* fangda.png in Resources */,
 				7CFB87FF1DF665F3009E78E2 /* FaceKeyboardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
