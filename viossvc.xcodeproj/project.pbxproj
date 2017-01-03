@@ -512,9 +512,9 @@
 			isa = PBXGroup;
 			children = (
 				6E5ADC591E1687A800E6823F /* ChatLocation */,
+				B03B11CC1DE5BFDD00B00D2E /* CustomView */,
 				B03B11CB1DE5BFDD00B00D2E /* ChatSessionViewController.swift */,
 				7C7DF0871DF02B2900C77978 /* ChatInteractionViewController.swift */,
-				B03B11CC1DE5BFDD00B00D2E /* CustomView */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
