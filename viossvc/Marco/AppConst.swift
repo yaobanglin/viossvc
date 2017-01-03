@@ -109,6 +109,7 @@ class AppConst {
     enum Action:UInt {
         case CallPhone = 10001
         case HandleOrder = 11001
+        case ShowLocation = 11002
     }
     
     static let UMAppkey = "584a3eb345297d271600127e"

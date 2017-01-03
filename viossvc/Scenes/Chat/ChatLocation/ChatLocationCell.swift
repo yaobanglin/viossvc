@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit
 
-class ChatLocationCell: UITableViewCell {
+class ChatLocationCell: OEZTableViewCell, OEZCalculateProtocol{
     
     lazy var bundleImageView:UIImageView = {
         let imageView = UIImageView()
@@ -48,12 +48,14 @@ class ChatLocationCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = UIColor.clearColor()
+        selectionStyle = .None
         contentView.backgroundColor = UIColor.clearColor()
         contentView.addSubview(bundleImageView)
         bundleImageView.addSubview(iconImageView)
         bundleImageView.addSubview(titleLabel)
         bundleImageView.addSubview(adressLabel)
-        
+        bundleImageView.userInteractionEnabled = true
+        iconImageView.userInteractionEnabled = true
         bundleImageView.snp_makeConstraints { (make) in
             make.right.equalTo(-10)
             make.top.equalTo(5)
@@ -80,14 +82,60 @@ class ChatLocationCell: UITableViewCell {
             make.bottom.lessThanOrEqualTo(10)
             
         }
+        let tapGes = UITapGestureRecognizer(target: self, action: #selector(ChatLocationCell.selectedAtBundle))
+        bundleImageView.addGestureRecognizer(tapGes)
+    }
+    func selectedAtBundle() {
+        
+        didSelectRowAction(AppConst.Action.HandleOrder.rawValue, data: nil)
     }
     
-    func setupDataWithAdress(title:String?,adress: String?, isOther: Bool) {
-        adressLabel.text = adress
-        titleLabel.text = title
+    func setupDataWithContent(content:String?) {
+
+        guard content != nil else {return}
+        
+        let poiModel = stringToModel(content!)
+        
+        adressLabel.text = poiModel.detail
+        titleLabel.text = poiModel.name
+        
     }
 
+    override func update(data: AnyObject!) {
+        let   model = data as! ChatMsgModel
+
+        setupDataWithContent(model.content)
+    }
+    static func calculateHeightWithData(data: AnyObject!) -> CGFloat {
+        return 110
+    }
+
+
     
+    func stringToModel(content:String) -> POIInfoModel {
+        
+        let model = POIInfoModel()
+        
+        let infoArray = content.componentsSeparatedByString("|")
+        
+        let addressString = infoArray.first
+        let locationString = infoArray.last
+        
+        model.name = addressString?.componentsSeparatedByString(",").first
+        model.detail = addressString?.componentsSeparatedByString(",").last
+        
+        guard locationString != nil else {return model}
+        
+        if locationString?.componentsSeparatedByString(",").first != nil {
+            model.latiude = Double((locationString?.componentsSeparatedByString(",").first)!)!
+        }
+        if locationString?.componentsSeparatedByString(",").last != nil {
+            model.longtiude = Double((locationString?.componentsSeparatedByString(",").last)!)!
+        }
+        
+        return model
+        
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
