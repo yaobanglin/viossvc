@@ -12,6 +12,7 @@ import SVProgressHUD
 class BaseLoginViewController: UITableViewController {
     @IBOutlet weak var textField1: UITextField!
     @IBOutlet weak var textField2: UITextField!
+    @IBOutlet weak var textField3: UITextField!
     private let minTopHeight:CGFloat = 175.0;
     private let maxTopHeight:CGFloat = 275.0;
     private let fromHeigth:CGFloat = 206.0;
@@ -20,6 +21,9 @@ class BaseLoginViewController: UITableViewController {
         super.viewDidLoad()
         setTextFieldAttributedPlaceholder(textField1);
         setTextFieldAttributedPlaceholder(textField2);
+        if textField3 != nil {
+            setTextFieldAttributedPlaceholder(textField3)
+        }
         self.view.userInteractionEnabled = true;
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(didActionHideKeyboard(_:))))
     }
