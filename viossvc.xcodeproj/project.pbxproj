@@ -524,9 +524,9 @@
 			isa = PBXGroup;
 			children = (
 				6E5ADC591E1687A800E6823F /* ChatLocation */,
+				B03B11CC1DE5BFDD00B00D2E /* CustomView */,
 				B03B11CB1DE5BFDD00B00D2E /* ChatSessionViewController.swift */,
 				7C7DF0871DF02B2900C77978 /* ChatInteractionViewController.swift */,
-				B03B11CC1DE5BFDD00B00D2E /* CustomView */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1301,7 +1301,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.trip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
@@ -1354,7 +1354,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.trip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.assistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d96044d-94a1-43db-bfad-c1951ae48957";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";
