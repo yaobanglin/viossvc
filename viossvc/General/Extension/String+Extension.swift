@@ -9,6 +9,24 @@
 import UIKit
 
 extension String {
+    //32进制转10进制
+    func change32To10() -> String {
+        
+        let string = uppercaseString
+        var number = 0
+        for i in string.utf8 {
+            number = number * 32 + Int(i) - 48
+            if i >= 65 {
+                number -= 7
+            }
+        }
+        return String(number)
+    }
+    //10进制转32进制
+    func change10To32() -> String {
+        return  String(UInt64(Int64(self)!), radix:32)
+    }
+    
     func trim() -> String {
         return  self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
