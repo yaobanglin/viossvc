@@ -18,6 +18,8 @@ class SocketConst: NSObject {
         case SMSVerify = 1019
         //验证手机验证码
         case VerifyCode = 1101
+        
+        case CheckInviteCode = 1113
         //注册
         case Register = 1021
         //重置密码
@@ -120,5 +122,7 @@ class SocketConst: NSObject {
         static let order_status = "order_status_"
         static let change_type = "change_type_"
         static let skills = "skills_"
+        static let phoneNum = "phoneNum_"
+        static let invitationCode = "invitationCode_"
     }
 }

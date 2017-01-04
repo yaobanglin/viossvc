@@ -116,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         MobClick.setCrashReportEnabled(false)
     }
     private func registerMapSDK() {
-        var key = ""
+        var key = "46a4db80f23354f30107c349fa55387a"
         if let id = NSBundle.mainBundle().bundleIdentifier {
             if id == "com.yundian.enterprise.trip" {
                 key = "11feec2b7ad127ae156d72aa08f2342e"

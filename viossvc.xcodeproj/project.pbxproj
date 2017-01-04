@@ -44,6 +44,7 @@
 		6E9857E11DEEBD92002EFD88 /* HandleOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857DF1DEEBD92002EFD88 /* HandleOrderViewController.swift */; };
 		6E9857E21DEEBD92002EFD88 /* HandleOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9857E01DEEBD92002EFD88 /* HandleOrderViewController.xib */; };
 		6E9857E41DEEFAEE002EFD88 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857E31DEEFAEE002EFD88 /* OrderDetailViewController.swift */; };
+		6ED925921E1CF5FF00BFAC17 /* CommonWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED925911E1CF5FF00BFAC17 /* CommonWebVC.swift */; };
 		6EFEF7801E1364E600F4A19D /* YD_MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFEF77F1E1364E600F4A19D /* YD_MaskView.swift */; };
 		7C6758F81DF11EFF00560601 /* ChatWithBaseSayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6758F71DF11EFF00560601 /* ChatWithBaseSayCell.swift */; };
 		7C6758FC1DF1291E00560601 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6758FB1DF1291E00560601 /* UIFont+Extension.swift */; };
@@ -200,6 +201,7 @@
 		6E9857DF1DEEBD92002EFD88 /* HandleOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandleOrderViewController.swift; sourceTree = "<group>"; };
 		6E9857E01DEEBD92002EFD88 /* HandleOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HandleOrderViewController.xib; sourceTree = "<group>"; };
 		6E9857E31DEEFAEE002EFD88 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		6ED925911E1CF5FF00BFAC17 /* CommonWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonWebVC.swift; sourceTree = "<group>"; };
 		6EFEF77F1E1364E600F4A19D /* YD_MaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YD_MaskView.swift; path = ../../Scenes/YD_MaskView.swift; sourceTree = "<group>"; };
 		7C6758F71DF11EFF00560601 /* ChatWithBaseSayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatWithBaseSayCell.swift; sourceTree = "<group>"; };
 		7C6758FB1DF1291E00560601 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 				B011C2C31DE7260800CB897A /* Protocol */,
 				B03B11F91DE5BFDE00B00D2E /* Base */,
 				B03B12001DE5BFDE00B00D2E /* Custom */,
+				6ED925911E1CF5FF00BFAC17 /* CommonWebVC.swift */,
 				B03B12011DE5BFDE00B00D2E /* CustomView */,
 				B03B12071DE5BFDE00B00D2E /* Extension */,
 				B03B120B1DE5BFDE00B00D2E /* Helper */,
@@ -1094,6 +1097,7 @@
 				6E5ADC6E1E1687A800E6823F /* ShowLocationDetailViewController.swift in Sources */,
 				6E5ADC681E1687A800E6823F /* ChatLocationMeCell.swift in Sources */,
 				BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */,
+				6ED925921E1CF5FF00BFAC17 /* CommonWebVC.swift in Sources */,
 				BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */,
 				B03B122E1DE5BFDE00B00D2E /* SkillShareViewController.swift in Sources */,
 				B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */,
