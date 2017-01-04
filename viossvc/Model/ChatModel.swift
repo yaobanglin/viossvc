@@ -10,6 +10,7 @@ import UIKit
 
 enum ChatMsgType:Int {
     case Text = 0
+    case Location = 1
 }
 
 class ChatMsgModel: BaseDBModel {

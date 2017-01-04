@@ -21,3 +21,7 @@ struct SocketPacketHead {
 #import <FMDB/FMDB.h>
 #import <GTSDK/GeTuiSdk.h>
 #import <UMMobClick/MobClick.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <MAMapKit/MAMapKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+

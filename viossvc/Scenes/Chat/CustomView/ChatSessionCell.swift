@@ -31,7 +31,7 @@ class ChatSessionCell: OEZTableViewCell {
             contentLabel.text = chatSession.lastChatMsg?.content
         }
         else {
-            contentLabel.text = ""
+            contentLabel.text = "[位置分享]"
         }
         timeLabel.text = chatSession.lastChatMsg?.formatMsgTime()
         noReadNumLabel.hidden = chatSession.noReading == 0

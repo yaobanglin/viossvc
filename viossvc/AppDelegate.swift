@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         appearance()
         pushMessageRegister()
         umapp()
+        registerMapSDK()
         return true
     }
 
@@ -113,6 +114,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         MobClick.setLogEnabled(true)
         //Crash
         MobClick.setCrashReportEnabled(false)
+    }
+    private func registerMapSDK() {
+        var key = ""
+        if let id = NSBundle.mainBundle().bundleIdentifier {
+            if id == "com.yundian.enterprise.trip" {
+                key = "11feec2b7ad127ae156d72aa08f2342e"
+            } else if id == "com.yundian.trip" {
+                //                    key = "50bb1e806f1d2c1a797e6e789563e334"
+                key = "7c6f2b0d4d35fce64803e99efb2fbd55"
+            }
+        }
+        AMapServices.sharedServices().apiKey = key
     }
 }
 

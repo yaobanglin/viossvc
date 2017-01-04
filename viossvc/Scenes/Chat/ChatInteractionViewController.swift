@@ -10,7 +10,7 @@ import UIKit
 import XCGLogger
 
 private let  sectionHeaderHeight : CGFloat  = 50.0
-class ChatInteractionViewController: BaseCustomListTableViewController,InputBarViewProcotol,ChatSessionProtocol{
+class ChatInteractionViewController: BaseCustomListTableViewController,InputBarViewProcotol,ChatSessionProtocol, SendLocationMessageDelegate{
 
     let  showTime  = 300
   
@@ -37,6 +37,8 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     
     func settingTableView() {
        tableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
+        tableView.registerClass(ChatLocationMeCell.self)
+        tableView.registerClass(ChatLocationAnotherCell.self)
         tableView.registerClass(ChatSectionView.classForCoder(), forHeaderFooterViewReuseIdentifier: "ChatSectionView")
         tableView.tableHeaderView = UIView(frame:CGRectMake(0,0,0,0.5))
         
@@ -116,10 +118,18 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     }
     
     override func tableView(tableView: UITableView, cellIdentifierForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+        
+        
         let model = self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as! ChatMsgModel
+//        model.content = "测试,这里是宇宙中心|30.25811767578125,120.17342936197916"
+//        model.msg_type = 1
+        if model.msg_type == ChatMsgType.Text.rawValue {
+            
+            return  model.from_uid == CurrentUserHelper.shared.uid ? "ChatWithISayCell" : "ChatWithAnotherSayCell"
+        } else {
+            return model.from_uid == CurrentUserHelper.shared.uid ? "ChatLocationMeCell" : "ChatLocationAnotherCell"
+        }
         
-        
-        return  model.from_uid == CurrentUserHelper.shared.uid ? "ChatWithISayCell" : "ChatWithAnotherSayCell"
     }
     
     
@@ -198,7 +208,15 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     }
     
 
-    
+    func sendLocation(poiModel: POIInfoModel?) {
+        let msgString = ChatMsgHepler.shared.modelToString(poiModel!)
+        ChatMsgHepler.shared.sendMsg(chatUid, msg: msgString)
+    }
+    func inputBarShowGetLocationPage() {
+        let getLocationVC = GetLocationInfoViewController()
+        getLocationVC.delegate = self
+        navigationController?.pushViewController(getLocationVC, animated: true)
+    }
     func inputBarDidSendMessage(inputBar inputBar: InputBarView, message: String) {
         if !message.isEmpty {
             ChatMsgHepler.shared.sendMsg(chatUid, msg: message)
@@ -232,6 +250,17 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
             tableView.scrollToRowAtIndexPath(NSIndexPath.init(forRow: 0, inSection: dataSource!.count - 1), atScrollPosition: UITableViewScrollPosition.Top, animated: animated!)
         }
   
+        
+    }
+    func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
+        
+        let showDetailVC = ShowLocationDetailViewController()
+        
+        let msgModel = dataSource![indexPath.row] as! ChatMsgModel
+        
+        let poiModel = ChatMsgHepler.shared.stringToModel(msgModel.content)
+        showDetailVC.poiModel = poiModel
+        navigationController?.pushViewController(showDetailVC, animated: true)
         
     }
     deinit {

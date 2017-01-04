@@ -18,12 +18,15 @@ import UIKit
     
     func inputBarDidChangeHeight(inputBar inputBar: InputBarView,height: CGFloat)
     
+    func inputBarShowGetLocationPage()
 }
 
 
 
 class InputBarView: OEZBaseView ,UITextViewDelegate,FaceKeyboardViewDelegate {
 
+    @IBOutlet weak var LocationButton:UIButton!
+    
     @IBOutlet weak var faceButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var textView: CustomTextView!
@@ -172,6 +175,10 @@ class InputBarView: OEZBaseView ,UITextViewDelegate,FaceKeyboardViewDelegate {
         sendLayerChangeColor(textView.text.length() > 0)
     }
 
+    @IBAction func getLocationPage(sender : UIButton) {
+        inputDelegate?.inputBarShowGetLocationPage()
+    }
+    
     @IBAction func emojiFaceAction(sender : UIButton) {
         
         if faceButton.selected {
@@ -199,6 +206,8 @@ class InputBarView: OEZBaseView ,UITextViewDelegate,FaceKeyboardViewDelegate {
 
         
     }
+
+    
     func setFaceBottonImage() {
 //        let image = UIImage(named: faceButton.selected ? "cm_emojiHigh" : "cm_emojiGray")
 //        faceButton.setImage(image, forState: .Normal)
