@@ -93,6 +93,7 @@ class SocketConst: NSObject {
          */
         case ModfyOrderStatus = 2011
         
+        case UploadContact = 1111
         case LoginRet = 1002
         case UserInfo = 1013
         //发送chat消息
