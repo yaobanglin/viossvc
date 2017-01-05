@@ -161,3 +161,4 @@ class UpdateServerModel:  BaseModel{
     var uid: Int = 0
     var service_list: [UserServerModel] = []
 }
+
