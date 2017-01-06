@@ -117,6 +117,7 @@ extension GetLocationInfoViewController:UITableViewDataSource, UITableViewDelega
         selectModel.isSelect = false
         let willSelectModel = poiArray[indexPath.row]
         willSelectModel.isSelect = true
+        centerPOIModel = willSelectModel
         tableView.reloadRowsAtIndexPaths([NSIndexPath.init(forRow: selectIndex, inSection: 0), NSIndexPath.init(forRow: indexPath.row, inSection: 0)], withRowAnimation: .None)
         selectIndex = indexPath.row
     }
@@ -142,6 +143,7 @@ extension GetLocationInfoViewController:UITableViewDataSource, UITableViewDelega
         let model = poiArray[indexPath.row]
         let poiCell = tableView.dequeueReusableCellWithIdentifier("poi", forIndexPath: indexPath) as! POIInfoCell
         poiCell.setDataWithModel(model)
+        
         return poiCell
     }
 }
@@ -190,7 +192,6 @@ extension GetLocationInfoViewController:MAMapViewDelegate, AMapSearchDelegate{
                 mapView?.setZoomLevel(12, animated: false)
                 mapView.centerCoordinate =  userLocation.coordinate
                 addCenterAnnotation()
-
                 getInfoWithLocation(userLocation.location)
                 isFirst = false
             }
