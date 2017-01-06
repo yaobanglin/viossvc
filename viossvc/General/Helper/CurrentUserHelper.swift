@@ -69,6 +69,19 @@ class CurrentUserHelper: NSObject {
         keychainItem.setObject(_password, forKey: kSecValueData)
         initChatHelper()
         updateDeviceToken()
+        versionCheck()
+    }
+    
+    func versionCheck() {
+        AppAPIHelper.commenAPI().version({ (model) in
+            if let verInfo = model as? [String:AnyObject] {
+                UpdateManager.checking4Update(verInfo["newVersion"] as! String, buildVer: verInfo["buildVersion"] as! String, forced: verInfo["mustUpdate"] as! Bool, result: { (gotoUpdate) in
+                    UIApplication.sharedApplication().openURL(NSURL.init(string: "https://fir.im/youyuezhuli")!)
+                })
+            }
+            }, error: { (err) in
+                
+        })
     }
     
     private func initChatHelper() {
