@@ -104,6 +104,8 @@ class SocketConst: NSObject {
         case ChatOfflineRequestMessage = 2025
         case ChatOfflineReceiveMessage = 2006
         case UpdateDeviceToken = 1031
+        
+        case VersionInfo = 1115
     }
     enum type:UInt8 {
         case Error = 0
