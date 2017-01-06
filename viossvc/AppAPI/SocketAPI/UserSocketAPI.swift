@@ -24,7 +24,12 @@ class UserSocketAPI:BaseSocketAPI, UserAPI {
         let packet = SocketDataPacket(opcode: .SMSVerify, model: SMSVerifyModel(phone:phone,type:type))
         startModelRequest(packet, modelClass: SMSVerifyRetModel.classForCoder(), complete: complete, error: error)
     }
-    
+    func checkInviteCode(phoneNumber:String,inviteCode:String,complete:CompleteBlock,error:ErrorBlock)
+    {
+        let dict = [SocketConst.Key.phoneNum:phoneNumber, SocketConst.Key.invitationCode:inviteCode]
+        let packet = SocketDataPacket(opcode: .CheckInviteCode,dict: dict)
+        startResultIntRequest(packet, complete: complete, error: error)
+    }
     func verifyCode(paramDic: Dictionary<String, AnyObject>, complete:CompleteBlock,error:ErrorBlock) {
         startRequest(SocketDataPacket(opcode: .VerifyCode,dict: paramDic), complete: complete, error: error)
     }

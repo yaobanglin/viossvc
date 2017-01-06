@@ -19,6 +19,9 @@ protocol UserAPI {
     func smsVerify(type:SMSVerifyModel.SMSType,phone:String,complete:CompleteBlock,error:ErrorBlock)
     //验证短信验证码
     func verifyCode(paramDic: Dictionary<String, AnyObject>, complete:CompleteBlock,error:ErrorBlock)
+    
+    func checkInviteCode(phoneNumber:String,inviteCode:String,complete:CompleteBlock,error:ErrorBlock)
+    
     //注册
     func register(model:RegisterModel,complete:CompleteBlock,error:ErrorBlock)
     //修改登录密码

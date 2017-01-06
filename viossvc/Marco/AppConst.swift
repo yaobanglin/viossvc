@@ -81,7 +81,7 @@ class AppConst {
     }
     
     class Network {
-        #if true //是否测试环境
+        #if false //是否测试环境
 //        static let TcpServerIP:String = "61.147.114.78";
 //        static let TcpServerPort:UInt16 = 10007;
         static let TcpServerIP:String = "192.168.8.111";
@@ -99,6 +99,7 @@ class AppConst {
     class Text {
         static let PhoneFormatErr = "请输入正确的手机号"
         static let VerifyCodeErr  = "请输入正确的验证码"
+        static let CheckInviteCodeErr = "邀请码有误，请重新输入"
         static let SMSVerifyCodeErr  = "获取验证码失败"
         static let PasswordTwoErr = "两次密码不一致"
         static let ReSMSVerifyCode = "重新获取"
@@ -111,6 +112,7 @@ class AppConst {
     enum Action:UInt {
         case CallPhone = 10001
         case HandleOrder = 11001
+        case ShowLocation = 11002
     }
     
     static let UMAppkey = "584a3eb345297d271600127e"

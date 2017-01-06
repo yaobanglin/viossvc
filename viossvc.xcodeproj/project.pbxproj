@@ -17,6 +17,7 @@
 		2FECFBDC1E1F4C760065AF60 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */; };
 		2FECFBDD1E1F4C760065AF60 /* UpdateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */; };
 		2FFBC4EC1DF8EF190039A0E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */; };
+		6E3C93C31E1E3D180002EEB4 /* YD_ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3C93C21E1E3D180002EEB4 /* YD_ContactManager.swift */; };
 		6E5870B41E0BB04E00AC5B09 /* UIViewController+Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5870B31E0BB04E00AC5B09 /* UIViewController+Analysis.swift */; };
 		6E5ADC661E1687A800E6823F /* ChatLocationAnotherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5ADC5A1E1687A800E6823F /* ChatLocationAnotherCell.swift */; };
 		6E5ADC671E1687A800E6823F /* ChatLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5ADC5B1E1687A800E6823F /* ChatLocationCell.swift */; };
@@ -33,6 +34,10 @@
 		6E5ADC731E168A4300E6823F /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5ADC721E168A4300E6823F /* MAMapKit.framework */; };
 		6E5ADC751E168A5A00E6823F /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5ADC741E168A5A00E6823F /* AMapFoundationKit.framework */; };
 		6E5ADC771E168A6400E6823F /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5ADC761E168A6400E6823F /* AMapSearchKit.framework */; };
+		6E5ADC9B1E1B878D00E6823F /* datou.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5ADC991E1B878D00E6823F /* datou.png */; };
+		6E5ADC9C1E1B878D00E6823F /* fangda.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5ADC9A1E1B878D00E6823F /* fangda.png */; };
+		6E5ADC9E1E1B879200E6823F /* 2222.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5ADC9D1E1B879200E6823F /* 2222.png */; };
+		6E5ADCA01E1B879600E6823F /* select_duihao.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E5ADC9F1E1B879600E6823F /* select_duihao.png */; };
 		6E82E2651DF01EC70039BBA0 /* SkillLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */; };
 		6E82E2661DF01EC70039BBA0 /* SingleSkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */; };
 		6E82E2671DF01EC70039BBA0 /* SkillWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */; };
@@ -42,6 +47,7 @@
 		6E9857E11DEEBD92002EFD88 /* HandleOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857DF1DEEBD92002EFD88 /* HandleOrderViewController.swift */; };
 		6E9857E21DEEBD92002EFD88 /* HandleOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9857E01DEEBD92002EFD88 /* HandleOrderViewController.xib */; };
 		6E9857E41DEEFAEE002EFD88 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9857E31DEEFAEE002EFD88 /* OrderDetailViewController.swift */; };
+		6ED925921E1CF5FF00BFAC17 /* CommonWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED925911E1CF5FF00BFAC17 /* CommonWebVC.swift */; };
 		6EFEF7801E1364E600F4A19D /* YD_MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFEF77F1E1364E600F4A19D /* YD_MaskView.swift */; };
 		7C6758F81DF11EFF00560601 /* ChatWithBaseSayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6758F71DF11EFF00560601 /* ChatWithBaseSayCell.swift */; };
 		7C6758FC1DF1291E00560601 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6758FB1DF1291E00560601 /* UIFont+Extension.swift */; };
@@ -171,6 +177,7 @@
 		2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateModule.swift; sourceTree = "<group>"; };
 		2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6E3C93C21E1E3D180002EEB4 /* YD_ContactManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YD_ContactManager.swift; path = ../YD_ContactManager.swift; sourceTree = "<group>"; };
 		6E5870B31E0BB04E00AC5B09 /* UIViewController+Analysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Analysis.swift"; sourceTree = "<group>"; };
 		6E5ADC5A1E1687A800E6823F /* ChatLocationAnotherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLocationAnotherCell.swift; sourceTree = "<group>"; };
 		6E5ADC5B1E1687A800E6823F /* ChatLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLocationCell.swift; sourceTree = "<group>"; };
@@ -187,6 +194,10 @@
 		6E5ADC721E168A4300E6823F /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = Pods/AMap2DMap/MAMapKit.framework; sourceTree = "<group>"; };
 		6E5ADC741E168A5A00E6823F /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapFoundationKit.framework; path = Pods/AMapFoundation/AMapFoundationKit.framework; sourceTree = "<group>"; };
 		6E5ADC761E168A6400E6823F /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = Pods/AMapSearch/AMapSearchKit.framework; sourceTree = "<group>"; };
+		6E5ADC991E1B878D00E6823F /* datou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = datou.png; sourceTree = "<group>"; };
+		6E5ADC9A1E1B878D00E6823F /* fangda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fangda.png; sourceTree = "<group>"; };
+		6E5ADC9D1E1B879200E6823F /* 2222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2222.png; sourceTree = "<group>"; };
+		6E5ADC9F1E1B879600E6823F /* select_duihao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select_duihao.png; sourceTree = "<group>"; };
 		6E82E2621DF01EC70039BBA0 /* SkillLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillLayoutView.swift; sourceTree = "<group>"; };
 		6E82E2631DF01EC70039BBA0 /* SingleSkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSkillCell.swift; sourceTree = "<group>"; };
 		6E82E2641DF01EC70039BBA0 /* SkillWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillWidthLayout.swift; sourceTree = "<group>"; };
@@ -196,6 +207,7 @@
 		6E9857DF1DEEBD92002EFD88 /* HandleOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandleOrderViewController.swift; sourceTree = "<group>"; };
 		6E9857E01DEEBD92002EFD88 /* HandleOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HandleOrderViewController.xib; sourceTree = "<group>"; };
 		6E9857E31DEEFAEE002EFD88 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		6ED925911E1CF5FF00BFAC17 /* CommonWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonWebVC.swift; path = ../CommonWebVC.swift; sourceTree = "<group>"; };
 		6EFEF77F1E1364E600F4A19D /* YD_MaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YD_MaskView.swift; path = ../../Scenes/YD_MaskView.swift; sourceTree = "<group>"; };
 		7C6758F71DF11EFF00560601 /* ChatWithBaseSayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatWithBaseSayCell.swift; sourceTree = "<group>"; };
 		7C6758FB1DF1291E00560601 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -394,9 +406,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6E3C93C41E1E3D3D0002EEB4 /* CommenClass */ = {
+			isa = PBXGroup;
+			children = (
+				6ED925911E1CF5FF00BFAC17 /* CommonWebVC.swift */,
+			);
+			path = CommenClass;
+			sourceTree = "<group>";
+		};
 		6E5ADC591E1687A800E6823F /* ChatLocation */ = {
 			isa = PBXGroup;
 			children = (
+				6E5ADC9D1E1B879200E6823F /* 2222.png */,
+				6E5ADC991E1B878D00E6823F /* datou.png */,
+				6E5ADC9A1E1B878D00E6823F /* fangda.png */,
+				6E5ADC9F1E1B879600E6823F /* select_duihao.png */,
 				6E5ADC5A1E1687A800E6823F /* ChatLocationAnotherCell.swift */,
 				6E5ADC5B1E1687A800E6823F /* ChatLocationCell.swift */,
 				6E5ADC5C1E1687A800E6823F /* ChatLocationMeCell.swift */,
@@ -628,6 +652,7 @@
 				B011C2C31DE7260800CB897A /* Protocol */,
 				B03B11F91DE5BFDE00B00D2E /* Base */,
 				B03B12001DE5BFDE00B00D2E /* Custom */,
+				6E3C93C41E1E3D3D0002EEB4 /* CommenClass */,
 				B03B12011DE5BFDE00B00D2E /* CustomView */,
 				B03B12071DE5BFDE00B00D2E /* Extension */,
 				B03B120B1DE5BFDE00B00D2E /* Helper */,
@@ -692,6 +717,7 @@
 				B04807E71DF2EE8700F72E54 /* ChatMsgHepler.swift */,
 				B04807E91DF3046500F72E54 /* ChatSessionHelper.swift */,
 				B037D08B1DF50E3600B8CE1A /* ChatDataBaseHelper.swift */,
+				6E3C93C21E1E3D180002EEB4 /* YD_ContactManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -937,15 +963,19 @@
 				B03B121B1DE5BFDE00B00D2E /* Main.storyboard in Resources */,
 				B03B12471DE5BFDE00B00D2E /* PageViewImageCell.xib in Resources */,
 				B03B12301DE5BFDE00B00D2E /* TourShareCell.xib in Resources */,
+				6E5ADCA01E1B879600E6823F /* select_duihao.png in Resources */,
+				6E5ADC9E1E1B879200E6823F /* 2222.png in Resources */,
 				B03B12491DE5BFDE00B00D2E /* TableViewHeaderView.xib in Resources */,
 				B03B12191DE5BFDE00B00D2E /* Assets.xcassets in Resources */,
 				B03B12461DE5BFDE00B00D2E /* LoadMoreView.xib in Resources */,
 				B034EA131DF1894700D2C0CC /* TourLeaderShareScrollView.xib in Resources */,
+				6E5ADC9B1E1B878D00E6823F /* datou.png in Resources */,
 				6E9857E21DEEBD92002EFD88 /* HandleOrderViewController.xib in Resources */,
 				B03B121C1DE5BFDE00B00D2E /* errorcode.plist in Resources */,
 				BF5EB9881DE8070500961A24 /* city.plist in Resources */,
 				B03B124E1DE5BFDE00B00D2E /* MJRefresh.bundle in Resources */,
 				B03B121A1DE5BFDE00B00D2E /* LaunchScreen.storyboard in Resources */,
+				6E5ADC9C1E1B878D00E6823F /* fangda.png in Resources */,
 				7CFB87FF1DF665F3009E78E2 /* FaceKeyboardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1092,6 +1122,7 @@
 				6E5ADC6E1E1687A800E6823F /* ShowLocationDetailViewController.swift in Sources */,
 				6E5ADC681E1687A800E6823F /* ChatLocationMeCell.swift in Sources */,
 				BF9B6BD51DEB1DED009FFEB7 /* SettingViewController.swift in Sources */,
+				6ED925921E1CF5FF00BFAC17 /* CommonWebVC.swift in Sources */,
 				BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */,
 				B03B122E1DE5BFDE00B00D2E /* SkillShareViewController.swift in Sources */,
 				B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */,
@@ -1139,6 +1170,7 @@
 				ACABD1428B9E953E3868C06B /* BaseSocketAPI.swift in Sources */,
 				6E9857E41DEEFAEE002EFD88 /* OrderDetailViewController.swift in Sources */,
 				ACABDD418C987E1EF6B392A3 /* UserSocketAPI.swift in Sources */,
+				6E3C93C31E1E3D180002EEB4 /* YD_ContactManager.swift in Sources */,
 				ACABD905FB6E14BA0DB7805B /* SkillShareSocketAPI.swift in Sources */,
 				ACABDFFD286587F50681B491 /* UserAPI.swift in Sources */,
 				BF9B6BC61DEB1B9F009FFEB7 /* UserWalletViewController.swift in Sources */,

@@ -26,6 +26,27 @@ class RegisterViewController: BaseLoginViewController {
     
     
     @IBAction func didActionNext(sender: AnyObject) {
+        guard textField3.text?.length() <= 0 else {
+            checkInviteCode()
+            return
+        }
+        pushToNextPage()
+
+    }
+    func checkInviteCode() {
+        AppAPIHelper.userAPI().checkInviteCode(textField1.text!, inviteCode: (textField3.text?.change32To10())!, complete: { (response) in
+            self.checkWithResult(response as! Int)
+            }, error: errorBlockFunc())
+      }
+    
+    func checkWithResult(result:Int) {
+        if result == 0 {
+            showErrorWithStatus(AppConst.Text.CheckInviteCodeErr);
+        } else if result == 1 {
+            pushToNextPage()
+        }
+    }
+    func pushToNextPage() {
         MobClick.event(AppConst.Event.sign_next)
         if checkTextFieldEmpty([textField1,textField2]) && checkPhoneFormat(textField1.text!) {
             let verify_code:Int? = Int(textField2.text!.trim());
@@ -39,7 +60,6 @@ class RegisterViewController: BaseLoginViewController {
             }
         }
     }
-    
     
     @IBAction func didActionSMS(sender: AnyObject) {
         if checkTextFieldEmpty([textField1]) && checkPhoneFormat(textField1.text!) {
