@@ -14,6 +14,8 @@
 		2FB95D5C1DF01A2700BBA506 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */; };
 		2FB95D5E1DF02B0C00BBA506 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */; };
 		2FE355411DF2728D00672793 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE355401DF2728D00672793 /* PhotoPreviewView.swift */; };
+		2FECFBDC1E1F4C760065AF60 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */; };
+		2FECFBDD1E1F4C760065AF60 /* UpdateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */; };
 		2FFBC4EC1DF8EF190039A0E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */; };
 		6E5870B41E0BB04E00AC5B09 /* UIViewController+Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5870B31E0BB04E00AC5B09 /* UIViewController+Analysis.swift */; };
 		6E5ADC661E1687A800E6823F /* ChatLocationAnotherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5ADC5A1E1687A800E6823F /* ChatLocationAnotherCell.swift */; };
@@ -166,6 +168,8 @@
 		2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		2FE355401DF2728D00672793 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
+		2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
+		2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateModule.swift; sourceTree = "<group>"; };
 		2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6E5870B31E0BB04E00AC5B09 /* UIViewController+Analysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Analysis.swift"; sourceTree = "<group>"; };
 		6E5ADC5A1E1687A800E6823F /* ChatLocationAnotherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLocationAnotherCell.swift; sourceTree = "<group>"; };
@@ -370,6 +374,15 @@
 				2FE355401DF2728D00672793 /* PhotoPreviewView.swift */,
 			);
 			name = PhotoWall;
+			sourceTree = "<group>";
+		};
+		2FECFBD91E1F4C760065AF60 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */,
+				2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */,
+			);
+			path = Update;
 			sourceTree = "<group>";
 		};
 		568B61F3BC4BD4BB15E8999D /* Pods */ = {
@@ -611,6 +624,7 @@
 		B03B11ED1DE5BFDD00B00D2E /* General */ = {
 			isa = PBXGroup;
 			children = (
+				2FECFBD91E1F4C760065AF60 /* Update */,
 				B011C2C31DE7260800CB897A /* Protocol */,
 				B03B11F91DE5BFDE00B00D2E /* Base */,
 				B03B12001DE5BFDE00B00D2E /* Custom */,
@@ -1081,6 +1095,7 @@
 				BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */,
 				B03B122E1DE5BFDE00B00D2E /* SkillShareViewController.swift in Sources */,
 				B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */,
+				2FECFBDC1E1F4C760065AF60 /* UpdateManager.swift in Sources */,
 				BF5EB98A1DE809E000961A24 /* CitysSelectViewController.swift in Sources */,
 				6E5ADC701E1687A900E6823F /* YD_Annotation.swift in Sources */,
 				7CA9A53B1DF547A500618FCC /* CustomTextView.swift in Sources */,
@@ -1117,6 +1132,7 @@
 				ACABD384C1541C829A7047CA /* AppAPIHelper.swift in Sources */,
 				BFE6E4851DF24B0A00480435 /* UserPictureCollectionView.swift in Sources */,
 				6E5ADC6C1E1687A800E6823F /* SearchHeaderView.swift in Sources */,
+				2FECFBDD1E1F4C760065AF60 /* UpdateModule.swift in Sources */,
 				6E9857D41DEE6DCD002EFD88 /* OrderListAPI.swift in Sources */,
 				BF455B7E1DE84178007D97B0 /* CommenSocketAPI.swift in Sources */,
 				2FB95D1E1DF0010500BBA506 /* PhotoWallUploadViewController.swift in Sources */,
