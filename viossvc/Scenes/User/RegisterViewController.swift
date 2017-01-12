@@ -43,6 +43,7 @@ class RegisterViewController: BaseLoginViewController {
         if result == 0 {
             showErrorWithStatus(AppConst.Text.CheckInviteCodeErr);
         } else if result == 1 {
+            registerModel.invitation_phone_num = textField3.text!.change32To10()
             pushToNextPage()
         }
     }
