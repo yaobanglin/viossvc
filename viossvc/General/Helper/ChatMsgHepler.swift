@@ -31,7 +31,11 @@ class ChatMsgHepler: NSObject {
                             } else {
                                 // Fallback on earlier versions
                             }
-                            localNotify.alertBody =  user.nickname! + " : " + chatModel!.content
+                            var content = chatModel!.content
+                            if chatModel?.msg_type == ChatMsgType.Location.rawValue {
+                                content = "[位置分享]"
+                            }
+                            localNotify.alertBody =  user.nickname! + " : " + content
                             UIApplication.sharedApplication().scheduleLocalNotification(localNotify)
                         }
                     }

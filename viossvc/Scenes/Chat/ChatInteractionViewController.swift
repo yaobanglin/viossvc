@@ -68,7 +68,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         guard chatMsgModel.from_uid == chatUid || chatMsgModel.from_uid == CurrentUserHelper.shared.userInfo.uid else {return}
         dataSource?.append(chatMsgModel)
         tableView.reloadData()
-       tableViewScrolToBottom()
+        tableViewScrolToBottom()
     }
     
     func sessionUid() -> Int {

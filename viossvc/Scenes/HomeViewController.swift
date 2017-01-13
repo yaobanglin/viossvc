@@ -18,6 +18,7 @@ class HomeViewController: SegmentedViewController, TouchMaskViewDelegate{
     
     var images = ["message_mask", "order_mask", "refresh_service_mask"]
     
+    @IBOutlet weak var rightButton: UIBarButtonItem!
     
     func segmentedViewControllerIdentifiers() -> [String]! {
         return [ChatSessionViewController.className(),OrderListViewController.className()];
@@ -37,7 +38,6 @@ class HomeViewController: SegmentedViewController, TouchMaskViewDelegate{
         let isShowMaskView = userDefaults.valueForKey(key)
         guard isShowMaskView == nil else {return}
         
-        userDefaults.setBool(true, forKey: key)
         maskView = YD_MaskView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height))
 
         maskView?.setMaskFrame(getRectWithCount(), isTop: true, infoImage: images[count], infoLeft: false)
@@ -58,14 +58,24 @@ class HomeViewController: SegmentedViewController, TouchMaskViewDelegate{
             return CGRectMake(originX + width / 2, originY, width / 2, height)
         }
             
-        let width:CGFloat = 70.0
+        let width:CGFloat = 70
         let originY:CGFloat =  7.0 + 20
         let height:CGFloat = 30.0
-        let originX = UIScreen.mainScreen().bounds.size.width - width - 17.5
+        let originX = getRightButtonFrameX()
         
         return CGRectMake(originX, originY, width, height)
         
     }
+    func getRightButtonFrameX() -> CGFloat{
+        
+        for view in (navigationController?.navigationBar.subviews)! {
+            if view.isKindOfClass(UIButton) {
+                return view.frame.origin.x
+            }
+        }
+        return  segmentedControl.frame.origin.x + segmentedControl.frame.size.width + 10
+    }
+    
     func touchMaskView() {
         switch count {
         case 1:
@@ -87,6 +97,10 @@ class HomeViewController: SegmentedViewController, TouchMaskViewDelegate{
     }
     
     func removeMaskView() {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+
+        userDefaults.setBool(true, forKey: "isShowMaskView")
+
         maskView?.removeFromSuperview()
         maskView?.frame = CGRectZero
         segmentedControl.selectedSegmentIndex = 0
