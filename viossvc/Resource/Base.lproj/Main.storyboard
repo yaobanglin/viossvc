@@ -670,6 +670,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="rightButton" destination="mgH-1F-VgP" id="CdN-Dm-n29"/>
                         <outlet property="segmentedControl" destination="YmM-tS-qIs" id="iC5-bw-XJy"/>
                     </connections>
                 </viewController>
