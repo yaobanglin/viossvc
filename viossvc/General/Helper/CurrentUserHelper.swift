@@ -77,7 +77,7 @@ class CurrentUserHelper: NSObject {
             if let verInfo = model as? [String:AnyObject] {
                 UpdateManager.checking4Update(verInfo["newVersion"] as! String, buildVer: verInfo["buildVersion"] as! String, forced: verInfo["mustUpdate"] as! Bool, result: { (gotoUpdate) in
                     if gotoUpdate {
-                        UIApplication.sharedApplication().openURL(NSURL.init(string: verInfo["detailedInfo"])!)
+                        UIApplication.sharedApplication().openURL(NSURL.init(string: verInfo["detailedInfo"] as! String)!)
                     }
                 })
             }
