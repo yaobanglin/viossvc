@@ -30,8 +30,10 @@ class ChatSessionCell: OEZTableViewCell {
         if chatSession.lastChatMsg.msg_type == ChatMsgType.Text.rawValue {
             contentLabel.text = chatSession.lastChatMsg?.content
         }
-        else {
+        else if chatSession.lastChatMsg.msg_type == ChatMsgType.Location.rawValue {
             contentLabel.text = "[位置分享]"
+        } else {
+            contentLabel.text = "[未知消息类型，请更新最新版查看]"
         }
         timeLabel.text = chatSession.lastChatMsg?.formatMsgTime()
         noReadNumLabel.hidden = chatSession.noReading == 0

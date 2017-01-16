@@ -53,6 +53,7 @@ class SocketRequestManage: NSObject {
     }
 
     func notifyResponsePacket(packet: SocketDataPacket) {
+        
         if packet.operate_code == SocketConst.OPCode.ChatReceiveMessage.rawValue {
             let response:SocketJsonResponse = SocketJsonResponse(packet:packet)
             dispatch_async(dispatch_get_main_queue(), {[weak self] in

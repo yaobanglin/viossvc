@@ -41,7 +41,7 @@ class ChatLocationCell: OEZTableViewCell, OEZCalculateProtocol{
         
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
+        label.textColor = UIColor(red: 102/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
         label.font = UIFont.systemFontOfSize(14)
         return label
     }()
@@ -79,7 +79,7 @@ class ChatLocationCell: OEZTableViewCell, OEZCalculateProtocol{
             make.top.equalTo(titleLabel.snp_bottom).offset(5)
             make.left.equalTo(titleLabel)
             make.right.equalTo(titleLabel)
-            make.bottom.lessThanOrEqualTo(10)
+            make.bottom.lessThanOrEqualTo(-10)
             
         }
         let tapGes = UITapGestureRecognizer(target: self, action: #selector(ChatLocationCell.selectedAtBundle))
@@ -87,14 +87,14 @@ class ChatLocationCell: OEZTableViewCell, OEZCalculateProtocol{
     }
     func selectedAtBundle() {
         
-        didSelectRowAction(AppConst.Action.HandleOrder.rawValue, data: nil)
+        didSelectRowAction(AppConst.Action.ShowLocation.rawValue, data: nil)
     }
     
     func setupDataWithContent(content:String?) {
 
         guard content != nil else {return}
         
-        let poiModel = stringToModel(content!)
+        let poiModel = ChatMsgHepler.shared.stringToModel(content!)
         
         adressLabel.text = poiModel.detail
         titleLabel.text = poiModel.name
@@ -111,32 +111,32 @@ class ChatLocationCell: OEZTableViewCell, OEZCalculateProtocol{
     }
 
 
-    
-    func stringToModel(content:String) -> POIInfoModel {
-        
-        let model = POIInfoModel()
-        
-        let infoArray = content.componentsSeparatedByString("|")
-        
-        let addressString = infoArray.first
-        let locationString = infoArray.last
-        
-        model.name = addressString?.componentsSeparatedByString(",").first
-        model.detail = addressString?.componentsSeparatedByString(",").last
-        
-        guard locationString != nil else {return model}
-        
-        if locationString?.componentsSeparatedByString(",").first != nil {
-            model.latiude = Double((locationString?.componentsSeparatedByString(",").first)!)!
-        }
-        if locationString?.componentsSeparatedByString(",").last != nil {
-            model.longtiude = Double((locationString?.componentsSeparatedByString(",").last)!)!
-        }
-        
-        return model
-        
-    }
-    
+//    
+//    func stringToModel(content:String) -> POIInfoModel {
+//        
+//        let model = POIInfoModel()
+//        
+//        let infoArray = content.componentsSeparatedByString("|")
+//        
+//        let addressString = infoArray.first
+//        let locationString = infoArray.last
+//        
+//        model.name = addressString?.componentsSeparatedByString(",").first
+//        model.detail = addressString?.componentsSeparatedByString(",").last
+//        
+//        guard locationString != nil else {return model}
+//        
+//        if locationString?.componentsSeparatedByString(",").first != nil {
+//            model.latiude = Double((locationString?.componentsSeparatedByString(",").first)!)!
+//        }
+//        if locationString?.componentsSeparatedByString(",").last != nil {
+//            model.longtiude = Double((locationString?.componentsSeparatedByString(",").last)!)!
+//        }
+//        
+//        return model
+//        
+//    }
+//    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

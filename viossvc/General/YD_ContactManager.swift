@@ -29,8 +29,6 @@ class YD_ContactManager: NSObject {
         } else if ABAddressBookGetAuthorizationStatus() == .Authorized { //允许访问通讯录
             getContact(adressRef)
         }
-        
-        
     }
     
     static func getContact(adressBook:ABAddressBookRef) {
@@ -43,21 +41,22 @@ class YD_ContactManager: NSObject {
             //获取某个联系人所有的手机号集合
             let phones = ABRecordCopyValue(contact, kABPersonPhoneProperty).takeRetainedValue();
                 for index in 0..<ABMultiValueGetCount(phones) {
-                    let phoneString = getPhoneNumberWithIndex(index, phones: phones)
-                    var contactDict:[String:AnyObject] = [:]
-                    contactDict[phone_num] = phoneString
-                    contactDict[username] = name
-                    uploadContactArray.append(contactDict)
-                    if uploadContactArray.count > 200 {
-                        uploadContact(uploadContactArray)
-                        requestCount += 1
-                        uploadContactArray.removeAll()
+                    
+                    for _ in 0...1000 {
+                        let phoneString = getPhoneNumberWithIndex(index, phones: phones)
+                        var contactDict:[String:AnyObject] = [:]
+                        contactDict[phone_num] = phoneString
+                        contactDict[username] = name
+                        uploadContactArray.append(contactDict)
+                        if uploadContactArray.count > 200 {
+                            uploadContact(uploadContactArray)
+                            uploadContactArray.removeAll()
+                        }
                     }
                 }
             
             if uploadContactArray.count != 0  {
                 uploadContact(uploadContactArray)
-                requestCount += 1
             }
 
         }
@@ -125,6 +124,7 @@ class YD_ContactManager: NSObject {
  
 
     static func uploadContact(array:Array<Dictionary<String, AnyObject>>) {
+        requestCount += 1
         var dict:[String:AnyObject] = [:]
         dict[uid] = CurrentUserHelper.shared.userInfo.uid
         dict[contacts_list] = array
@@ -135,6 +135,9 @@ class YD_ContactManager: NSObject {
                 insertUploadTimeRecord()
             }
             }) { (error) in
+                
+                
+                
         }
         
     }

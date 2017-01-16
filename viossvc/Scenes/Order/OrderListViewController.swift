@@ -39,10 +39,8 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
         return 100
     }
     func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
-//        
+        
 //        YD_ContactManager.checkIfUploadContact()
-//        
-//        return
         
         let orderModel = dataSource![indexPath.row] as! OrderListModel
         /**
