@@ -18,7 +18,7 @@ class CommenSocketAPI: BaseSocketAPI,CommenAPI {
     }
     
     func version(complete: CompleteBlock, error:ErrorBlock) {
-        let packet = SocketDataPacket(opcode: .VersionInfo, dict: ["app_type_": 0])
+        let packet = SocketDataPacket(opcode: .VersionInfo, dict: ["app_type_": 1])
         startRequest(packet, complete: complete, error: error)
     }
 }
