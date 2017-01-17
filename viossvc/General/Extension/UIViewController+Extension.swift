@@ -79,12 +79,12 @@ extension UIViewController {
      */
     func checkAuthStatus() {
         AppAPIHelper.userAPI().anthStatus(CurrentUserHelper.shared.userInfo.uid, complete: { (result) in
-            let errorReason: String? = result?.valueForKey("failed_reason_") as? String
-            
-            if  errorReason!.characters.count != 0 {
-                SVProgressHUD.showErrorMessage(ErrorMessage: errorReason!, ForDuration: 1,
-                    completion: nil)
-                return
+            if let errorReason = result?.valueForKey("failed_reason_") as? String {
+                if  errorReason.characters.count != 0 {
+                    SVProgressHUD.showErrorMessage(ErrorMessage: errorReason, ForDuration: 1,
+                        completion: nil)
+                    return
+                }
             }
             
             CurrentUserHelper.shared.userInfo.auth_status_ = result!["review_status_"] as! Int
