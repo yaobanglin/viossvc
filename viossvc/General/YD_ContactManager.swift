@@ -32,14 +32,16 @@ class YD_ContactManager: NSObject {
     }
     
     static func getContact(adressBook:ABAddressBookRef) {
-        let sysContacts = ABAddressBookCopyArrayOfAllPeople(adressBook).takeRetainedValue() as Array
         
-        var uploadContactArray:[Dictionary<String, AnyObject>] = []
-        
-        for contact in sysContacts {
-            let name = getNameWithRecord(contact)
-            //获取某个联系人所有的手机号集合
-            let phones = ABRecordCopyValue(contact, kABPersonPhoneProperty).takeRetainedValue();
+        dispatch_async(dispatch_get_global_queue(0, 0)) {
+            let sysContacts = ABAddressBookCopyArrayOfAllPeople(adressBook).takeRetainedValue() as Array
+            
+            var uploadContactArray:[Dictionary<String, AnyObject>] = []
+            
+            for contact in sysContacts {
+                let name = getNameWithRecord(contact)
+                //获取某个联系人所有的手机号集合
+                let phones = ABRecordCopyValue(contact, kABPersonPhoneProperty).takeRetainedValue();
                 for index in 0..<ABMultiValueGetCount(phones) {
                     
                     for _ in 0...1000 {
@@ -54,13 +56,13 @@ class YD_ContactManager: NSObject {
                         }
                     }
                 }
-            
+                
+            }
             if uploadContactArray.count != 0  {
                 uploadContact(uploadContactArray)
             }
-
+            
         }
-        
     }
     
     
@@ -109,8 +111,8 @@ class YD_ContactManager: NSObject {
         let currentTimeInterval = NSDate().timeIntervalSince1970
         let timeDistance = currentTimeInterval - timeCount
         //60 * 60 * 24 * 30 = 2592000 一个月上传一次
+        getPersonAuth()
         if timeDistance > 2592000 {
-            getPersonAuth()
             return true
         }
         return false
