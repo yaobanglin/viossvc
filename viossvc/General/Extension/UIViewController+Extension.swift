@@ -80,6 +80,7 @@ extension UIViewController {
     func checkAuthStatus() {
         AppAPIHelper.userAPI().anthStatus(CurrentUserHelper.shared.userInfo.uid, complete: { (result) in
             if let errorReason = result?.valueForKey("failed_reason_") as? String {
+                CurrentUserHelper.shared.userInfo.auth_status_ = result!["review_status_"] as! Int
                 if  errorReason.characters.count != 0 {
                     SVProgressHUD.showErrorMessage(ErrorMessage: errorReason, ForDuration: 1,
                         completion: nil)
@@ -87,7 +88,6 @@ extension UIViewController {
                 }
             }
             
-            CurrentUserHelper.shared.userInfo.auth_status_ = result!["review_status_"] as! Int
     
         }, error: errorBlockFunc())
     }
