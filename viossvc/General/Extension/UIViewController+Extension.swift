@@ -89,6 +89,7 @@ extension UIViewController {
             if let status = result?.valueForKey("review_status_") as? Int {
                 CurrentUserHelper.shared.userInfo.auth_status_ = status
             }
+
         }, error: errorBlockFunc())
     }
     
