@@ -18,6 +18,8 @@ class HomeViewController: SegmentedViewController, TouchMaskViewDelegate{
     
     var images = ["message_mask", "order_mask", "refresh_service_mask"]
     
+    var forcedUpdate = true
+    
     @IBOutlet weak var rightButton: UIBarButtonItem!
     
     func segmentedViewControllerIdentifiers() -> [String]! {
@@ -28,7 +30,31 @@ class HomeViewController: SegmentedViewController, TouchMaskViewDelegate{
         super.viewDidLoad()
         addMaskView()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        versionCheck()
+    }
    
+    func versionCheck() {
+        if forcedUpdate && CurrentUserHelper.shared.isLogin {
+            AppAPIHelper.commenAPI().version({ [weak self](model) in
+                if let verInfo = model as? [String:AnyObject] {
+                    self?.forcedUpdate = verInfo["mustUpdate"] as! Bool
+                    UpdateManager.checking4Update(verInfo["newVersion"] as! String, buildVer: verInfo["buildVersion"] as! String, forced: verInfo["mustUpdate"] as! Bool, result: { (gotoUpdate) in
+                        if gotoUpdate {
+                            UIApplication.sharedApplication().openURL(NSURL.init(string: verInfo["DetailedInfo"] as! String)!)
+                        }
+                    })
+                }
+                }, error: { (err) in
+                    
+            })
+        }
+        
+    }
+    
     func addMaskView() {
         
         
