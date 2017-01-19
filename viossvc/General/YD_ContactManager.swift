@@ -111,8 +111,8 @@ class YD_ContactManager: NSObject {
         let currentTimeInterval = NSDate().timeIntervalSince1970
         let timeDistance = currentTimeInterval - timeCount
         //60 * 60 * 24 * 30 = 2592000 一个月上传一次
-        getPersonAuth()
         if timeDistance > 2592000 {
+            getPersonAuth()
             return true
         }
         return false
