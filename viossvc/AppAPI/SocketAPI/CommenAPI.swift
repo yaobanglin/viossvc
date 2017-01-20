@@ -13,4 +13,6 @@ protocol CommenAPI {
     func imageToken(complete: CompleteBlock, error:ErrorBlock)
     //心跳包
     func heardBeat(uid: Int, complete: CompleteBlock, error: ErrorBlock)
+    //获取版本信息
+    func version(complete: CompleteBlock, error:ErrorBlock)
 }

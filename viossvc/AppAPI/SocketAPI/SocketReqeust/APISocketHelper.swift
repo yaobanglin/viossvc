@@ -15,6 +15,8 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
     var dispatch_queue: dispatch_queue_t!;
     var mutableData: NSMutableData = NSMutableData();
 
+    var disconnected = false
+    
     var isConnected : Bool {
         return socket!.isConnected
     }
@@ -67,6 +69,21 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
         });
         socket?.readDataWithTimeout(-1, tag: 0)
     }
+    
+    func relogin() {
+        if disconnected {
+            disconnected = false
+            if  CurrentUserHelper.shared.autoLogin({ (model) in
+                SVProgressHUD.dismiss()
+                }, error: { [weak self] (error) in
+                    SVProgressHUD.showErrorWithStatus(error.localizedDescription)
+                    XCGLogger.error("\(error) \(self)")
+                    
+                }) {
+                SVProgressHUD.showWithStatus("登录中...")
+            }
+        }
+    }
 
     @objc func socket(sock: GCDAsyncSocket, didReadData data: NSData, withTag tag: CLong) {
 //        XCGLogger.debug("socket:\(data)")
@@ -102,6 +119,7 @@ class APISocketHelper:NSObject, GCDAsyncSocketDelegate {
 //        SVProgressHUD.showErrorMessage(ErrorMessage: "连接失败，5秒后重连", ForDuration: 5) {[weak self] in
 //            self?.connect()
 //        }
+        disconnected = true
     }
 
     deinit {

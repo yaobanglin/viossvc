@@ -11,7 +11,8 @@ import XCGLogger
 import SVProgressHUD
 import Fabric
 import Crashlytics
- 
+import AddressBook
+
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
@@ -25,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         pushMessageRegister()
         umapp()
         registerMapSDK()
+//        regitserContact()
         return true
     }
 
@@ -100,6 +102,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         SVProgressHUD.setMinimumDismissTimeInterval(2)
     }
 
+//    private func regitserContact() {
+//        
+//        let adressRef = ABAddressBookCreate().takeRetainedValue()
+//        if ABAddressBookGetAuthorizationStatus() == .NotDetermined { //还未请求通讯录权限
+//            ABAddressBookRequestAccessWithCompletion(adressRef, { (granted, error) in
+//            })
+//        } else if ABAddressBookGetAuthorizationStatus() == .Denied || ABAddressBookGetAuthorizationStatus() == .Restricted { //拒绝访问通讯录
+//            
+//        } else if ABAddressBookGetAuthorizationStatus() == .Authorized { //允许访问通讯录
+//            
+//        }
+//    }
     private func umapp(){
         
         UMAnalyticsConfig.sharedInstance().appKey = AppConst.UMAppkey
@@ -116,13 +130,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         MobClick.setCrashReportEnabled(false)
     }
     private func registerMapSDK() {
-        var key = ""
+        var key = "46a4db80f23354f30107c349fa55387a"
         if let id = NSBundle.mainBundle().bundleIdentifier {
-            if id == "com.yundian.enterprise.trip" {
-                key = "11feec2b7ad127ae156d72aa08f2342e"
-            } else if id == "com.yundian.trip" {
-                //                    key = "50bb1e806f1d2c1a797e6e789563e334"
-                key = "7c6f2b0d4d35fce64803e99efb2fbd55"
+            if id == "com.yundian.enterprise.assistant" {
+                key = "fee316e0f09979b349bfd4f9e225c907"
+            } else if id == "com.yundian.assistant" {
+                key = "46a4db80f23354f30107c349fa55387a"
             }
         }
         AMapServices.sharedServices().apiKey = key

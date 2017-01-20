@@ -73,6 +73,7 @@ class RegisterModel: SMSVerifyRetModel {
     var verify_code: Int = 0
     var phone_num: String!
     var passwd: String!
+    var invitation_phone_num:String?
     var user_type: Int = UserType.Leader.rawValue;
     var smsType:SMSVerifyModel.SMSType = .Register
 }
@@ -160,3 +161,4 @@ class UpdateServerModel:  BaseModel{
     var uid: Int = 0
     var service_list: [UserServerModel] = []
 }
+

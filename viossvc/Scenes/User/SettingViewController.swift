@@ -110,7 +110,7 @@ class SettingViewController: BaseTableViewController {
             return
         }
         
-        if cell == authCell && authStatus == "未认证"{
+        if cell == authCell && (authStatus == "未认证" || authStatus == "认证失败"){
             performSegueWithIdentifier("AuthUserViewController", sender: nil)
             return
         }

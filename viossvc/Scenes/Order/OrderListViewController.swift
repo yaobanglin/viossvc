@@ -40,6 +40,8 @@ class OrderListViewController: BasePageListTableViewController,OEZTableViewDeleg
     }
     func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
         
+//        YD_ContactManager.checkIfUploadContact()
+        
         let orderModel = dataSource![indexPath.row] as! OrderListModel
         /**
          *  如果订单已完成则跳转订单详情。反之弹出订单操作页

@@ -31,7 +31,11 @@ class ChatMsgHepler: NSObject {
                             } else {
                                 // Fallback on earlier versions
                             }
-                            localNotify.alertBody =  user.nickname! + " : " + chatModel!.content
+                            var content = chatModel!.content
+                            if chatModel?.msg_type == ChatMsgType.Location.rawValue {
+                                content = "[位置分享]"
+                            }
+                            localNotify.alertBody =  user.nickname! + " : " + content
                             UIApplication.sharedApplication().scheduleLocalNotification(localNotify)
                         }
                     }
@@ -115,14 +119,12 @@ class ChatMsgHepler: NSObject {
         let model = POIInfoModel()
         
         let infoArray = content.componentsSeparatedByString("|")
-        
+        guard infoArray.count > 1 else {return model}
         let addressString = infoArray.first
         let locationString = infoArray.last
         
         model.name = addressString?.componentsSeparatedByString(",").first
         model.detail = addressString?.componentsSeparatedByString(",").last
-        
-        guard locationString != nil else {return model}
         
         if locationString?.componentsSeparatedByString(",").first != nil {
             model.latiude = Double((locationString?.componentsSeparatedByString(",").first)!)!

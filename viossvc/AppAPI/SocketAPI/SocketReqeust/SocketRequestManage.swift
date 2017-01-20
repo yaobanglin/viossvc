@@ -53,6 +53,7 @@ class SocketRequestManage: NSObject {
     }
 
     func notifyResponsePacket(packet: SocketDataPacket) {
+        
         if packet.operate_code == SocketConst.OPCode.ChatReceiveMessage.rawValue {
             let response:SocketJsonResponse = SocketJsonResponse(packet:packet)
             dispatch_async(dispatch_get_main_queue(), {[weak self] in
@@ -96,7 +97,15 @@ class SocketRequestManage: NSObject {
     private func sendRequest(packet: SocketDataPacket) {
         let block:dispatch_block_t = {
             [weak self] in
-            self?._socketHelper?.sendData(packet.serializableData()!)
+            if packet.operate_code != SocketConst.OPCode.Login.rawValue && (self?._socketHelper?.disconnected)! {
+                self?._socketHelper?.relogin()
+                let when = dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC))
+                dispatch_after(when,dispatch_get_main_queue(), { () in
+                    self?._socketHelper?.sendData(packet.serializableData()!)
+                })
+            } else {
+                self?._socketHelper?.sendData(packet.serializableData()!)
+            }
         }
         objc_sync_enter(self)
         if _socketHelper == nil {

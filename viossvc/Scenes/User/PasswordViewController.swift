@@ -22,6 +22,10 @@ class PasswordViewController: BaseLoginViewController {
                 let tips = registerModel.smsType == SMSVerifyModel.SMSType.Register ? "注册..." : "重设密码..."
                 showWithStatus(tips)
                 registerModel.passwd = textField1.text?.trim()
+//                if textField3.text?.length() > 0 {
+//                    
+//                    registerModel.invitation_phone_num = textField3.text!.change32To10()                    
+//                }
                 AppAPIHelper.userAPI().register(registerModel, complete: { [weak self] (resultInt) in
                     self?.didRegisterComplete(resultInt as! Int);
                     }, error: errorBlockFunc())

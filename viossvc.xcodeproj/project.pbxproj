@@ -14,7 +14,11 @@
 		2FB95D5C1DF01A2700BBA506 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */; };
 		2FB95D5E1DF02B0C00BBA506 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */; };
 		2FE355411DF2728D00672793 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE355401DF2728D00672793 /* PhotoPreviewView.swift */; };
+		2FECFBDC1E1F4C760065AF60 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */; };
+		2FECFBDD1E1F4C760065AF60 /* UpdateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */; };
 		2FFBC4EC1DF8EF190039A0E6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */; };
+		6E46153B1E308EE80045C115 /* CommonWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E46153A1E308EE80045C115 /* CommonWebVC.swift */; };
+		6E46153D1E308EFE0045C115 /* YD_ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E46153C1E308EFE0045C115 /* YD_ContactManager.swift */; };
 		6E5870B41E0BB04E00AC5B09 /* UIViewController+Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5870B31E0BB04E00AC5B09 /* UIViewController+Analysis.swift */; };
 		6E5ADC661E1687A800E6823F /* ChatLocationAnotherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5ADC5A1E1687A800E6823F /* ChatLocationAnotherCell.swift */; };
 		6E5ADC671E1687A800E6823F /* ChatLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5ADC5B1E1687A800E6823F /* ChatLocationCell.swift */; };
@@ -170,7 +174,11 @@
 		2FB95D5B1DF01A2700BBA506 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		2FB95D5D1DF02B0C00BBA506 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		2FE355401DF2728D00672793 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
+		2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
+		2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateModule.swift; sourceTree = "<group>"; };
 		2FFBC4EB1DF8EF190039A0E6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6E46153A1E308EE80045C115 /* CommonWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonWebVC.swift; sourceTree = "<group>"; };
+		6E46153C1E308EFE0045C115 /* YD_ContactManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YD_ContactManager.swift; sourceTree = "<group>"; };
 		6E5870B31E0BB04E00AC5B09 /* UIViewController+Analysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Analysis.swift"; sourceTree = "<group>"; };
 		6E5ADC5A1E1687A800E6823F /* ChatLocationAnotherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLocationAnotherCell.swift; sourceTree = "<group>"; };
 		6E5ADC5B1E1687A800E6823F /* ChatLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLocationCell.swift; sourceTree = "<group>"; };
@@ -380,6 +388,15 @@
 			name = PhotoWall;
 			sourceTree = "<group>";
 		};
+		2FECFBD91E1F4C760065AF60 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				2FECFBDA1E1F4C760065AF60 /* UpdateManager.swift */,
+				2FECFBDB1E1F4C760065AF60 /* UpdateModule.swift */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
 		568B61F3BC4BD4BB15E8999D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +404,15 @@
 				99F5EF6682B1172BAA8C79FC /* Pods-viossvc.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		6E3C93C41E1E3D3D0002EEB4 /* CommenClass */ = {
+			isa = PBXGroup;
+			children = (
+				6E46153A1E308EE80045C115 /* CommonWebVC.swift */,
+				6E46153C1E308EFE0045C115 /* YD_ContactManager.swift */,
+			);
+			path = CommenClass;
 			sourceTree = "<group>";
 		};
 		6E5ADC591E1687A800E6823F /* ChatLocation */ = {
@@ -623,9 +649,11 @@
 		B03B11ED1DE5BFDD00B00D2E /* General */ = {
 			isa = PBXGroup;
 			children = (
+				2FECFBD91E1F4C760065AF60 /* Update */,
 				B011C2C31DE7260800CB897A /* Protocol */,
 				B03B11F91DE5BFDE00B00D2E /* Base */,
 				B03B12001DE5BFDE00B00D2E /* Custom */,
+				6E3C93C41E1E3D3D0002EEB4 /* CommenClass */,
 				B03B12011DE5BFDE00B00D2E /* CustomView */,
 				B03B12071DE5BFDE00B00D2E /* Extension */,
 				B03B120B1DE5BFDE00B00D2E /* Helper */,
@@ -1061,6 +1089,7 @@
 				B024A17F1DE7D3710095A691 /* TourShareAPI.swift in Sources */,
 				B08F95D81DE5E834001ACB2A /* TourShareModel.swift in Sources */,
 				B03B124B1DE5BFDE00B00D2E /* UITableView+Extension.swift in Sources */,
+				6E46153B1E308EE80045C115 /* CommonWebVC.swift in Sources */,
 				6E5ADC6F1E1687A800E6823F /* ShowMapHeaderView.swift in Sources */,
 				B03B12171DE5BFDE00B00D2E /* UserModel.swift in Sources */,
 				6E5ADC661E1687A800E6823F /* ChatLocationAnotherCell.swift in Sources */,
@@ -1097,6 +1126,7 @@
 				BFACB2CD1DEC523800AF0D34 /* LoginNavigationController.swift in Sources */,
 				B03B122E1DE5BFDE00B00D2E /* SkillShareViewController.swift in Sources */,
 				B011C2C21DE6DFEB00CB897A /* CurrentUserHelper.swift in Sources */,
+				2FECFBDC1E1F4C760065AF60 /* UpdateManager.swift in Sources */,
 				BF5EB98A1DE809E000961A24 /* CitysSelectViewController.swift in Sources */,
 				6E5ADC701E1687A900E6823F /* YD_Annotation.swift in Sources */,
 				7CA9A53B1DF547A500618FCC /* CustomTextView.swift in Sources */,
@@ -1133,6 +1163,7 @@
 				ACABD384C1541C829A7047CA /* AppAPIHelper.swift in Sources */,
 				BFE6E4851DF24B0A00480435 /* UserPictureCollectionView.swift in Sources */,
 				6E5ADC6C1E1687A800E6823F /* SearchHeaderView.swift in Sources */,
+				2FECFBDD1E1F4C760065AF60 /* UpdateModule.swift in Sources */,
 				6E9857D41DEE6DCD002EFD88 /* OrderListAPI.swift in Sources */,
 				BF455B7E1DE84178007D97B0 /* CommenSocketAPI.swift in Sources */,
 				2FB95D1E1DF0010500BBA506 /* PhotoWallUploadViewController.swift in Sources */,
@@ -1140,6 +1171,7 @@
 				6E9857E41DEEFAEE002EFD88 /* OrderDetailViewController.swift in Sources */,
 				ACABDD418C987E1EF6B392A3 /* UserSocketAPI.swift in Sources */,
 				ACABD905FB6E14BA0DB7805B /* SkillShareSocketAPI.swift in Sources */,
+				6E46153D1E308EFE0045C115 /* YD_ContactManager.swift in Sources */,
 				ACABDFFD286587F50681B491 /* UserAPI.swift in Sources */,
 				BF9B6BC61DEB1B9F009FFEB7 /* UserWalletViewController.swift in Sources */,
 				BF9B6BD21DEB1CF3009FFEB7 /* AddBankCardViewController.swift in Sources */,
@@ -1354,7 +1386,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire/Alamofire.framework/Headers\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.assistant;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yundian.enterprise.trip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2d96044d-94a1-43db-bfad-c1951ae48957";
 				SWIFT_OBJC_BRIDGING_HEADER = "viossvc/Marco/viossvc-Bridging-Header.h";

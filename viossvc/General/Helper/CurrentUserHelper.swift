@@ -14,6 +14,7 @@ class CurrentUserHelper: NSObject {
     private var _userInfo:UserInfoModel!
     private var _password:String!
     private var _deviceToken:String!
+    private var _firstLanuch = true
     
     var deviceToken:String! {
         get {
@@ -69,6 +70,27 @@ class CurrentUserHelper: NSObject {
         keychainItem.setObject(_password, forKey: kSecValueData)
         initChatHelper()
         updateDeviceToken()
+        if _firstLanuch {
+            versionCheck()
+            _firstLanuch = false
+        }
+    }
+    
+    func versionCheck() {
+        AppAPIHelper.commenAPI().version({ (model) in
+            if let verInfo = model as? [String:AnyObject] {
+                UpdateManager.checking4Update(verInfo["newVersion"] as! String, buildVer: verInfo["buildVersion"] as! String, forced: verInfo["mustUpdate"] as! Bool, result: { (gotoUpdate) in
+                    if gotoUpdate {
+                        UIApplication.sharedApplication().openURL(NSURL.init(string: verInfo["DetailedInfo"] as! String)!)
+                        if (verInfo["mustUpdate"] as? Bool)! {
+                            exit(0)
+                        }
+                    }
+                })
+            }
+            }, error: { (err) in
+                
+        })
     }
     
     private func initChatHelper() {

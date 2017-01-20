@@ -68,7 +68,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         guard chatMsgModel.from_uid == chatUid || chatMsgModel.from_uid == CurrentUserHelper.shared.userInfo.uid else {return}
         dataSource?.append(chatMsgModel)
         tableView.reloadData()
-       tableViewScrolToBottom()
+        tableViewScrolToBottom()
     }
     
     func sessionUid() -> Int {
@@ -121,15 +121,13 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
         
         
         let model = self.tableView(tableView, cellDataForRowAtIndexPath: indexPath) as! ChatMsgModel
-//        model.content = "测试,这里是宇宙中心|30.25811767578125,120.17342936197916"
-//        model.msg_type = 1
         if model.msg_type == ChatMsgType.Text.rawValue {
-            
             return  model.from_uid == CurrentUserHelper.shared.uid ? "ChatWithISayCell" : "ChatWithAnotherSayCell"
-        } else {
+        } else if model.msg_type == ChatMsgType.Location.rawValue {
             return model.from_uid == CurrentUserHelper.shared.uid ? "ChatLocationMeCell" : "ChatLocationAnotherCell"
         }
-        
+        return  model.from_uid == CurrentUserHelper.shared.uid ? "ChatWithISayCell" : "ChatWithAnotherSayCell"
+ 
     }
     
     
@@ -210,7 +208,7 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
 
     func sendLocation(poiModel: POIInfoModel?) {
         let msgString = ChatMsgHepler.shared.modelToString(poiModel!)
-        ChatMsgHepler.shared.sendMsg(chatUid, msg: msgString)
+        ChatMsgHepler.shared.sendMsg(chatUid, msg: msgString, type: ChatMsgType.Location.rawValue)
     }
     func inputBarShowGetLocationPage() {
         let getLocationVC = GetLocationInfoViewController()
@@ -254,13 +252,15 @@ class ChatInteractionViewController: BaseCustomListTableViewController,InputBarV
     }
     func tableView(tableView: UITableView!, rowAtIndexPath indexPath: NSIndexPath!, didAction action: Int, data: AnyObject!) {
         
-        let showDetailVC = ShowLocationDetailViewController()
-        
-        let msgModel = dataSource![indexPath.row] as! ChatMsgModel
-        
-        let poiModel = ChatMsgHepler.shared.stringToModel(msgModel.content)
-        showDetailVC.poiModel = poiModel
-        navigationController?.pushViewController(showDetailVC, animated: true)
+        if UInt(action) == AppConst.Action.ShowLocation.rawValue {
+            let showDetailVC = ShowLocationDetailViewController()
+            
+            let msgModel = dataSource![indexPath.section] as! ChatMsgModel
+            
+            let poiModel = ChatMsgHepler.shared.stringToModel(msgModel.content)
+            showDetailVC.poiModel = poiModel
+            navigationController?.pushViewController(showDetailVC, animated: true)
+        }
         
     }
     deinit {

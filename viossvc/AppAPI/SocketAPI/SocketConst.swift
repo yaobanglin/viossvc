@@ -18,6 +18,8 @@ class SocketConst: NSObject {
         case SMSVerify = 1019
         //验证手机验证码
         case VerifyCode = 1101
+        
+        case CheckInviteCode = 1113
         //注册
         case Register = 1021
         //重置密码
@@ -91,6 +93,7 @@ class SocketConst: NSObject {
          */
         case ModfyOrderStatus = 2011
         
+        case UploadContact = 1111
         case LoginRet = 1002
         case UserInfo = 1013
         //发送chat消息
@@ -101,6 +104,8 @@ class SocketConst: NSObject {
         case ChatOfflineRequestMessage = 2025
         case ChatOfflineReceiveMessage = 2006
         case UpdateDeviceToken = 1031
+        
+        case VersionInfo = 1115
     }
     enum type:UInt8 {
         case Error = 0
@@ -120,5 +125,7 @@ class SocketConst: NSObject {
         static let order_status = "order_status_"
         static let change_type = "change_type_"
         static let skills = "skills_"
+        static let phoneNum = "phoneNum_"
+        static let invitationCode = "invitationCode_"
     }
 }
