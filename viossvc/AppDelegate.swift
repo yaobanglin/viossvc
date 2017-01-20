@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         pushMessageRegister()
         umapp()
         registerMapSDK()
-        regitserContact()
+//        regitserContact()
         return true
     }
 
@@ -102,13 +102,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         SVProgressHUD.setMinimumDismissTimeInterval(2)
     }
 
-    private func regitserContact() {
-        let adressRef = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue()
-        if ABAddressBookGetAuthorizationStatus() == .NotDetermined { //还未请求通讯录权限
-            ABAddressBookRequestAccessWithCompletion(adressRef, { (granted, error) in
-            })
-        }
-    }
+//    private func regitserContact() {
+//        
+//        let adressRef = ABAddressBookCreate().takeRetainedValue()
+//        if ABAddressBookGetAuthorizationStatus() == .NotDetermined { //还未请求通讯录权限
+//            ABAddressBookRequestAccessWithCompletion(adressRef, { (granted, error) in
+//            })
+//        } else if ABAddressBookGetAuthorizationStatus() == .Denied || ABAddressBookGetAuthorizationStatus() == .Restricted { //拒绝访问通讯录
+//            
+//        } else if ABAddressBookGetAuthorizationStatus() == .Authorized { //允许访问通讯录
+//            
+//        }
+//    }
     private func umapp(){
         
         UMAnalyticsConfig.sharedInstance().appKey = AppConst.UMAppkey
