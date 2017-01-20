@@ -35,24 +35,20 @@ class YD_MaskView:UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(white: 0, alpha: 0.7)
         
+        backgroundColor = UIColor(white: 0, alpha: 0.7)
         addSubview(arrowImageView)
         addSubview(infoImageView)
+        
     }
-
     
     func setMaskFrame(maskFrame:CGRect, isTop:Bool, infoImage:String?, infoLeft:Bool) {
         
-
         setupMaksLayer(maskFrame)
-        
         setupArrowImageView(maskFrame, isTop: isTop)
-        
         guard infoImage != nil else {return}
-
-
         setupInfoImage(maskFrame, isTop: isTop, infoImage: infoImage, infoLeft: infoLeft)
+        
     }
     
 
