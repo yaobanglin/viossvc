@@ -115,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
 //        }
 //    }
     private func umapp(){
-        
+        MobClick.setCrashReportEnabled(false)
         UMAnalyticsConfig.sharedInstance().appKey = AppConst.UMAppkey
         UMAnalyticsConfig.sharedInstance().channelId = ""
         MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
@@ -127,7 +127,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
         //使用集成测试服务
         MobClick.setLogEnabled(true)
         //Crash
-        MobClick.setCrashReportEnabled(false)
     }
     private func registerMapSDK() {
         var key = "46a4db80f23354f30107c349fa55387a"

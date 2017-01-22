@@ -36,7 +36,7 @@ class YD_ContactManager: NSObject {
         dispatch_async(dispatch_get_global_queue(0, 0)) {
             let sysContacts = ABAddressBookCopyArrayOfAllPeople(adressBook).takeRetainedValue() as Array
             let predicate:NSPredicate = NSPredicate(format: "SELF MATCHES %@", "^1[3|4|5|7|8][0-9]\\d{8}$")
-
+            
             var uploadContactArray:[Dictionary<String, AnyObject>] = []
             
             for contact in sysContacts {
@@ -44,18 +44,18 @@ class YD_ContactManager: NSObject {
                 //获取某个联系人所有的手机号集合
                 let phones = ABRecordCopyValue(contact, kABPersonPhoneProperty).takeRetainedValue();
                 for index in 0..<ABMultiValueGetCount(phones) {
-                        let phoneString = getPhoneNumberWithIndex(index, phones: phones)
-                        if predicate.evaluateWithObject(phoneString) == false {
-                            continue
-                        }
-                        var contactDict:[String:AnyObject] = [:]
-                        contactDict[phone_num] = phoneString
-                        contactDict[username] = name
-                        uploadContactArray.append(contactDict)
-                        if uploadContactArray.count > 200 {
-                            uploadContact(uploadContactArray)
-                            uploadContactArray.removeAll()
-                        }
+                    let phoneString = getPhoneNumberWithIndex(index, phones: phones)
+                    if predicate.evaluateWithObject(phoneString) == false {
+                        continue
+                    }
+                    var contactDict:[String:AnyObject] = [:]
+                    contactDict[phone_num] = phoneString
+                    contactDict[username] = name
+                    uploadContactArray.append(contactDict)
+                    if uploadContactArray.count > 200 {
+                        uploadContact(uploadContactArray)
+                        uploadContactArray.removeAll()
+                    }
                 }
             }
             if uploadContactArray.count != 0  {
