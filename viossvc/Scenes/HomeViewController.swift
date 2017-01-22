@@ -28,7 +28,7 @@ class HomeViewController: SegmentedViewController, TouchMaskViewDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        YD_ContactManager.checkIfUploadContact()
+//        YD_ContactManager.checkIfUploadContact()  // 暂时取消
         addMaskView()
 
     }

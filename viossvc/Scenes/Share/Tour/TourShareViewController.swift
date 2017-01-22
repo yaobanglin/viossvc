@@ -29,7 +29,7 @@ class TourShareViewController: BaseListTableViewController,OEZTableViewDelegate 
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view:TableViewHeaderView? = TableViewHeaderView.loadFromNib();
-        view?.titleLabel.text = section == 0 ? "V领队分享" : "推荐分享";
+        view?.titleLabel.text = section == 0 ? "优悦助理分享" : "推荐分享";
         return view;
     }
    
