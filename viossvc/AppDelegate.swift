@@ -136,6 +136,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,GeTuiSdkDelegate {
                 key = "fee316e0f09979b349bfd4f9e225c907"
             } else if id == "com.yundian.assistant" {
                 key = "46a4db80f23354f30107c349fa55387a"
+            }else if id == "com.yundian.enterprise.trip" {
+                key = "4bb6a0b7762c3f6881048a57d9d64bef"
             }
         }
         AMapServices.sharedServices().apiKey = key
