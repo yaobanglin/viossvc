@@ -67,7 +67,9 @@ class HandleOrderViewController: UIViewController {
             
             if response != nil{
                 let orderDetailModel = response as! OrderDetailModel
-                
+                if self.orderModel?.order_type != 0 {
+                    weakSelf.remarksLabel.text = orderDetailModel.evaluate__remarks ?? "无"
+                }
                 weakSelf.locationLabel.text = orderDetailModel.order_addr
             }
             
@@ -102,7 +104,6 @@ class HandleOrderViewController: UIViewController {
             bottomMargin.constant = 0
         } else {
             remark.text = "备注:"
-            remarksLabel.text = "无"
             guard orderModel!.is_other != 0 else {
                 bottomMargin.constant = 0
 
